@@ -8,7 +8,7 @@ INSERT INTO sucursal VALUES
 (DEFAULT, 'Poseidon Costa del Sol', 'Playa Costa del Sol, La Paz, El Salvador'),
 (DEFAULT, 'Poseidon El Majahual', 'Playa El Majahual, La Libertad, El Salvador');
 
-INSERT INTO tipoUsuario VALUES 
+INSERT INTO tipoUsuario VALUES
 (DEFAULT, 'Superadministrador'),
 (DEFAULT, 'Administrador'),
 (DEFAULT, 'Gerente');
@@ -38,14 +38,33 @@ INSERT INTO cliente VALUES
 (DEFAULT,'Laura', 'Ortiz', 'laura@mail.com', '$argon2i$v=19$m=1024,t=4,p=2$MtxLemFoVnZFaEJuT1NyYg$4j2ZFDn1fVS70ZExmlJ33rXOinafcBXrp6A6grHEPkI', '+50364985467', 'Col Campestre Av Masferrer Sur Pje 1 No 9'),
 (DEFAULT,'Marta', 'Peña', 'marta@mail.com', '$argon2i$v=19$m=1024,t=4,p=2$MtxLemFoVnZFaEJuT1NyYg$4j2ZFDn1fVS70ZExmlJ33rXOinafcBXrp6A6grHEPkI', '+50375269458', 'AVENIDA CLUB DE LEONES NO 1 ENTRE 1A CALLE PTEY CALLE RAMON FLORES PONIENTE CHALCHUAPA');
 
-INSERT INTO categoriaProducto VALUES 
+INSERT INTO categoriaProducto VALUES
 (DEFAULT, 'Tablas'),
 (DEFAULT, 'Accesorios'),
 (DEFAULT, 'Ropa');
 
 
 INSERT INTO producto VALUES
-();
+(DEFAULT, 'KIT DE LIMPIEZA DE TABLA BUBBLE GUM', 18.00, 'KIT DE LIMPIEZA DE TABLA BUBBLE GUM', 'img/products/1', 100, 2);
+(DEFAULT, 'DHD 3DV 5`11 SURFBOARD', 690.00, 'DHD 3DV 5`11 SURFBOARD', 'img/products/2', 20, 1);
+(DEFAULT, 'SEMINUEVA TIMMY PATTERSON NEW SUN 6`0', 470.00, 'SEMINUEVA TIMMY PATTERSON NEW SUN 6`0', 'img/products/3', 20, 1);
+(DEFAULT, 'TIMMY PATTERSON NEW SUN 5`8', 645.00, 'TIMMY PATTERSON NEW SUN 5`8', 'img/products/4', 20, 1);
+(DEFAULT, 'FIREWIRE SPITFIRE 5`8 SURFBOARD', 789.00, 'FIREWIRE SPITFIRE 5`8 SURFBOARD', 'img/products/5', 20, 1);
+(DEFAULT, 'FIREWIRE SEASIDE 5`11 SURFBOARD', 789.00, 'FIREWIRE SEASIDE 5`11" SURFBOARD', 'img/products/6', 20, 1);
+(DEFAULT, 'FIREWIRE DOMINATOR 6`1 SURFBOARD', 789.00, 'FIREWIRE DOMINATOR 6`1 SURFBOARD', 'img/products/7', 20, 1);
+(DEFAULT, 'SINNERS LUST 6`2 SURFBOARD', 476.00, 'SINNERS LUST 6`2 SURFBOARD', 'img/products/8', 20, 1);
+(DEFAULT, 'SINNERS LUST 6`0 SURFBOARD', 468.00, 'SINNERS LUST 6`0 SURFBOARD', 'img/products/9', 20, 1);
+(DEFAULT, 'SINNERS LUST 5`10 SURFBOARD', 464.00, 'SINNERS LUST 5`10 SURFBOARD', 'img/products/10', 20, 1);
+(DEFAULT, 'TIMMY PATTERSON SPUD 5`11 SURFBOARD', 595.00, 'TIMMY PATTERSON SPUD 5`11 SURFBOARD', 'img/products/11', 20, 1);
+(DEFAULT, 'Kit de limpieza de tabla: Bubble Gum', 18.00, 'Kit de limpieza de tabla: Bubble Gum', 'img/products/12', 400, 2);
+(DEFAULT, 'Kit de limpieza de tabla: Bubble Gum', 18.00, 'Kit de limpieza de tabla: Bubble Gum', 'img/products/13', 400, 2);
+(DEFAULT, 'Kit de limpieza de tabla: Bubble Gum', 18.00, 'Kit de limpieza de tabla: Bubble Gum', 'img/products/14', 400, 2);
+(DEFAULT, 'Kit de limpieza de tabla: Bubble Gum', 18.00, 'Kit de limpieza de tabla: Bubble Gum', 'img/products/15', 400, 2);
+(DEFAULT, 'Kit de limpieza de tabla: Bubble Gum', 18.00, 'Kit de limpieza de tabla: Bubble Gum', 'img/products/16', 400, 3);
+(DEFAULT, 'Kit de limpieza de tabla: Bubble Gum', 18.00, 'Kit de limpieza de tabla: Bubble Gum', 'img/products/17', 400, 3);
+(DEFAULT, 'Kit de limpieza de tabla: Bubble Gum', 18.00, 'Kit de limpieza de tabla: Bubble Gum', 'img/products/18', 400, 3);
+(DEFAULT, 'Kit de limpieza de tabla: Bubble Gum', 18.00, 'Kit de limpieza de tabla: Bubble Gum', 'img/products/19', 400, 3);
+(DEFAULT, 'Kit de limpieza de tabla: Bubble Gum', 18.00, 'Kit de limpieza de tabla: Bubble Gum', 'img/products/20', 400, 3);
 
 INSERT INTO estadoOrden VALUES
 (DEFAULT, 'carrito'),
