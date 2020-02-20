@@ -49,9 +49,9 @@ CREATE TABLE categoriaProducto (
 
 CREATE TABLE producto (
     idProducto  SERIAL,
-    nombre VARCHAR(100) NOT NULL,
+    nombre VARCHAR(200) NOT NULL,
     precio NUMERIC(9,2) NOT NULL,
-    descripcion VARCHAR(150) NOT NULL,
+    descripcion VARCHAR(250) NOT NULL,
     imgURL VARCHAR(100) NOT NULL,
     existenciasCompra INT NOT NULL,
     idCategoriaProducto INT NOT NULL,
@@ -141,7 +141,9 @@ CREATE TABLE detalleAlquiler (
     poliza NUMERIC(9,2),
     idOrdenAlquiler INT NOT NULL,
     idEstadoDetalleAlquiler INT NOT NULL,
+    idInformacionAlquiler INT NOT NULL,
     PRIMARY KEY (idDetalleAlquiler),
     FOREIGN KEY (idOrdenAlquiler) REFERENCES ordenAlquiler (idOrdenAlquiler),
-    FOREIGN KEY (idEstadoDetalleAlquiler) REFERENCES estadoDetalleAlquiler (idEstadoDetalleAlquiler)
+    FOREIGN KEY (idEstadoDetalleAlquiler) REFERENCES estadoDetalleAlquiler (idEstadoDetalleAlquiler),
+    FOREIGN KEY (idInformacionAlquiler) REFERENCES informacionAlquiler (idInformacionAlquiler)
 );
