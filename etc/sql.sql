@@ -93,16 +93,88 @@ INSERT INTO orden VALUES
 (DEFAULT, 30.00, DEFAULT, '2020-03-12', '2533 Beech Street', 10, 3);
 
 INSERT INTO detalleOrden VALUES
-();
+(DEFAULT, 3, 690.00, 1, 2),
+(DEFAULT, 2, 49.00, 1, 20),
+(DEFAULT, 10, 18.00, 2, 1),
+(DEFAULT, 2, 40.00, 2, 15),
+(DEFAULT, 4, 25.00, 3, 16),
+(DEFAULT, 1, 470.00, 3, 3),
+(DEFAULT, 2, 645.00, 4, 4),
+(DEFAULT, 3, 789.00, 4, 5),
+(DEFAULT, 5, 789.00, 5, 6),
+(DEFAULT, 2, 789.00, 6, 7),
+(DEFAULT, 3, 476.00, 6, 8),
+(DEFAULT, 1, 468.00, 7, 9),
+(DEFAULT, 2, 464.00, 7, 10),
+(DEFAULT, 1, 595.00, 8, 11),
+(DEFAULT, 1, 299.99, 8, 12),
+(DEFAULT, 2, 15.00, 9, 13),
+(DEFAULT, 4, 196.00, 9, 14),
+(DEFAULT, 5, 40.00, 10, 15),
+(DEFAULT, 3, 25.00, 10, 16),
+(DEFAULT, 1, 49.99, 11, 17),
+(DEFAULT, 1, 35.99, 11, 18),
+(DEFAULT, 2, 189.99, 11, 19),
+(DEFAULT, 3, 49.00, 11, 20),
+(DEFAULT, 4, 18.00, 11, 1),
+(DEFAULT, 5, 690.00, 12, 2),
+(DEFAULT, 1, 470.00, 12, 3),
+(DEFAULT, 10, 645.00, 12, 4),
+(DEFAULT, 23, 789.00, 12, 5),
+(DEFAULT, 2, 789.00, 12, 6),
+(DEFAULT, 3, 789.00, 13, 7),
+(DEFAULT, 4, 476.00, 13, 8),
+(DEFAULT, 5, 468.00, 13, 9),
+(DEFAULT, 1, 464.00, 13, 10),
+(DEFAULT, 2, 595.00, 13, 11),
+(DEFAULT, 1, 299.99, 14, 12),
+(DEFAULT, 2, 15.00, 14, 13),
+(DEFAULT, 3, 196.00, 14, 14),
+(DEFAULT, 4, 40.00, 14, 15),
+(DEFAULT, 1, 25.00, 14, 16),
+(DEFAULT, 2, 49.99, 15, 17),
+(DEFAULT, 1, 35.99, 15, 18),
+(DEFAULT, 2, 189.99, 15, 19),
+(DEFAULT, 3, 49.00, 15, 20),
+(DEFAULT, 1, 18.00, 15, 1),
+(DEFAULT, 2, 690.00, 16, 2),
+(DEFAULT, 5, 470.00, 16, 3),
+(DEFAULT, 2, 645.00, 16, 4),
+(DEFAULT, 4, 789.00, 16, 5),
+(DEFAULT, 1, 789.00, 16, 6),
+(DEFAULT, 6, 789.00, 17, 7),
+(DEFAULT, 1, 476.00, 17, 8),
+(DEFAULT, 2, 468.00, 17, 9),
+(DEFAULT, 3, 464.00, 17, 10),
+(DEFAULT, 4, 595.00, 17, 11),
+(DEFAULT, 9, 299.99, 18, 12),
+(DEFAULT, 12, 15.00, 18, 13),
+(DEFAULT, 1, 196.00, 18, 14),
+(DEFAULT, 2, 40.00, 18, 15),
+(DEFAULT, 3, 25.00, 18, 16),
+(DEFAULT, 4, 49.99, 19, 17),
+(DEFAULT, 5, 35.99, 19, 18),
+(DEFAULT, 1, 189.99, 19, 19),
+(DEFAULT, 6, 49.00, 19, 20),
+(DEFAULT, 1, 18.00, 19, 1),
+(DEFAULT, 2, 690.00, 20, 2),
+(DEFAULT, 6, 470.00, 20, 3),
+(DEFAULT, 2, 645.00, 20, 4),
+(DEFAULT, 3, 789.00, 20, 5),
+(DEFAULT, 1, 789.00, 20, 6);
 
 INSERT INTO review VALUES
-();
+(DEFAULT, 'Juguetón, iconografía, diseño, notificación - agraciado, amigo.', 4, 1),
+(DEFAULT, 'Misión cumplida.Es preciosa ! !', 5, 3),
+(DEFAULT, 'Hermoso trabajo que tienes aquí.', 5, 6),
+(DEFAULT, 'Tipo revolucionario ¡Me encanta el uso de degradado y fondo!', 4, 8),
+(DEFAULT, 'Atractivo. Mantiene su mente ocupada mientras espera.', 3, 11);
 
 INSERT INTO informacionAlquiler VALUES
-(DEFAULT, 38.00, 300.00, 14, 1);
-(DEFAULT, 50.00, 400.00, 10, 2);
-(DEFAULT, 40.00, 300.00, 10, 5);
-(DEFAULT, 45.00, 330.00, 10, 7);
+(DEFAULT, 38.00, 300.00, 14, 1),
+(DEFAULT, 50.00, 400.00, 10, 2),
+(DEFAULT, 40.00, 300.00, 10, 5),
+(DEFAULT, 45.00, 330.00, 10, 7),
 (DEFAULT, 35.00, 280.00, 10, 9);
 
 INSERT INTO estadoOrdenAlquiler VALUES
