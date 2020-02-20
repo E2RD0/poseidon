@@ -44,25 +44,25 @@ INSERT INTO categoriaProducto VALUES
 (DEFAULT, 'Ropa');
 
 INSERT INTO producto VALUES
-(DEFAULT, 'KIT DE LIMPIEZA DE TABLA BUBBLE GUM', 18.00, 'KIT DE LIMPIEZA DE TABLA BUBBLE GUM', 'img/products/1', 100, 2);
-(DEFAULT, 'DHD 3DV 5`11 SURFBOARD', 690.00, 'DHD 3DV 5`11 SURFBOARD', 'img/products/2', 20, 1);
-(DEFAULT, 'SEMINUEVA TIMMY PATTERSON NEW SUN 6`0', 470.00, 'SEMINUEVA TIMMY PATTERSON NEW SUN 6`0', 'img/products/3', 20, 1);
-(DEFAULT, 'TIMMY PATTERSON NEW SUN 5`8', 645.00, 'TIMMY PATTERSON NEW SUN 5`8', 'img/products/4', 20, 1);
-(DEFAULT, 'FIREWIRE SPITFIRE 5`8 SURFBOARD', 789.00, 'FIREWIRE SPITFIRE 5`8 SURFBOARD', 'img/products/5', 20, 1);
-(DEFAULT, 'FIREWIRE SEASIDE 5`11 SURFBOARD', 789.00, 'FIREWIRE SEASIDE 5`11" SURFBOARD', 'img/products/6', 20, 1);
-(DEFAULT, 'FIREWIRE DOMINATOR 6`1 SURFBOARD', 789.00, 'FIREWIRE DOMINATOR 6`1 SURFBOARD', 'img/products/7', 20, 1);
-(DEFAULT, 'SINNERS LUST 6`2 SURFBOARD', 476.00, 'SINNERS LUST 6`2 SURFBOARD', 'img/products/8', 20, 1);
-(DEFAULT, 'SINNERS LUST 6`0 SURFBOARD', 468.00, 'SINNERS LUST 6`0 SURFBOARD', 'img/products/9', 20, 1);
-(DEFAULT, 'SINNERS LUST 5`10 SURFBOARD', 464.00, 'SINNERS LUST 5`10 SURFBOARD', 'img/products/10', 20, 1);
-(DEFAULT, 'TIMMY PATTERSON SPUD 5`11 SURFBOARD', 595.00, 'TIMMY PATTERSON SPUD 5`11 SURFBOARD', 'img/products/11', 20, 1);
-(DEFAULT, '3 / 2mm Highline Lite ‑ Traje de Surf sin Cremallera para Hombre', 299.99 , '3 / 2mm Highline Lite ‑ Traje de Surf sin Cremallera para Hombre', 'img/products/12', 50, 3);
-(DEFAULT, 'CREMA SOLAR SEVENTY ONE PERCENT', 15.00, 'CREMA SOLAR SEVENTY ONE PERCENT', 'img/products/13', 100, 2);
-(DEFAULT, 'RELOJ NIXON ULTRATIDE', 196.00, 'RELOJ NIXON ULTRATIDE', 'img/products/14', 100, 2);
-(DEFAULT, 'TAPONES SEKI', 40.00, 'TAPONES SEKI', 'img/products/15', 100, 2);
-(DEFAULT, 'FORRO BACA DAKINE RACK PADS 18 '' (46CM)', 25.00, 'FORRO BACA DAKINE RACK PADS 18 '' (46CM)', 'img/products/16', 100, 2);
-(DEFAULT, 'Core Performer ‑ Licra de Manga Larga con Protección Solar UPF 50 para Hombre', 49.99, 'Core Performer ‑ Licra de Manga Larga con Protección Solar UPF 50 para Hombre', 'img/products/17', 50, 3);
-(DEFAULT, 'ALL Time ‑ Licra de Manga Larga con Protección Solar UPF 50 para Hombre', 35.99, 'KALL Time ‑ Licra de Manga Larga con Protección Solar UPF 50 para Hombre', 'img/products/18', 50, 3);
-(DEFAULT, '2 / 2mm Highline Limited ‑ Traje de Surf de Primavera con Manga Larga y Cremallera en el Pecho para Hombre', 189.99, '2 / 2mm Highline Limited ‑ Traje de Surf de Primavera con Manga Larga y Cremallera en el Pecho para Hombre', 'img/products/19', 50, 3);
+(DEFAULT, 'KIT DE LIMPIEZA DE TABLA BUBBLE GUM', 18.00, 'KIT DE LIMPIEZA DE TABLA BUBBLE GUM', 'img/products/1', 100, 2),
+(DEFAULT, 'DHD 3DV 5`11 SURFBOARD', 690.00, 'DHD 3DV 5`11 SURFBOARD', 'img/products/2', 20, 1),
+(DEFAULT, 'SEMINUEVA TIMMY PATTERSON NEW SUN 6`0', 470.00, 'SEMINUEVA TIMMY PATTERSON NEW SUN 6`0', 'img/products/3', 20, 1),
+(DEFAULT, 'TIMMY PATTERSON NEW SUN 5`8', 645.00, 'TIMMY PATTERSON NEW SUN 5`8', 'img/products/4', 20, 1),
+(DEFAULT, 'FIREWIRE SPITFIRE 5`8 SURFBOARD', 789.00, 'FIREWIRE SPITFIRE 5`8 SURFBOARD', 'img/products/5', 20, 1),
+(DEFAULT, 'FIREWIRE SEASIDE 5`11 SURFBOARD', 789.00, 'FIREWIRE SEASIDE 5`11" SURFBOARD', 'img/products/6', 20, 1),
+(DEFAULT, 'FIREWIRE DOMINATOR 6`1 SURFBOARD', 789.00, 'FIREWIRE DOMINATOR 6`1 SURFBOARD', 'img/products/7', 20, 1),
+(DEFAULT, 'SINNERS LUST 6`2 SURFBOARD', 476.00, 'SINNERS LUST 6`2 SURFBOARD', 'img/products/8', 20, 1),
+(DEFAULT, 'SINNERS LUST 6`0 SURFBOARD', 468.00, 'SINNERS LUST 6`0 SURFBOARD', 'img/products/9', 20, 1),
+(DEFAULT, 'SINNERS LUST 5`10 SURFBOARD', 464.00, 'SINNERS LUST 5`10 SURFBOARD', 'img/products/10', 20, 1),
+(DEFAULT, 'TIMMY PATTERSON SPUD 5`11 SURFBOARD', 595.00, 'TIMMY PATTERSON SPUD 5`11 SURFBOARD', 'img/products/11', 20, 1),
+(DEFAULT, '3 / 2mm Highline Lite ‑ Traje de Surf sin Cremallera para Hombre', 299.99 , '3 / 2mm Highline Lite ‑ Traje de Surf sin Cremallera para Hombre', 'img/products/12', 50, 3),
+(DEFAULT, 'CREMA SOLAR SEVENTY ONE PERCENT', 15.00, 'CREMA SOLAR SEVENTY ONE PERCENT', 'img/products/13', 100, 2),
+(DEFAULT, 'RELOJ NIXON ULTRATIDE', 196.00, 'RELOJ NIXON ULTRATIDE', 'img/products/14', 100, 2),
+(DEFAULT, 'TAPONES SEKI', 40.00, 'TAPONES SEKI', 'img/products/15', 100, 2),
+(DEFAULT, 'FORRO BACA DAKINE RACK PADS 18 '' (46CM)', 25.00, 'FORRO BACA DAKINE RACK PADS 18 '' (46CM)', 'img/products/16', 100, 2),
+(DEFAULT, 'Core Performer ‑ Licra de Manga Larga con Protección Solar UPF 50 para Hombre', 49.99, 'Core Performer ‑ Licra de Manga Larga con Protección Solar UPF 50 para Hombre', 'img/products/17', 50, 3),
+(DEFAULT, 'ALL Time ‑ Licra de Manga Larga con Protección Solar UPF 50 para Hombre', 35.99, 'KALL Time ‑ Licra de Manga Larga con Protección Solar UPF 50 para Hombre', 'img/products/18', 50, 3),
+(DEFAULT, '2 / 2mm Highline Limited ‑ Traje de Surf de Primavera con Manga Larga y Cremallera en el Pecho para Hombre', 189.99, '2 / 2mm Highline Limited ‑ Traje de Surf de Primavera con Manga Larga y Cremallera en el Pecho para Hombre', 'img/products/19', 50, 3),
 (DEFAULT, '1mm Syncro ‑ Short de Neopreno para Hombre', 49.00, '1mm Syncro ‑ Short de Neopreno para Hombre', 'img/products/20', 400, 3);
 
 INSERT INTO estadoOrden VALUES
@@ -71,7 +71,26 @@ INSERT INTO estadoOrden VALUES
 (DEFAULT, 'productoEntregado');
 
 INSERT INTO orden VALUES
-();
+(DEFAULT, 500.00, DEFAULT, '2020-02-20', '4705 Elk City Road', 1, 2),
+(DEFAULT, 900.00, DEFAULT, "2020-02-19", '2403 Crim Lane', 1, 1),
+(DEFAULT, 900.05, DEFAULT, "2020-02-21", '4800 Water Street', 2, 2),
+(DEFAULT, 300.00, DEFAULT, "2020-02-20", '3009 Charter Street', 2, 3),
+(DEFAULT, 399.00, DEFAULT, "2020-02-27", '796 Straford Park', 3, 2),
+(DEFAULT, 1009.00, DEFAULT, "2020-02-28", '778 Straford Park', 3, 3),
+(DEFAULT, 93.00, DEFAULT, "2020-02-29", '1710 Chatham Way', 4, 1),
+(DEFAULT, 78.90, DEFAULT, "2020-02-25", '5000 Asylum Avenue', 4, 1),
+(DEFAULT, 30.99, DEFAULT, "2020-02-21", '4963 Asylum Avenue', 5, 2),
+(DEFAULT, 10.11, DEFAULT, "2020-02-24", '2181 B Street', 5, 2),
+(DEFAULT, 20.98, DEFAULT, "2020-02-23", '2079 Hinkle Deegan Lake Road', 6, 3),
+(DEFAULT, 54.00, DEFAULT, "2020-03-01", '900 Calico Drive', 6, 3),
+(DEFAULT, 75.00, DEFAULT, "2020-03-08", '2389 Hanover Street', 7, 2),
+(DEFAULT, 234.49, DEFAULT, "2020-03-21", '2374 Hanover Street', 7, 1),
+(DEFAULT, 65.99, DEFAULT, "2020-03-09", '4016 Ashton Lane', 8, 1),
+(DEFAULT, 82.99, DEFAULT, "2020-03-22", '4620 Valley Drive', 8, 1),
+(DEFAULT, 35.00, DEFAULT, "2020-03-06", '2466 Jewell Road', 9, 2),
+(DEFAULT, 30.00, DEFAULT, "2020-03-04", '2492 Jewell Road', 9, 3),
+(DEFAULT, 45.00, DEFAULT, "2020-03-13", '2409 Commerce Boulevard', 10, 3),
+(DEFAULT, 30.00, DEFAULT, "2020-03-12", '2533 Beech Street', 10, 3);
 
 INSERT INTO detalleOrden VALUES
 ();
