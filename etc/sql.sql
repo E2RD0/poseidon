@@ -43,7 +43,6 @@ INSERT INTO categoriaProducto VALUES
 (DEFAULT, 'Accesorios'),
 (DEFAULT, 'Ropa');
 
-
 INSERT INTO producto VALUES
 (DEFAULT, 'KIT DE LIMPIEZA DE TABLA BUBBLE GUM', 18.00, 'KIT DE LIMPIEZA DE TABLA BUBBLE GUM', 'img/products/1', 100, 2);
 (DEFAULT, 'DHD 3DV 5`11 SURFBOARD', 690.00, 'DHD 3DV 5`11 SURFBOARD', 'img/products/2', 20, 1);
@@ -56,15 +55,15 @@ INSERT INTO producto VALUES
 (DEFAULT, 'SINNERS LUST 6`0 SURFBOARD', 468.00, 'SINNERS LUST 6`0 SURFBOARD', 'img/products/9', 20, 1);
 (DEFAULT, 'SINNERS LUST 5`10 SURFBOARD', 464.00, 'SINNERS LUST 5`10 SURFBOARD', 'img/products/10', 20, 1);
 (DEFAULT, 'TIMMY PATTERSON SPUD 5`11 SURFBOARD', 595.00, 'TIMMY PATTERSON SPUD 5`11 SURFBOARD', 'img/products/11', 20, 1);
-(DEFAULT, 'Kit de limpieza de tabla: Bubble Gum', 18.00, 'Kit de limpieza de tabla: Bubble Gum', 'img/products/12', 400, 2);
-(DEFAULT, 'Kit de limpieza de tabla: Bubble Gum', 18.00, 'Kit de limpieza de tabla: Bubble Gum', 'img/products/13', 400, 2);
-(DEFAULT, 'Kit de limpieza de tabla: Bubble Gum', 18.00, 'Kit de limpieza de tabla: Bubble Gum', 'img/products/14', 400, 2);
-(DEFAULT, 'Kit de limpieza de tabla: Bubble Gum', 18.00, 'Kit de limpieza de tabla: Bubble Gum', 'img/products/15', 400, 2);
-(DEFAULT, 'Kit de limpieza de tabla: Bubble Gum', 18.00, 'Kit de limpieza de tabla: Bubble Gum', 'img/products/16', 400, 3);
-(DEFAULT, 'Kit de limpieza de tabla: Bubble Gum', 18.00, 'Kit de limpieza de tabla: Bubble Gum', 'img/products/17', 400, 3);
-(DEFAULT, 'Kit de limpieza de tabla: Bubble Gum', 18.00, 'Kit de limpieza de tabla: Bubble Gum', 'img/products/18', 400, 3);
-(DEFAULT, 'Kit de limpieza de tabla: Bubble Gum', 18.00, 'Kit de limpieza de tabla: Bubble Gum', 'img/products/19', 400, 3);
-(DEFAULT, 'Kit de limpieza de tabla: Bubble Gum', 18.00, 'Kit de limpieza de tabla: Bubble Gum', 'img/products/20', 400, 3);
+(DEFAULT, '3 / 2mm Highline Lite ‑ Traje de Surf sin Cremallera para Hombre', 299.99 , '3 / 2mm Highline Lite ‑ Traje de Surf sin Cremallera para Hombre', 'img/products/12', 50, 3);
+(DEFAULT, 'CREMA SOLAR SEVENTY ONE PERCENT', 15.00, 'CREMA SOLAR SEVENTY ONE PERCENT', 'img/products/13', 100, 2);
+(DEFAULT, 'RELOJ NIXON ULTRATIDE', 196.00, 'RELOJ NIXON ULTRATIDE', 'img/products/14', 100, 2);
+(DEFAULT, 'TAPONES SEKI', 40.00, 'TAPONES SEKI', 'img/products/15', 100, 2);
+(DEFAULT, 'FORRO BACA DAKINE RACK PADS 18 '' (46CM)', 25.00, 'FORRO BACA DAKINE RACK PADS 18 '' (46CM)', 'img/products/16', 100, 2);
+(DEFAULT, 'Core Performer ‑ Licra de Manga Larga con Protección Solar UPF 50 para Hombre', 49.99, 'Core Performer ‑ Licra de Manga Larga con Protección Solar UPF 50 para Hombre', 'img/products/17', 50, 3);
+(DEFAULT, 'ALL Time ‑ Licra de Manga Larga con Protección Solar UPF 50 para Hombre', 35.99, 'KALL Time ‑ Licra de Manga Larga con Protección Solar UPF 50 para Hombre', 'img/products/18', 50, 3);
+(DEFAULT, '2 / 2mm Highline Limited ‑ Traje de Surf de Primavera con Manga Larga y Cremallera en el Pecho para Hombre', 189.99, '2 / 2mm Highline Limited ‑ Traje de Surf de Primavera con Manga Larga y Cremallera en el Pecho para Hombre', 'img/products/19', 50, 3);
+(DEFAULT, '1mm Syncro ‑ Short de Neopreno para Hombre', 49.00, '1mm Syncro ‑ Short de Neopreno para Hombre', 'img/products/20', 400, 3);
 
 INSERT INTO estadoOrden VALUES
 (DEFAULT, 'carrito'),
