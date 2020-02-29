@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <title>Poseidón ~ Tienda de surf</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link href="css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+  <!--[if IE]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+
+  <header class="header-main">
+    <nav class="container-fluid navbar navbar--main">
+    <div class="container">
+    <a href="#" class="navbar-brand"><img class="navbar__logo d-inline-block align-top" src="img/logo.svg" alt="Logo de Poseidón"></a>
+
+    <div class="burger-container">
+      <div id="burger">
+        <div class="bar topBar"></div>
+        <div class="bar btmBar"></div>
+        <div class="bar lastBar"></div>
+      </div>
+    </div>
+
+
+    <ul class="navbar__links">
+      <li><a href="#">Tablas</a></li>
+      <li><a href="#">Ropa</a></li>
+      <li><a href="#">Accesorios</a></li>
+    </ul>
+
+    <ul class="navbar__links navbar__icons">
+      <li><a href="#"><img src="img/icons/search.svg"></a></li>
+      <li><a href="#"><img src="img/icons/cart.svg"></a></li>
+      <li><a href="#"><img src="img/icons/user.svg"></a></li>
+    </ul>
+    </div>
+    </nav>
+    <!--
+      <nav class="container-fluid navbar-expand-lg navbar navbar--main navbar-light">
+    <a href="#" class="navbar-brand"><img class="navbar__logo d-inline-block align-top" src="img/logo.svg" alt="Logo de Poseidón"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-lg-around" id="navbarTogglerDemo02">
+    <ul class="navbar__links navbar-nav">
+      <li class="nav-item"><a class="nav-link" href="#">Tablas</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Ropa</a></li>
+      <li  class="nav-item"><a class="nav-link" href="#">Accesorios</a></li>
+    </ul>
+    <ul class="navbar__links navbar__icons">
+      <li><a href="#"><img src="img/icons/search.svg"></a></li>
+      <li><a href="#"><img src="img/icons/cart.svg"></a></li>
+      <li><a href="#"><img src="img/icons/user.svg"></a></li>
+    </ul>
+    </div>
+    </nav>
+    -->
+
+    <div class="container header__content">
+    <div class="row">
+    <div class="col-md-10">
+          <h1 class="header__title">Domina las olas</h1>
+          <p class="header__text">Explora nuestra variedad de tablas y equipo de surf.</p>
+          <a class="btn btn-primary btn--cta" href="#">Ir a tienda</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="section-products-tabs text-center">
+    <header class="section-header">
+      <h2 class="section-title text-center">Productos Destacados</h2>
+      <ul class="nav justify-content-center nav-categorias" role="tablist">
+          <li class="nav-item">
+            <a data-toggle="tab" href="#tab-1" class="nav-link active" aria-expanded="true">Todos</a>
+          </li>
+          <li class="nav-item">
+            <a data-toggle="tab" href="#tab-2" class="nav-link" aria-expanded="false">Tablas</a>
+          </li>
+          <li class="nav-item">
+            <a data-toggle="tab" href="#tab-3" class="nav-link" aria-expanded="false">Ropa</a>
+          </li>
+          <li class="nav-item">
+            <a data-toggle="tab" href="#tab-4" class="nav-link" aria-expanded="false">Accesorios</a>
+          </li>
+      </ul>
+    </header>
+    <div class="tab-content text-left container">
+    <div class="tab-pane active" id="tab-1" role="tabpanel">
+      <div class="products products-featured row">
+
+      <div class="product has-post-thumbnail featured col-lg-3 col-md-6">
+        <a href="#" class="product__link">
+          <div class="product__image">
+            <img width="300" height="300" src="img/products/1.jpg" class="" alt="" srcset=""/>
+          </div>
+          <h2 class="product__title">Tabla de surf 1</h2>
+          <span class="product__price">$119.99</span>
+        </a>
+        <div class="product__rating">
+          <div class="star-rating" title="Rated 0 out of 5"><span class="review-count">(0)</span></div>
+        </div>
+      </div>
+
+      <div class="product has-post-thumbnail featured col-lg-3 col-md-6">
+        <a href="#" class="product__link">
+          <div class="product__image">
+            <img width="300" height="300" src="img/products/2.jpg" class="" alt="" srcset=""/>
+          </div>
+          <h2 class="product__title">Traje de surfing</h2>
+          <span class="product__price">$120.00</span>
+        </a>
+        <div class="product__rating">
+          <div class="star-rating" title="Rated 0 out of 5"><span class="review-count">(0)</span></div>
+        </div>
+      </div>
+
+      <div class="product has-post-thumbnail featured col-lg-3 col-md-6">
+        <a href="#" class="product__link">
+          <div class="product__image">
+            <img width="300" height="300" src="img/products/3.jpg" class="" alt="" srcset=""/>
+          </div>
+          <h2 class="product__title">Hang up surfing</h2>
+          <span class="product__price">$49.99</span>
+        </a>
+        <div class="product__rating">
+          <div class="star-rating" title="Rated 0 out of 5"><span class="review-count">(0)</span></div>
+        </div>
+      </div>
+
+      <div class="product has-post-thumbnail featured col-lg-3 col-md-6">
+        <a href="#" class="product__link">
+          <div class="product__image">
+            <img width="300" height="300" src="img/products/4.jpg" class="" alt="" srcset=""/>
+          </div>
+          <h2 class="product__title">Tabla surf 2</h2>
+          <span class="product__price">$200.00</span>
+        </a>
+        <div class="product__rating">
+          <div class="star-rating" title="Rated 0 out of 5"><span class="review-count">(0)</span></div>
+        </div>
+      </div>
+
+
+      </div>
+    </div>
+
+    <div class="tab-pane active" id="tab-2" role="tabpanel">
+      <div class="products products-featured row">
+
+        <div class="product has-post-thumbnail featured col-lg-3 col-md-6">
+          <a href="#" class="product__link">
+            <div class="product__image">
+              <img width="300" height="300" src="img/products/1.jpg" class="" alt="" srcset=""/>
+            </div>
+            <h2 class="product__title">Tabla de surf 1</h2>
+            <span class="product__price">$119.99</span>
+          </a>
+          <div class="product__rating">
+            <div class="star-rating" title="Rated 0 out of 5"><span class="review-count">(0)</span></div>
+          </div>
+        </div>
+
+        <div class="product has-post-thumbnail featured col-lg-3 col-md-6">
+          <a href="#" class="product__link">
+            <div class="product__image">
+              <img width="300" height="300" src="img/products/4.jpg" class="" alt="" srcset=""/>
+            </div>
+            <h2 class="product__title">Tabla surf 2</h2>
+            <span class="product__price">$200.00</span>
+          </a>
+          <div class="product__rating">
+            <div class="star-rating" title="Rated 0 out of 5"><span class="review-count">(0)</span></div>
+          </div>
+        </div>
+  
+        </div>
+    </div>
+    <div class="tab-pane active" id="tab-3" role="tabpanel">
+      <div class="products products-featured row">
+
+        <div class="product has-post-thumbnail featured col-lg-3 col-md-6">
+          <a href="#" class="product__link">
+            <div class="product__image">
+              <img width="300" height="300" src="img/products/2.jpg" class="" alt="" srcset=""/>
+            </div>
+            <h2 class="product__title">Traje de surfing</h2>
+            <span class="product__price">$120.00</span>
+          </a>
+          <div class="product__rating">
+            <div class="star-rating" title="Rated 0 out of 5"><span class="review-count">(0)</span></div>
+          </div>
+        </div>
+
+        </div>
+    </div>
+
+    <div class="tab-pane active" id="tab-4" role="tabpanel">
+      <div class="products products-featured row">
+
+        <div class="product has-post-thumbnail featured col-lg-3 col-md-6">
+          <a href="#" class="product__link">
+            <div class="product__image">
+              <img width="300" height="300" src="img/products/3.jpg" class="" alt="" srcset=""/>
+            </div>
+            <h2 class="product__title">Hang up surfing</h2>
+            <span class="product__price">$49.99</span>
+          </a>
+          <div class="product__rating">
+            <div class="star-rating" title="Rated 0 out of 5"><span class="review-count">(0)</span></div>
+          </div>
+        </div>
+
+        </div>
+    </div>
+
+    </div>
+    <div class="position-relative container">
+    <a class="btn-products-more btn btn--cta" href="#">Ver Todo</a>
+    </div>
+  </section>
+
+  <footer class="page-footer pt-4 px-md-4">
+    <div class=" section-cta jumbotron jumbotron-fluid">
+      <div class="container">
+        <h3 class="display-6">Compra tablas de surf con <br>diseños llamativos y originales</h3>
+        <a href="#" class="btn btn--cta btn-secondary">Ver catálogo de tablas</a>
+      </div>
+    </div>
+  <!-- Footer Links -->
+  <div class="container-fluid text-center text-md-left mb-5">
+
+    <!-- Grid row -->
+    <div class="row">
+
+      <!-- Grid column -->
+      <div class="col-lg-6 col-md-6 mt-md-0 mt-3">
+
+        <!-- Content -->
+        <a href="#"><img class="navbar__logo" src="img/logo.svg" alt="Logo de Poseidón"></a>
+        <p class="footer__text my-4">Poseidón es una tienda de equipo de surf. <br>Usa nuestros productos y conviértete en el dios de las olas.</p>
+        <ul class="footer__social list-unstyled">
+          <li><a href="#"><i class="fab fa-facebook-f fa-lg"></i></a></li>
+          <li><a href="#"><i class="fab fa-twitter fa-lg"></i></a></li>
+          <li><a href="#"><i class="fab fa-instagram fa-lg"></i></a></li>
+        </ul>
+      </div>
+      <!-- Grid column -->
+
+      <hr class="clearfix w-100 d-md-none pb-3">
+
+      <!-- Grid column -->
+      <div class="col-lg-2 col-md-3 mb-md-0 mb-3">
+
+        <!-- Links -->
+        <h6 class="mb-md-4">Enlaces</h6>
+
+        <ul class="list-unstyled footer__links">
+          <li>
+            <a href="#!">Mi cuenta</a>
+          </li>
+          <li>
+            <a href="#!">Mis ordenes</a>
+          </li>
+          <li>
+            <a href="#!">Acerca de</a>
+          </li>
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-lg-2 col-md-3 mb-md-0 mb-3">
+
+        <!-- Links -->
+        <h6 class="mb-md-4">Información</h6>
+
+        <ul class="list-unstyled footer__links">
+          <li>
+            <a href="#">Términos y condiciones</a>
+          </li>
+          <li>
+            <a href="#">Política de privacidad</a>
+          </li>
+          <li>
+            <a href="#">Política de devoluciones</a>
+          </li>
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-lg-2 col-md-3 mb-md-0 mb-3 ml-md-auto mt-md-3 mt-lg-0">
+
+        <!-- Links -->
+        <h6 class="mb-md-4">Contacto</h6>
+
+        <ul class="list-unstyled footer__links">
+          <li>
+            <a href="mailto:tienda@surf.com">tienda@surf.com</a>
+          </li>
+          <li>
+            <a href="tel:+50376851477">Tel: +50376851477</a>
+          </li>
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Links -->
+  <hr class="clearfix w-100 mb-0">
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-4">©2020. Todos los derechos reservados.</div>
+  <!-- Copyright -->
+
+</footer>
+  <!-- Javascript -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.4.1.min.js"><\/script>')</script>
+  <script src="js/plugins.js"></script>
+  <script src="js/vendor/bootstrap.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>
