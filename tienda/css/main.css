@@ -322,7 +322,7 @@ a, a:link, a:visited, a:hover, a:active{
   transition: box-shadow 0.5s ease-out, height 0.5s ease-out, background-color 0.5s ease-out;
   transition-delay: 0.2s;
   font-size: 1rem;
-} 
+}
 
 .burger-container {
   position: relative;
@@ -403,7 +403,7 @@ background: #000;
 
 .navbar__links li{
   display: inline-block;
-  margin-left: 2.2rem; 
+  margin-left: 2.2rem;
 }
 
 .navbar__links a{
@@ -486,7 +486,6 @@ background: #000;
 .header__title{
   margin-bottom: 0.4em;
 }
-
 
 .section-products-tabs .section-header{
   margin-bottom: 5em;
@@ -697,7 +696,7 @@ background: #000;
     margin-right: 1.5em;
     border-bottom: none;
   }
-  
+
    .navbar__links li:nth-child(1) {
     transition-delay: 0.49s;
   }
@@ -724,7 +723,7 @@ background: #000;
   .navbar__links a{
     color: #363D3D;
   }
-  
+
   .navbar--main.menu-opened{
     background-color: #fff;
     height: 400px;

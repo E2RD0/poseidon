@@ -1,5 +1,5 @@
 <?php
-require_once('../core/helpers/login_template.php');
+require_once('core/helpers/login_template.php');
 loginTemplate::loginHead("Recuperar contraseña");
 ?>
 
@@ -8,7 +8,7 @@ loginTemplate::loginHead("Recuperar contraseña");
         <div class="main__login">
             <div class="row justify-content-center m-0">
                 <div class="col-12 recover__form text-center">
-                    <img src="../resources/img/poseidon-l.svg" alt="logo poseidon" class="img-fluid">
+                    <img src="resources/img/poseidon-l.svg" alt="logo poseidon" class="img-fluid">
                     <p class="recover__message text-break">Ingreso tu correo electrónico
                     y te enviaremos un enlace para reestablecer tu contraseña</p>
                 </div>
