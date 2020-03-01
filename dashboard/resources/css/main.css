@@ -357,3 +357,25 @@ textarea {
   font-size: 0.9rem;
   margin: 1em auto;
 }
+.password__show{
+  display: block;
+  right: 15px;
+  position: absolute;
+  top: 30px;
+  cursor: pointer;
+}
+.recover__pass{
+  padding: 1em 0 0 0.5em;
+}
+.recover__pass__text{
+  margin: -25px 0px 0 30px;
+}
+.cgreen{
+  color: #5CB85C;
+}
+.cred{
+  color: #D9534F;
+}
+.times{
+  margin: 0 0 0 2px;
+}

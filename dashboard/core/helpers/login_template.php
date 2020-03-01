@@ -14,7 +14,8 @@ class loginTemplate
                 <meta name="theme-color" content="#171717">
                 <title>'.$title.'</title>
                 <link rel="manifest" href="site.webmanifest">
-                <link rel="stylesheet" href="resources/fonts/fonts.css">
+                <link rel="stylesheet" href="resources/css/all.min.css">
+                <link rel="stylesheet" href="resources/webfonts/fonts.css">
                 <link rel="stylesheet" href="resources/css/normalize.css">
                 <link rel="stylesheet" href="resources/css/bootstrap.min.css">
                 <link rel="stylesheet" href="resources/css/main.css">
