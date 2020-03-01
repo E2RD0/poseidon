@@ -19,12 +19,21 @@ loginTemplate::loginHead("Recuperar contraseña");
                                 <div class="form-field">
                                     <div class="form-field__control">
                                         <label for="correo" class="form-field__label">Correo electrónico</label>
-                                        <input id="correo" type="email" class="form-field__input" required/>
+                                        <input id="correo" type="email" class="form-field__input"/>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
+                        <div class="row pt-3">
+                            <div class="col text-center">
+                                <button class="btn recover__button" type="button" onclick="location.href='index.php'">
+                                    Átras
+                                </button>
+                                <button class="btn main__button" type="submit">
+                                    Enviar
+                                </button>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>

@@ -283,7 +283,7 @@ textarea {
   width: 100%;
 }
 .main__form{
-  padding-top: 10em;
+  padding-top: calc(100% / 4);
 }
 .main__message{
   padding-top: 1em;
@@ -308,7 +308,6 @@ textarea {
   padding: 0.7rem 2.5rem;
   font-size: 0.9rem;
   margin: 1em auto;
-  display: block;
 }
 .main__forget_pass{
   font-size: 0.9rem;
@@ -343,9 +342,18 @@ textarea {
   }
 }
 .recover__form{
-  padding-top: 15em;
+  padding-top: calc(100% / 3);
 }
 .recover__message{
   padding: 1em 5em 0 5em;
   color: #A6A7AD;
+}
+.recover__button{
+  color: #000000;
+  border-color: #FEDB3F;
+  background-color: transparent;
+  font-weight: 600;
+  padding: 0.7rem 2.5rem;
+  font-size: 0.9rem;
+  margin: 1em auto;
 }
