@@ -43,7 +43,7 @@ loginTemplate::loginHead('Iniciar Sesión');
                         </div>
                         <div class="row">
                             <div class="col text-center">
-                                <button class="btn main__button" type="submit">Iniciar Sesión</button>
+                                <button class="btn main__button" type="button" onclick="location.href='dashboard.php'">Iniciar Sesión</button>
                             </div>
                             <div class="w-100"></div>
                             <div class="col text-center">
