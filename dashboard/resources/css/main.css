@@ -379,3 +379,11 @@ textarea {
 .times{
   margin: 0 0 0 2px;
 }
+.menu__svg{
+  fill: #576271;
+  stroke: #576271;
+}
+.menu__svg:active{
+  fill: #FEDB3F;
+  stroke: #FEDB3F;
+}
