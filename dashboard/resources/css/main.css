@@ -400,7 +400,8 @@ textarea {
 }
 .dash__logo{
   width: 75%;
-  margin: 10px 0 20% 20px;
+  margin: 40px 0 40px 20px;
+  min-width: 150px;
 }
 .wrapper{
   display: flex;
@@ -412,9 +413,13 @@ textarea {
   height: 100%;
   background-color: white;
   transition: all 0.3s ease;
+  overflow: hidden;
 }
 .wrapper .dash__sidebar ul{
-  padding-bottom: 75%;
+  padding-bottom: 100px;
+}
+.wrapper .dash__footer ul{
+  padding-bottom: 10px;
 }
 .wrapper .dash__sidebar ul li,
 .wrapper .dash__footer ul li{
@@ -428,21 +433,26 @@ textarea {
   display: block;
   text-decoration: none;
   position: relative;
+  transition: all 0.3s ease;
 }
 .wrapper .dash__sidebar ul li a p,
 .wrapper .dash__footer ul li a p{
-  margin: -30px 0 0 55px;
+  margin: -25px 0 0 55px;
 }
 .wrapper .dash__sidebar ul .active,
 .wrapper .dash__footer ul .active{
   font-weight: 600;
   background-color: #F7F9FB;
 }
-.wrapper .dash__sidebar ul .active p {
+.wrapper .dash__sidebar ul .active p,
+.wrapper .dash__sidebar ul .active span.icon .icon__svg .st0,
+.wrapper .dash__footer ul .active p,
+.wrapper .dash__footer ul .active span.icon .icon__svg .st0{
   color: #FEDB3F;
+  fill: #FEDB3F;
 }
-.wrapper .dash__sidebar ul li a object,
-.wrapper .dash__footer ul li a object{
+.wrapper .dash__sidebar ul span.icon svg,
+.wrapper .dash__footer ul span.icon svg{
   width: 25px;
   height: 25px;
   margin: 0 5% 0 10%;
@@ -452,10 +462,11 @@ textarea {
   text-decoration: none;
 }
 .wrapper .dash__footer{
-  padding-top: 10%;
+  position: absolute;
+  bottom: 0;
 }
 .div-transparent:before {
-  margin-top: 310%;
+  margin-top: 340%;
   content: "";
   position: absolute;
   top: 0;
@@ -468,40 +479,44 @@ textarea {
 .wrapper.hide .dash__sidebar{
   width:60px;
 }
+.wrapper.hide .dash__footer{
+  left: 15px;
+  position: absolute;
+  bottom: 0;
+}
 .toggle{
-  background-color: white;
-  height: 40px;
-  width: 30px;
   position: absolute;
   top: 0;
-  margin-left: 200px;
+  margin-left: 175px;
+  margin-top: 10px;
   bottom: 0;
   display: flex;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
   color: #576271;
-  font-size: 40px;
+  font-size: 20px;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 .wrapper .dash__main{
-  background-color: white;
-  border-color: #D1D0D0;
+  background-color: #F7F9FB;
+  background-size: ;
+  box-shadow: #D1D0D0;
   width: calc(100% - 220px);
-  margin-top: 20px;
-  margin-left: 220px;
+  margin-top: 0.1%;
+  margin-left: 210px;
   padding: 15px;
   transition: all 0.3s ease;
 }
 .wrapper .dash__main .item{
-  margin-bottom: 20px;
   background: white;
+  border: #F7F9FB;
   padding: 15px;
 }
 .wrapper.hide .toggle{
-  margin-left: 60px;
+  margin-left: 28px;
+  transform: rotateY(180deg);
 }
-.wrapper.hide .dash__sidebar ul li a{
+.wrapper.hide .dash__sidebar ul li a,
+.wrapper.hide .dash__footer ul li a{
   text-align: center;
 }
 .wrapper.hide .dash__sidebar ul li a span.icon{
@@ -512,4 +527,29 @@ textarea {
 }
 .wrapper.hide .dash__sidebar .div-transparent{
   display: none;
+}
+.wrapper.hide .dash__sidebar ul .active span.icon .icon__svg .st0,
+.wrapper.hide .dash__footer ul .active span.icon .icon__svg .st0{
+  fill: #FEDB3F;
+}
+.wrapper.hide .dash__main{
+  width: calc(100% - 80px);
+  margin-left: 70px;
+}
+.wrapper .dash__main_card{
+  margin-bottom: 20px;
+  background-color: white;
+  box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.1);
+}
+.wrapper .dash__side_card1{
+  background-color: white;
+  border-right: #F7F9FB 20px solid;
+  box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.1);
+  clip-path: inset(-5px 0px -5px 0px);
+}
+.wrapper .dash__side_card2{
+  background-color: white;
+  border-left: #F7F9FB 20px solid;
+  box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.1);
+  clip-path: inset(-5px 0px -5px 0px);
 }
