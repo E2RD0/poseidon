@@ -1,8 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="33" height="30.705" viewBox="0 0 33 30.705">
-  <g id="Grupo_79" data-name="Grupo 79" transform="translate(5.45 -5.8)">
-    <g id="Grupo_78" data-name="Grupo 78" transform="translate(-5.45 5.8)">
-      <path id="Trazado_354" data-name="Trazado 354" d="M34.352,5.8H3.682A1.173,1.173,0,0,0,2.5,6.982v28.34a1.182,1.182,0,0,0,2.365,0V8.2H14.5v3.582H9.629a1.173,1.173,0,0,0-1.182,1.182V29.411a1.173,1.173,0,0,0,1.182,1.182H33.135a1.173,1.173,0,0,0,1.182-1.182V12.929a1.173,1.173,0,0,0-1.182-1.182H28.267V8.2h6.051a1.2,1.2,0,0,0,.035-2.4ZM29.832,21.17a.935.935,0,0,1-.939.939h-.556v1.669a.846.846,0,0,1-.835.835.776.776,0,0,1-.835-.8V22.144H25.45v1.669a.835.835,0,1,1-1.669,0V22.144H20.443a3.825,3.825,0,1,1,0-1.947h8.415A1,1,0,0,1,29.832,21.17ZM25.9,11.746H16.861V8.2H25.9Z" transform="translate(-2.5 -5.8)"/>
-      <circle id="Elipse_13" data-name="Elipse 13" cx="2.912" cy="2.912" r="2.912" transform="translate(11.531 12.457)"/>
-    </g>
-  </g>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 33 30.7" style="enable-background:new 0 0 33 30.7;" xml:space="preserve" width="33" height="30.7">
+	<style type="text/css">
+		.st0{fill-rule:evenodd;clip-rule:evenodd;fill:#576271;}
+	</style>
+	<path class="st0" d="M31.9,0H1.2C0.5,0,0,0.5,0,1.2v28.3c0,0.7,0.5,1.2,1.2,1.2s1.2-0.5,1.2-1.2V2.4H12V6H7.1C6.5,6,5.9,6.5,5.9,7.2v16.4
+		c0,0.7,0.5,1.2,1.2,1.2h23.5c0.7,0,1.2-0.5,1.2-1.2V7.1c0-0.7-0.5-1.2-1.2-1.2h-4.9V2.4h6.1c0.7,0,1.2-0.5,1.2-1.2S32.5,0,31.9,0
+		L31.9,0z M27.3,15.4c0,0.5-0.4,0.9-0.9,0.9h-0.6V18c0,0.5-0.4,0.8-0.8,0.8c-0.5,0-0.8-0.3-0.8-0.8v-1.7H23V18
+		c0,0.5-0.4,0.8-0.8,0.8c-0.5,0-0.8-0.4-0.8-0.8v-1.7h-3.3c-0.4,1.6-1.9,2.9-3.7,2.9c-2.1,0-3.8-1.7-3.8-3.8s1.7-3.8,3.8-3.8
+		c1.8,0,3.3,1.2,3.7,2.9h8.4C26.9,14.4,27.3,14.8,27.3,15.4L27.3,15.4z M23.4,5.9h-9V2.4h9V5.9z"/>
+	<circle class="st0" cx="14.3" cy="15.4" r="1.9"/>
 </svg>

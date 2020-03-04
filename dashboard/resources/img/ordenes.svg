@@ -1,16 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="30" height="37.837" viewBox="0 0 30 37.837">
-  <g id="Grupo_82" data-name="Grupo 82" transform="translate(-8211 -236)">
-    <g id="order" transform="translate(8211 236)">
-      <g id="Grupo_68" data-name="Grupo 68" transform="translate(0 7.464)">
-        <g id="Grupo_67" data-name="Grupo 67">
-          <path id="Trazado_346" data-name="Trazado 346" d="M83.005,124.742l-1.69-21.291a2.66,2.66,0,0,0-2.641-2.446H75.337v4.945a1.108,1.108,0,0,1-2.216,0v-4.945H62.926v4.945a1.108,1.108,0,0,1-2.216,0v-4.945H57.372a2.66,2.66,0,0,0-2.641,2.443l-1.69,21.3a6.161,6.161,0,0,0,6.143,6.632h17.68a6.161,6.161,0,0,0,6.142-6.635ZM73.016,113.9l-5.731,5.731a1.108,1.108,0,0,1-1.568,0l-2.686-2.686a1.108,1.108,0,0,1,1.567-1.567l1.9,1.9,4.948-4.948a1.108,1.108,0,1,1,1.567,1.568Z" transform="translate(-53.023 -101.005)"/>
-        </g>
-      </g>
-      <g id="Grupo_70" data-name="Grupo 70" transform="translate(7.687)">
-        <g id="Grupo_69" data-name="Grupo 69">
-          <path id="Trazado_347" data-name="Trazado 347" d="M164.353,0a7.322,7.322,0,0,0-7.314,7.314v.15h2.216v-.15a5.1,5.1,0,1,1,10.195,0v.15h2.216v-.15A7.322,7.322,0,0,0,164.353,0Z" transform="translate(-157.039)"/>
-        </g>
-      </g>
-    </g>
-  </g>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 33 38.5" style="enable-background:new 0 0 33 38.5;" xml:space="preserve" width="30" height="38.5">
+	<style type="text/css">
+		.st0{fill-rule:evenodd;clip-rule:evenodd;fill:#576271;}
+	</style>
+	<path class="st0" d="M32.6,12.8c-0.2-0.3-0.6-0.5-1-0.5h-6.9V8.3C24.7,3.7,21,0,16.5,0S8.2,3.7,8.2,8.3v4.1H1.3c-0.4,0-0.8,0.2-1,0.5
+		C0.1,13.1,0,13.5,0,13.9l2.3,19.7c0.3,2.8,2.6,4.9,5.5,4.9h17.4c2.8,0,5.2-2.1,5.5-4.9L33,13.9C33,13.5,32.9,13.1,32.6,12.8z
+		M11,8.3c0-3,2.5-5.5,5.5-5.5S22,5.2,22,8.3v4.1H11V8.3z M9.6,17.9c-0.8,0-1.4-0.6-1.4-1.4c0-0.8,0.6-1.4,1.4-1.4
+		c0.8,0,1.4,0.6,1.4,1.4C11,17.3,10.4,17.9,9.6,17.9z M23.1,22.8l-5.1,8c-0.7,1.1-2,1.1-2.7,0.3l-3.9-4c-0.6-0.6-0.5-1.4,0-2
+		c0.5-0.5,1.2-0.5,1.8-0.1l3,2.2l4.7-5.9c0.5-0.6,1.3-0.7,1.9-0.2C23.4,21.4,23.5,22.2,23.1,22.8z M23.4,17.9c-0.8,0-1.4-0.6-1.4-1.4
+		c0-0.8,0.6-1.4,1.4-1.4c0.8,0,1.4,0.6,1.4,1.4C24.7,17.3,24.1,17.9,23.4,17.9z"/>
 </svg>

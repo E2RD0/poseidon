@@ -29,11 +29,11 @@ class loginTemplate
     public static function loginEnd()
     {
         echo(
-            '<script src="resources/js/vendor/jquery-3.4.1.min.js"></script>
+            '</body>
+            <script src="resources/js/vendor/jquery-3.4.1.min.js"></script>
             <script src="resources/js/vendor/bootstrap.bundle.min.js"></script>
             <script src="resources/js/plugins.js"></script>
             <script src="resources/js/main.js"></script>
-            </body>
             </html>'
         );
     }

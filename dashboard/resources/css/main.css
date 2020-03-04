@@ -11,6 +11,15 @@
    Base styles: opinionated defaults
    ========================================================================== */
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
 html {
   color: #222;
   font-size: 1em;
@@ -263,7 +272,6 @@ textarea {
     page-break-after: avoid;
   }
 }
-
 .main__bg {
   background-image: url("../img/l-back.jpg");
   width: 100%;
@@ -386,4 +394,122 @@ textarea {
 .menu__svg:active{
   fill: #FEDB3F;
   stroke: #FEDB3F;
+}
+.dash__body{
+  background-color: #F7F9FB;
+}
+.dash__logo{
+  width: 75%;
+  margin: 10px 0 20% 20px;
+}
+.wrapper{
+  display: flex;
+  position: relative;
+}
+.wrapper .dash__sidebar{
+  position: fixed;
+  width: 200px;
+  height: 100%;
+  background-color: white;
+  transition: all 0.3s ease;
+}
+.wrapper .dash__sidebar ul{
+  padding-bottom: 75%;
+}
+.wrapper .dash__sidebar ul li,
+.wrapper .dash__footer ul li{
+  padding: 8px 0;
+  border-bottom: 1px solid white;
+  border-top: 1px solid white;
+}
+.wrapper .dash__sidebar ul li a,
+.wrapper .dash__footer ul li a{
+  color: #576271;
+  display: block;
+  text-decoration: none;
+  position: relative;
+}
+.wrapper .dash__sidebar ul li a p,
+.wrapper .dash__footer ul li a p{
+  margin: -30px 0 0 55px;
+}
+.wrapper .dash__sidebar ul .active,
+.wrapper .dash__footer ul .active{
+  font-weight: 600;
+  background-color: #F7F9FB;
+}
+.wrapper .dash__sidebar ul .active p {
+  color: #FEDB3F;
+}
+.wrapper .dash__sidebar ul li a object,
+.wrapper .dash__footer ul li a object{
+  width: 25px;
+  height: 25px;
+  margin: 0 5% 0 10%;
+}
+.wrapper .dash__sidebar ul li:hover{
+  background-color: #F7F9FB;
+  text-decoration: none;
+}
+.wrapper .dash__footer{
+  padding-top: 10%;
+}
+.div-transparent:before {
+  margin-top: 310%;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 5%;
+  right: 5%;
+  width: 90%;
+  height: 1px;
+  background-image: linear-gradient(to right, transparent, #E0E3DA, transparent);
+}
+.wrapper.hide .dash__sidebar{
+  width:60px;
+}
+.toggle{
+  background-color: white;
+  height: 40px;
+  width: 30px;
+  position: absolute;
+  top: 0;
+  margin-left: 200px;
+  bottom: 0;
+  display: flex;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  color: #576271;
+  font-size: 40px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.wrapper .dash__main{
+  background-color: white;
+  border-color: #D1D0D0;
+  width: calc(100% - 220px);
+  margin-top: 20px;
+  margin-left: 220px;
+  padding: 15px;
+  transition: all 0.3s ease;
+}
+.wrapper .dash__main .item{
+  margin-bottom: 20px;
+  background: white;
+  padding: 15px;
+}
+.wrapper.hide .toggle{
+  margin-left: 60px;
+}
+.wrapper.hide .dash__sidebar ul li a{
+  text-align: center;
+}
+.wrapper.hide .dash__sidebar ul li a span.icon{
+  margin: 0;
+}
+.wrapper.hide .dash__sidebar ul li a span.title{
+  display: none;
+}
+.wrapper.hide .dash__sidebar .div-transparent{
+  display: none;
 }

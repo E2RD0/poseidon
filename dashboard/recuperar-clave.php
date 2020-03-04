@@ -18,7 +18,7 @@ loginTemplate::loginHead('Recuperar contraseña');
                                 <div class="form-field">
                                     <div class="form-field__control">
                                         <label for="clave" class="form-field__label">Ingresa la nueva contraseña</label>
-                                        <input id="clave" type="password" class="form-field__input" required />
+                                        <input id="clave" type="password" class="form-field__input" required="required" />
                                         <i class="fas fa-eye password__show"></i>
                                     </div>
                                 </div>
@@ -29,7 +29,7 @@ loginTemplate::loginHead('Recuperar contraseña');
                                 <div class="form-field">
                                     <div class="form-field__control">
                                         <label for="rclave" class="form-field__label">Repite la contraseña</label>
-                                        <input id="rclave" type="password" class="form-field__input" required />
+                                        <input id="rclave" type="password" class="form-field__input" required="required" />
                                     </div>
                                 </div>
                             </div>
@@ -63,8 +63,7 @@ loginTemplate::loginHead('Recuperar contraseña');
                             </div>
                             <div class="col">
                                 <div class="text-right">
-                                    <button class="btn main__button" type="button"
-                                        onclick="location.href='index.php'">Cambiar contraseña</button>
+                                    <button class="btn main__button" type="button" onclick="location.href='index.php'">Cambiar contraseña</button>
                                 </div>
                             </div>
                         </div>

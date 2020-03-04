@@ -22,22 +22,8 @@ const setActive = (el, active) => {
   }
 )
 
-(function($) {
-
-	"use strict";
-
-	var fullHeight = function() {
-
-		$('.js-fullheight').css('height', $(window).height());
-		$(window).resize(function(){
-			$('.js-fullheight').css('height', $(window).height());
-		});
-
-	};
-	fullHeight();
-
-	$('#sidebarCollapse').on('click', function () {
-      $('#sidebar').toggleClass('active');
-  });
-
-})(jQuery);
+$(document).ready(function() {
+    $(".toggle").click(function() {
+        $(".wrapper").toggleClass("hide");
+    });
+});
