@@ -17,6 +17,8 @@ class dashboardTemplate
                 <link rel="stylesheet" href="resources/webfonts/fonts.css">
                 <link rel="stylesheet" href="resources/css/normalize.css">
                 <link rel="stylesheet" href="resources/css/bootstrap.min.css">
+                <link rel="stylesheet" href="resources/css/Chart.min.css">
+                <link rel="stylesheet" href="resources/css/datatables.min.css">
                 <link rel="stylesheet" href="resources/css/main.css">
                 <link rel="stylesheet" href="resources/css/custom.css">
             </head>
@@ -31,6 +33,8 @@ class dashboardTemplate
             </body>
             <script src="resources/js/vendor/jquery-3.4.1.min.js"></script>
             <script src="resources/js/vendor/bootstrap.bundle.min.js"></script>
+            <script src="resources/js/vendor/Chart.bundle.min.js"></script>
+            <script src="resources/js/vendor/datatables.min.js"></script>
             <script src="resources/js/plugins.js"></script>
             <script src="resources/js/main.js"></script>
             </html>');
@@ -39,7 +43,6 @@ class dashboardTemplate
     public static function dashMenu()
     {
         echo ('<header>
-
                 <div class="dash__sidebar">
                     <div class="toggle">
                         <i class="fas fa-chevron-left"></i>
@@ -47,7 +50,7 @@ class dashboardTemplate
                     <img src="resources/img/poseidon-l.svg" alt="Logo Poseidon" class="img-fluid dash__logo">
                     <ul class="">
                         <li class="active">
-                            <a href="#">
+                            <a href="dashboard.php">
                                 <span class="icon">
                                     <svg class="icon__svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                         viewBox="0 0 33 33" style="enable-background:new 0 0 33 33;" xml:space="preserve" width="33" height="33">
@@ -66,7 +69,7 @@ class dashboardTemplate
                             </a>
                         </li>
                         <li class="">
-                            <a href="#">
+                            <a href="ordenes.php">
                                 <span class="icon">
                                     <svg class="icon__svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                         viewBox="0 0 33 38.5" style="enable-background:new 0 0 33 38.5;" xml:space="preserve" width="30" height="38.5">
