@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <title>Registro ~ Poseidón</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link href="css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+  <!--[if IE]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+
+  <header class="header-main header-main--normal">
+    <nav class="container-fluid navbar navbar--main navbar--normal">
+    <div class="container">
+    <a href="#" class="navbar-brand"><img class="navbar__logo d-inline-block align-top" src="img/logo.svg" alt="Logo de Poseidón"></a>
+
+    <div class="burger-container">
+      <div id="burger">
+        <div class="bar topBar"></div>
+        <div class="bar btmBar"></div>
+        <div class="bar lastBar"></div>
+      </div>
+    </div>
+
+
+    <ul class="navbar__links">
+      <li><a href="#">Tablas</a></li>
+      <li><a href="#">Ropa</a></li>
+      <li><a href="#">Accesorios</a></li>
+    </ul>
+
+    <ul class="navbar__links navbar__icons">
+      <li><a href="#"><img src="img/icons/search.svg"></a></li>
+      <li><a href="#"><img src="img/icons/cart.svg"></a></li>
+      <li><a href="#"><img src="img/icons/user.svg"></a></li>
+    </ul>
+    </div>
+    </nav>
+  </header>
+
+  <main class="form container mb-5">
+    <a href="tienda.html" class="go-back"><i class="fas fa-arrow-left fa-lg mr-4"></i>Regresar a la tienda</a>
+    <div class="row">
+    <div class="col-md-6 text-center form-container">
+      <h1 class="form-title">Crea una nueva cuenta para poder comprar en la tienda</h1>
+      <p>Gestiona tus ordenes, alquileres, y se capaz de dar tu opinión respecto a los productos que has comprado.</p>
+      <form class="mt-5">
+        <input class="form-input" type="text" required name="name" placeholder="Nombres">
+        <input class="form-input" type="text" required name="lastname" placeholder="Apellidos">
+        <input class="form-input" type="email" required name="email" placeholder="Correo Electrónico">
+        <input class="form-input" type="password" required name="pass" placeholder="Contraseña">
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
+            <label class="custom-control-label" for="customCheck">Acepto los términos de servicio y la política de privacidad</label>
+        </div>
+        <button class="btn btn--cta btn-primary form-submit my-4" type="submit">Regístrate</button>
+      </form>
+      <p class="form-text">¿Ya tienes una cuenta? <a class="ml-sm-3" href="iniciarSesion.html">Inicia sesión</a></p>
+    </div>
+    </div>
+  </main>
+
+  <!-- Javascript -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.4.1.min.js"><\/script>')</script>
+  <script src="js/plugins.js"></script>
+  <script src="js/vendor/bootstrap.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>
