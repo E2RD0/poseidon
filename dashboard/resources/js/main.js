@@ -92,6 +92,53 @@ if (chBar) {
 
 $(document).ready( function () {
     $('#table').DataTable({
-      responsive: true
+        responsive: true
     });
 } );
+
+// $(document).ready(function () {
+//     $(".dash__table_button").click( function () {
+//         if (window.matchMedia('(max-width: 425px)').matches == true){
+//             alert("yets");
+//             $('#table').DataTable({
+//                 responsive: true
+//             });
+//         }
+//     });
+// } );
+
+// $(document).ready(function () {
+//     var mql = window.matchMedia("max-width: 425px");
+//     if (mql.matches) {
+//         alert("yes");
+//     };
+// } )
+
+$(function () {
+    if (window.matchMedia('(max-width: 425px)').matches){
+        document.getElementById('check_mq').classList.remove("w-75");
+        document.getElementById('check_mq').classList.add("w-100");
+    }
+});
+
+// $().ready(
+//     function () {
+//         $(".dash__table_button").click(
+//             function () {
+//                 alert(window.matchMedia("max-width: 425px").matches);
+
+//             }
+//         )
+//     }
+// )
+
+// let mql = window.matchMedia('(max-width: 425px)');
+//         if (mql.matches){
+//             alert('a');
+//         }
+
+// if(mql){
+//     alert(document.getElementById("check_mq").classList.contains("w-75"));
+// }
+
+// document.querySelector(".mq-value").innerText = mql.matches;

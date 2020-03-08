@@ -1,7 +1,7 @@
 <?php
 require_once('core/helpers/dashboard_template.php');
 dashboardTemplate::dashHead('Dashboard');
-dashboardTemplate::dashMenu();
+dashboardTemplate::dashMenu('dashboard');
 ?>
 
 <main>
@@ -37,7 +37,7 @@ dashboardTemplate::dashMenu();
                     </div>
                     <div class="col-md-12 col-lg-12">
                         <div class="table-responsive">
-                            <table class="table dash__main_table" id="table">
+                            <table class="table dash__main_table w-100" id="table">
                                 <thead>
                                     <tr>
                                         <th>Nombre del cliente</th>
@@ -176,8 +176,8 @@ dashboardTemplate::dashMenu();
                         </div>
                     </div>
                     <div class="row justify-content-center">
-                        <div class="col-9">
-                            <div class="col-md-11 col-sm-12 col-lg-11">
+                        <div class="col-12">
+                            <div class="col-md-12 col-sm-12 col-lg-12">
                                 <div class="card dash__graph">
                                     <div class="card-body">
                                         <canvas id="chBar"></canvas>

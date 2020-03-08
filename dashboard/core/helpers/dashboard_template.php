@@ -40,16 +40,18 @@ class dashboardTemplate
             </html>');
     }
 
-    public static function dashMenu()
+    public static function dashMenu($page)
     {
         echo ('<header>
                 <div class="dash__sidebar">
                     <div class="toggle">
                         <i class="fas fa-chevron-left"></i>
                     </div>
-                    <img src="resources/img/poseidon-l.svg" alt="Logo Poseidon" class="img-fluid dash__logo">
-                    <ul class="">
-                        <li class="active">
+                    <a href="dashboard.php">
+                        <img src="resources/img/poseidon-l.svg" alt="Logo Poseidon" class="img-fluid dash__logo">
+                    </a>
+                    <ul class="">'.
+                        (($page == 'dashboard') ? '<li class="active">' : '<li class="">').'
                             <a href="dashboard.php">
                                 <span class="icon">
                                     <svg class="icon__svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -67,8 +69,8 @@ class dashboardTemplate
                                     <p>Dashboard</p>
                                 </span>
                             </a>
-                        </li>
-                        <li class="">
+                        </li>'.
+                        (($page == 'ordenes') ? '<li class="active">' : '<li class="">').'
                             <a href="ordenes.php">
                                 <span class="icon">
                                     <svg class="icon__svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -88,9 +90,9 @@ class dashboardTemplate
                                     <p>Ordenes</p>
                                 </span>
                             </a>
-                        </li>
-                        <li class="">
-                            <a href="#">
+                        </li>'.
+                        (($page == 'alquileres') ? '<li class="active">' : '<li class="">').'
+                            <a href="alquileres.php">
                                 <span class="icon">
                                     <svg class="icon__svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                         viewBox="0 0 33 30.7" style="enable-background:new 0 0 33 30.7;" xml:space="preserve" width="33" height="30.7">
@@ -109,9 +111,9 @@ class dashboardTemplate
                                     <p>Alquileres</p>
                                 </span>
                             </a>
-                        </li>
-                        <li class="">
-                            <a href="">
+                        </li>'.
+                        (($page == 'sucursales') ? '<li class="active">' : '<li class="">').'
+                            <a href="sucursales.php">
                                 <span class="icon">
                                     <svg class="icon__svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                         viewBox="0 0 33 45.7" style="enable-background:new 0 0 33 45.7;" xml:space="preserve" width="33" height="34.95">
@@ -127,8 +129,8 @@ class dashboardTemplate
                                     <p>Sucursales</p>
                                 </span>
                             </a>
-                        </li>
-                        <li class="">
+                        </li>'.
+                        (($page == 'categorias') ? '<li class="active">' : '<li class="">').'
                             <a href="">
                                 <span class="icon">
                                     <svg class="icon__svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -152,8 +154,8 @@ class dashboardTemplate
                                     <p>Categorías</p>
                                 </span>
                             </a>
-                        </li>
-                        <li class="">
+                        </li>'.
+                        (($page == 'productos') ? '<li class="active">' : '<li class="">').'
                             <a href="">
                                 <span class="icon">
                                     <svg class="icon__svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -176,8 +178,8 @@ class dashboardTemplate
                                     <p>Productos</p>
                                 </span>
                             </a>
-                        </li>
-                        <li class="">
+                        </li>'.
+                        (($page == 'clientes') ? '<li class="active">' : '<li class="">').'
                             <a href="">
                                 <span class="icon">
                                     <svg class="icon__svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -207,8 +209,8 @@ class dashboardTemplate
                                     <p>Clientes</p>
                                 </span>
                             </a>
-                        </li>
-                        <li class="">
+                        </li>'.
+                        (($page == 'usuarios') ? '<li class="active">' : '<li class="">').'
                             <a href="">
                                 <span class="icon">
                                     <svg version="1.1"
@@ -226,8 +228,8 @@ class dashboardTemplate
                                     <p>Usuarios</p>
                                 </span>
                             </a>
-                        </li>
-                        <li class="">
+                        </li>'.
+                        (($page == 'ajustes') ? '<li class="active">' : '<li class="">').'
                             <a href="">
                                 <span class="icon">
                                     <svg class="icon__svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -249,8 +251,8 @@ class dashboardTemplate
                     </ul>
                     <div class="div-transparent"></div>
                     <div class="dash__footer">
-                        <ul>
-                            <li>
+                        <ul>'.
+                        (($page == 'user') ? '<li class="active">' : '<li class="">').'
                                 <a href="">
                                     <span class="icon">
                                         <svg class="icon__svg"
