@@ -35,6 +35,7 @@ dashboardTemplate::dashMenu('dashboard');
                             </div>
                         </div>
                     </div>
+                    <hr class="dash__div">
                     <div class="col-md-12 col-lg-12">
                         <div class="table-responsive">
                             <table class="table dash__main_table w-100" id="table">
@@ -54,9 +55,9 @@ dashboardTemplate::dashMenu('dashboard');
                                         <td>€ 99,225</td>
                                         <td class="text-right">2013</td>
                                         <td class="td-actions text-right">
-                                            <button class="btn dash__table_button" type="button" onclick="location.href='dashboard.php'">
-                                                Detalles de la orden
-                                            </button>
+                                            <button class="btn dash__table_button" type="button" data-toggle="modal"
+                                            data-target="#orden"
+                                            id="modal_open">Detalles de la orden</button>
                                         </td>
                                     </tr>
                                     <tr>
@@ -65,7 +66,9 @@ dashboardTemplate::dashMenu('dashboard');
                                         <td>€ 89,241</td>
                                         <td class="text-right">2012</td>
                                         <td class="td-actions text-right">
-                                            <button class="btn dash__table_button" type="button" onclick="location.href='dashboard.php'">Detalles de la orden</button>
+                                            <button class="btn dash__table_button" type="button" data-toggle="modal"
+                                            data-target="#orden"
+                                            id="modal_open">Detalles de la orden</button>
                                         </td>
                                     </tr>
                                     <tr>
@@ -74,7 +77,9 @@ dashboardTemplate::dashMenu('dashboard');
                                         <td>€ 92,144</td>
                                         <td class="text-right">2010</td>
                                         <td class="td-actions text-right">
-                                            <button class="btn dash__table_button" type="button" onclick="location.href='dashboard.php'">Detalles de la orden</button>
+                                            <button class="btn dash__table_button" type="button" data-toggle="modal"
+                                            data-target="#orden"
+                                            id="modal_open">Detalles de la orden</button>
                                         </td>
                                     </tr>
                                     <tr>
@@ -83,7 +88,9 @@ dashboardTemplate::dashMenu('dashboard');
                                         <td>€ 49,990</td>
                                         <td class="text-right">2009</td>
                                         <td class="td-actions text-right">
-                                            <button class="btn dash__table_button" type="button" onclick="location.href='dashboard.php'">Detalles de la orden</button>
+                                            <button class="btn dash__table_button" type="button" data-toggle="modal"
+                                            data-target="#orden"
+                                            id="modal_open">Detalles de la orden</button>
                                         </td>
                                     </tr>
                                     <tr>
@@ -92,7 +99,9 @@ dashboardTemplate::dashMenu('dashboard');
                                         <td>€ 69,201</td>
                                         <td class="text-right">2008</td>
                                         <td class="td-actions text-right">
-                                            <button class="btn dash__table_button" type="button" onclick="location.href='dashboard.php'">Detalles de la orden</button>
+                                            <button class="btn dash__table_button" type="button" data-toggle="modal"
+                                            data-target="#orden"
+                                            id="modal_open">Detalles de la orden</button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -117,10 +126,10 @@ dashboardTemplate::dashMenu('dashboard');
                     </div>
                     <hr class="dash__div">
                     <div class="row dash__side_card1_container">
-                        <div class="col-lg-2 col-md-2 col-sm-12 col-12">
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-12">
                             <p class="dash__sc1_text">Tabla de surf X</p>
                         </div>
-                        <div class="col-lg-10 col-md-10 col-sm-12 col-12 dash__bar">
+                        <div class="col-lg-9 col-md-9 col-sm-12 col-12 dash__bar">
                             <div class="progress">
                                 <div class="progress-bar bg-danger" role="progressbar" style="width: 5%" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
@@ -128,10 +137,10 @@ dashboardTemplate::dashMenu('dashboard');
                         </div>
                     </div>
                     <div class="row dash__side_card1_container">
-                        <div class="col-lg-2 col-md-2 col-sm-12 col-12">
+                        <div class="col-lg-3 col-md-4 col-sm-12 col-12">
                             <p class="dash__sc1_text">Tabla de surf X</p>
                         </div>
-                        <div class="col-lg-10 col-md-10 col-sm-12 col-12 dash__bar">
+                        <div class="col-lg-9 c8ol-md-8 col-sm-12 col-12 dash__bar">
                             <div class="progress">
                                 <div class="progress-bar bg-warning" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
@@ -139,10 +148,10 @@ dashboardTemplate::dashMenu('dashboard');
                         </div>
                     </div>
                     <div class="row dash__side_card1_container">
-                        <div class="col-lg-2 col-md-2 col-sm-12 col-12">
+                        <div class="col-lg-3 col-md-4 col-sm-12 col-12">
                             <p class="dash__sc1_text">Tabla de surf X</p>
                         </div>
-                        <div class="col-lg-10 col-md-10 col-sm-12 col-12 dash__bar">
+                        <div class="col-lg-9 c8ol-md-8 col-sm-12 col-12 dash__bar">
                             <div class="progress">
                                 <div class="progress-bar bg-success" role="progressbar" style="width: 90%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="35"></div>
                             </div>
@@ -150,10 +159,10 @@ dashboardTemplate::dashMenu('dashboard');
                         </div>
                     </div>
                     <div class="row dash__side_card1_container">
-                        <div class="col-lg-2 col-md-2 col-sm-12 col-12">
+                        <div class="col-lg-3 col-md-4 col-sm-12 col-12">
                             <p class="dash__sc1_text">Tabla de surf X</p>
                         </div>
-                        <div class="col-lg-10 col-md-10 col-sm-12 col-12 dash__bar">
+                        <div class="col-lg-9 c8ol-md-8 col-sm-12 col-12 dash__bar">
                             <div class="progress">
                                 <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="20"></div>
                             </div>
@@ -175,12 +184,15 @@ dashboardTemplate::dashMenu('dashboard');
                             </span>
                         </div>
                     </div>
+                    <hr class="dash__div"></hr>
                     <div class="row justify-content-center">
                         <div class="col-12">
-                            <div class="col-md-12 col-sm-12 col-lg-12">
-                                <div class="card dash__graph">
-                                    <div class="card-body">
-                                        <canvas id="chBar"></canvas>
+                            <div class="col-12">
+                                <div id="canva" class="col-md-12 col-sm-12 col-lg-12">
+                                    <div class="card dash__graph">
+                                        <div class="card-body">
+                                            <canvas id="chBar"></canvas>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -193,5 +205,6 @@ dashboardTemplate::dashMenu('dashboard');
 </main>
 
 <?php
+dashboardTemplate::dashModal();
 dashboardTemplate::dashEnd();
 ?>

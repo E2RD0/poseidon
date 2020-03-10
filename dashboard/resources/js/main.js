@@ -121,6 +121,13 @@ $(function () {
     }
 });
 
+$(document).ready(function () {
+    $(".toggle").click(function () {
+        document.getElementById('canva').classList.remove("col-lg-12");
+        document.getElementById('canva').classList.add("col-lg-11");
+    });
+});
+
 // $().ready(
 //     function () {
 //         $(".dash__table_button").click(
