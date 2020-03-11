@@ -19,8 +19,8 @@ class dashboardTemplate
                 <link rel="stylesheet" href="resources/css/bootstrap.min.css">
                 <link rel="stylesheet" href="resources/css/Chart.min.css">
                 <link rel="stylesheet" href="resources/css/datatables.min.css">
-                <link rel="stylesheet" href="resources/css/main.css">
                 <link rel="stylesheet" href="resources/css/custom.css">
+                <link rel="stylesheet" href="resources/css/main.css">
             </head>
 
             <body class="dash__body">

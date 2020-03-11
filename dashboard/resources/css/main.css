@@ -834,3 +834,6 @@ textarea {
 .dash__tab_title{
     font-size: 20px;
 }
+.dash__text_fields{
+    margin-top: 0;
+}

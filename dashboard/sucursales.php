@@ -13,11 +13,7 @@ dashboardTemplate::dashMenu('sucursales');
                             <div class="col-md-12 col-lg-12 p-0">
                                 <ul class="nav nav-categorias" role="tablist">
                                     <li class="nav-item">
-                                        <a
-                                            data-toggle="tab"
-                                            href="#alquileres"
-                                            class="nav-link active dash__tab_title"
-                                            aria-expanded="true">Sucursales</a>
+                                        <a data-toggle="tab" href="#alquileres" class="nav-link active dash__tab_title" aria-expanded="true">Sucursales</a>
                                     </li>
                                 </ul>
                             </div>
@@ -36,56 +32,7 @@ dashboardTemplate::dashMenu('sucursales');
                                                 <td>1</td>
                                                 <td>Playa El Tunco</td>
                                                 <td class="td-actions text-center">
-                                                    <div class="grid_item">
-                                                        <div class="grid_item__inner" style="width:43px; height: 26px; ">
-                                                            <input id="menu-3" type="checkbox" style="display: none">
-                                                            <label for="menu-3">
-                                                                <div
-                                                                    class="menu"
-                                                                    style="transition: all 0.4s;position: relative;width: 43px;height: 43px;border-radius: 100%;cursor: pointer;">
-                                                                    <div
-                                                                        class="menu_part"
-                                                                        style="
-width: 6px;
-height: 6px;
-position: absolute;
-background: #313d44;
-right: 0;
-margin: auto;
-left: 0;
-border-radius: 6px;
-transition: all 0.4s cubic-bezier(0.5, 0, 0.3, 1.2);
-width:23;top: calc(50% - ((11px)) + -2px);"></div>
-                                                                    <div
-                                                                        class="menu_part"
-                                                                        style="
-width: 6px;
-height: 6px;
-position: absolute;
-background: #313d44;
-right: 0;
-margin: auto;
-left: 0;
-border-radius: 6px;
-transition: all 0.4s cubic-bezier(0.5, 0, 0.3, 1.2);
-width:23;top: calc(50% - ((11px)) + 6px);"></div>
-                                                                    <div
-                                                                        class="menu_part"
-                                                                        style="
-width: 6px;
-height: 6px;
-position: absolute;
-background: #313d44;
-right: 0;
-margin: auto;
-left: 0;
-border-radius: 6px;
-transition: all 0.4s cubic-bezier(0.5, 0, 0.3, 1.2);
-width:23;top: calc(50% - ((11px)) + 14px);"></div>
-                                                                </div>
-                                                            </label>
-                                                        </div>
-                                                    </div>
+                                                    <i class="fas fa-ellipsis-h"></i>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -111,34 +58,40 @@ width:23;top: calc(50% - ((11px)) + 14px);"></div>
                             <div class="col-md-12 col-lg-12 p-0">
                                 <ul class="nav nav-categorias" role="tablist">
                                     <li class="nav-item">
-                                        <a
-                                            data-toggle="tab"
-                                            href="#alquileres"
-                                            class="nav-link active dash__tab_title"
-                                            aria-expanded="true">Añadir una nueva sucursal</a>
+                                        <a data-toggle="tab" href="#alquileres" class="nav-link active dash__tab_title" aria-expanded="true">Añadir una nueva sucursal</a>
                                     </li>
                                 </ul>
                             </div>
                             <div class="tab-pane active py-3 px-3 px-sm-0" id="alquileres" role="tabpanel">
-                                <div class="row">
-                                    <div class="col-md-4 col-12 text-right">
+                                <div class="row mt-4">
+                                    <div class="col-md-4 col-12 text-lg-right">
                                         <p>Nombre de la sucursal</p>
                                     </div>
-                                    <div class="col-md-8 col-12">
-                                        <div class="col-sm">
-                                            <div class="form-field">
-                                                <div class="form-field__control">
-                                                    <input id="correo" type="email" class="form-field__input" required="required"/>
-                                                </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-field">
+                                            <div class="form-field__control">
+                                                <input id="correo" type="email" class="dash__text_fields form-field__input" />
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-4 col-12 text-right">
+                                <div class="row mt-3">
+                                    <div class="col-md-4 col-12 text-lg-right">
                                         <p>Dirección</p>
                                     </div>
-                                    <div class="col-md-8 col-12"></div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-field">
+                                            <div class="form-field__control">
+                                                <textarea id="exampleTextarea" class="form-field__textarea dash__text_fields"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 justify-content-md-end justify-content-center">
+                                        <span class="mr-3">
+                                            <button type="button" class="btn recover__button">Cancelar</button>
+                                            <button type="button" class="btn main__button">Agregar sucursal</button>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
