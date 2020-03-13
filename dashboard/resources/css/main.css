@@ -1,3 +1,5 @@
+/* prefixed by https://autoprefixer.github.io (PostCSS: v7.0.26, autoprefixer: v9.7.3) */
+
 /*! HTML5 Boilerplate v7.3.0 | MIT License | https://html5boilerplate.com/ */
 
 /* main.css 2.0.0 | MIT License | https://github.com/h5bp/main.css#readme */
@@ -14,7 +16,8 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
     list-style: none;
     text-decoration: none;
     font-family: 'Source Sans Pro', sans-serif;
@@ -200,7 +203,7 @@ textarea {
     /* Style adjustments for viewports that meet the condition */
 }
 
-@media print, (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 1.25dppx), (min-resolution: 120dpi) {
+@media print, (-webkit-min-device-pixel-ratio: 1.25), (-o-min-device-pixel-ratio: 5/4), (min-resolution: 1.25dppx), (min-resolution: 120dpi) {
     /* Style adjustments for high resolution devices */
 }
 
@@ -217,7 +220,8 @@ textarea {
         background: transparent !important;
         color: #000 !important;
         /* Black prints faster */
-        box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+                box-shadow: none !important;
         text-shadow: none !important;
     }
     a,
@@ -268,6 +272,8 @@ textarea {
         page-break-after: avoid;
     }
 }
+
+/* CSS del Login */
 .main__bg {
     background-image: url("../img/l-back.jpg");
     width: 100%;
@@ -400,6 +406,8 @@ textarea {
     min-width: 150px;
 }
 .wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     position: relative;
 }
@@ -428,6 +436,8 @@ textarea {
     display: block;
     text-decoration: none;
     position: relative;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
 }
 .wrapper .dash__footer ul li a p,
@@ -470,6 +480,8 @@ textarea {
     right: 5%;
     width: 90%;
     height: 1px;
+    background-image: -webkit-gradient(linear, left top, right top, from(transparent), color-stop(#E0E3DA), to(transparent));
+    background-image: -o-linear-gradient(left, transparent, #E0E3DA, transparent);
     background-image: linear-gradient(to right, transparent, #E0E3DA, transparent);
 }
 .wrapper.hide .dash__sidebar {
@@ -484,20 +496,27 @@ textarea {
     margin-left: 175px;
     margin-top: 10px;
     bottom: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     color: #576271;
     font-size: 20px;
     cursor: pointer;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
     max-height: 20px;
 }
 .wrapper .dash__main {
     background-color: #F7F9FB;
-    box-shadow: #D1D0D0;
+    -webkit-box-shadow: #D1D0D0;
+            box-shadow: #D1D0D0;
     width: calc(100% - 220px);
     margin-top: 0.1%;
     margin-left: 210px;
     padding: 15px;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
 }
 .wrapper .dash__main .item {
@@ -507,7 +526,8 @@ textarea {
 }
 .wrapper.hide .toggle {
     margin-left: 28px;
-    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+            transform: rotateY(180deg);
 }
 .wrapper.hide .dash__footer ul li a,
 .wrapper.hide .dash__sidebar ul li a {
@@ -532,15 +552,18 @@ textarea {
 }
 .wrapper .dash__main_card {
     background-color: white;
-    box-shadow: 0 3px 5px 0 rgba(0,0,0,0.1);
+    -webkit-box-shadow: 0 3px 5px 0 rgba(0,0,0,0.1);
+            box-shadow: 0 3px 5px 0 rgba(0,0,0,0.1);
 }
 .wrapper .dash__side_card1 {
     background-color: white;
-    box-shadow: 0 3px 5px 0 rgba(0,0,0,0.1);
+    -webkit-box-shadow: 0 3px 5px 0 rgba(0,0,0,0.1);
+            box-shadow: 0 3px 5px 0 rgba(0,0,0,0.1);
 }
 .wrapper .dash__side_card2 {
     background-color: white;
-    box-shadow: 0 3px 5px 0 rgba(0,0,0,0.1);
+    -webkit-box-shadow: 0 3px 5px 0 rgba(0,0,0,0.1);
+            box-shadow: 0 3px 5px 0 rgba(0,0,0,0.1);
 }
 .dash__main_divisor:before {
     margin-top: 5%;
@@ -551,6 +574,8 @@ textarea {
     right: 5%;
     width: 90%;
     height: 1px;
+    background-image: -webkit-gradient(linear, left top, right top, from(transparent), color-stop(#E0E3DA), to(transparent));
+    background-image: -o-linear-gradient(left, transparent, #E0E3DA, transparent);
     background-image: linear-gradient(to right, transparent, #E0E3DA, transparent);
 }
 .dash__main_button {
@@ -627,8 +652,14 @@ textarea {
     top: 0;
     z-index: 1000;
     height: 46.734px;
+    -webkit-transition: height 0.5s ease-out, background-color 0.5s ease-out, -webkit-box-shadow 0.5s ease-out;
+    transition: height 0.5s ease-out, background-color 0.5s ease-out, -webkit-box-shadow 0.5s ease-out;
+    -o-transition: box-shadow 0.5s ease-out, height 0.5s ease-out, background-color 0.5s ease-out;
     transition: box-shadow 0.5s ease-out, height 0.5s ease-out, background-color 0.5s ease-out;
-    transition-delay: 0.2s;
+    transition: box-shadow 0.5s ease-out, height 0.5s ease-out, background-color 0.5s ease-out, -webkit-box-shadow 0.5s ease-out;
+    -webkit-transition-delay: 0.2s;
+         -o-transition-delay: 0.2s;
+            transition-delay: 0.2s;
     font-size: 1rem;
 }
 
@@ -639,9 +670,16 @@ textarea {
     width: 50px;
     float: right;
     cursor: pointer;
-    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+            transform: rotate(0deg);
+    -webkit-transition: all 0.3s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+    -o-transition: all 0.3s cubic-bezier(0.4, 0.01, 0.165, 0.99);
     transition: all 0.3s cubic-bezier(0.4, 0.01, 0.165, 0.99);
-    user-select: none;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
     -webkit-tap-highlight-color: transparent;
 }
 
@@ -659,8 +697,12 @@ textarea {
     display: block;
     position: relative;
     background: #fff;
+    -webkit-transition: all 0.3s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+    -o-transition: all 0.3s cubic-bezier(0.4, 0.01, 0.165, 0.99);
     transition: all 0.3s cubic-bezier(0.4, 0.01, 0.165, 0.99);
-    transition-delay: 0s;
+    -webkit-transition-delay: 0s;
+         -o-transition-delay: 0s;
+            transition-delay: 0s;
 }
 
 .burger-container #burger .bar {
@@ -668,36 +710,54 @@ textarea {
 }
 
 .burger-container #burger .bar.topBar {
-    transform: translateY(0px) rotate(0deg);
+    -webkit-transform: translateY(0px) rotate(0deg);
+        -ms-transform: translateY(0px) rotate(0deg);
+            transform: translateY(0px) rotate(0deg);
 }
 
 .burger-container #burger .bar.btmBar {
-    transform: translateY(6px) rotate(0deg);
+    -webkit-transform: translateY(6px) rotate(0deg);
+        -ms-transform: translateY(6px) rotate(0deg);
+            transform: translateY(6px) rotate(0deg);
 }
 
 .burger-container #burger .bar.lastBar {
-    transform: translateY(12px) rotate(0deg);
+    -webkit-transform: translateY(12px) rotate(0deg);
+        -ms-transform: translateY(12px) rotate(0deg);
+            transform: translateY(12px) rotate(0deg);
 }
 
 .navbar--main.menu-opened .burger-container {
-    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+            transform: rotate(90deg);
 }
 
 .navbar--main.menu-opened .burger-container #burger .bar {
     background: #000;
+    -webkit-transition: all 0.4s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+    -o-transition: all 0.4s cubic-bezier(0.4, 0.01, 0.165, 0.99);
     transition: all 0.4s cubic-bezier(0.4, 0.01, 0.165, 0.99);
-    transition-delay: 0.2s;
+    -webkit-transition-delay: 0.2s;
+         -o-transition-delay: 0.2s;
+            transition-delay: 0.2s;
 }
 
 .navbar--main.menu-opened .burger-container #burger .bar.topBar {
-    transform: translateY(4px) rotate(45deg);
+    -webkit-transform: translateY(4px) rotate(45deg);
+        -ms-transform: translateY(4px) rotate(45deg);
+            transform: translateY(4px) rotate(45deg);
 }
 
 .navbar--main.menu-opened .burger-container #burger .bar.btmBar {
-    transform: translateY(3px) rotate(-45deg);
+    -webkit-transform: translateY(3px) rotate(-45deg);
+        -ms-transform: translateY(3px) rotate(-45deg);
+            transform: translateY(3px) rotate(-45deg);
 }
 
 .navbar--main.menu-opened .burger-container #burger .bar.lastBar {
+    -webkit-transition: opacity 0.2s ease-in-out;
+    -o-transition: opacity 0.2s ease-in-out;
     transition: opacity 0.2s ease-in-out;
     opacity: 0;
 }
@@ -725,7 +785,8 @@ textarea {
 }
 .dash__tab_card {
     background: #FFF none repeat scroll 0 0;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
     margin-bottom: 30px;
 }
 .dash__ord_title {
@@ -810,6 +871,8 @@ textarea {
   position: relative;
 }
 .nav-categorias .nav-link:after{
+  -webkit-transition: all 0.4s ease-in;
+  -o-transition: all 0.4s ease-in;
   transition: all 0.4s ease-in;
   content: '';
   height: 1px;
@@ -817,10 +880,11 @@ textarea {
   position: absolute;
   bottom: 0;
   left: 0;
-  transform: translateX(100%);
+  -webkit-transform: translateX(100%);
+      -ms-transform: translateX(100%);
+          transform: translateX(100%);
   background-color: transparent;
 }
-
 .nav-categorias .nav-link.active:after{
     content: '';
     height: 4px;
@@ -829,11 +893,16 @@ textarea {
     position: absolute;
     bottom: 0;
     left: 0;
-    transform: translateX(-9%);
+    -webkit-transform: translateX(-9%);
+        -ms-transform: translateX(-9%);
+            transform: translateX(-9%);
 }
 .dash__tab_title{
     font-size: 20px;
 }
 .dash__text_fields{
     margin-top: 0;
+}
+.dash__button_resize {
+    padding: 0.6rem 0.9rem;
 }

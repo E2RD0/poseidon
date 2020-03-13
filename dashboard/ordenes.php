@@ -11,11 +11,7 @@ dashboardTemplate::dashMenu('ordenes');
                 <div class="col-md-12 col-lg-12 p-0">
                     <ul class="nav nav-categorias" role="tablist">
                         <li class="nav-item">
-                            <a
-                                data-toggle="tab"
-                                href="#ordenes"
-                                class="nav-link active dash__tab_title"
-                                aria-expanded="true">Ordenes</a>
+                            <a data-toggle="tab" href="#ordenes" class="nav-link active dash__tab_title" aria-expanded="true">Ordenes</a>
                         </li>
                     </ul>
                 </div>
@@ -38,12 +34,7 @@ dashboardTemplate::dashMenu('ordenes');
                                     <td>€ 99,225</td>
                                     <td class="text-right">2013</td>
                                     <td class="td-actions text-right">
-                                        <button
-                                            class="btn dash__table_button"
-                                            type="button"
-                                            data-toggle="modal"
-                                            data-target="#orden"
-                                            id="modal_open">
+                                        <button class="btn dash__table_button" type="button" data-toggle="modal" data-target="#orden" id="modal_open">
                                             Detalles de la orden
                                         </button>
                                     </td>
@@ -54,12 +45,7 @@ dashboardTemplate::dashMenu('ordenes');
                                     <td>€ 89,241</td>
                                     <td class="text-right">2012</td>
                                     <td class="td-actions text-right">
-                                        <button
-                                            class="btn dash__table_button"
-                                            type="button"
-                                            data-toggle="modal"
-                                            data-target="#orden"
-                                            id="modal_open">Detalles de la orden</button>
+                                        <button class="btn dash__table_button" type="button" data-toggle="modal" data-target="#orden" id="modal_open">Detalles de la orden</button>
                                     </td>
                                 </tr>
                                 <tr>
@@ -68,12 +54,7 @@ dashboardTemplate::dashMenu('ordenes');
                                     <td>€ 92,144</td>
                                     <td class="text-right">2010</td>
                                     <td class="td-actions text-right">
-                                        <button
-                                            class="btn dash__table_button"
-                                            type="button"
-                                            data-toggle="modal"
-                                            data-target="#orden"
-                                            id="modal_open">Detalles de la orden</button>
+                                        <button class="btn dash__table_button" type="button" data-toggle="modal" data-target="#orden" id="modal_open">Detalles de la orden</button>
                                     </td>
                                 </tr>
                                 <tr>
@@ -82,12 +63,7 @@ dashboardTemplate::dashMenu('ordenes');
                                     <td>€ 49,990</td>
                                     <td class="text-right">2009</td>
                                     <td class="td-actions text-right">
-                                        <button
-                                            class="btn dash__table_button"
-                                            type="button"
-                                            data-toggle="modal"
-                                            data-target="#orden"
-                                            id="modal_open">Detalles de la orden</button>
+                                        <button class="btn dash__table_button" type="button" data-toggle="modal" data-target="#orden" id="modal_open">Detalles de la orden</button>
                                     </td>
                                 </tr>
                                 <tr>
@@ -96,12 +72,7 @@ dashboardTemplate::dashMenu('ordenes');
                                     <td>€ 69,201</td>
                                     <td class="text-right">2008</td>
                                     <td class="td-actions text-right">
-                                        <button
-                                            class="btn dash__table_button"
-                                            type="button"
-                                            data-toggle="modal"
-                                            data-target="#orden"
-                                            id="modal_open">Detalles de la orden</button>
+                                        <button class="btn dash__table_button" type="button" data-toggle="modal" data-target="#orden" id="modal_open">Detalles de la orden</button>
                                     </td>
                                 </tr>
                                 <tr>
@@ -110,12 +81,7 @@ dashboardTemplate::dashMenu('ordenes');
                                     <td>€ 99,225</td>
                                     <td class="text-right">2013</td>
                                     <td class="td-actions text-right">
-                                        <button
-                                            class="btn dash__table_button"
-                                            type="button"
-                                            data-toggle="modal"
-                                            data-target="#orden"
-                                            id="modal_open">
+                                        <button class="btn dash__table_button" type="button" data-toggle="modal" data-target="#orden" id="modal_open">
                                             Detalles de la orden
                                         </button>
                                     </td>
@@ -126,12 +92,7 @@ dashboardTemplate::dashMenu('ordenes');
                                     <td>€ 89,241</td>
                                     <td class="text-right">2012</td>
                                     <td class="td-actions text-right">
-                                        <button
-                                            class="btn dash__table_button"
-                                            type="button"
-                                            data-toggle="modal"
-                                            data-target="#orden"
-                                            id="modal_open">Detalles de la orden</button>
+                                        <button class="btn dash__table_button" type="button" data-toggle="modal" data-target="#orden" id="modal_open">Detalles de la orden</button>
                                     </td>
                                 </tr>
                                 <tr>
@@ -140,12 +101,7 @@ dashboardTemplate::dashMenu('ordenes');
                                     <td>€ 92,144</td>
                                     <td class="text-right">2010</td>
                                     <td class="td-actions text-right">
-                                        <button
-                                            class="btn dash__table_button"
-                                            type="button"
-                                            data-toggle="modal"
-                                            data-target="#orden"
-                                            id="modal_open">Detalles de la orden</button>
+                                        <button class="btn dash__table_button" type="button" data-toggle="modal" data-target="#orden" id="modal_open">Detalles de la orden</button>
                                     </td>
                                 </tr>
                                 <tr>
@@ -154,12 +110,7 @@ dashboardTemplate::dashMenu('ordenes');
                                     <td>€ 49,990</td>
                                     <td class="text-right">2009</td>
                                     <td class="td-actions text-right">
-                                        <button
-                                            class="btn dash__table_button"
-                                            type="button"
-                                            data-toggle="modal"
-                                            data-target="#orden"
-                                            id="modal_open">Detalles de la orden</button>
+                                        <button class="btn dash__table_button" type="button" data-toggle="modal" data-target="#orden" id="modal_open">Detalles de la orden</button>
                                     </td>
                                 </tr>
                                 <tr>
@@ -168,12 +119,7 @@ dashboardTemplate::dashMenu('ordenes');
                                     <td>€ 69,201</td>
                                     <td class="text-right">2008</td>
                                     <td class="td-actions text-right">
-                                        <button
-                                            class="btn dash__table_button"
-                                            type="button"
-                                            data-toggle="modal"
-                                            data-target="#orden"
-                                            id="modal_open">Detalles de la orden</button>
+                                        <button class="btn dash__table_button" type="button" data-toggle="modal" data-target="#orden" id="modal_open">Detalles de la orden</button>
                                     </td>
                                 </tr>
                                 <tr>
@@ -182,12 +128,7 @@ dashboardTemplate::dashMenu('ordenes');
                                     <td>€ 99,225</td>
                                     <td class="text-right">2013</td>
                                     <td class="td-actions text-right">
-                                        <button
-                                            class="btn dash__table_button"
-                                            type="button"
-                                            data-toggle="modal"
-                                            data-target="#orden"
-                                            id="modal_open">
+                                        <button class="btn dash__table_button" type="button" data-toggle="modal" data-target="#orden" id="modal_open">
                                             Detalles de la orden
                                         </button>
                                     </td>
@@ -198,12 +139,7 @@ dashboardTemplate::dashMenu('ordenes');
                                     <td>€ 89,241</td>
                                     <td class="text-right">2012</td>
                                     <td class="td-actions text-right">
-                                        <button
-                                            class="btn dash__table_button"
-                                            type="button"
-                                            data-toggle="modal"
-                                            data-target="#orden"
-                                            id="modal_open">Detalles de la orden</button>
+                                        <button class="btn dash__table_button" type="button" data-toggle="modal" data-target="#orden" id="modal_open">Detalles de la orden</button>
                                     </td>
                                 </tr>
                                 <tr>
@@ -212,12 +148,7 @@ dashboardTemplate::dashMenu('ordenes');
                                     <td>€ 92,144</td>
                                     <td class="text-right">2010</td>
                                     <td class="td-actions text-right">
-                                        <button
-                                            class="btn dash__table_button"
-                                            type="button"
-                                            data-toggle="modal"
-                                            data-target="#orden"
-                                            id="modal_open">Detalles de la orden</button>
+                                        <button class="btn dash__table_button" type="button" data-toggle="modal" data-target="#orden" id="modal_open">Detalles de la orden</button>
                                     </td>
                                 </tr>
                                 <tr>
@@ -226,12 +157,7 @@ dashboardTemplate::dashMenu('ordenes');
                                     <td>€ 49,990</td>
                                     <td class="text-right">2009</td>
                                     <td class="td-actions text-right">
-                                        <button
-                                            class="btn dash__table_button"
-                                            type="button"
-                                            data-toggle="modal"
-                                            data-target="#orden"
-                                            id="modal_open">Detalles de la orden</button>
+                                        <button class="btn dash__table_button" type="button" data-toggle="modal" data-target="#orden" id="modal_open">Detalles de la orden</button>
                                     </td>
                                 </tr>
                                 <tr>
@@ -240,12 +166,7 @@ dashboardTemplate::dashMenu('ordenes');
                                     <td>€ 69,201</td>
                                     <td class="text-right">2008</td>
                                     <td class="td-actions text-right">
-                                        <button
-                                            class="btn dash__table_button"
-                                            type="button"
-                                            data-toggle="modal"
-                                            data-target="#orden"
-                                            id="modal_open">Detalles de la orden</button>
+                                        <button class="btn dash__table_button" type="button" data-toggle="modal" data-target="#orden" id="modal_open">Detalles de la orden</button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -258,6 +179,6 @@ dashboardTemplate::dashMenu('ordenes');
 </main>
 
 <?php
-dashboardTemplate::dashModal();
+dashboardTemplate::dashModalOrden();
 dashboardTemplate::dashEnd();
 ?>

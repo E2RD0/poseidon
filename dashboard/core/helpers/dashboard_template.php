@@ -50,8 +50,8 @@ class dashboardTemplate
                     <a href="dashboard.php">
                         <img src="resources/img/poseidon-l.svg" alt="Logo Poseidon" class="img-fluid dash__logo">
                     </a>
-                    <ul class="">'.
-                        (($page == 'dashboard') ? '<li class="active">' : '<li class="">').'
+                    <ul class="">' .
+            (($page == 'dashboard') ? '<li class="active">' : '<li class="">') . '
                             <a href="dashboard.php">
                                 <span class="icon">
                                     <svg class="icon__svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -69,8 +69,8 @@ class dashboardTemplate
                                     <p>Dashboard</p>
                                 </span>
                             </a>
-                        </li>'.
-                        (($page == 'ordenes') ? '<li class="active">' : '<li class="">').'
+                        </li>' .
+            (($page == 'ordenes') ? '<li class="active">' : '<li class="">') . '
                             <a href="ordenes.php">
                                 <span class="icon">
                                     <svg class="icon__svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -90,8 +90,8 @@ class dashboardTemplate
                                     <p>Ordenes</p>
                                 </span>
                             </a>
-                        </li>'.
-                        (($page == 'alquileres') ? '<li class="active">' : '<li class="">').'
+                        </li>' .
+            (($page == 'alquileres') ? '<li class="active">' : '<li class="">') . '
                             <a href="alquileres.php">
                                 <span class="icon">
                                     <svg class="icon__svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -111,8 +111,8 @@ class dashboardTemplate
                                     <p>Alquileres</p>
                                 </span>
                             </a>
-                        </li>'.
-                        (($page == 'sucursales') ? '<li class="active">' : '<li class="">').'
+                        </li>' .
+            (($page == 'sucursales') ? '<li class="active">' : '<li class="">') . '
                             <a href="sucursales.php">
                                 <span class="icon">
                                     <svg class="icon__svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -129,9 +129,9 @@ class dashboardTemplate
                                     <p>Sucursales</p>
                                 </span>
                             </a>
-                        </li>'.
-                        (($page == 'categorias') ? '<li class="active">' : '<li class="">').'
-                            <a href="">
+                        </li>' .
+            (($page == 'categorias') ? '<li class="active">' : '<li class="">') . '
+                            <a href="categorias.php">
                                 <span class="icon">
                                     <svg class="icon__svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                         viewBox="0 0 33 50.2" style="enable-background:new 0 0 33 50.2;" xml:space="preserve" width="33" height="40.2">
@@ -154,9 +154,9 @@ class dashboardTemplate
                                     <p>Categorías</p>
                                 </span>
                             </a>
-                        </li>'.
-                        (($page == 'productos') ? '<li class="active">' : '<li class="">').'
-                            <a href="">
+                        </li>' .
+            (($page == 'productos') ? '<li class="active">' : '<li class="">') . '
+                            <a href="productos.php">
                                 <span class="icon">
                                     <svg class="icon__svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                         viewBox="0 0 33 33" style="enable-background:new 0 0 33 33;" xml:space="preserve" width="33" height="33">
@@ -178,9 +178,9 @@ class dashboardTemplate
                                     <p>Productos</p>
                                 </span>
                             </a>
-                        </li>'.
-                        (($page == 'clientes') ? '<li class="active">' : '<li class="">').'
-                            <a href="">
+                        </li>' .
+            (($page == 'clientes') ? '<li class="active">' : '<li class="">') . '
+                            <a href="clientes.php">
                                 <span class="icon">
                                     <svg class="icon__svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                         viewBox="0 0 33 28.8" style="enable-background:new 0 0 33 28.8;" xml:space="preserve" width="33" height="28.8">
@@ -209,9 +209,9 @@ class dashboardTemplate
                                     <p>Clientes</p>
                                 </span>
                             </a>
-                        </li>'.
-                        (($page == 'usuarios') ? '<li class="active">' : '<li class="">').'
-                            <a href="">
+                        </li>' .
+            (($page == 'usuarios') ? '<li class="active">' : '<li class="">') . '
+                            <a href="usuarios.php">
                                 <span class="icon">
                                     <svg version="1.1"
                                         class="icon__svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality"
@@ -228,9 +228,9 @@ class dashboardTemplate
                                     <p>Usuarios</p>
                                 </span>
                             </a>
-                        </li>'.
-                        (($page == 'ajustes') ? '<li class="active">' : '<li class="">').'
-                            <a href="">
+                        </li>' .
+            (($page == 'ajustes') ? '<li class="active">' : '<li class="">') . '
+                            <a href="ajustes.php">
                                 <span class="icon">
                                     <svg class="icon__svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                     viewBox="0 0 33 33" style="enable-background:new 0 0 33 33;" xml:space="preserve" width="33" height="33">
@@ -251,9 +251,9 @@ class dashboardTemplate
                     </ul>
                     <div class="div-transparent"></div>
                     <div class="dash__footer">
-                        <ul>'.
-                        (($page == 'user') ? '<li class="active">' : '<li class="">').'
-                                <a href="">
+                        <ul>' .
+            (($page == 'user') ? '<li class="active">' : '<li class="">') . '
+                                <a href="user.php">
                                     <span class="icon">
                                         <svg class="icon__svg"
                                             width="33px"
@@ -274,7 +274,7 @@ class dashboardTemplate
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="index.php">
                                     <span class="icon">
                                         <svg class="icon__svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                             viewBox="0 0 33 33" style="enable-background:new 0 0 33 33;" xml:space="preserve" width="33" height="33">
@@ -301,7 +301,8 @@ class dashboardTemplate
             </header>');
     }
 
-    public static function dashModal(){
+    public static function dashModalOrden()
+    {
         echo ('<div
                 class="modal fade dash__full"
                 id="orden"
@@ -350,7 +351,7 @@ class dashboardTemplate
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <p class="dash__modal_field">Tel�fono</p>
+                                            <p class="dash__modal_field">Teléfono</p>
                                         </div>
                                         <div class="col-8">
                                             <p>01718332233</p>
@@ -360,7 +361,7 @@ class dashboardTemplate
                                 <div class="col-md-6">
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <p class=" dash__modal_field">Direcci�n</p>
+                                            <p class=" dash__modal_field">Dirección</p>
                                         </div>
                                         <div class="col-md-8">
                                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae beatae
@@ -476,7 +477,278 @@ class dashboardTemplate
                         </div>
                     </div>
                 </div>
-            </div>'
-        );
+            </div>');
+    }
+
+    public static function dashModalAlquiler(){
+        echo ('<div
+                class="modal fade dash__full"
+                id="alquiler"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="alquiler"
+                aria-hidden="true"
+                data-backdrop="static">
+                <div
+                class="modal-dialog modal-dialog-centered modal-dialog-zoom mw-100 w-75"
+                role="document"
+                id="check_mq">
+                <div class="modal-content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12 d-flex flex-row justify-content-between mt-4 m-1">
+                                <h3 class="dash__modal_title p-0 ml-4">Alquiler No. 1</h3>
+                                <button
+                                    type="button"
+                                    class="close mr-5"
+                                    data-dismiss="modal"
+                                    aria-label="Close">
+                                    <span aria-hidden="true">
+                                        <i class="fas fa-times p-1"></i>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row m-3">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <p class="dash__modal_field">Cliente</p>
+                                    </div>
+                                    <div class="col-8">
+                                        <p>Grand Marshal</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <p class="dash__modal_field">Email</p>
+                                    </div>
+                                    <div class="col-8">
+                                        <p>grandmarshal@gmail.com</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <p class="dash__modal_field">Teléfono</p>
+                                    </div>
+                                    <div class="col-8">
+                                        <p>01718332233</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <p class=" dash__modal_field">Sucursal</p>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <p>Lorem ipsum dolor sit amet.</p>
+                                    </div>
+                                </div>
+                                <div class="row flex-wrap">
+                                    <div class="col-md-5 col-6">
+                                        <p class="dash__modal_field">Fecha de alquiler</p>
+                                    </div>
+                                    <div class="col-md-7 col-6">
+                                        <p>10/02/2020</p>
+                                    </div>
+                                </div>
+                                <div class="row flex-wrap">
+                                    <div class="col-md-5 col-6">
+                                        <p class="dash__modal_field">Fecha de devolución</p>
+                                    </div>
+                                    <div class="col-md-7 col-6">
+                                        <p>09/02/2020</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center m-4">
+                        <table
+                            class="table table-borderless table-responsive w-100 d-block d-md-table"
+                            id="table">
+                            <thead>
+                                <tr class="dash_modal_thead">
+                                    <th scope="col">No.</th>
+                                    <th scope="col">Producto</th>
+                                    <th scope="col">Cantidad</th>
+                                    <th scope="col">Precio de alquiler</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Pencil (2B)</td>
+                                    <td>1 Dozen</td>
+                                    <td>$9.99</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>Sharpner</td>
+                                    <td>1 single</td>
+                                    <td>$15.99</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td>Drawing Paper</td>
+                                    <td>1 quire</td>
+                                    <td>$89.99</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">4</th>
+                                    <td>CAT5 Cable</td>
+                                    <td>2 meter</td>
+                                    <td>$99.99</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">5</th>
+                                    <td>Sticky Notes</td>
+                                    <td>2 packet</td>
+                                    <td>$349.99</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="dash__modal_bottom">
+                        <div class="row m-3">
+                            <div class="col-md-6 my-3">
+                                <div class="row flex-wrap">
+                                    <div class="col-md-5 col-6">
+                                        <p class="dash__modal_field">Fecha de compra</p>
+                                    </div>
+                                    <div class="col-md-7 col-6">
+                                        <p>07/02/2020</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 my-3">
+                                <div class="row">
+                                    <div class="col-md-8 col-6 dash__align">
+                                        <p class="dash__modal_field">Subtotal
+                                        </p>
+                                    </div>
+                                    <div class="col-md-4 col-6">
+                                        <p>$565.95
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-8 col-6 dash__align">
+                                        <p class="dash__modal_field">IVA (13%)
+                                        </p>
+                                    </div>
+                                    <div class="col-md-4 col-6">
+                                        <p>$73.58
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-8 col-6 dash__align">
+                                        <p class="dash__modal_field">Total (+IVA)
+                                        </p>
+                                    </div>
+                                    <div class="col-md-4 col-6">
+                                        <p>$639.53
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dash__modal_footer mr-4">
+                        <button type="button" class="ml-auto btn dash__modal_deny" data-dismiss="modal">Rechazar alquiler</button>
+                        <button type="button" class="btn dash__modal_accept">Finalizar alquiler</button>
+                    </div>
+                </div>
+            </div>
+        </div>');
+    }
+
+    public static function dashSucursales($status)
+    {
+        echo ('<div class="col-md-6 col-12">
+                <div class="col-md-12 col-lg-12 p-0">
+                    <ul class="nav nav-categorias" role="tablist">
+                        <li class="nav-item">
+                            <a data-toggle="tab" href="#alquileres" class="nav-link active dash__tab_title" aria-expanded="true">
+                                ' . (($status == 'add') ? 'Añadir una nueva sucursal' : 'Modificar una sucursal') . '
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-pane active py-3 px-3 px-sm-0" id="alquileres" role="tabpanel">
+                    <div class="row mt-4">
+                        <div class="col-md-4 col-12 text-lg-right">
+                            <p>Nombre de la sucursal</p>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="form-field">
+                                <div class="form-field__control">
+                                    <input id="correo" type="email" class="dash__text_fields form-field__input" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-4 col-12 text-lg-right">
+                            <p>Dirección</p>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="form-field">
+                                <div class="form-field__control">
+                                    <textarea id="exampleTextarea" class="form-field__textarea dash__text_fields"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 text-center">
+                            <span class="ml-5">
+                                <button type="button" class="btn recover__button">Cancelar</button>
+                                <button type="button" class="btn main__button">
+                                    ' . (($status == 'add') ? 'Añadir surcusal' : 'Modificar sucursal') . '
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        ');
+    }
+
+    public static function dashCategorias($status)
+    {
+        echo ('<div class="col-md-6 col-12">
+                            <div class="col-md-12 col-lg-12 p-0">
+                                <ul class="nav nav-categorias" role="tablist">
+                                    <li class="nav-item">
+                                        <a data-toggle="tab" href="#alquileres" class="nav-link active dash__tab_title" aria-expanded="true">
+                                            ' . (($status == 'add') ? 'Añadir una nueva categoría' : 'Modificar una categoría') . '
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="tab-pane active py-3 px-3 px-sm-0" id="alquileres" role="tabpanel">
+                                <div class="row mt-4">
+                                    <div class="col-md-4 col-12 text-lg-right">
+                                        <p>Nombre de la categoría</p>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-field">
+                                            <div class="form-field__control">
+                                                <input id="correo" type="email" class="dash__text_fields form-field__input" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 text-center">
+                                        <span class="ml-5">
+                                            <button type="button" class="btn recover__button">Cancelar</button>
+                                            <button type="button" class="btn main__button">
+                                                ' . (($status == 'add') ? 'Añadir categoría' : 'Modificar categoría') . '
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>');
     }
 }

@@ -1,7 +1,7 @@
 <?php
 require_once('core/helpers/dashboard_template.php');
-dashboardTemplate::dashHead('Sucursales');
-dashboardTemplate::dashMenu('sucursales');
+dashboardTemplate::dashHead('Categorías');
+dashboardTemplate::dashMenu('categorias');
 ?>
 <main>
     <div class="container-fluid position-absolute dash__main">
@@ -13,7 +13,7 @@ dashboardTemplate::dashMenu('sucursales');
                             <div class="col-md-12 col-lg-12 p-0">
                                 <ul class="nav nav-categorias" role="tablist">
                                     <li class="nav-item">
-                                        <a data-toggle="tab" href="#alquileres" class="nav-link active dash__tab_title" aria-expanded="true">Sucursales</a>
+                                        <a data-toggle="tab" href="#alquileres" class="nav-link active dash__tab_title" aria-expanded="true">Categorías</a>
                                     </li>
                                 </ul>
                             </div>
@@ -23,28 +23,28 @@ dashboardTemplate::dashMenu('sucursales');
                                         <thead>
                                             <tr>
                                                 <th>No.</th>
-                                                <th>Nombre</th>
+                                                <th>Categoría</th>
                                                 <th class="text-center">Opciones</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
                                                 <td>1</td>
-                                                <td>Playa El Tunco</td>
+                                                <td>Tabla de surf</td>
                                                 <td class="td-actions text-center">
                                                     <i class="fas fa-ellipsis-h"></i>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>2</td>
-                                                <td>Barra de Santiago</td>
+                                                <td>Accesorios</td>
                                                 <td class="td-actions text-center">
                                                     <i class="fas fa-ellipsis-h"></i>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>3</td>
-                                                <td>El puerto de la libertad</td>
+                                                <td>Ropa</td>
                                                 <td class="td-actions text-center">
                                                     <i class="fas fa-ellipsis-h"></i>
                                                 </td>
@@ -54,9 +54,7 @@ dashboardTemplate::dashMenu('sucursales');
                                 </div>
                             </div>
                         </div>
-                        <?php
-                        dashboardTemplate::dashSucursales('add');
-                        ?>
+                        <?php dashboardTemplate::dashCategorias('add'); ?>
                     </div>
                 </div>
             </div>
