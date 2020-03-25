@@ -102,7 +102,7 @@ template::getHeader('Completar compra ~ Poseidón');
           </div>
           <!-- End -->
           <div class="cart-actions mt-4 d-flex flex-column-reverse flex-md-row justify-content-between align-items-center p-3 px-md-0">
-              <a href="#" class="go-back font-weight-bold"><i class="fas fa-arrow-left fa-lg mr-4"></i>Seguir comprando</a>
+              <a href="tienda.php" class="go-back font-weight-bold"><i class="fas fa-arrow-left fa-lg mr-4"></i>Seguir comprando</a>
               <div class="d-flex align-items-center mb-5 mb-md-0">
                   <p class="my-0 mr-4">Costo total: <strong>$159.55</strong></p>
                   <a href="checkCompra.php" class="btn btn--cta btn-primary">Continuar</a>
@@ -186,7 +186,7 @@ template::getHeader('Completar compra ~ Poseidón');
           </div>
           <!-- End -->
           <div class="cart-actions mt-4 d-flex flex-column-reverse flex-md-row justify-content-between align-items-center p-3 px-md-0">
-              <a href="#" class="go-back font-weight-bold"><i class="fas fa-arrow-left fa-lg mr-4"></i>Seguir comprando</a>
+              <a href="tienda.php" class="go-back font-weight-bold"><i class="fas fa-arrow-left fa-lg mr-4"></i>Seguir comprando</a>
               <div class="d-flex align-items-center mb-5 mb-md-0">
                   <p class="my-0 mr-4">Costo total: <strong>$159.55</strong></p>
                   <a href="checkAlquiler.php" class="btn btn--cta btn-primary">Continuar</a>

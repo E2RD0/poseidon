@@ -7,7 +7,7 @@ template::getHeader('Tabla blanca de caoba ~ Poseidón');
     <div class="product-breadcrumb mb-5">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item home"><a href="#"><img src="img/icons/home.svg" alt="Ícono de casa"></a></li>
+          <li class="breadcrumb-item home"><a href="#"><img src="../../resources/img/tienda/icons/home.svg" alt="Ícono de casa"></a></li>
           <li class="breadcrumb-item"><a href="#">Tablas</a></li>
           <li class="breadcrumb-item active" aria-current="page">Tabla blanca de caoba</li>
         </ol>
@@ -21,7 +21,7 @@ template::getHeader('Tabla blanca de caoba ~ Poseidón');
                 <li><a data-target="#pic-3" data-toggle="tab"><div class="product-thumbnail img_1-3"></div></a></li>
             </ul>
             <div class="preview-pic pl-lg-0 tab-content col-lg-10">
-                <div class="tab-pane active" id="pic-1"><img src="img/producto.jpg" /></div>
+                <div class="tab-pane active" id="pic-1"><img src="../../resources/img/tienda/producto.jpg" /></div>
                 <div class="tab-pane" id="pic-2"><img src="https://farm4.staticflickr.com/3766/12953056854_b8cdf14f21.jpg" /></div>
                 <div class="tab-pane" id="pic-3"><img src="https://farm8.staticflickr.com/7187/6895047173_d4b1a0d798.jpg" /></div>
               </div>

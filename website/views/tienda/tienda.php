@@ -55,7 +55,7 @@ template::getHeader('Productos ~ Poseidón');
           <div class="product has-post-thumbnail featured col-lg-4 col-md-6">
             <a href="producto.php" class="product__link">
               <div class="product__image">
-                <img width="300" height="300" src="img/products/1.jpg" class="" alt="" srcset=""/>
+                <img width="300" height="300" src="../../resources/img/tienda/products/1.jpg" class="" alt="" srcset=""/>
               </div>
               <h2 class="product__title">Tabla de surf 1</h2>
               <span class="product__price">$119.99</span>
@@ -68,7 +68,7 @@ template::getHeader('Productos ~ Poseidón');
           <div class="product has-post-thumbnail featured col-lg-4 col-md-6">
             <a href="producto.php" class="product__link">
               <div class="product__image">
-                <img width="300" height="300" src="img/products/2.jpg" class="" alt="" srcset=""/>
+                <img width="300" height="300" src="../../resources/img/tienda/products/2.jpg" class="" alt="" srcset=""/>
               </div>
               <h2 class="product__title">Traje de surfing</h2>
               <span class="product__price">$120.00</span>
@@ -81,7 +81,7 @@ template::getHeader('Productos ~ Poseidón');
           <div class="product has-post-thumbnail featured col-lg-4 col-md-6">
             <a href="producto.php" class="product__link">
               <div class="product__image">
-                <img width="300" height="300" src="img/products/3.jpg" class="" alt="" srcset=""/>
+                <img width="300" height="300" src="../../resources/img/tienda/products/3.jpg" class="" alt="" srcset=""/>
               </div>
               <h2 class="product__title">Hang up surfing</h2>
               <span class="product__price">$49.99</span>
@@ -94,7 +94,7 @@ template::getHeader('Productos ~ Poseidón');
           <div class="product has-post-thumbnail featured col-lg-4 col-md-6">
             <a href="producto.php" class="product__link">
               <div class="product__image">
-                <img width="300" height="300" src="img/products/4.jpg" class="" alt="" srcset=""/>
+                <img width="300" height="300" src="../../resources/img/tienda/products/4.jpg" class="" alt="" srcset=""/>
               </div>
               <h2 class="product__title">Tabla surf 2</h2>
               <span class="product__price">$200.00</span>
@@ -114,7 +114,7 @@ template::getHeader('Productos ~ Poseidón');
             <div class="product has-post-thumbnail featured col-lg-3 col-md-6">
               <a href="producto.php" class="product__link">
                 <div class="product__image">
-                  <img width="300" height="300" src="img/products/1.jpg" class="" alt="" srcset=""/>
+                  <img width="300" height="300" src="../../resources/img/tienda/products/1.jpg" class="" alt="" srcset=""/>
                 </div>
                 <h2 class="product__title">Tabla de surf 1</h2>
                 <span class="product__price">$119.99</span>
@@ -127,7 +127,7 @@ template::getHeader('Productos ~ Poseidón');
             <div class="product has-post-thumbnail featured col-lg-3 col-md-6">
               <a href="producto.php" class="product__link">
                 <div class="product__image">
-                  <img width="300" height="300" src="img/products/4.jpg" class="" alt="" srcset=""/>
+                  <img width="300" height="300" src="../../resources/img/tienda/products/4.jpg" class="" alt="" srcset=""/>
                 </div>
                 <h2 class="product__title">Tabla surf 2</h2>
                 <span class="product__price">$200.00</span>
@@ -145,7 +145,7 @@ template::getHeader('Productos ~ Poseidón');
             <div class="product has-post-thumbnail featured col-lg-3 col-md-6">
               <a href="producto.php" class="product__link">
                 <div class="product__image">
-                  <img width="300" height="300" src="img/products/2.jpg" class="" alt="" srcset=""/>
+                  <img width="300" height="300" src="../../resources/img/tienda/products/2.jpg" class="" alt="" srcset=""/>
                 </div>
                 <h2 class="product__title">Traje de surfing</h2>
                 <span class="product__price">$120.00</span>
@@ -164,7 +164,7 @@ template::getHeader('Productos ~ Poseidón');
             <div class="product has-post-thumbnail featured col-lg-3 col-md-6">
               <a href="producto.php" class="product__link">
                 <div class="product__image">
-                  <img width="300" height="300" src="img/products/3.jpg" class="" alt="" srcset=""/>
+                  <img width="300" height="300" src="../../resources/img/tienda/products/3.jpg" class="" alt="" srcset=""/>
                 </div>
                 <h2 class="product__title">Hang up surfing</h2>
                 <span class="product__price">$49.99</span>

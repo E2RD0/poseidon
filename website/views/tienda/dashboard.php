@@ -8,16 +8,16 @@ template::getHeader('Dashboard ~ Poseidón');
     <aside class="col-md-4 col-lg-3 nav-dashboard mb-5 mb-md-0">
         <ul class="nav flex-md-row flex-column" role="tablist">
             <li class="nav-item">
-              <a data-toggle="tab" href="#tab-1" class="nav-link active" aria-expanded="true"><img class="nav-icon" src="img/icons/iconDashboard.png"> Dashboard</a>
+              <a data-toggle="tab" href="#tab-1" class="nav-link active" aria-expanded="true"><img class="nav-icon" src="../../resources/img/tienda//icons/iconDashboard.png"> Dashboard</a>
             </li>
             <li class="nav-item">
-              <a data-toggle="tab" href="#tab-2" class="nav-link" aria-expanded="false"><img class="nav-icon" src="img/icons/iconOrdenes.png"> Ordenes</a>
+              <a data-toggle="tab" href="#tab-2" class="nav-link" aria-expanded="false"><img class="nav-icon" src="../../resources/img/tienda//icons/iconOrdenes.png"> Ordenes</a>
             </li>
             <li class="nav-item">
-              <a data-toggle="tab" href="#tab-3" class="nav-link" aria-expanded="false"><img class="nav-icon" src="img/icons/iconAlquileres.png"> Alquileres</a>
+              <a data-toggle="tab" href="#tab-3" class="nav-link" aria-expanded="false"><img class="nav-icon" src="../../resources/img/tienda//icons/iconAlquileres.png"> Alquileres</a>
             </li>
             <li class="nav-item">
-              <a data-toggle="tab" href="#tab-4" class="nav-link" aria-expanded="false"><img class="nav-icon" src="img/icons/iconCuenta.png"> Cuenta</a>
+              <a data-toggle="tab" href="#tab-4" class="nav-link" aria-expanded="false"><img class="nav-icon" src="../../resources/img/tienda//icons/iconCuenta.png"> Cuenta</a>
             </li>
         </ul>
     </aside>

@@ -8,7 +8,7 @@ template::getHeader('Completar compra ~ Poseidón');
     <div class="row flex-column-reverse flex-lg-row mb-5 pb-5">
         <div class="col-lg-8">
             <div class="font-small d-flex">
-                <img src="img/icons/delivery.svg" alt="Camión de entrega" width="25">
+                <img src="../../resources/img/tienda/icons/delivery.svg" alt="Camión de entrega" width="25">
                 <div class="py-3 ml-3">
                 <h3 class="font-small">Entrega en sucursal</h3>
                 <p class="m-0">Recoge tu producto en nuestra tienda más cercana</p>
