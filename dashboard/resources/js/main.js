@@ -1,3 +1,23 @@
+//Navbar
+$(document).ready(function () {
+    var burger = document.querySelector(".burger-container"),
+    nav = document.querySelector(".navbar--main");
+
+    burger.onclick = function() {
+        nav.classList.toggle("menu-opened");
+        document.body.classList.toggle("no-scroll");
+    };
+
+    document.addEventListener("click", function(event) {
+    var isClickInside = nav.contains(event.target);
+
+    if (!isClickInside && nav.classList.contains("menu-opened")) {
+      nav.classList.remove("menu-opened");
+      document.body.classList.toggle("no-scroll");
+    }
+  })
+})
+//Materialize's Textfields
 const setActive = (el, active) => {
     const formField = el.parentNode.parentNode
     if (active) {
@@ -17,7 +37,6 @@ const setActive = (el, active) => {
                 .add('form-field--is-filled')
     }
 }
-
 [].forEach
     .call(
         document.querySelectorAll('.form-field__input, .form-field__textarea'),
@@ -30,13 +49,13 @@ const setActive = (el, active) => {
             }
         }
     )
-
+//Sidebar
 $(document).ready(function () {
-    $(".toggle").click(function () {
-        $(".wrapper").toggleClass("hide");
+    $('.toggle').click(function () {
+        $('.wrapper').toggleClass('hide');
     });
-});
-
+})
+//Chart
 var colors = [
     '#FEDB3F',
     '#28a745',
@@ -45,9 +64,7 @@ var colors = [
     '#dc3545',
     '#6c757d'
 ];
-
-/* bar chart */
-var chBar = document.getElementById("chBar");
+var chBar = document.getElementById('chBar');
 if (chBar) {
     new Chart(chBar, {
         type: 'bar',
@@ -89,63 +106,48 @@ if (chBar) {
         }
     });
 }
-
+//Datatables initializer
 $(document).ready( function () {
     $('#table').DataTable({
         responsive: true
     });
-} );
-
-// $(document).ready(function () {
-//     $(".dash__table_button").click( function () {
-//         if (window.matchMedia('(max-width: 425px)').matches == true){
-//             alert("yets");
-//             $('#table').DataTable({
-//                 responsive: true
-//             });
-//         }
-//     });
-// } );
-
-// $(document).ready(function () {
-//     var mql = window.matchMedia("max-width: 425px");
-//     if (mql.matches) {
-//         alert("yes");
-//     };
-// } )
-
+} )
+//Adaptative Modals
 $(function () {
     if (window.matchMedia('(max-width: 425px)').matches){
         document.getElementById('check_mq').classList.remove("w-75");
         document.getElementById('check_mq').classList.add("w-100");
     }
-});
-
+})
+//Adaptative canvas -Doesn't works
 $(document).ready(function () {
-    $(".toggle").click(function () {
+    $('.toggle').click(function () {
         document.getElementById('canva').classList.remove("col-lg-12");
         document.getElementById('canva').classList.add("col-lg-11");
     });
+})
+//Display selected image
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#imageResult')
+                .attr('src', e.target.result);
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+$(function () {
+    $('#upload').on('change', function () {
+        readURL(input);
+    });
 });
-
-// $().ready(
-//     function () {
-//         $(".dash__table_button").click(
-//             function () {
-//                 alert(window.matchMedia("max-width: 425px").matches);
-
-//             }
-//         )
-//     }
-// )
-
-// let mql = window.matchMedia('(max-width: 425px)');
-//         if (mql.matches){
-//             alert('a');
-//         }
-
-// if(mql){
-//     alert(document.getElementById("check_mq").classList.contains("w-75"));
-// }
-
-// document.querySelector(".mq-value").innerText = mql.matches;
+var input = document.getElementById( 'upload' );
+var infoArea = document.getElementById( 'upload-label' );
+input.addEventListener( 'change', showFileName );
+function showFileName( event ) {
+  var input = event.srcElement;
+  var fileName = input.files[0].name;
+  infoArea.textContent = 'Nombre de archivo: ' + fileName;
+}

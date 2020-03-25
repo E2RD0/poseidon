@@ -5,18 +5,6 @@ dashboardTemplate::dashMenu('dashboard');
 ?>
 
 <main>
-    <nav class="container-fluid position-absolute navbar navbar--main">
-        <div class="container">
-            <a href="#" class="navbar-brand"><img class="navbar__logo d-inline-block align-top" src="resources/img/poseidon-l.svg" alt="Logo de Poseidón"></a>
-            <div class="burger-container">
-                <div id="burger">
-                    <div class="bar topBar"></div>
-                    <div class="bar btmBar"></div>
-                    <div class="bar lastBar"></div>
-                </div>
-            </div>
-        </div>
-    </nav>
     <div class="container-fluid position-absolute dash__main">
         <div class="row mx-0 my-2">
             <div class="col-12 dash__main_card">
