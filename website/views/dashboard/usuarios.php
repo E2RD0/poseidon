@@ -1,5 +1,5 @@
 <?php
-require_once('core/helpers/dashboard_template.php');
+require_once('templates/dashboard_template.php');
 dashboardTemplate::dashHead('Usuarios');
 dashboardTemplate::dashMenu('usuarios');
 ?>

@@ -1,5 +1,5 @@
 <?php
-require_once('core/helpers/login_template.php');
+require_once('templates/login_template.php');
 loginTemplate::loginHead('Recuperar contraseña');
 ?>
 
