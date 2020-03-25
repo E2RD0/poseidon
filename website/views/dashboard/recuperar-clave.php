@@ -8,7 +8,7 @@ loginTemplate::loginHead('Recuperar contraseña');
         <div class="main__login">
             <div class="row justify-content-center m-0">
                 <div class="col-12 main__form text-center">
-                    <img src="resources/img/poseidon-l.svg" alt="logo poseidon" class="img-fluid">
+                    <img src="../../resources/img/dashboard/poseidon-l.svg" alt="logo poseidon" class="img-fluid">
                     <p class="main__message text-break">Tu contraseña se ha reestablecido.</p>
                 </div>
                 <div class="col-8">
