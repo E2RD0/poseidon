@@ -1,3 +1,3 @@
 <?php
-echo $_GET['url'];
- ?>
+require_once '../app/init.php';
+ $initialize = new Common\Core;

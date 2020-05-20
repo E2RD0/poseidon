@@ -1,0 +1,9 @@
+{
+    "require": {
+        "vlucas/phpdotenv": "^4.1"
+    },
+
+    "autoload": {
+        "psr-4": {"Common\\": "Common"}
+    }
+}
