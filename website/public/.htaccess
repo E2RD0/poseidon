@@ -1,2 +1,10 @@
 RewriteEngine On
-RewriteRule ^([^/]+)/? index.php?url=$1 [L,QSA]
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} (.+)/$
+RewriteRule ^ %1 [R=301,L]
+
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteRule ^(.+)/? index.php?url=$1 [L,QSA]
