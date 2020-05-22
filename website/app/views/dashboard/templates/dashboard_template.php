@@ -13,15 +13,15 @@ class dashboardTemplate
                 <meta name="theme-color" content="#171717">
                 <title>' . $title . '</title>
                 <link rel="manifest" href="site.webmanifest">
-                <link rel="stylesheet" href="../../resources/css/all.min.css">
-                <link rel="stylesheet" href="../../resources/webfonts/fonts-dashboard.css">
-                <link rel="stylesheet" href="../../resources/css/normalize.css">
-                <link rel="stylesheet" href="../../resources/css/bootstrap.min.css">
-                <link rel="stylesheet" href="../../resources/css/Chart.min.css">
-                <link rel="stylesheet" href="../../resources/css/datatables.min.css">
-                <link rel="stylesheet" href="../../resources/css/basic.min.css">
-                <link rel="stylesheet" href="../../resources/css/dropzone.min.css">
-                <link rel="stylesheet" href="../../resources/css/dashboard.css">
+                <link rel="stylesheet" href="resources/css/all.min.css">
+                <link rel="stylesheet" href="resources/webfonts/fonts-dashboard.css">
+                <link rel="stylesheet" href="resources/css/normalize.css">
+                <link rel="stylesheet" href="resources/css/bootstrap.min.css">
+                <link rel="stylesheet" href="resources/css/Chart.min.css">
+                <link rel="stylesheet" href="resources/css/datatables.min.css">
+                <link rel="stylesheet" href="resources/css/basic.min.css">
+                <link rel="stylesheet" href="resources/css/dropzone.min.css">
+                <link rel="stylesheet" href="resources/css/dashboard.css">
             </head>
 
             <body class="dash__body">
@@ -32,13 +32,13 @@ class dashboardTemplate
     {
         echo ('</div>
             </body>
-            <script src="../../resources/js/vendor/jquery-3.4.1.min.js"></script>
-            <script src="../../resources/js/vendor/bootstrap.bundle.min.js"></script>
-            <script src="../../resources/js/vendor/Chart.bundle.min.js"></script>
-            <script src="../../resources/js/vendor/datatables.min.js"></script>
-            <script src="../../resources/js/plugins.js"></script>
-            <script src="../../resources/js/vendor/dropzone.min.js"></script>
-            <script src="../../resources/js/dashboard.js"></script>
+            <script src="resources/js/vendor/jquery-3.4.1.min.js"></script>
+            <script src="resources/js/vendor/bootstrap.bundle.min.js"></script>
+            <script src="resources/js/vendor/Chart.bundle.min.js"></script>
+            <script src="resources/js/vendor/datatables.min.js"></script>
+            <script src="resources/js/plugins.js"></script>
+            <script src="resources/js/vendor/dropzone.min.js"></script>
+            <script src="resources/js/dashboard.js"></script>
             </html>');
     }
 
@@ -50,7 +50,7 @@ class dashboardTemplate
                         <i class="fas fa-chevron-left"></i>
                     </div>
                     <a href="dashboard.php">
-                        <img src="../../resources/img/dashboard/poseidon-l.svg" alt="Logo Poseidon" class="img-fluid dash__logo">
+                        <img src="resources/img/dashboard/poseidon-l.svg" alt="Logo Poseidon" class="img-fluid dash__logo">
                     </a>
                     <ul class="">' .
                         (($page == 'dashboard') ? '<li class="active">' : '<li class="">') . '
@@ -326,7 +326,7 @@ class dashboardTemplate
                 </div>
                 <nav class="container-fluid position-absolute navbar navbar--main bg-white shadow-sm">
                         <div class="container">
-                            <a href="#" class="navbar-brand"><img class="navbar__logo d-inline-block align-top" src="../../resources/img/dashboard/poseidon-l.svg" alt="Logo de Poseidón"></a>
+                            <a href="#" class="navbar-brand"><img class="navbar__logo d-inline-block align-top" src="resources/img/dashboard/poseidon-l.svg" alt="Logo de Poseidón"></a>
                             <div class="burger-container">
                                 <div id="burger">
                                     <div class="bar topBar"></div>
@@ -348,8 +348,8 @@ class dashboardTemplate
                             </ul>
 
                             <ul class="navbar__links navbar__icons">
-                                <li><a href="user.php"><img src="../../resources/img/dashboard/cuenta.svg"></a></li>
-                                <li><a href="index.php"><img src="../../resources/img/dashboard/logout.svg"></a></li>
+                                <li><a href="user.php"><img src="resources/img/dashboard/cuenta.svg"></a></li>
+                                <li><a href="index.php"><img src="resources/img/dashboard/logout.svg"></a></li>
                             </ul>
                         </div>
                     </nav>
