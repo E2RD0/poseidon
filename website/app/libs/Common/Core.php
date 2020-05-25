@@ -46,6 +46,7 @@ class Core
                  try {
                      $methodReturn = call_user_func_array([$this->currentController, $this->currentMethod], $this->parameters);
                  } catch (\Throwable $e) {
+                     //echo $e->getMessage();
                      self::http404();
                  }
              }

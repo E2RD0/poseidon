@@ -2,8 +2,11 @@
 class Root extends \Common\Controller{
 
   public function __construct(){
-      $this->loadView('dashboard', 'index');
   }
   public function index(){
+      $data = [
+          'test' => 'funciona'
+      ];
+      $this->loadView('dashboard', 'index', $data);
   }
 }

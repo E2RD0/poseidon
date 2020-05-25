@@ -10,7 +10,7 @@ namespace Common;
          return new $nameModel();
      }
 
-     public function loadView($context, $nameView){
+     public function loadView($context, $nameView, $data = []){
          $pathFile = __DIR__ . '/../../views/' . $context . '/' . $nameView . '.php';
          if(file_exists($pathFile)){
              require_once $pathFile;
