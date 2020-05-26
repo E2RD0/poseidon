@@ -3,7 +3,7 @@
 //Load libreries and dependencies
 require __DIR__ . '/libs/vendor/autoload.php';
 
-$dotenv = Dotenv\Dotenv::createImmutable('../');
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
 $dotenv->load();
 
 /*echo  $_ENV['DB_USER'];

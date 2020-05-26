@@ -11,4 +11,8 @@ class Usuario
         $this->db->query('SELECT * FROM usuario');
         return $this->db->resultSet();
     }
+    public function userCount(){
+        $this->db->query('SELECT * FROM usuario');
+        return $this->db->rowCount();
+    }
 }

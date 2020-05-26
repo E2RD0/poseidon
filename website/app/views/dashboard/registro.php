@@ -9,11 +9,31 @@ loginTemplate::loginHead('Iniciar Sesión');
             <div class="row justify-content-center m-0">
                 <div class="col-12 main__form text-center">
                     <img src="<?= $_ENV['HOME_PATH']?>resources/img/dashboard/poseidon-l.svg" alt="logo poseidon" class="img-fluid">
-                    <p class="main__message text-break">¡Bienvenido de vuelta! Por favor inicia sesión con tu cuenta.
+                    <p class="main__message text-break">¡Bienvenido al sistema! Es necesario crear el primer usuario.
                     </p>
                 </div>
                 <div class="col-8">
                     <form action="">
+                      <div class="row main__rows">
+                          <div class="col-sm">
+                              <div class="form-field">
+                                  <div class="form-field__control">
+                                      <label for="name" class="form-field__label">Nombre</label>
+                                      <input id="name" type="text" class="form-field__input" required />
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row main__rows">
+                          <div class="col-sm">
+                              <div class="form-field">
+                                  <div class="form-field__control">
+                                      <label for="lastname" class="form-field__label">Apellido</label>
+                                      <input id="lastname" type="text" class="form-field__input" required />
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
                         <div class="row main__rows">
                             <div class="col-sm">
                                 <div class="form-field">
@@ -36,18 +56,8 @@ loginTemplate::loginHead('Iniciar Sesión');
                             </div>
                         </div>
                         <div class="row">
-                            <p class="main__login_text">
-                                <input type="checkbox" class="c filled-in" id="recordar" />
-                                <label for="recordar">Recuérdame</label>
-                            </p>
-                        </div>
-                        <div class="row">
                             <div class="col text-center">
-                                <button class="btn main__button" type="button" onclick="location.href='dashboard.php'">Iniciar Sesión</button>
-                            </div>
-                            <div class="w-100"></div>
-                            <div class="col text-center">
-                                <a class="main__forget_pass" href="enviar-correo.php">Olvidé mi contraseña</a>
+                                <button class="btn main__button" type="button" onclick="location.href='dashboard.php'">Registrarme</button>
                             </div>
                         </div>
                     </form>
