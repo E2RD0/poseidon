@@ -59,5 +59,5 @@ loginTemplate::loginHead('Iniciar Sesión');
 </main>
 
 <?php
-loginTemplate::loginEnd();
+loginTemplate::loginEnd('index.js');
 ?>

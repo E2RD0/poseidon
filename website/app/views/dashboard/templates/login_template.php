@@ -25,7 +25,7 @@ class loginTemplate
         );
     }
 
-    public static function loginEnd()
+    public static function loginEnd($ajax)
     {
         echo(
             '</body>
@@ -35,6 +35,7 @@ class loginTemplate
             <script src="' . $_ENV['HOME_PATH'] . 'resources/js/dashboard.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
             <script src="' . $_ENV['HOME_PATH'] . 'resources/js/ajax/account.js"></script>
+            <script src="' . $_ENV['HOME_PATH'] . 'resources/js/ajax/' .$ajax.'"></script>
             </html>'
         );
     }

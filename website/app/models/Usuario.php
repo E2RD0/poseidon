@@ -11,6 +11,9 @@ class Usuario
     private $password;
     private $idTipo;
 
+    public function __construct()
+    {
+    }
     public function getId()
     {
         return $this->id;
@@ -76,7 +79,7 @@ class Usuario
         $v->rule('required', 'Email');
         $v->rule('email', 'Email');
         if($v->validate()) {
-            if(!$this->usersModel->userExists('email', $value)){
+            if(!$this->userExists('email', $value)){
                 $this->email = $value;
                 return true;
             }
@@ -125,9 +128,6 @@ class Usuario
             return $v->errors();
         }
     }
-    public function __construct()
-    {
-    }
     public function userExists($param, $value){
         $db = new \Common\Database;
         $db->query("SELECT * FROM usuario WHERE {$param}=:value");
@@ -147,7 +147,7 @@ class Usuario
     }
     public function registerUser($user){
         $db = new \Common\Database;
-        $db->query('INSERT into usuario(DEFAULT, nombre, apellido, email, contrasena, idTipoUsuario) VALUES(:nombre, :apellido, :email, :hash, :idTipo)');
+        $db->query('INSERT into usuario (idUsuario, nombre, apellido, email, contrasena, idTipoUsuario) VALUES(DEFAULT, :nombre, :apellido, :email, :hash, :idTipo)');
         $db->bind(':nombre', $user->nombre);
         $db->bind(':apellido', $user->apellido);
         $db->bind(':email', $user->email);

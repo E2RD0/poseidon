@@ -15,7 +15,7 @@ class Users extends \Common\Controller{
     }
     return $result;
   }
-  public function register($userData, $result, $idTipoUsuario=1){
+  public function userRegister($userData, $result, $idTipoUsuario=1){
       $nombre = $userData['nombre'];
       $apellido = $userData['apellido'];
       $email = $userData['email'];

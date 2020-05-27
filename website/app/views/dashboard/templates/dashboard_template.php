@@ -28,7 +28,7 @@ class dashboardTemplate
                 <div class="wrapper">');
     }
 
-    public static function dashEnd()
+    public static function dashEnd($ajax)
     {
         echo ('</div>
             </body>
@@ -41,6 +41,7 @@ class dashboardTemplate
             <script src="' . $_ENV['HOME_PATH'] . 'resources/js/dashboard.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
             <script src="' . $_ENV['HOME_PATH'] . 'resources/js/ajax/account.js"></script>
+            <script src="' . $_ENV['HOME_PATH'] . 'resources/js/ajax/' .$ajax.'"></script>
             </html>');
     }
 

@@ -70,6 +70,15 @@
   padding: 0 12px 10px 9px;
   width: 100%;
 }
+.form-field__input.error,
+.form-field__textarea.error{
+    border-bottom: 1px solid #E53935;
+}
+.form-error-label{
+    margin: 0;
+    font-size: 0.9rem;
+    color: #E53935;
+}
 .form-field__textarea {
   height: 150px;
 }

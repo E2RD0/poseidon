@@ -24,7 +24,7 @@ CREATE TABLE usuario (
     nombre VARCHAR(75) NOT NULL,
     apellido VARCHAR(75) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
-    contrasena CHAR(98) NOT NULL,
+    contrasena VARCHAR(100) NOT NULL,
     idTipoUsuario INT NOT NULL,
     PRIMARY KEY (idUsuario),
     FOREIGN KEY (idTipoUsuario) REFERENCES tipoUsuario (idTipoUsuario)
@@ -35,7 +35,7 @@ CREATE TABLE cliente (
     nombre VARCHAR(75) NOT NULL,
     apellido VARCHAR(75) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
-    contrasena CHAR(98) NOT NULL,
+    contrasena VARCHAR(100) NOT NULL,
     telefono VARCHAR(25) UNIQUE NOT NULL,
     direccion VARCHAR(200) NOT NULL,
     PRIMARY KEY (idCliente)

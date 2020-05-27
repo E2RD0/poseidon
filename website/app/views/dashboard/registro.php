@@ -13,14 +13,15 @@ loginTemplate::loginHead('Iniciar Sesión');
                     </p>
                 </div>
                 <div class="col-8">
-                    <form action="">
+                    <form action="" id="register-form" method="POST">
                       <div class="row main__rows">
                           <div class="col-sm">
                               <div class="form-field">
                                   <div class="form-field__control">
                                       <label for="name" class="form-field__label">Nombre</label>
-                                      <input id="name" type="text" class="form-field__input" required />
+                                      <input id="name" name="nombre" type="text" class="form-field__input" required />
                                   </div>
+                                  <p class="form-error-label" id="errorNombre"></p>
                               </div>
                           </div>
                       </div>
@@ -29,8 +30,9 @@ loginTemplate::loginHead('Iniciar Sesión');
                               <div class="form-field">
                                   <div class="form-field__control">
                                       <label for="lastname" class="form-field__label">Apellido</label>
-                                      <input id="lastname" type="text" class="form-field__input" required />
+                                      <input id="lastname" name="apellido" type="text" class="form-field__input" required />
                                   </div>
+                                  <p class="form-error-label" id="errorApellido"></p>
                               </div>
                           </div>
                       </div>
@@ -39,8 +41,9 @@ loginTemplate::loginHead('Iniciar Sesión');
                                 <div class="form-field">
                                     <div class="form-field__control">
                                         <label for="correo" class="form-field__label">Correo electrónico</label>
-                                        <input id="correo" type="email" class="form-field__input" required />
+                                        <input id="correo" name="email" type="email" class="form-field__input" required />
                                     </div>
+                                    <p class="form-error-label" id="errorEmail"></p>
                                 </div>
                             </div>
                         </div>
@@ -49,15 +52,16 @@ loginTemplate::loginHead('Iniciar Sesión');
                                 <div class="form-field">
                                     <div class="form-field__control">
                                         <label for="clave" class="form-field__label">Contraseña</label>
-                                        <input id="clave" type="password" class="form-field__input" required />
+                                        <input id="clave" name="password" type="password" class="form-field__input" required />
                                         <i class="fas fa-eye password__show"></i>
                                     </div>
+                                    <p class="form-error-label" id="errorPassword"></p>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col text-center">
-                                <button class="btn main__button" type="button" onclick="location.href='dashboard.php'">Registrarme</button>
+                                <button class="btn main__button" type="submit" id="register-submit">Registrarme</button>
                             </div>
                         </div>
                     </form>
@@ -69,5 +73,5 @@ loginTemplate::loginHead('Iniciar Sesión');
 </main>
 
 <?php
-loginTemplate::loginEnd();
+loginTemplate::loginEnd('register.js');
 ?>
