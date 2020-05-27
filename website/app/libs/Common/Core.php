@@ -13,14 +13,14 @@ class Core
 
         //verify if a file for the controller exists
         $urlController = ucwords($url[0]);
-        if (file_exists(__DIR__ . '/../../controllers/' . $urlController . '.php')) {
+        if (file_exists(__DIR__ . '/../../routes/' . $urlController . '.php')) {
             $this->currentController= ucwords($urlController);
         }
         elseif (strtolower($urlController) != 'index.php') {
             self::http404();
         }
         unset($url[0]);
-        require_once __DIR__ . '/../../controllers/' . $this->currentController . '.php';
+        require_once __DIR__ . '/../../routes/' . $this->currentController . '.php';
         $this->currentController = new $this->currentController;
 
         //verify if method exists

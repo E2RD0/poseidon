@@ -7,7 +7,7 @@ if (isset($_GET['action'])) {
     session_start();
     $action = $_GET['action'];
     $userController = new \Users;
-    $result = array('status' => 0, 'message' => null, 'exception' => null, 'errorFields'=> []);
+    $result = array('status' => 0, 'message' => null, 'exception' => null, 'errorFields'=> [], 'HOME_PATH'=>$_ENV['HOME_PATH']);
 
 
     if (isset($_SESSION['id_usuario'])) {
