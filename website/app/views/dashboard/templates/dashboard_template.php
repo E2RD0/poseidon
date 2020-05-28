@@ -39,7 +39,7 @@ class dashboardTemplate
             <script src="' . HOME_PATH . 'resources/js/plugins.js"></script>
             <script src="' . HOME_PATH . 'resources/js/vendor/dropzone.min.js"></script>
             <script src="' . HOME_PATH . 'resources/js/dashboard.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+            <script src="' . HOME_PATH . 'resources/js/vendor/sweetalert2.all.min.js"></script>
             <script> var HOME_PATH = "'. HOME_PATH .'" </script>
             <script src="' . HOME_PATH . 'resources/js/components.js"></script>
             <script src="' . HOME_PATH . 'resources/js/ajax/account.js"></script>
