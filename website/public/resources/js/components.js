@@ -43,6 +43,7 @@ function swal(type, text, url = false, timer=0, allowCancel = false){
         icon: icon,
         timer: timer,
         confirmButtonText: 'OK',
+        cancelButtonText: 'Cancelar',
         allowOutsideClick: allowCancel,
         allowEscapeKey: allowCancel
     })

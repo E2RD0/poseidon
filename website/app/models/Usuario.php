@@ -73,12 +73,12 @@ class Usuario
         return $this->email;
     }
 
-    public function setEmail($value)
+    public function setEmail($value, $isLogin = false)
     {
         $v = new \Valitron\Validator(array('Email' => $value));
         $v->rule('required', 'Email');
         $v->rule('email', 'Email');
-        if($v->validate()) {
+        if($v->validate() && !$isLogin) {
             if(!$this->userExists('email', $value)){
                 $this->email = $value;
                 return true;
@@ -98,11 +98,13 @@ class Usuario
         return $this->password;
     }
 
-    public function setPassword($value)
+    public function setPassword($value, $checkStrength = true)
     {
         $v = new \Valitron\Validator(array('Contraseña' => $value));
         $v->rule('required', 'Contraseña');
-        $v->rule('lengthMin', 'Contraseña', 6);
+        if($checkStrength){
+            $v->rule('lengthMin', 'Contraseña', 6);
+        }
         if($v->validate()) {
             $this->password = $value;
             return true;
@@ -154,6 +156,12 @@ class Usuario
         $db->bind(':hash', password_hash($user->password, PASSWORD_ARGON2ID));
         $db->bind(':idTipo', $user->idTipo);
         return $db->execute();
+    }
+    public function checkPassword($email){
+        $db = new \Common\Database;
+        $db->query('SELECT idUsuario, contrasena from usuario WHERE email = :email');
+        $db->bind(':email', $email);
+        return $db->getResult();
     }
     public function modifyUser($user)
     {

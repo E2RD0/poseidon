@@ -13,14 +13,15 @@ loginTemplate::loginHead('Iniciar Sesión');
                     </p>
                 </div>
                 <div class="col-8">
-                    <form action="">
+                    <form action="" id="login-form" method="POST">
                         <div class="row main__rows">
                             <div class="col-sm">
                                 <div class="form-field">
                                     <div class="form-field__control">
-                                        <label for="correo" class="form-field__label">Correo electrónico</label>
-                                        <input id="correo" type="email" class="form-field__input" required />
+                                        <label for="inputEmail" class="form-field__label">Correo electrónico</label>
+                                        <input id="inputEmail" name="email" type="email" class="form-field__input" required />
                                     </div>
+                                    <p class="form-error-label" id="errorEmail"></p>
                                 </div>
                             </div>
                         </div>
@@ -28,10 +29,11 @@ loginTemplate::loginHead('Iniciar Sesión');
                             <div class="col-sm">
                                 <div class="form-field">
                                     <div class="form-field__control">
-                                        <label for="clave" class="form-field__label">Contraseña</label>
-                                        <input id="clave" type="password" class="form-field__input" required />
+                                        <label for="inputContraseña" class="form-field__label">Contraseña</label>
+                                        <input id="inputContraseña" name="password" type="password" class="form-field__input" required />
                                         <i class="fas fa-eye password__show"></i>
                                     </div>
+                                    <p class="form-error-label" id="errorContraseña"></p>
                                 </div>
                             </div>
                         </div>
@@ -43,7 +45,7 @@ loginTemplate::loginHead('Iniciar Sesión');
                         </div>
                         <div class="row">
                             <div class="col text-center">
-                                <button class="btn main__button" type="button" onclick="location.href='dashboard.php'">Iniciar Sesión</button>
+                                <button class="btn main__button" type="submit" id="login-submit">Iniciar Sesión</button>
                             </div>
                             <div class="w-100"></div>
                             <div class="col text-center">
@@ -59,5 +61,5 @@ loginTemplate::loginHead('Iniciar Sesión');
 </main>
 
 <?php
-loginTemplate::loginEnd('index.js');
+loginTemplate::loginEnd('login.js');
 ?>

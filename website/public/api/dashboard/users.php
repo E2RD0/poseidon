@@ -7,7 +7,7 @@ if (isset($_GET['action'])) {
     session_start();
     $action = $_GET['action'];
     $userController = new \Users;
-    $result = array('status' => 0, 'message' => null, 'exception' => null, 'errorFields'=> []);
+    $result = array('status' => 0, 'message' => null, 'exception' => null, 'errors'=> []);
 
 
     if (isset($_SESSION['id_usuario'])) {
@@ -28,6 +28,8 @@ if (isset($_GET['action'])) {
                 $result = $userController->userRegister($_POST, $result);
                 break;
             case 'login':
+                $result = $userController->userLogin($_POST, $result);
+                break;
             default:
                 \Common\Core::http404();
         }

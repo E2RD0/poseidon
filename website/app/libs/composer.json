@@ -5,6 +5,9 @@
     },
 
     "autoload": {
-        "psr-4": {"Common\\": "Common"}
+        "psr-4": {
+            "Common\\": "Common",
+            "Helpers\\": "Helpers"
+        }
     }
 }
