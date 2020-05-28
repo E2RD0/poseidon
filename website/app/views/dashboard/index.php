@@ -8,7 +8,7 @@ loginTemplate::loginHead('Iniciar Sesión');
         <div class="main__login">
             <div class="row justify-content-center m-0">
                 <div class="col-12 main__form text-center">
-                    <img src="<?= $_ENV['HOME_PATH']?>resources/img/dashboard/poseidon-l.svg" alt="logo poseidon" class="img-fluid">
+                    <img src="<?= HOME_PATH?>resources/img/dashboard/poseidon-l.svg" alt="logo poseidon" class="img-fluid">
                     <p class="main__message text-break">¡Bienvenido de vuelta! Por favor inicia sesión con tu cuenta.
                     </p>
                 </div>

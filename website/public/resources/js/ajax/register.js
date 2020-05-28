@@ -1,4 +1,4 @@
-const API_USUARIOS = '../api/dashboard/users.php?action=';
+const API_USUARIOS = HOME_PATH + 'api/dashboard/users.php?action=';
 
 $( document ).ready(function() {
     checkUsuarios();
@@ -22,18 +22,17 @@ $( '#register-form' ).submit(function( event ) {
     .done(function( response ) {
         // If user is registered succesfully
         if ( response.status ) {
-            console.log('usuario registrado correctamente');
-            //sweetAlert( 1, response.message, 'index.php' );
+            redirect('user/login')
         } else if(response.status == -1){
             console.log('error con db');
-            //sweetAlert( 2, response.exception, null );
+            swal(2, response.exception);
         }
         else{
             var errors = response.errors;
-            console.log('hay errores');
-            if (errors.Email) {
-                console.log(errors.Email[0]);
-            }
+            checkFields(errors, 'Nombre');
+            checkFields(errors, 'Apellido');
+            checkFields(errors, 'Email');
+            checkFields(errors, 'Contraseña');
         }
     })
     .fail(function( jqXHR ) {

@@ -16,11 +16,11 @@ class Database{
 
 
     public function __construct(){
-        $this->host = $_ENV['DB_HOST'];
-        $this->port = $_ENV['DB_PORT'];
-        $this->user = $_ENV['DB_USER'];
-        $this->password = $_ENV['DB_PASSWORD'];
-        $this->name = $_ENV['DB_NAME'];
+        $this->host = DB_HOST;
+        $this->port = DB_PORT;
+        $this->user = DB_USER;
+        $this->password = DB_PASSWORD;
+        $this->name = DB_NAME;
 
         //Data source name
         $dsn = "pgsql:host={$this->host};dbname={$this->name}";

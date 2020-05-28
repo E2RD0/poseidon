@@ -5,18 +5,14 @@ class User extends \Common\Controller{
       $this->usersModel = $this->loadModel('Usuario');
   }
   public function index(){
-      $userCount = $this->usersModel->userCount();
+      $this->login();
+      /*$userCount = $this->usersModel->userCount();
       if(!$userCount>0){
           $this->loadView('dashboard', 'index');
       }
       else {
           $this->loadView('dashboard', 'registro');
-      }
-      /*
-      foreach ($data['users'] as $user) {
-          echo $user->nombre;
-      }
-      */
+      }*/
   }
   public function register(){
       $this->loadView('dashboard', 'registro');

@@ -13,15 +13,15 @@ class dashboardTemplate
                 <meta name="theme-color" content="#171717">
                 <title>' . $title . '</title>
                 <link rel="manifest" href="site.webmanifest">
-                <link rel="stylesheet" href="' . $_ENV['HOME_PATH'] . 'resources/css/all.min.css">
-                <link rel="stylesheet" href="' . $_ENV['HOME_PATH'] . 'resources/webfonts/fonts-dashboard.css">
-                <link rel="stylesheet" href="' . $_ENV['HOME_PATH'] . 'resources/css/normalize.css">
-                <link rel="stylesheet" href="' . $_ENV['HOME_PATH'] . 'resources/css/bootstrap.min.css">
-                <link rel="stylesheet" href="' . $_ENV['HOME_PATH'] . 'resources/css/Chart.min.css">
-                <link rel="stylesheet" href="' . $_ENV['HOME_PATH'] . 'resources/css/datatables.min.css">
-                <link rel="stylesheet" href="' . $_ENV['HOME_PATH'] . 'resources/css/basic.min.css">
-                <link rel="stylesheet" href="' . $_ENV['HOME_PATH'] . 'resources/css/dropzone.min.css">
-                <link rel="stylesheet" href="' . $_ENV['HOME_PATH'] . 'resources/css/dashboard.css">
+                <link rel="stylesheet" href="' . HOME_PATH . 'resources/css/all.min.css">
+                <link rel="stylesheet" href="' . HOME_PATH . 'resources/webfonts/fonts-dashboard.css">
+                <link rel="stylesheet" href="' . HOME_PATH . 'resources/css/normalize.css">
+                <link rel="stylesheet" href="' . HOME_PATH . 'resources/css/bootstrap.min.css">
+                <link rel="stylesheet" href="' . HOME_PATH . 'resources/css/Chart.min.css">
+                <link rel="stylesheet" href="' . HOME_PATH . 'resources/css/datatables.min.css">
+                <link rel="stylesheet" href="' . HOME_PATH . 'resources/css/basic.min.css">
+                <link rel="stylesheet" href="' . HOME_PATH . 'resources/css/dropzone.min.css">
+                <link rel="stylesheet" href="' . HOME_PATH . 'resources/css/dashboard.css">
             </head>
 
             <body class="dash__body">
@@ -32,16 +32,18 @@ class dashboardTemplate
     {
         echo ('</div>
             </body>
-            <script src="' . $_ENV['HOME_PATH'] . 'resources/js/vendor/jquery-3.4.1.min.js"></script>
-            <script src="' . $_ENV['HOME_PATH'] . 'resources/js/vendor/bootstrap.bundle.min.js"></script>
-            <script src="' . $_ENV['HOME_PATH'] . 'resources/js/vendor/Chart.bundle.min.js"></script>
-            <script src="' . $_ENV['HOME_PATH'] . 'resources/js/vendor/datatables.min.js"></script>
-            <script src="' . $_ENV['HOME_PATH'] . 'resources/js/plugins.js"></script>
-            <script src="' . $_ENV['HOME_PATH'] . 'resources/js/vendor/dropzone.min.js"></script>
-            <script src="' . $_ENV['HOME_PATH'] . 'resources/js/dashboard.js"></script>
+            <script src="' . HOME_PATH . 'resources/js/vendor/jquery-3.4.1.min.js"></script>
+            <script src="' . HOME_PATH . 'resources/js/vendor/bootstrap.bundle.min.js"></script>
+            <script src="' . HOME_PATH . 'resources/js/vendor/Chart.bundle.min.js"></script>
+            <script src="' . HOME_PATH . 'resources/js/vendor/datatables.min.js"></script>
+            <script src="' . HOME_PATH . 'resources/js/plugins.js"></script>
+            <script src="' . HOME_PATH . 'resources/js/vendor/dropzone.min.js"></script>
+            <script src="' . HOME_PATH . 'resources/js/dashboard.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-            <script src="' . $_ENV['HOME_PATH'] . 'resources/js/ajax/account.js"></script>
-            <script src="' . $_ENV['HOME_PATH'] . 'resources/js/ajax/' .$ajax.'"></script>
+            <script> var HOME_PATH = "'. HOME_PATH .'" </script>
+            <script src="' . HOME_PATH . 'resources/js/components.js"></script>
+            <script src="' . HOME_PATH . 'resources/js/ajax/account.js"></script>
+            <script src="' . HOME_PATH . 'resources/js/ajax/' .$ajax.'"></script>
             </html>');
     }
 
@@ -53,7 +55,7 @@ class dashboardTemplate
                         <i class="fas fa-chevron-left"></i>
                     </div>
                     <a href="dashboard.php">
-                        <img src="' . $_ENV['HOME_PATH'] . 'resources/img/dashboard/poseidon-l.svg" alt="Logo Poseidon" class="img-fluid dash__logo">
+                        <img src="' . HOME_PATH . 'resources/img/dashboard/poseidon-l.svg" alt="Logo Poseidon" class="img-fluid dash__logo">
                     </a>
                     <ul class="">' .
                         (($page == 'dashboard') ? '<li class="active">' : '<li class="">') . '
@@ -329,7 +331,7 @@ class dashboardTemplate
                 </div>
                 <nav class="container-fluid position-absolute navbar navbar--main bg-white shadow-sm">
                         <div class="container">
-                            <a href="#" class="navbar-brand"><img class="navbar__logo d-inline-block align-top" src="' . $_ENV['HOME_PATH'] . 'resources/img/dashboard/poseidon-l.svg" alt="Logo de Poseidón"></a>
+                            <a href="#" class="navbar-brand"><img class="navbar__logo d-inline-block align-top" src="' . HOME_PATH . 'resources/img/dashboard/poseidon-l.svg" alt="Logo de Poseidón"></a>
                             <div class="burger-container">
                                 <div id="burger">
                                     <div class="bar topBar"></div>
@@ -351,8 +353,8 @@ class dashboardTemplate
                             </ul>
 
                             <ul class="navbar__links navbar__icons">
-                                <li><a href="user.php"><img src="' . $_ENV['HOME_PATH'] . 'resources/img/dashboard/cuenta.svg"></a></li>
-                                <li><a href="index.php"><img src="' . $_ENV['HOME_PATH'] . 'resources/img/dashboard/logout.svg"></a></li>
+                                <li><a href="user.php"><img src="' . HOME_PATH . 'resources/img/dashboard/cuenta.svg"></a></li>
+                                <li><a href="index.php"><img src="' . HOME_PATH . 'resources/img/dashboard/logout.svg"></a></li>
                             </ul>
                         </div>
                     </nav>

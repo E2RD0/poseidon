@@ -1,4 +1,4 @@
-const API = '../api/dashboard/users.php?action=';
+const API = HOME_PATH + 'api/dashboard/users.php?action=';
 
 function checkUsuarios()
 {
@@ -8,39 +8,17 @@ function checkUsuarios()
     })
     .done(function( response ) {
         let current = window.location.pathname;
-        if ( current == response.HOME_PATH + 'user/register' ) {
+        if ( current == HOME_PATH + 'user/register' ) {
             //if at least one user exists
             if (response.status) {
-                Swal.fire({
-                    title: 'Advertencia',
-                    text: response.message +'. Redireccionando a inicio de sesión...',
-                    icon: 'warning',
-                    timer: 3000,
-                    buttons: false,
-                })
-                .then(() => {
-                    window.location.replace(window.location.origin + response.HOME_PATH + 'user/login');
-                })
+                swal(3, response.message +'. Redireccionando a inicio de sesión...', 'user/login', 3000);
             } else {
-                Swal.fire({
-                    title: 'Aviso',
-                    text: 'Se necesita registrar el primer usuario del sistema',
-                    icon: 'info',
-                })
+                swal(5, 'Se necesita registrar el primer usuario del sistema');
             }
         } else {
             //redirect to register if there isn't at least one user
             if (!response.status ) {
-                Swal.fire({
-                    title: 'Advertencia',
-                    text: response.exception +'. Redireccionando a registro...',
-                    icon: 'warning',
-                    timer: 3000,
-                    buttons: false,
-                })
-                .then(() => {
-                    window.location.replace(window.location.origin + response.HOME_PATH + 'user/register');
-                })
+                swal(3, response.exception +'. Redireccionando a registro...', 'user/register', 3000);
             }
         }
     })
