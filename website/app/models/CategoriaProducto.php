@@ -7,6 +7,9 @@ class CategoriaProducto
     private $id;
     private $categoria;
 
+    public function __construct()
+    {
+    }
     public function getId()
     {
         return $this->id;
@@ -43,13 +46,10 @@ class CategoriaProducto
         }
     }
 
-    public function __construct()
-    {
-    }
     public function existCategory($value)
     {
         $db = new \Common\Database;
-        $db->query('SELECT * FROM categoriaproducto WHERE categoria = :value');
+        $db->query('SELECT * FROM categoriaproducto WHERE idcategoriaproducto = :value');
         $db->bind(':value', $value);
         return boolval($db->rowCount());
     }
@@ -59,7 +59,7 @@ class CategoriaProducto
         $db->query('SELECT * FROM categoriaproducto');
         return $db->resultSet();
     }
-    public function countCategories()
+    public function categoriesCount()
     {
         $db = new \Common\Database;
         $db->query('SELECT * FROM categoriaproducto');
@@ -68,7 +68,7 @@ class CategoriaProducto
     public function insertCategory($value)
     {
         $db = new \Common\Database;
-        $db->query('INSERT into categoriaproducto(DEFAULT, categoria) VALUES(:categoria)');
+        $db->query('INSERT into categoriaproducto(idcategoriaproducto, categoria) VALUES(DEFAULT, :categoria)');
         $db->bind(':categoria', $value);
         return $db->execute();
     }
@@ -83,7 +83,7 @@ class CategoriaProducto
     public function deleteCategory($value)
     {
         $db = new \Common\Database;
-        $db->query('DELETE FROM categoriaproducto WHERE idcategoriaproducto = :id)');
+        $db->query('DELETE FROM categoriaproducto WHERE idcategoriaproducto = :id');
         $db->bind(':id', $value);
         return $db->execute();
     }

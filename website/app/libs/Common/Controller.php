@@ -10,9 +10,21 @@ namespace Common;
          return new $nameModel();
      }
 
-     public function loadView($context, $nameView, $data = []){
+     public function loadView($context, $nameView, $loginRequired = true, $data = []){
          $pathFile = __DIR__ . '/../../views/' . $context . '/' . $nameView . '.php';
          if(file_exists($pathFile)){
+             session_start();
+             $loggedIn = isset($_SESSION['user_id']);
+             if($loginRequired){
+                 if (!$loggedIn){
+                     \Helpers\Url::redirect('user/login');
+                 }
+             }
+             else{
+                 if($loggedIn){
+                     \Helpers\Url::redirect('dashboard');
+                 }
+             }
              require_once $pathFile;
          }
          else{

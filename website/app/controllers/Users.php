@@ -61,31 +61,35 @@ class Users extends \Common\Controller
         //If there aren't any errors
         if (!boolval($errors)) {
             $userHash = $this->usersModel->checkPassword($email);
-            if($userHash){
-                if ( password_verify($password, trim($userHash->contrasena)) ) {
+            if ($userHash) {
+                if (password_verify($password, trim($userHash->contrasena))) {
                     $_SESSION['user_id'] = $userHash->idusuario;
                     $_SESSION['user_email'] = $email;
                     $result['status'] = 1;
                     $result['message'] = 'Autenticación correcta';
+                } else {
+                    $result['status'] = -1;
+                    $result['exception'] = 'Credenciales incorrectas';
                 }
-                else {
-                   $result['status'] = -1;
-                   $result['exception'] = 'Credenciales incorrectas';
-               }
-            }
-            else {
+            } else {
                 $result['status'] = -1;
                 $result['exception'] = 'Credenciales incorrectas';
             }
-        }
-        else {
+        } else {
             $result['exception'] = 'Error en uno de los campos';
             $result['errors'] = $errors;
         }
         return $result;
     }
 
-    private function login($user, $password)
+    public function userLogout($result)
     {
+        if (session_destroy()) {
+            $result['status'] = 1;
+            $result['message'] = 'Se ha cerrado la sesión';
+        } else {
+            $result['exception'] = 'Ocurrió un problema al cerrar la sesión';
+        }
+        return $result;
     }
 }

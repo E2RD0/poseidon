@@ -22,8 +22,7 @@ $( '#login-form' ).submit(function( event ) {
     .done(function( response ) {
         // If user is registered succesfully
         if ( response.status == 1) {
-            console.log('correcto');
-            //redirect('dashboard');
+            redirect('dashboard');
         } else if (response.status == -1){
             console.log('login incorrecto');
             swal(2, response.exception);

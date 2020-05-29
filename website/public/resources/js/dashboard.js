@@ -107,11 +107,11 @@ if (chBar) {
     });
 }
 //Datatables initializer
-$(document).ready( function () {
+/*$(document).ready( function () {
     $('#table').DataTable({
         responsive: true
     });
-} )
+} )*/
 //Adaptative Modals
 $(function () {
     if (window.matchMedia('(max-width: 425px)').matches){

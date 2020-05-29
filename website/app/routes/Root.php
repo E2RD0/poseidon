@@ -2,11 +2,9 @@
 class Root extends \Common\Controller{
 
   public function __construct(){
+      //$this->usersModel = $this->loadModel('Usuario');
   }
   public function index(){
-      $data = [
-          'test' => 'funciona'
-      ];
-      $this->loadView('dashboard', 'index', $data);
+      Helpers\Url::redirect('user/login');
   }
 }

@@ -28,80 +28,11 @@ dashboardTemplate::dashMenu('categorias');
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Tabla de surf</td>
-                                                <td class="td-actions text-center">
-                                                    <div class="dropdown">
-                                                        <i class="fas fa-ellipsis-h dash__dropdown" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
-                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                                            <button class="dropdown-item" type="button">
-                                                                <span>
-                                                                    <i class="fas fa-edit"></i>
-                                                                    <p>Modíficar</p>
-                                                                </span>
-                                                            </button>
-                                                            <div class="dropdown-divider"></div>
-                                                            <button class="dropdown-item" type="button">
-                                                                <span>
-                                                                    <i class="fas fa-times"></i>
-                                                                    <p>Eliminar</p>
-                                                                </span>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Accesorios</td>
-                                                <td class="td-actions text-center">
-                                                    <div class="dropdown">
-                                                        <i class="fas fa-ellipsis-h dash__dropdown" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
-                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                                            <button class="dropdown-item" type="button">
-                                                                <span>
-                                                                    <i class="fas fa-edit"></i>
-                                                                    <p>Modíficar</p>
-                                                                </span>
-                                                            </button>
-                                                            <div class="dropdown-divider"></div>
-                                                            <button class="dropdown-item" type="button">
-                                                                <span>
-                                                                    <i class="fas fa-times"></i>
-                                                                    <p>Eliminar</p>
-                                                                </span>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Ropa</td>
-                                                <td class="td-actions text-center">
-                                                    <div class="dropdown">
-                                                        <i class="fas fa-ellipsis-h dash__dropdown" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
-                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                                            <button class="dropdown-item" type="button">
-                                                                <span>
-                                                                    <i class="fas fa-edit"></i>
-                                                                    <p>Modíficar</p>
-                                                                </span>
-                                                            </button>
-                                                            <div class="dropdown-divider"></div>
-                                                            <button class="dropdown-item" type="button">
-                                                                <span>
-                                                                    <i class="fas fa-times"></i>
-                                                                    <p>Eliminar</p>
-                                                                </span>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
                                         </tbody>
                                     </table>
+                                    <div id="categoriesSpinner" class="w-100 text-center">
+                                      No hay ningún registro
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -113,5 +44,5 @@ dashboardTemplate::dashMenu('categorias');
     </div>
 </main>
 <?php
-dashboardTemplate::dashEnd();
+dashboardTemplate::dashEnd('categories.js');
 ?>

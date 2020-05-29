@@ -59,7 +59,7 @@ class dashboardTemplate
                     </a>
                     <ul class="">' .
                         (($page == 'dashboard') ? '<li class="active">' : '<li class="">') . '
-                            <a href="dashboard.php">
+                            <a href="'. HOME_PATH . 'dashboard">
                                 <span class="icon">
                                     <svg class="icon__svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 33 33" style="enable-background:new 0 0 33 33;" xml:space="preserve" width="33" height="33">
                                         <style type="text/css">
@@ -81,7 +81,7 @@ class dashboardTemplate
                             </a>
                         </li>' .
                         (($page == 'ordenes') ? '<li class="active">' : '<li class="">') . '
-                            <a href="ordenes.php">
+                            <a href="'. HOME_PATH . 'dashboard/ordenes">
                                 <span class="icon">
                                     <svg class="icon__svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 33 38.5" style="enable-background:new 0 0 33 38.5;" xml:space="preserve" width="30" height="38.5">
                                         <style type="text/css">
@@ -105,7 +105,7 @@ class dashboardTemplate
                             </a>
                         </li>' .
                         (($page == 'alquileres') ? '<li class="active">' : '<li class="">') . '
-                            <a href="alquileres.php">
+                            <a href="'. HOME_PATH . 'dashboard/alquileres">
                                 <span class="icon">
                                     <svg class="icon__svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 33 30.7" style="enable-background:new 0 0 33 30.7;" xml:space="preserve" width="33" height="30.7">
                                         <style type="text/css">
@@ -129,7 +129,7 @@ class dashboardTemplate
                             </a>
                         </li>' .
                         (($page == 'sucursales') ? '<li class="active">' : '<li class="">') . '
-                            <a href="sucursales.php">
+                            <a href="'. HOME_PATH . 'dashboard/sucursales">
                                 <span class="icon">
                                     <svg class="icon__svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 33 45.7" style="enable-background:new 0 0 33 45.7;" xml:space="preserve" width="33" height="34.95">
                                         <style type="text/css">
@@ -149,7 +149,7 @@ class dashboardTemplate
                             </a>
                         </li>' .
                         (($page == 'categorias') ? '<li class="active">' : '<li class="">') . '
-                            <a href="categorias.php">
+                            <a href="'. HOME_PATH . 'dashboard/categorias">
                                 <span class="icon">
                                     <svg class="icon__svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 33 50.2" style="enable-background:new 0 0 33 50.2;" xml:space="preserve" width="33" height="40.2">
                                         <style type="text/css">
@@ -302,7 +302,7 @@ class dashboardTemplate
                                 </a>
                             </li>
                             <li>
-                                <a href="index.php">
+                                <a href="javascript:void" onclick="logout();">
                                     <span class="icon">
                                         <svg class="icon__svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 33 33" style="enable-background:new 0 0 33 33;" xml:space="preserve" width="33" height="33">
                                             <style type="text/css">
@@ -789,6 +789,7 @@ class dashboardTemplate
                                 </ul>
                             </div>
                             <div class="tab-pane active py-3 px-3 px-sm-0" id="alquileres" role="tabpanel">
+                                <form id="categories-form" method="POST" action="">
                                 <div class="row mt-4">
                                     <div class="col-md-4 col-12 text-lg-right">
                                         <p>Nombre de la categoría</p>
@@ -796,19 +797,21 @@ class dashboardTemplate
                                     <div class="col-md-6 col-12">
                                         <div class="form-field">
                                             <div class="form-field__control">
-                                                <input id="text" type="text" class="dash__text_fields form-field__input" />
+                                                <input id="inputCategoría" type="text" name="categoria" required class="dash__text_fields form-field__input" />
                                             </div>
+                                            <p class="form-error-label" id="errorCategoría"></p>
                                         </div>
                                     </div>
                                     <div class="col-12 text-center">
                                         <span class="ml-5">
                                             <button type="button" class="btn recover__button">Cancelar</button>
-                                            <button type="button" class="btn main__button">
+                                            <button type="submit" class="btn main__button" id="categories-submit">
                                                 ' . (($status == 'add') ? 'Añadir categoría' : 'Modificar categorí­a') . '
                                             </button>
                                         </span>
                                     </div>
                                 </div>
+                                </form>
                             </div>
                         </div>');
     }

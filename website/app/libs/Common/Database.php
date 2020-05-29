@@ -14,6 +14,8 @@ class Database{
     private $stmt;
     private $err;
 
+    public static $exception = "";
+
 
     public function __construct(){
         $this->host = DB_HOST;
@@ -59,7 +61,12 @@ class Database{
     }
 
     public function execute(){
-        return $this->stmt->execute();
+        try{
+            return $this->stmt->execute();
+        }
+        catch (\Exception $e) {
+            self::setException($e->getCode(), $e->getMessage());
+        }
     }
 
     public function getResult(){
@@ -75,6 +82,29 @@ class Database{
     public function rowCount(){
         $this->execute();
         return $this->stmt->rowCount();
+    }
+
+    private static function setException($code, $message)
+    {
+        switch ($code) {
+            case '7':
+                self::$exception = 'Existe un problema al conectar con el servidor';
+                break;
+            case '42703':
+                self::$exception = 'Nombre de campo desconocido';
+                break;
+            case '23505':
+                self::$exception = 'Dato duplicado, no se puede guardar';
+                break;
+            case '42P01':
+                self::$exception = 'Nombre de tabla desconocido';
+                break;
+            case '23503':
+                self::$exception = 'Registro ocupado, no se puede eliminar';
+                break;
+            default:
+                self::$exception = $message;
+        }
     }
 
 

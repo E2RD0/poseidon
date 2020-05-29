@@ -10,10 +10,10 @@ if (isset($_GET['action'])) {
     $result = array('status' => 0, 'message' => null, 'exception' => null, 'errors'=> []);
 
 
-    if (isset($_SESSION['id_usuario'])) {
+    if (isset($_SESSION['user_id'])) {
         switch ($action) {
             case 'logout':
-                echo "string";
+                $result = $userController->userLogout($result);
                 break;
             default:
                 \Common\Core::http404();
