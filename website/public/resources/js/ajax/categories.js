@@ -29,7 +29,25 @@ function fillTable( dataset )
                 orderable: false,
                 render:function(data, type, row)
                 {
-                  return '<div class="dropdown"> <i class="fas fa-ellipsis-h dash__dropdown" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i> <div class="dropdown-menu" aria-labelledby="dropdownMenu2"> <button class="dropdown-item" onclick="editRow('+data['idcategoriaproducto'] +', this)"type="button"> <span> <i class="fas fa-edit"></i> <p>Modíficar</p> </span> </button> <div class="dropdown-divider"></div> <button class="dropdown-item" onclick="deleteRow('+data['idcategoriaproducto'] +', this)" type="button"> <span> <i class="fas fa-times"></i> <p>Eliminar</p> </span> </button> </div> </div>';
+                  return `
+                        <div class="dropdown">
+                            <i class="fas fa-ellipsis-h dash__dropdown" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                <button class="dropdown-item" onclick="editRow(${data['idcategoriaproducto']}, this)"type="button">
+                                    <span>
+                                        <i class="fas fa-edit"></i>
+                                        <p>Modíficar</p>
+                                    </span>
+                                </button>
+                            <div class="dropdown-divider"></div>
+                            <button class="dropdown-item" onclick="deleteRow(${data['idcategoriaproducto']}, this)" type="button">
+                                <span>
+                                    <i class="fas fa-times"></i>
+                                    <p>Eliminar</p>
+                                </span>
+                            </button>
+                            </div>
+                        </div>`;
                 },
                 targets: -1
                 },
