@@ -38,7 +38,7 @@ class OpcionesGenerales
     {
         $v = new \Valitron\Validator(array('Clave' => $value));
         $v->rule('required', 'Clave');
-        $v->rule('alpha', 'Clave');
+        $v->rule('alphaNum', 'Clave');
         if ($v->validate()) {
             $this->clave = $value;
             return true;
@@ -56,7 +56,6 @@ class OpcionesGenerales
     {
         $v = new \Valitron\Validator(array('Valor' => $value));
         $v->rule('required', 'Valor');
-        $v->rule('alpha', 'Valor');
         if ($v->validate()) {
             $this->valor = $value;
             return true;
@@ -65,6 +64,13 @@ class OpcionesGenerales
         }
     }
 
+    public function existCategory($value)
+    {
+        $db = new \Common\Database;
+        $db->query('SELECT * FROM opcionesgenerales WHERE idopcion = :value');
+        $db->bind(':value', $value);
+        return boolval($db->rowCount());
+    }
     public function getGeneralOptions()
     {
         $db = new \Common\Database;
@@ -86,7 +92,7 @@ class OpcionesGenerales
         $db->bind(':valor', $value->valor);
         return $db->execute();
     }
-    public function modifyRentalDetailStatus($value)
+    public function modifyGeneralOption($value)
     {
         $db = new \Common\Database;
         $db->query('UPDATE opcionesgenerales SET clave = :clave, valor = :valor WHERE idopcion = :idopcion');
@@ -95,10 +101,10 @@ class OpcionesGenerales
         $db->bind(':idopcion', $value->idopcion);
         return $db->execute();
     }
-    public function deleteRentalDetailStatus($value)
+    public function deleteGeneralOption($value)
     {
         $db = new \Common\Database;
-        $db->query('DELETE FROM opcionesgenerales WHERE idopcion = :id)');
+        $db->query('DELETE FROM opcionesgenerales WHERE idopcion = :id');
         $db->bind(':id', $value);
         return $db->execute();
     }

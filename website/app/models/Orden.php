@@ -144,13 +144,13 @@ class Orden
     public function getOrders()
     {
         $db = new \Common\Database;
-        $db->query('SELECT * FROM orden');
+        $db->query('SELECT * FROM getOrders()');
         return $db->resultSet();
     }
     public function getOrdersCount()
     {
         $db = new \Common\Database;
-        $db->query('SELECT * FROM orden');
+        $db->query('SELECT * FROM getOrders()');
         return $db->rowCount();
     }
     public function insertOrder($user)

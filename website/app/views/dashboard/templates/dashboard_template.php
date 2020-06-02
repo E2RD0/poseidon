@@ -177,7 +177,7 @@ class dashboardTemplate
                             </a>
                         </li>' .
                         (($page == 'productos') ? '<li class="active">' : '<li class="">') . '
-                            <a href="productos.php">
+                            <a href="' . HOME_PATH . 'dashboard/productos">
                                 <span class="icon">
                                     <svg class="icon__svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 33 33" style="enable-background:new 0 0 33 33;" xml:space="preserve" width="33" height="33">
                                         <style type="text/css">
@@ -204,7 +204,7 @@ class dashboardTemplate
                             </a>
                         </li>' .
                         (($page == 'clientes') ? '<li class="active">' : '<li class="">') . '
-                            <a href="clientes.php">
+                            <a href="' . HOME_PATH . 'dashboard/clientes">
                                 <span class="icon">
                                     <svg class="icon__svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 33 28.8" style="enable-background:new 0 0 33 28.8;" xml:space="preserve" width="33" height="28.8">
                                         <style type="text/css">
@@ -238,7 +238,7 @@ class dashboardTemplate
                             </a>
                         </li>' .
                         (($page == 'usuarios') ? '<li class="active">' : '<li class="">') . '
-                            <a href="usuarios.php">
+                            <a href="' . HOME_PATH . 'dashboard/usuarios">
                                 <span class="icon">
                                     <svg version="1.1" class="icon__svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 33 32.8" style="enable-background:new 0 0 33 32.8;" xml:space="preserve" width="33" height="32.8">
                                         <style type="text/css">
@@ -258,7 +258,7 @@ class dashboardTemplate
                             </a>
                         </li>' .
                         (($page == 'parametros') ? '<li class="active">' : '<li class="">') . '
-                            <a href="parametros.php">
+                            <a href="' . HOME_PATH . 'dashboard/opcionesgenerales">
                                 <span class="icon">
                                     <svg class="icon__svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 33 33" style="enable-background:new 0 0 33 33;" xml:space="preserve" width="33" height="33">
                                         <style type="text/css">
@@ -283,7 +283,7 @@ class dashboardTemplate
                     <div class="dash__footer">
                         <ul>' .
                         (($page == 'user') ? '<li class="active">' : '<li class="">') . '
-                                <a href="user.php">
+                                <a href="' . HOME_PATH . 'dashboard/usuario">
                                     <span class="icon">
                                         <svg class="icon__svg" width="33px" height="33px" data-name="Layer 2" viewBox="0 0 33 33" xmlns="http://www.w3.org/2000/svg">
                                             <style type="text/css">
@@ -790,27 +790,27 @@ class dashboardTemplate
                             </div>
                             <div class="tab-pane active py-3 px-3 px-sm-0" id="alquileres" role="tabpanel">
                                 <form id="categories-form" method="POST" action="">
-                                <div class="row mt-4">
-                                    <div class="col-md-4 col-12 text-lg-right">
-                                        <p>Nombre de la categoría</p>
-                                    </div>
-                                    <div class="col-md-6 col-12">
-                                        <div class="form-field">
-                                            <div class="form-field__control">
-                                                <input id="inputCategoría" type="text" name="categoria" required class="dash__text_fields form-field__input" />
+                                    <div class="row mt-4">
+                                        <div class="col-md-4 col-12 text-lg-right">
+                                            <p>Nombre de la categoría</p>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-field">
+                                                <div class="form-field__control">
+                                                    <input id="inputCategoría" type="text" name="categoria" required class="dash__text_fields form-field__input" />
+                                                </div>
+                                                <p class="form-error-label" id="errorCategoría"></p>
                                             </div>
-                                            <p class="form-error-label" id="errorCategoría"></p>
+                                        </div>
+                                        <div class="col-12 text-center">
+                                            <span class="ml-5">
+                                                <button type="button" class="btn recover__button">Cancelar</button>
+                                                <button type="submit" class="btn main__button" id="categories-submit">
+                                                    ' . (($status == 'add') ? 'Añadir categoría' : 'Modificar categorí­a') . '
+                                                </button>
+                                            </span>
                                         </div>
                                     </div>
-                                    <div class="col-12 text-center">
-                                        <span class="ml-5">
-                                            <button type="button" class="btn recover__button">Cancelar</button>
-                                            <button type="submit" class="btn main__button" id="categories-submit">
-                                                ' . (($status == 'add') ? 'Añadir categoría' : 'Modificar categorí­a') . '
-                                            </button>
-                                        </span>
-                                    </div>
-                                </div>
                                 </form>
                             </div>
                         </div>');
@@ -829,36 +829,38 @@ class dashboardTemplate
                                 </ul>
                             </div>
                             <div class="tab-pane active py-3 px-3 px-sm-0" id="alquileres" role="tabpanel">
-                                <div class="row mt-4">
-                                    <div class="col-md-4 col-12 text-lg-right">
-                                        <p>Nombre del parámetro</p>
-                                    </div>
-                                    <div class="col-md-6 col-12">
-                                        <div class="form-field">
+                                <form id="generaloptions-form" method="POST" action="">
+                                    <div class="row mt-4">
+                                        <div class="col-md-4 col-12 text-lg-right">
+                                            <p>Nombre del parámetro</p>
+                                        </div>
+                                        <div class="col-md-6 col-12">
                                             <div class="form-field__control">
-                                                <input id="text" type="text" class="dash__text_fields form-field__input" />
+                                                <input id="GeneralOption" type="text" name="clave" required class="dash__text_fields form-field__input" />
+                                                </div>
+                                                <p class="form-error-label" id="errorCategoría"></p>
+                                        </div>
+                                        <div class="col-md-4 col-12 text-lg-right">
+                                            <p>Parámetro</p>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-field">
+                                                <div class="form-field__control">
+                                                    <input id="valueGeneralOptions" type="text" name="valor" required class="dash__text_fields form-field__input" />
+                                                </div>
+                                                <p class="form-error-label" id="errorCategoría"></p>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-4 col-12 text-lg-right">
-                                        <p>Parámetro</p>
-                                    </div>
-                                    <div class="col-md-6 col-12">
-                                        <div class="form-field">
-                                            <div class="form-field__control">
-                                                <input id="text" type="text" class="dash__text_fields form-field__input" />
-                                            </div>
+                                        <div class="col-12 text-center">
+                                            <span class="ml-5">
+                                                <button type="button" class="btn recover__button">Cancelar</button>
+                                                <button type="submit" class="btn main__button" id="generaloptions-submit">
+                                                    ' . (($status == 'add') ? 'Añadir parámetro' : 'Modificar parámetro') . '
+                                                </button>
+                                            </span>
                                         </div>
                                     </div>
-                                    <div class="col-12 text-center">
-                                        <span class="ml-5">
-                                            <button type="button" class="btn recover__button">Cancelar</button>
-                                            <button type="button" class="btn main__button">
-                                                ' . (($status == 'add') ? 'Añadir parámetro' : 'Modificar parámetro') . '
-                                            </button>
-                                        </span>
-                                    </div>
-                                </div>
+                                </form>
                             </div>
                         </div>');
     }

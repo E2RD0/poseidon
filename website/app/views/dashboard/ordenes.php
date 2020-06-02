@@ -20,156 +20,19 @@ dashboardTemplate::dashMenu('ordenes');
                         <table class="table dash__main_table w-100" id="table">
                             <thead>
                                 <tr>
+                                    <th>No. de orden</th>
                                     <th>Nombre del cliente</th>
                                     <th>Dirección</th>
                                     <th>Total</th>
-                                    <th class="text-right">No. de orden</th>
+                                    <th class="text-center">Fecha de la compra</th>
                                     <th class="text-right"></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Andrew Mike</td>
-                                    <td>Develop</td>
-                                    <td>€ 99,225</td>
-                                    <td class="text-right">2013</td>
-                                    <td class="td-actions text-right">
-                                        <button class="btn dash__table_button" type="button" data-toggle="modal" data-target="#orden" id="modal_open">
-                                            Detalles de la orden
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>John Doe</td>
-                                    <td>Design</td>
-                                    <td>€ 89,241</td>
-                                    <td class="text-right">2012</td>
-                                    <td class="td-actions text-right">
-                                        <button class="btn dash__table_button" type="button" data-toggle="modal" data-target="#orden" id="modal_open">Detalles de la orden</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Alex Mike</td>
-                                    <td>Design</td>
-                                    <td>€ 92,144</td>
-                                    <td class="text-right">2010</td>
-                                    <td class="td-actions text-right">
-                                        <button class="btn dash__table_button" type="button" data-toggle="modal" data-target="#orden" id="modal_open">Detalles de la orden</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Mike Monday</td>
-                                    <td>Marketing</td>
-                                    <td>€ 49,990</td>
-                                    <td class="text-right">2009</td>
-                                    <td class="td-actions text-right">
-                                        <button class="btn dash__table_button" type="button" data-toggle="modal" data-target="#orden" id="modal_open">Detalles de la orden</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Paul Dickens</td>
-                                    <td>Communication</td>
-                                    <td>€ 69,201</td>
-                                    <td class="text-right">2008</td>
-                                    <td class="td-actions text-right">
-                                        <button class="btn dash__table_button" type="button" data-toggle="modal" data-target="#orden" id="modal_open">Detalles de la orden</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Andrew Mike</td>
-                                    <td>Develop</td>
-                                    <td>€ 99,225</td>
-                                    <td class="text-right">2013</td>
-                                    <td class="td-actions text-right">
-                                        <button class="btn dash__table_button" type="button" data-toggle="modal" data-target="#orden" id="modal_open">
-                                            Detalles de la orden
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>John Doe</td>
-                                    <td>Design</td>
-                                    <td>€ 89,241</td>
-                                    <td class="text-right">2012</td>
-                                    <td class="td-actions text-right">
-                                        <button class="btn dash__table_button" type="button" data-toggle="modal" data-target="#orden" id="modal_open">Detalles de la orden</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Alex Mike</td>
-                                    <td>Design</td>
-                                    <td>€ 92,144</td>
-                                    <td class="text-right">2010</td>
-                                    <td class="td-actions text-right">
-                                        <button class="btn dash__table_button" type="button" data-toggle="modal" data-target="#orden" id="modal_open">Detalles de la orden</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Mike Monday</td>
-                                    <td>Marketing</td>
-                                    <td>€ 49,990</td>
-                                    <td class="text-right">2009</td>
-                                    <td class="td-actions text-right">
-                                        <button class="btn dash__table_button" type="button" data-toggle="modal" data-target="#orden" id="modal_open">Detalles de la orden</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Paul Dickens</td>
-                                    <td>Communication</td>
-                                    <td>€ 69,201</td>
-                                    <td class="text-right">2008</td>
-                                    <td class="td-actions text-right">
-                                        <button class="btn dash__table_button" type="button" data-toggle="modal" data-target="#orden" id="modal_open">Detalles de la orden</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Andrew Mike</td>
-                                    <td>Develop</td>
-                                    <td>€ 99,225</td>
-                                    <td class="text-right">2013</td>
-                                    <td class="td-actions text-right">
-                                        <button class="btn dash__table_button" type="button" data-toggle="modal" data-target="#orden" id="modal_open">
-                                            Detalles de la orden
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>John Doe</td>
-                                    <td>Design</td>
-                                    <td>€ 89,241</td>
-                                    <td class="text-right">2012</td>
-                                    <td class="td-actions text-right">
-                                        <button class="btn dash__table_button" type="button" data-toggle="modal" data-target="#orden" id="modal_open">Detalles de la orden</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Alex Mike</td>
-                                    <td>Design</td>
-                                    <td>€ 92,144</td>
-                                    <td class="text-right">2010</td>
-                                    <td class="td-actions text-right">
-                                        <button class="btn dash__table_button" type="button" data-toggle="modal" data-target="#orden" id="modal_open">Detalles de la orden</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Mike Monday</td>
-                                    <td>Marketing</td>
-                                    <td>€ 49,990</td>
-                                    <td class="text-right">2009</td>
-                                    <td class="td-actions text-right">
-                                        <button class="btn dash__table_button" type="button" data-toggle="modal" data-target="#orden" id="modal_open">Detalles de la orden</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Paul Dickens</td>
-                                    <td>Communication</td>
-                                    <td>€ 69,201</td>
-                                    <td class="text-right">2008</td>
-                                    <td class="td-actions text-right">
-                                        <button class="btn dash__table_button" type="button" data-toggle="modal" data-target="#orden" id="modal_open">Detalles de la orden</button>
-                                    </td>
-                                </tr>
                             </tbody>
+                            <div id="categoriesSpinner" class="w-100 text-center">
+                                No hay ningún registro
+                            </div>
                         </table>
                     </div>
                 </div>
@@ -180,5 +43,5 @@ dashboardTemplate::dashMenu('ordenes');
 
 <?php
 dashboardTemplate::dashModalOrden();
-dashboardTemplate::dashEnd();
+dashboardTemplate::dashEnd('ordenes.js');
 ?>

@@ -1,4 +1,4 @@
-const API_CATEGORIAS = HOME_PATH + 'api/dashboard/categories.php?action=';
+const API_CATEGORIAS = HOME_PATH + 'api/dashboard/generaloptions.php?action=';
 
 $( document ).ready(function() {
     readRows( API_CATEGORIAS, $('#categoriesSpinner')[0]);
@@ -26,8 +26,9 @@ function fillTable( dataset )
                 className: 'td-actions text-center'}
             ],
             columns: [
-                { data: 'idcategoriaproducto' },
-                { data: 'categoria' },
+                { data: 'idopcion' },
+                { data: 'clave' },
+                { data: 'valor' },
                 { data: null,
                 orderable: false,
                 render:function(data, type, row)
@@ -36,14 +37,14 @@ function fillTable( dataset )
                         <div class="dropdown">
                             <i class="fas fa-ellipsis-h dash__dropdown" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                <button class="dropdown-item" onclick="editRow(${data['idcategoriaproducto']}, this)"type="button">
+                                <button class="dropdown-item" onclick="editRow(${data['idopcion']}, this) "type="button">
                                     <span>
                                         <i class="fas fa-edit"></i>
                                         <p>Modíficar</p>
                                     </span>
                                 </button>
                             <div class="dropdown-divider"></div>
-                            <button class="dropdown-item" onclick="deleteRow(${data['idcategoriaproducto']}, this)" type="button">
+                            <button class="dropdown-item" onclick="deleteRow(${data['idopcion']}, this)" type="button">
                                 <span>
                                     <i class="fas fa-times"></i>
                                     <p>Eliminar</p>
@@ -63,14 +64,13 @@ function editRow(id){
     console.log(id);
 }
 
-
 function deleteRow(id, el)
 {
-    let identifier = { id_categoria: id };
+    let identifier = { id_opcion: id };
     confirmDelete( API_CATEGORIAS, identifier, el);
 }
 
-$( '#categories-form' ).submit(function( event ) {
+$( '#generaloptions-form' ).submit(function( event ) {
     event.preventDefault();
-        saveRow( API_CATEGORIAS, 'create', this, document.getElementById('categories-submit') );
+    saveRow( API_CATEGORIAS, 'create', this, $( '#generaloptions-submit' ).val() );
 });
