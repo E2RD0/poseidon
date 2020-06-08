@@ -138,19 +138,21 @@ function confirmDelete( api, identifier, el=false, text=false)
     }
 }
 
-function saveRow( api, action, form, submitButton)
+function saveRow( api, action, form, submitButton, id=0, complete = false)
 {
     var inner = submitButton.innerHTML;
     $.ajax({
         type: 'post',
         url: api + action,
-        data: $(form).serialize(),
+        data: $(form).serialize()+"&id_categoria="+id,
         dataType: 'json',
         beforeSend: function() {
             submitButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Cargando...';
         },
         complete: function() {
+            form.reset();
             submitButton.innerHTML = inner;
+            if(complete){complete()};
         }
 
     })

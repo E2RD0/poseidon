@@ -804,7 +804,7 @@ class dashboardTemplate
                                     </div>
                                     <div class="col-12 text-center">
                                         <span class="ml-5">
-                                            <button type="button" class="btn recover__button">Cancelar</button>
+                                            <button type="button" id="categories-cancel" class="btn recover__button ' . (($status == 'add') ? 'd-none' : 'd-block') . '">Cancelar</button>
                                             <button type="submit" class="btn main__button" id="categories-submit">
                                                 ' . (($status == 'add') ? 'Añadir categoría' : 'Modificar categorí­a') . '
                                             </button>

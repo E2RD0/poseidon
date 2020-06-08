@@ -57,9 +57,32 @@ function fillTable( dataset )
 }
 
 function editRow(id){
-    console.log(id);
+    $.ajax({
+        dataType: 'json',
+        url: API_CATEGORIAS + 'readOne',
+        data: { id_categoria: id },
+        type: 'post'
+    })
+    .done(function( response ) {
+        if ( response.status ) {
+            $('#categories-form')[0].reset();
+            $('#categories-submit')[0].innerHTML = 'Modificar categoría';
+            $('#categories-cancel').toggleClass('d-none');
+            $('#inputCategoría').attr("data-id",response.dataset.idcategoriaproducto)
+            $( '#inputCategoría' ).val( response.dataset.categoria );
+        } else {
+            swal( 2, response.exception );
+        }
+    })
+    .fail(function( jqXHR ) {
+        // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+        if ( jqXHR.status == 200 ) {
+            console.log( jqXHR.responseText );
+        } else {
+            console.log( jqXHR.status + ' ' + jqXHR.statusText );
+        }
+    });
 }
-
 
 function deleteRow(id, el)
 {
@@ -69,5 +92,21 @@ function deleteRow(id, el)
 
 $( '#categories-form' ).submit(function( event ) {
     event.preventDefault();
+    if($('#inputCategoría').is('[data-id]')) {
+        saveRow( API_CATEGORIAS, 'update', this, document.getElementById('categories-submit'), $('#inputCategoría').attr("data-id"), cancelUpdate );
+    }
+    else{
         saveRow( API_CATEGORIAS, 'create', this, document.getElementById('categories-submit') );
+    }
 });
+
+$('#categories-cancel')[0].addEventListener("click", cancelUpdate);
+
+
+
+function cancelUpdate(){
+    $('#categories-form')[0].reset();
+    $('#inputCategoría').removeAttr('data-id');
+    $('#categories-submit')[0].innerHTML = 'Añadir categoría';
+    $('#categories-cancel').toggleClass('d-none');
+}

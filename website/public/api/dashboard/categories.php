@@ -15,9 +15,15 @@ if (isset($_GET['action'])) {
             case 'show':
                 $result = $categoriesController->showCategories($result);
                 break;
+            case 'readOne':
+                $result = $categoriesController->readOne($_POST, $result);
+                break;
             case 'create':
                 $result = $categoriesController->create($_POST, $result);
                 break;
+            case 'update':
+                    $result = $categoriesController->update($_POST, $result);
+                    break;
             case 'delete':
                 $result = $categoriesController->delete($_POST, $result);
                 break;

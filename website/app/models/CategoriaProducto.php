@@ -59,6 +59,13 @@ class CategoriaProducto
         $db->query('SELECT * FROM categoriaproducto');
         return $db->resultSet();
     }
+    public function getOneCategory($value)
+    {
+        $db = new \Common\Database;
+        $db->query('SELECT * FROM categoriaproducto WHERE idcategoriaproducto = :value');
+        $db->bind(':value', $value);
+        return $db->getResult();
+    }
     public function categoriesCount()
     {
         $db = new \Common\Database;
@@ -72,12 +79,12 @@ class CategoriaProducto
         $db->bind(':categoria', $value);
         return $db->execute();
     }
-    public function modifyCategory($value)
+    public function updateCategory($value, $id)
     {
         $db = new \Common\Database;
-        $db->query('UPDATE categoriaproducto SET categoria = :categoria WHERE idcategoriaproducto = :categoria');
-        $db->bind(':categoria', $value->categoria);
-        $db->bind(':id', $value->id);
+        $db->query('UPDATE categoriaproducto SET categoria = :categoria WHERE idcategoriaproducto = :id');
+        $db->bind(':categoria', $value);
+        $db->bind(':id', $id);
         return $db->execute();
     }
     public function deleteCategory($value)
