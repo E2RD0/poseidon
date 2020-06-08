@@ -18,6 +18,9 @@ function fillTable( dataset )
         table.DataTable( {
             responsive: true,
             data: dataset,
+            language: {
+                url: HOME_PATH + 'resources/es_ES.json'
+            },
             columnDefs: [
                 {targets: -1,
                 className: 'td-actions text-center'}

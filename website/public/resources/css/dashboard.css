@@ -882,6 +882,11 @@ textarea {
   font-weight: 600;
 }
 
+.page-item.active .page-link {
+    background-color: #FED700;
+    border-color: #FED700;
+}
+
 /*Handmade Responsive CSS elements*/
 @media only screen and (max-width: 1200px){
     .review__close{

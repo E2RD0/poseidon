@@ -737,5 +737,5 @@ dashboardTemplate::dashMenu('usuarios');
     </div>
 </main>
 <?php
-dashboardTemplate::dashEnd();
+dashboardTemplate::dashEnd('users.js');
 ?>

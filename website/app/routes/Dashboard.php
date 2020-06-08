@@ -12,4 +12,10 @@ class Dashboard extends \Common\Controller{
   public function categorias(){
       $this->loadView('dashboard', 'categorias');
   }
+  public function opcionesgenerales(){
+      $this->loadView('dashboard', 'opcionesgenerales');
+  }
+  public function ordenes(){
+      $this->loadView('dashboard', 'ordenes');
+  }
 }

@@ -167,3 +167,60 @@ FROM
 WHERE
     orden.fechacompra BETWEEN '2020-01-20 08:32:41.99983-06'
     AND '2020-02-20 08:32:41.99983-06';
+
+
+--Funciones
+CREATE
+OR REPLACE FUNCTION getOrders () RETURNS TABLE (
+    idorden INT,
+    cliente VARCHAR,
+    direccion VARCHAR,
+    total NUMERIC,
+    fechacompra VARCHAR
+) AS $ $ DECLARE var RECORD;
+
+BEGIN FOR var IN (
+    SELECT
+        Ordenes."Orden No." AS idorden,
+        Ordenes."Nombre del cliente" AS cliente,
+        orden.direccion AS direccion,
+        Ordenes."Total" AS total,
+        to_char(orden.fechacompra, 'DD Mon YY HH12:MI:SS') AS fechacompra
+    FROM
+        (
+            SELECT
+                detalleorden.idorden AS "Orden No.",
+                cliente.nombre || ' ' || cliente.apellido AS "Nombre del cliente",
+                SUM (
+                    SUM (
+                        detalleorden.preciounitario * detalleorden.cantidad
+                    )
+                ) OVER (PARTITION BY detalleorden.idorden) AS "Total"
+            FROM
+                detalleorden
+                INNER JOIN orden ON orden.idorden = detalleorden.idorden
+                INNER JOIN cliente ON cliente.idcliente = orden.idcliente
+            GROUP BY
+                "Orden No.",
+                "Nombre del cliente"
+        ) AS Ordenes
+        JOIN orden ON orden.idorden = Ordenes."Orden No."
+    ORDER BY
+        idorden ASC
+) LOOP idorden := var.idorden;
+
+cliente := var.cliente;
+
+direccion := var.direccion;
+
+total := var.total;
+
+fechacompra := var.fechacompra;
+
+RETURN NEXT;
+
+END LOOP;
+
+END;
+
+$ $ LANGUAGE 'plpgsql';
