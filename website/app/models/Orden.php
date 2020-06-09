@@ -153,6 +153,18 @@ class Orden
         $db->query('SELECT * FROM getOrders()');
         return $db->rowCount();
     }
+    public function getOrderGeneralDetails($value)
+    {
+        $db = new \Common\Database;
+        $db->query('SELECT * FROM getOrderGeneralDetails('.$value.')');
+        return $db->resultSet();
+    }
+    public function getOrderDetails($value)
+    {
+        $db = new \Common\Database;
+        $db->query('SELECT * FROM getOrderDetails(' . $value . ')');
+        return $db->resultSet();
+    }
     public function insertOrder($user)
     {
         $db = new \Common\Database;

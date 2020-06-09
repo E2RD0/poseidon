@@ -474,6 +474,36 @@ class dashboardTemplate
                                         <td>2 packet</td>
                                         <td>$349.99</td>
                                     </tr>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>Pencil (2B)</td>
+                                        <td>1 Dozen</td>
+                                        <td>$9.99</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>Sharpner</td>
+                                        <td>1 single</td>
+                                        <td>$15.99</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Drawing Paper</td>
+                                        <td>1 quire</td>
+                                        <td>$89.99</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">4</th>
+                                        <td>CAT5 Cable</td>
+                                        <td>2 meter</td>
+                                        <td>$99.99</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">5</th>
+                                        <td>Sticky Notes</td>
+                                        <td>2 packet</td>
+                                        <td>$349.99</td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>

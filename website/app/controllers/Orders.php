@@ -25,6 +25,23 @@ class Orders extends \Common\Controller
         }
         return $result;
     }
+    public function getOrderDetails($data, $result)
+    {
+        $idOrden = intval($data['idorden']);
+        $orden = new Orden;
+
+        if ($orden->setIdOrden($idOrden)) {
+            if ($result['dataset'] = $orden->getOrderDetails($idOrden)) {
+                $result['status'] = 1;
+                $result['message'] = 'Orden cargada correctamente';
+            } else {
+                $result['exception'] = \Common\Database::$exception;
+            }
+        } else {
+            $result['exception'] = 'La orden no existe';
+        }
+        return $result;
+    }
     // public function create($data, $result) {
     //     $data = \Helpers\Validation::trimForm($data);
     //     $nombreCategoria = $data['categoria'];

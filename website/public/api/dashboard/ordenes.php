@@ -6,15 +6,17 @@ require_once __DIR__ . '/../../../app/controllers/Orders.php';
 if (isset($_GET['action'])) {
     session_start();
     $action = $_GET['action'];
-    $categoriesController = new \Orders;
+    $ordersController = new \Orders;
     $result = array('status' => 0, 'message' => null, 'exception' => null, 'errors' => []);
 
 
     if (isset($_SESSION['user_id'])) {
         switch ($action) {
             case 'show':
-                $result = $categoriesController->showOrders($result);
+                $result = $ordersController->showOrders($result);
                 break;
+            case 'details':
+                $result = $ordersController->getOrderDetails($_POST, $result);
             default:
                 \Common\Core::http404();
         }

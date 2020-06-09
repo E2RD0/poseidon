@@ -36,7 +36,7 @@ function fillTable( dataset )
                 render:function(data, type, row)
                 {
                   return `
-                        <button class="btn dash__table_button" type="button" data-toggle="modal" data-target="#orden" id="modal_open">
+                        <button class="btn dash__table_button" type="button" data-toggle="modal" data-target="#orden" onclick="getOrderDetails(${data['idorden']}, this) id="modal_open">
                             Más detalles
                         </button>`;
                 },
@@ -47,9 +47,40 @@ function fillTable( dataset )
     }
 }
 
-// function editRow(id){
-//     console.log(id);
-// }
+function readOrder( api , el=false)
+{
+    function before(){};
+    function after(){}
+    if(el){
+        function before() {
+            el.innerHTML = '<div class="spinner-grow" role="status"><span class="sr-only">Cargando...</span></div>';
+        }
+        function after() {
+            el.innerHTML = '';
+        }
+    }
+    $.ajax({
+        dataType: 'json',
+        url: api + 'show',
+        beforeSend: before,
+        complete: after
+    })
+    .done(function( response ) {
+        fillTable( response.dataset );
+    })
+    .fail(function( jqXHR ) {
+        // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+        if ( jqXHR.status == 200 ) {
+            console.log( jqXHR.responseText );
+        } else {
+            console.log( jqXHR.status + ' ' + jqXHR.statusText );
+        }
+    });
+}
+
+function getOrderDetails(id){
+    console.log(id);
+}
 
 
 // function deleteRow(id, el)
