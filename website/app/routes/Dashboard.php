@@ -18,4 +18,10 @@ class Dashboard extends \Common\Controller{
   public function ordenes(){
       $this->loadView('dashboard', 'ordenes');
   }
+  public function alquileres(){
+      $this->loadView('dashboard', 'alquileres');
+  }
+  public function productos(){
+      $this->loadView('dashboard', 'productos');
+  }
 }

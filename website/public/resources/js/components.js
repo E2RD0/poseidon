@@ -64,7 +64,7 @@ function redirect(url){
     window.location.replace(window.location.origin + HOME_PATH + url);
 }
 
-function readRows( api , el=false)
+function readRows( api , el=false, action = 'show')
 {
     function before(){};
     function after(){}
@@ -78,7 +78,7 @@ function readRows( api , el=false)
     }
     $.ajax({
         dataType: 'json',
-        url: api + 'show',
+        url: api + action,
         beforeSend: before,
         complete: after
     })
@@ -154,7 +154,6 @@ function saveRow( api, action, form, submitButton, id=0, complete = false)
             submitButton.innerHTML = inner;
             if(complete){complete()};
         }
-
     })
     .done(function( response ) {
         // If user is registered succesfully

@@ -815,5 +815,5 @@ dashboardTemplate::dashMenu('productos');
     </div>
 
     <?php
-    dashboardTemplate::dashEnd();
+    dashboardTemplate::dashEnd('productos.js');
     ?>

@@ -378,15 +378,17 @@ $ $ LANGUAGE 'plpgsql';
 
 CREATE
 OR REPLACE FUNCTION getOrderDetails(id_orden INT) RETURNS TABLE(
+    idproducto INT,
     nombre VARCHAR,
     cantidad INT,
     preciounitario NUMERIC
-) AS $ $ DECLARE orderDetails RECORD;
+) AS $$ DECLARE orderDetails RECORD;
 
 selected_order INT := id_orden;
 
 BEGIN FOR orderDetails IN (
     SELECT
+        row_number() as "idproducto",
         producto.nombre,
         detalleorden.cantidad,
         detalleorden.preciounitario
@@ -396,7 +398,9 @@ BEGIN FOR orderDetails IN (
         JOIN producto ON producto.idproducto = detalleorden.idproducto
     WHERE
         orden.idorden = selected_order
-) LOOP nombre := orderDetails.nombre;
+) LOOP idproducto := orderDetails.idproducto;
+
+nombre := orderDetails.nombre;
 
 cantidad := orderDetails.cantidad;
 
@@ -408,4 +412,175 @@ END LOOP;
 
 END;
 
-$ $ LANGUAGE 'plpgsql';
+$$ LANGUAGE 'plpgsql';
+
+
+--GetRentals()
+
+CREATE
+OR REPLACE FUNCTION getRentals() RETURNS TABLE (
+    idorden INT,
+    cliente VARCHAR,
+    sucursal VARCHAR,
+    fechacompra VARCHAR,
+    fechasalquiler VARCHAR,
+    totalalquiler NUMERIC
+) AS $$ DECLARE var RECORD;
+
+BEGIN FOR var IN (
+    SELECT
+        alquileres."idalquiler" AS idorden,
+        alquileres."cliente" AS cliente,
+        sucursal.nombre AS sucursal,
+        to_char(ordenalquiler.fechaordenalquiler, 'DD Mon, YY') AS fechacompra,
+        to_char(ordenalquiler.fechaentrega, 'DD Mon, YY') || ' - ' || to_char(ordenalquiler.fechadespacho, 'DD Mon, YY') AS fechasalquiler,
+        alquileres."totalalquiler" AS totalalquiler
+    FROM
+        (
+            SELECT
+                detallealquiler.idordenalquiler AS "idalquiler",
+                cliente.nombre || ' ' || cliente.apellido AS "cliente",
+                SUM (
+                        SUM (
+                                detallealquiler.precioalquiler * (DATE_PART('day', ordenalquiler.fechadespacho::DATE) - DATE_PART('day', ordenalquiler.fechaentrega::DATE))
+                        )
+                ) OVER (PARTITION BY detallealquiler.idordenalquiler) AS "totalalquiler"
+            FROM
+                detallealquiler
+                JOIN ordenalquiler ON ordenalquiler.idordenalquiler = detallealquiler.idordenalquiler
+                JOIN cliente ON cliente.idcliente = ordenalquiler.idcliente
+            GROUP BY
+                "idalquiler",
+                "cliente"
+        ) AS alquileres
+        JOIN ordenalquiler ON ordenalquiler.idordenalquiler = alquileres."idalquiler"
+        JOIN sucursal ON ordenalquiler.idsucursal = sucursal.idsucursal
+    ORDER BY
+        idorden ASC
+) LOOP idorden := var.idorden;
+
+cliente := var.cliente;
+
+sucursal := var.sucursal;
+
+fechacompra := var.fechacompra;
+
+fechasalquiler := var.fechasalquiler;
+
+totalalquiler := var.totalalquiler;
+
+RETURN NEXT;
+
+END LOOP;
+
+END;
+
+$$ LANGUAGE 'plpgsql';
+
+--getRentalGeneralDetails(int id_rental)
+
+CREATE
+OR REPLACE FUNCTION getRentalGeneralDetails ( id_rental INT ) RETURNS TABLE (
+    idalquiler INT,
+    cliente VARCHAR,
+    email VARCHAR,
+    telefono VARCHAR,
+    sucursal VARCHAR,
+    fechacompra VARCHAR,
+    fechaalquiler VARCHAR,
+    fechadevolucion VARCHAR,
+    subtotal NUMERIC,
+    iva NUMERIC,
+    total NUMERIC
+) AS $$
+DECLARE
+    order_info RECORD;
+    selected_rental INT := id_rental;
+    temp_iva NUMERIC;
+    iva_value NUMERIC;
+BEGIN
+        iva_value := ( SELECT valor FROM opcionesgenerales WHERE clave = 'IVA' );
+    FOR order_info IN (
+        SELECT
+            ordenalquiler.idordenalquiler as idalquiler,
+            cliente.nombre || ' ' || cliente.apellido AS cliente,
+            cliente.email,
+            cliente.telefono,
+            sucursal.nombre as sucursal,
+            to_char(ordenalquiler.fechaordenalquiler, 'DD Mon, YY') AS fechacompra,
+            to_char(ordenalquiler.fechaentrega, 'DD Mon, YY') AS fechaentrega,
+            to_char(ordenalquiler.fechadespacho, 'DD Mon, YY') AS fechadevolucion,
+            SUM (
+                SUM (
+                    detallealquiler.precioalquiler * (DATE_PART('day', ordenalquiler.fechadespacho::DATE) - DATE_PART('day', ordenalquiler.fechaentrega::DATE))
+                    )
+            ) OVER (PARTITION BY detallealquiler.idordenalquiler) AS "subtotal"
+            FROM
+            ordenalquiler
+            JOIN cliente ON ordenalquiler.idcliente = cliente.idcliente
+            JOIN detallealquiler ON ordenalquiler.idordenalquiler = detallealquiler.idordenalquiler
+            JOIN sucursal ON ordenalquiler.idsucursal = sucursal.idsucursal
+        WHERE
+            ordenalquiler.idordenalquiler = selected_rental
+        GROUP BY
+            ordenalquiler.idordenalquiler,
+            cliente,
+            cliente.email,
+            cliente.telefono,
+            sucursal,
+            detallealquiler.idordenalquiler
+        )
+        LOOP
+            idalquiler := order_info.idalquiler;
+            cliente := order_info.cliente;
+            email := order_info.email;
+            telefono := order_info.telefono;
+            sucursal := order_info.sucursal;
+            fechacompra := order_info.fechacompra;
+            fechaalquiler := order_info.fechaentrega;
+            fechadevolucion := order_info.fechadevolucion;
+            subtotal := order_info.subtotal;
+            temp_iva = order_info.subtotal * iva_value;
+            iva := temp_iva;
+            total := order_info.subtotal + temp_iva;
+            RETURN NEXT;
+        END LOOP;
+END;
+$$ LANGUAGE'plpgsql';
+
+--getRentalSpecificDetails()
+
+CREATE
+OR REPLACE FUNCTION getRentalDetails(id_rental INT) RETURNS TABLE(
+    idproducto INT,
+    nombre VARCHAR,
+    precioalquiler NUMERIC
+) AS $$ DECLARE rentalDetails RECORD;
+
+selected_order INT := id_orden;
+
+BEGIN FOR rentalDetails IN (
+    SELECT
+        row_number() OVER () AS "idproducto",
+        producto.nombre,
+        detallealquiler.precioalquiler
+    FROM
+        detallealquiler
+        JOIN ordenalquiler ON detallealquiler.idordenalquiler = ordenalquiler.idordenalquiler
+        JOIN informacionalquiler ON informacionalquiler.idinformacionalquiler = detallealquiler.idinformacionalquiler
+        JOIN producto ON producto.idproducto = informacionalquiler.idproducto
+    WHERE
+        ordenalquiler.idordenalquiler = selected_order
+) LOOP idproducto := rentalDetails.idproducto;
+
+nombre := rentalDetails.nombre;
+
+precioalquiler := rentalDetails.precioalquiler;
+
+RETURN NEXT;
+
+END LOOP;
+
+END;
+
+$$ LANGUAGE 'plpgsql';
