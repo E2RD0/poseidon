@@ -285,7 +285,7 @@ class dashboardTemplate
                     <div class="dash__footer">
                         <ul>' .
                         (($page == 'user') ? '<li class="active">' : '<li class="">') . '
-                                <a href="user.php">
+                                <a href="' . HOME_PATH . 'dashboard/user">
                                     <span class="icon">
                                         <svg class="icon__svg" width="33px" height="33px" data-name="Layer 2" viewBox="0 0 33 33" xmlns="http://www.w3.org/2000/svg">
                                             <style type="text/css">
@@ -343,20 +343,20 @@ class dashboardTemplate
                             </div>
 
                             <ul class="navbar__links">
-                                <li><a href="dashboard.php">Dashboard</a></li>
-                                <li><a href="ordenes.php">Ordenes</a></li>
-                                <li><a href="alquileres">Alquileres</a></li>
-                                <li><a href="sucursales.php">Sucursales</a></li>
-                                <li><a href="categorias.php">Categorías</a></li>
-                                <li><a href="productos.php">Productos</a></li>
-                                <li><a href="clientes.php">Clientes</a></li>
-                                <li><a href="usuarios.php">Usuarios</a></li>
-                                <li><a href="parametros.php">Parámetros</a></li>
+                                <li><a href="' . HOME_PATH . 'dashboard">Dashboard</a></li>
+                                <li><a href="' . HOME_PATH . 'dashboard/ordenes">Ordenes</a></li>
+                                <li><a href="' . HOME_PATH . 'dashboard/alquileres">Alquileres</a></li>
+                                <li><a href="' . HOME_PATH . 'dashboard/sucursales">Sucursales</a></li>
+                                <li><a href="' . HOME_PATH . 'dashboard/categorias">Categorías</a></li>
+                                <li><a href="' . HOME_PATH . 'dashboard/productos">Productos</a></li>
+                                <li><a href="' . HOME_PATH . 'dashboard/clientes">Clientes</a></li>
+                                <li><a href="' . HOME_PATH . 'dashboard/usuarios">Usuarios</a></li>
+                                <li><a href="' . HOME_PATH . 'dashboard/opcionesgenerales">Parámetros</a></li>
                             </ul>
 
                             <ul class="navbar__links navbar__icons">
-                                <li><a href="user.php"><img src="' . HOME_PATH . 'resources/img/dashboard/cuenta.svg"></a></li>
-                                <li><a href="index.php"><img src="' . HOME_PATH . 'resources/img/dashboard/logout.svg"></a></li>
+                                <li><a href="' . HOME_PATH . 'dashboard/user"><img src="' . HOME_PATH . 'resources/img/dashboard/cuenta.svg"></a></li>
+                                <li><a href="javascript:void" onclick="logout();"><img src="' . HOME_PATH . 'resources/img/dashboard/logout.svg"></a></li>
                             </ul>
                         </div>
                     </nav>
@@ -707,6 +707,49 @@ class dashboardTemplate
                     </div>
                 </div>
             </div>
+        ');
+    }
+
+    public static function dashReviews(){
+        echo ('
+            <div class="modal fade dash__full" id="review" tabindex="-1" role="dialog" aria-labelledby="review" aria-hidden="true" data-backdrop="static">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-zoom dash_review-modal-mxs" role="document" id="check_mq">
+                    <div class="modal-content">
+                        <div class="container-fluid">
+                            <div class="row mx-lg-5">
+                                <div class="col-12 col-md-2 mt-1">
+                                    <ul class="nav nav-categorias justify-content-center justify-content-lg-start" role="tablist">
+                                        <li class="nav-item">
+                                            <a data-toggle="tab" href="#productos" class="nav-link active dash__tab_title" aria-expanded="true">Reseñas</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-10">
+                                    <div class="row">
+                                        <div class="col-6 mt-3">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <p class="font-weight-bold">Producto:</p>
+                                                    <p class="mt-n3" id="producto"></p>
+                                                    <p class="mt-n3 dash__sc1c_text font-italic" id="review_contador"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 text-right mt-2">
+                                            <button type="button" class="ml-auto btn recover__button" data-dismiss="modal">Atrás</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-5">
+                                <div class="col-12">
+                                    <div class="row mx-xl-5" id="review_contenedor">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
         ');
     }
 

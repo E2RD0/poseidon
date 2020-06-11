@@ -31,7 +31,7 @@ dashboardTemplate::dashMenu('alquileres');
                             </thead>
                             <tbody>
                             </tbody>
-                            <div id="categoriesSpinner" class="w-100 text-center">
+                            <div id="alquileresSpinner" class="w-100 text-center">
                                 No hay ningún registro
                             </div>
                         </table>

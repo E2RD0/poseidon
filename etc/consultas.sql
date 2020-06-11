@@ -388,7 +388,7 @@ selected_order INT := id_orden;
 
 BEGIN FOR orderDetails IN (
     SELECT
-        row_number() as "idproducto",
+        row_number() OVER () as "idproducto",
         producto.nombre,
         detalleorden.cantidad,
         detalleorden.preciounitario
@@ -441,9 +441,9 @@ BEGIN FOR var IN (
                 detallealquiler.idordenalquiler AS "idalquiler",
                 cliente.nombre || ' ' || cliente.apellido AS "cliente",
                 SUM (
-                        SUM (
-                                detallealquiler.precioalquiler * (DATE_PART('day', ordenalquiler.fechadespacho::DATE) - DATE_PART('day', ordenalquiler.fechaentrega::DATE))
-                        )
+                    SUM (
+                        detallealquiler.precioalquiler * (DATE_PART('day', ordenalquiler.fechadespacho::DATE) - DATE_PART('day', ordenalquiler.fechaentrega::DATE))
+                    )
                 ) OVER (PARTITION BY detallealquiler.idordenalquiler) AS "totalalquiler"
             FROM
                 detallealquiler
@@ -499,7 +499,7 @@ DECLARE
     temp_iva NUMERIC;
     iva_value NUMERIC;
 BEGIN
-        iva_value := ( SELECT valor FROM opcionesgenerales WHERE clave = 'IVA' );
+    iva_value := ( SELECT valor FROM opcionesgenerales WHERE clave = 'IVA' );
     FOR order_info IN (
         SELECT
             ordenalquiler.idordenalquiler as idalquiler,
@@ -584,3 +584,103 @@ END LOOP;
 END;
 
 $$ LANGUAGE 'plpgsql';
+
+--getProducts()
+
+CREATE OR REPLACE FUNCTION getProducts() RETURNS TABLE(
+    idproducto INT,
+    nombre VARCHAR,
+    cantidad INT,
+    precio NUMERIC(6,2),
+    categoria VARCHAR
+) AS $$
+DECLARE
+    products RECORD;
+BEGIN
+    FOR products IN (
+        SELECT
+            producto.idproducto,
+            producto.nombre,
+            producto.existenciascompra AS cantidad,
+            producto.precio,
+            categoriaproducto.categoria AS categoria
+        FROM
+            producto
+            JOIN categoriaproducto ON categoriaproducto.idcategoriaproducto = producto.idcategoriaproducto
+        ORDER BY
+            producto.idproducto ASC
+    ) LOOP
+        idproducto := products.idproducto;
+        nombre := products.nombre;
+        cantidad := products.cantidad;
+        precio := products.precio;
+        categoria := products.categoria;
+        RETURN NEXT;
+    END LOOP;
+END; $$ LANGUAGE 'plpgsql';
+
+--getProductReviews()
+
+CREATE OR REPLACE FUNCTION getProductReviews(id_producto INT) RETURNS TABLE(
+    idreview INT,
+    cliente VARCHAR,
+    puntuacion NUMERIC(3,2),
+    comentario VARCHAR
+) AS $$
+DECLARE
+    selected_product INT := id_producto;
+    reviews RECORD;
+BEGIN
+    FOR reviews IN (
+        SELECT
+            ROW_NUMBER() OVER () AS idreview,
+            cliente.nombre || ' ' || cliente.apellido AS cliente,
+            review.calificacion AS puntuacion,
+            review.comentario AS comentario
+        FROM
+            review
+            JOIN detalleorden ON detalleorden.iddetalleorden = review.iddetalleorden
+            JOIN orden ON orden.idorden = detalleorden.idorden
+            JOIN cliente ON orden.idcliente = cliente.idcliente
+            JOIN producto ON detalleorden.idproducto = producto.idproducto
+        WHERE
+            producto.idproducto = selected_product
+    )
+    LOOP
+        idreview := reviews.idreview;
+        cliente := reviews.cliente;
+        puntuacion := reviews.puntuacion;
+        comentario := reviews.comentario;
+        RETURN NEXT;
+    END LOOP;
+END; $$ LANGUAGE 'plpgsql';
+
+--getProductReviewData(idproducto int)
+
+CREATE
+    OR REPLACE FUNCTION getProductReviewData( id_producto INT ) RETURNS TABLE (
+        producto VARCHAR,
+        reviews INT
+    ) AS $$
+DECLARE
+    review_info RECORD;
+    selected_product INT := id_producto;
+BEGIN
+    FOR review_info IN (
+        SELECT
+            producto.nombre,
+            COUNT(review.idreview) AS reviews
+        FROM
+            review
+            JOIN detalleorden ON detalleorden.iddetalleorden = review.iddetalleorden
+            JOIN producto ON detalleorden.idproducto = producto.idproducto
+        WHERE
+            producto.idproducto = id_producto
+        GROUP BY
+            producto.nombre)
+        LOOP
+            producto := review_info.nombre;
+            reviews := review_info.reviews;
+            RETURN NEXT;
+        END LOOP;
+END; $$ LANGUAGE 'plpgsql';

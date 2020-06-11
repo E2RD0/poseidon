@@ -1,7 +1,7 @@
 const API_ORDENES = HOME_PATH + 'api/dashboard/ordenes.php?action=';
 
 $(document).ready(function () {
-    readRows(API_ORDENES, $('#categoriesSpinner')[0]);
+    readRows(API_ORDENES, $('#ordersSpinner')[0]);
 });
 
 // Función para llenar la tabla con los datos enviados por readRows().

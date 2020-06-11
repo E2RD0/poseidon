@@ -30,7 +30,7 @@ dashboardTemplate::dashMenu('ordenes');
                             </thead>
                             <tbody>
                             </tbody>
-                            <div id="categoriesSpinner" class="w-100 text-center">
+                            <div id="ordersSpinner" class="w-100 text-center">
                                 No hay ningún registro
                             </div>
                         </table>

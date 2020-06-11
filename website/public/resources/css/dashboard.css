@@ -871,17 +871,20 @@ textarea {
   font-size: 0.875rem;
   margin: 0;
 }
-
 .navbar__links li{
   display: inline-block;
   margin-left: 2.2rem;
 }
-
 .navbar__links a{
   color: #484848;
   font-weight: 600;
 }
-
+.dash_review-modal-mxs{
+    max-width: 1500px;
+}
+.page-link, .page-link:hover{
+    color: #FED700;
+}
 .page-item.active .page-link {
     background-color: #FED700;
     border-color: #FED700;

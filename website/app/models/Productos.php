@@ -1,6 +1,6 @@
 <?php
 
-class Producto
+class Productos
 {
     private $db;
 
@@ -141,10 +141,10 @@ class Producto
         }
     }
 
-    public function getProduct()
+    public function getProducts()
     {
         $db = new \Common\Database;
-        $db->query('SELECT * FROM producto');
+        $db->query('SELECT * FROM getProducts()');
         return $db->resultSet();
     }
     public function productCount()
