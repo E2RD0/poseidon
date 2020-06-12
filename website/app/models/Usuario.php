@@ -204,4 +204,24 @@ class Usuario
         $db->bind(':idTipo', $user->idTipo);
         return $db->execute();
     }
+    public function saveRecoveryCode($pin, $id){
+        $this->deleteRecoveryCode($id);
+        $db = new \Common\Database;
+        $db->query('INSERT INTO recuperarClave values (DEFAULT, DEFAULT, :pin, :idUsuario)');
+        $db->bind(':idUsuario', $id);
+        $db->bind(':pin', $pin);
+        return $db->execute();
+    }
+    public function deleteRecoveryCode($id){
+        $db = new \Common\Database;
+        $db->query('DELETE FROM recuperarClave WHERE idUsuario = :idUsuario');
+        $db->bind(':idUsuario', $id);
+        return $db->execute();
+    }
+    public function getPasswordPin($id){
+        $db = new \Common\Database;
+        $db->query('SELECT pin FROM recuperarClave WHERE idUsuario = :idUsuario');
+        $db->bind(':idUsuario', $id);
+        return $db->getResult();
+    }
 }

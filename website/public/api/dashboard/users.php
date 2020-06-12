@@ -36,6 +36,12 @@ if (isset($_GET['action'])) {
             case 'login':
                 $result = $userController->userLogin($_POST, $result);
                 break;
+            case 'recoverPassword':
+                $result = $userController->userRecoverPassword($_POST, $result);
+                break;
+                case 'recoverCode':
+                    $result = $userController->userRecoverCode($_POST, $result);
+                    break;
             default:
                 \Common\Core::http404();
         }

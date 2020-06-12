@@ -173,4 +173,81 @@ class Users extends \Common\Controller
         return $result;
     }
 
+    public function userRecoverPassword($userData, $result)
+    {
+        $userData = \Helpers\Validation::trimForm($userData);
+        $email = $userData['email'];
+
+        $user = new Usuario;
+        $errors = [];
+        $errors = $user->setEmail($email, true) === true ? $errors : array_merge($errors, $user->setEmail($email, true));
+        //If there aren't any errors
+        if (!boolval($errors)) {
+            $userInfo = $this->usersModel->checkPassword($email);
+            if ($userInfo) {
+                $pin = strtoupper($this->pin());
+                if($this->usersModel->saveRecoveryCode($pin, $userInfo->idusuario)){
+                    if(\Helpers\EmailSender::sendEmail('Código para recuperar contraseña', $email, "El código de recuperación es: $pin.\n")){
+                        $result['status'] = 1;
+                        $result['message'] = 'Se ha enviado el pin correctamente';
+                    }
+                    else{
+                        $result['status'] = -1;
+                        $result['exception'] = 'Error al enviar correo electrónico';
+                    }
+                }
+                else{
+                    $result['status'] = -1;
+                    $result['exception'] = \Common\Database::$exception;
+                }
+            } else {
+                $errors['Email'] = ['No existe ninguna cuenta con este email.'];
+            }
+        } else {
+            $result['exception'] = 'Error en uno de los campos';
+        }
+        $result['errors'] = $errors;
+        return $result;
+    }
+
+    public function userRecoverCode($userData, $result)
+    {
+        $userData = \Helpers\Validation::trimForm($userData);
+        $pin = strtoupper($userData['pin']);
+        $email = $userData['email'];
+        $userInfo = $this->usersModel->checkPassword($email);
+        $errors[] = '';
+
+        if($userInfo){
+            if(empty($pin)){
+                $errors['Código'] = ['Este campo es obligatorio.'];
+            }
+            else{
+                if($pin==($this->usersModel->getPasswordPin($userInfo->idusuario))->pin){
+                    $result['status'] = 1;
+                }
+                else {
+                    $errors['Código'] = ['El código es incorrecto.'];
+                }
+            }
+        }
+        else {
+            $errors['Código'] = ['El código es incorrecto.'];
+        }
+
+        $result['errors'] = $errors;
+        return $result;
+    }
+
+    private function pin($lenght = 6) {
+        // uniqid gives 13 chars, but you could adjust it to your needs.
+        if (function_exists("random_bytes")) {
+            $bytes = random_bytes(ceil($lenght / 2));
+        } elseif (function_exists("openssl_random_pseudo_bytes")) {
+            $bytes = openssl_random_pseudo_bytes(ceil($lenght / 2));
+        } else {
+            throw new Exception("no cryptographically secure random function available");
+        }
+        return substr(bin2hex($bytes), 0, $lenght);
+    }
 }

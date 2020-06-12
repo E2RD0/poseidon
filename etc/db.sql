@@ -30,6 +30,16 @@ CREATE TABLE usuario (
     FOREIGN KEY (idTipoUsuario) REFERENCES tipoUsuario (idTipoUsuario)
 );
 
+CREATE TABLE recuperarClave
+(
+ idRecuperarClave serial NOT NULL,
+ fechaCreacion     timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ pin                char(6) NOT NULL,
+ idUsuario        integer NOT NULL,
+ PRIMARY KEY (idRecuperarClave),
+ FOREIGN KEY (idUsuario) REFERENCES usuario (idUsuario)
+);
+
 CREATE TABLE cliente (
     idCliente SERIAL,
     nombre VARCHAR(75) NOT NULL,

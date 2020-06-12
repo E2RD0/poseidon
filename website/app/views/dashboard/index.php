@@ -49,7 +49,7 @@ loginTemplate::loginHead('Iniciar Sesión');
                             </div>
                             <div class="w-100"></div>
                             <div class="col text-center">
-                                <a class="main__forget_pass" href="enviar-correo.php">Olvidé mi contraseña</a>
+                                <a class="main__forget_pass" href="javascript:void(0)" onclick="redirect('user/recoverPassword', true)">Olvidé mi contraseña</a>
                             </div>
                         </div>
                     </form>

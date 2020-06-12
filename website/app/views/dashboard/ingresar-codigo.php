@@ -9,28 +9,28 @@ loginTemplate::loginHead("Recuperar contraseña");
             <div class="row justify-content-center m-0">
                 <div class="col-12 recover__form text-center">
                   <img src="<?= HOME_PATH?>resources/img/dashboard/poseidon-l.svg" alt="logo poseidon" class="img-fluid">
-                    <p class="recover__message text-break">Ingresa tu correo electrónico
-                        y te enviaremos un enlace para reestablecer tu contraseña</p>
+                    <p class="recover__message text-break">Haz clic en el enlace que se envió a tu correo electrónico o ingresa el código de recuperación.</p>
                 </div>
                 <div class="col-8">
-                    <form action="" method="post" id="recover-form">
+                    <form action="" method="post" id="code-form">
                         <div class="row main__rows">
                             <div class="col-sm">
                                 <div class="form-field">
                                     <div class="form-field__control">
-                                        <label for="inputEmail" class="form-field__label">Correo electrónico</label>
-                                        <input id="inputEmail" name="email" type="email" class="form-field__input" required/>
+                                        <label for="inputCódigo" class="form-field__label">Código de recuperación</label>
+                                        <input name="email" type="text" required class="d-none" value="<?= EMAIL?>">
+                                        <input id="inputCódigo" name="pin" type="text" class="form-field__input" required/>
                                     </div>
-                                    <p class="form-error-label" id="errorEmail"></p>
+                                    <p class="form-error-label" id="errorCódigo"></p>
                                 </div>
                             </div>
                         </div>
                         <div class="row pt-3">
                             <div class="col text-center">
-                                <button class="btn recover__button" type="button" onclick="redirect('user/login', true)">
-                                    Átras
+                                <button class="btn recover__button" type="button" onclick="redirect('user/login')">
+                                    Cancelar
                                 </button>
-                                <button class="btn main__button" type="submit" id="recover-submit">Enviar</button>
+                                <button class="btn main__button" type="submit" id="code-submit">Verificar</button>
                             </div>
                         </div>
                     </form>
