@@ -15,6 +15,9 @@ if (isset($_GET['action'])) {
             case 'show':
                 $result = $productsController->showProducts($result);
                 break;
+            case 'create':
+                $result = $productsController->create($_POST, $result);
+                break;
             case 'productQuantities':
                 $result = $productsController->getProductQuantities($result);
                 break;

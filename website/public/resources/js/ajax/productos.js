@@ -115,55 +115,59 @@ function getProductCategories(){
         }
     });
 }
-// // Función para editar un producto
-// function editRow(id){
-//     $.ajax({
-//         dataType: 'json',
-//         url: API_PRODUCTOS + 'update',
-//         data: { idproducto: id },
-//         type: 'post',
-//         success: function( response ) {
-//             if ( response.status ) {
-//                 $('#sucursales-form')[0].reset();
-//                 $('#sucursales-title')[0].innerHTML = 'Modificar un producto';
-//                 $('#sucursales-submit')[0].innerHTML = 'Modificar producto';
-//                 $('#sucursales-cancel').toggleClass('d-none');
-//                 $('[name ="nombre"]').attr("data-id",response.dataset.idsucursal)
-//                 $('[name ="nombre"]' ).val( response.dataset.nombre );
-//                 $('[name ="ubicacion"]' ).val( response.dataset.ubicacion );
-//             } else {
-//                 swal( 2, response.exception );
-//             }
-//         },
-//         error: function( jqXHR ) {
-//         // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
-//         if ( jqXHR.status == 200 ) {
-//             console.log( jqXHR.responseText );
-//         } else {
-//             console.log( jqXHR.status + ' ' + jqXHR.statusText );
-//         }
-//     }});
-// }
-// $( '#sucursales-form' ).submit(function( event ) {
-//     event.preventDefault();
-//     if($('input[name ="nombre"]').is('[data-id]')) {
-//         saveRow( API, 'update', this, document.getElementById('sucursales-submit'), ['Sucursal'] ,$('input[name ="nombre"]').attr("data-id"), cancelUpdate );
-//     }
-//     else{
-//         saveRow( API_SUCURSALES, 'create', this, document.getElementById('sucursales-submit'), ['Sucursal'] );
-//     }
-// });
+// Función para editar un producto
+function editRow(id){
+    $.ajax({
+        dataType: 'json',
+        url: API_PRODUCTOS + 'update',
+        data: { idproducto: id },
+        type: 'post',
+        success: function( response ) {
+            if ( response.status ) {
+                $('#products-form')[0].reset();
+                $('#products-title')[0].innerHTML = 'Modificar un producto';
+                $('#products-submit')[0].innerHTML = 'Modificar producto';
+                $('#products-cancel').toggleClass('d-none');
+                $('[name ="nombre"]').attr("data-id",response.dataset.idsucursal)
+                $('[name ="nombre"]' ).val( response.dataset.nombre );
+                $('[name ="ubicacion"]' ).val( response.dataset.ubicacion );
+            } else {
+                swal( 2, response.exception );
+            }
+        },
+        error: function( jqXHR ) {
+        // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+        if ( jqXHR.status == 200 ) {
+            console.log( jqXHR.responseText );
+        } else {
+            console.log( jqXHR.status + ' ' + jqXHR.statusText );
+        }
+    }});
+}
 
-// $('#sucursales-cancel')[0].addEventListener("click", cancelUpdate);
+$( '#products-form' ).submit(function( event ) {
+    event.preventDefault();
+    if($('input[name ="nombre"]').is('[data-id]')) {
+        saveRow( API_PRODUCTOS, 'update', this, document.getElementById('products-submit'), ['Products'] ,$('input[name ="nombre"]').attr("data-id"), cancelUpdate );
+        $('#agregarproducto').toggleClass('active');
+        $('#productos').toggleClass('active');
+        $('#sePuedeAlquilar').toggleClass('collapsed');
+    }
+    else{
+        saveRow( API_PRODUCTOS, 'create', this, document.getElementById('products-submit'), ['Products'] );
+    }
+});
 
-// function cancelUpdate(){
-//     $('#sucursales-form')[0].reset();
-//     $('#sucursales-title')[0].innerHTML = 'Añadir una nueva sucursal';
-//     $('#sucursales-submit')[0].innerHTML = 'Añadir sucursal';
-//     $('#sucursales-cancel').toggleClass('d-none');
-//     $('input[name ="nombre"]').removeAttr('data-id');
-// }
-// Función para eliminar un producto
+$('#products-cancel')[0].addEventListener("click", cancelUpdate);
+
+function cancelUpdate(){
+    $('#products-form')[0].reset();
+    $('#products-title')[0].innerHTML = 'Añadir un producto';
+    $('#products-submit')[0].innerHTML = 'Agregar producto';
+    $('#products-cancel').toggleClass('d-none');
+    $('input[name ="nombre"]').removeAttr('data-id');
+}
+//Función para eliminar un producto
 function deleteProduct(idproducto, el = false){
     let identifier = { 'idproducto': idproducto };
     confirmDelete(API_PRODUCTOS, identifier, el);

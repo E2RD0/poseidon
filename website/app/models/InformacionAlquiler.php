@@ -103,7 +103,13 @@ class InformacionAlquiler
             return $v->errors();
         }
     }
-
+    public function existRental($value)
+    {
+        $db = new \Common\Database;
+        $db->query('SELECT * FROM informacionalquiler WHERE idproducto = :value');
+        $db->bind(':value', $value);
+        return boolval($db->rowCount());
+    }
     public function getRentalInformation($value)
     {
         $db = new \Common\Database;
@@ -120,8 +126,7 @@ class InformacionAlquiler
     public function insertRentalInformation($value)
     {
         $db = new \Common\Database;
-        $db->query('INSERT into informacionalquiler (idinformacionalquiler, precioalquiler, poliza, existenciasalquiler, idproducto)
-                    VALUES(DEFAULT, :precioalquiler, :poliza, :existenciasalquiler, :idestadoalquiler)');
+        $db->query('INSERT into informacionalquiler VALUES (DEFAULT, :precioalquiler, :poliza, :existenciasalquiler, :idproducto)');
         $db->bind(':precioalquiler', $value->precioalquiler);
         $db->bind(':poliza', $value->poliza);
         $db->bind(':existenciasalquiler', $value->existenciasalquiler);
