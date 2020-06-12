@@ -39,9 +39,9 @@ class Products extends \Common\Controller
         $data = \Helpers\Validation::trimForm($data);
         $nombreCategoria = $data['producto'];
 
-        $producto = new CategoriaProducto;
+        $producto = new Productos;
         $errors = [];
-        $errors = $producto->setCategoria($nombreCategoria) === true ? $errors : array_merge($errors, $producto->setCategoria($nombreCategoria));
+        //$errors = $producto->set($nombreCategoria) === true ? $errors : array_merge($errors, $producto->setCategoria($nombreCategoria));
 
         if (!boolval($errors)) {
             if ($this->productsModel->insertCategory($nombreCategoria)) {
@@ -64,9 +64,9 @@ class Products extends \Common\Controller
         $nombreCategoria = $data['producto'];
         $idProducto = intval($data['id_producto']);
 
-        $producto = new CategoriaProducto;
+        $producto = new Productos;
         $errors = [];
-        $errors = $producto->setCategoria($nombreCategoria) === true ? $errors : array_merge($errors, $producto->setCategoria($nombreCategoria));
+        //$errors = $producto->setCategoria($nombreCategoria) === true ? $errors : array_merge($errors, $producto->setCategoria($nombreCategoria));
 
         if (!boolval($errors)) {
             if ($this->productsModel->updateCategory($nombreCategoria, $idProducto)) {
@@ -85,18 +85,18 @@ class Products extends \Common\Controller
 
     public function delete($data, $result)
     {
-        $idProducto = intval($data['id_producto']);
-        $producto = new CategoriaProducto;
+        $idProducto = intval($data['idproducto']);
+        $producto = new Productos;
 
-        if ($producto->setId($idProducto) && $producto->existCategory($idProducto)) {
-            if ($producto->deleteCategory($idProducto)) {
+        if ($producto->setIdProducto($idProducto) && $producto->existProduct($idProducto)) {
+            if ($producto->deleteProduct($idProducto)) {
                 $result['status'] = 1;
-                $result['message'] = 'Categoría eliminada correctamente';
+                $result['message'] = 'Producto eliminado correctamente';
             } else {
                 $result['exception'] = \Common\Database::$exception;
             }
         } else {
-            $result['exception'] = 'Categoría inexistente';
+            $result['exception'] = 'Producto inexistente';
         }
         return $result;
     }
@@ -104,7 +104,7 @@ class Products extends \Common\Controller
     public function readOne($data, $result)
     {
         $idProducto = intval($data['id_producto']);
-        $producto = new CategoriaProducto;
+        $producto = new Productos;
 
         if ($producto->setId($idProducto) && $producto->existCategory($idProducto)) {
             if ($result['dataset'] = $producto->getOneCategory($idProducto)) {

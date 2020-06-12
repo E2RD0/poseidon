@@ -607,6 +607,8 @@ BEGIN
         FROM
             producto
             JOIN categoriaproducto ON categoriaproducto.idcategoriaproducto = producto.idcategoriaproducto
+        WHERE
+            producto.existe = TRUE
         ORDER BY
             producto.idproducto ASC
     ) LOOP

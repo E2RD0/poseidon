@@ -56,7 +56,7 @@ class CategoriaProducto
     public function getCategories()
     {
         $db = new \Common\Database;
-        $db->query('SELECT * FROM categoriaproducto');
+        $db->query('SELECT * FROM categoriaproducto ORDER BY idcategoriaproducto');
         return $db->resultSet();
     }
     public function getOneCategory($value)

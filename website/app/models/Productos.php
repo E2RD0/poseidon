@@ -140,6 +140,13 @@ class Productos
             return $v->errors();
         }
     }
+    public function existProduct($value)
+    {
+        $db = new \Common\Database;
+        $db->query('SELECT * FROM producto WHERE idproducto = :value');
+        $db->bind(':value', $value);
+        return boolval($db->rowCount());
+    }
     public function getProducts()
     {
         $db = new \Common\Database;
@@ -186,7 +193,7 @@ class Productos
     public function deleteProduct($value)
     {
         $db = new \Common\Database;
-        $db->query('DELETE FROM producto WHERE idproducto = :idproducto)');
+        $db->query('UPDATE producto SET existe = FALSE WHERE idproducto = :idproducto');
         $db->bind(':idproducto', $value);
         return $db->execute();
     }

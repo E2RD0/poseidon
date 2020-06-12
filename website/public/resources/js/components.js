@@ -129,6 +129,7 @@ function confirmDelete( api, identifier, el=false, text=false)
         .done(function( response ) {
             if ( response.status ) {
                 readRows( api );
+                swal( 1, response.message);
             } else {
                 swal( 2, response.exception);
             }

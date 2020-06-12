@@ -18,6 +18,9 @@ if (isset($_GET['action'])) {
             case 'productQuantities':
                 $result = $productsController->getProductQuantities($result);
                 break;
+            case 'delete':
+                $result = $productsController->delete($_POST, $result);
+                break;
             default:
                 \Common\Core::http404();
         }

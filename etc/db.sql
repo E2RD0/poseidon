@@ -30,14 +30,13 @@ CREATE TABLE usuario (
     FOREIGN KEY (idTipoUsuario) REFERENCES tipoUsuario (idTipoUsuario)
 );
 
-CREATE TABLE recuperarClave
-(
- idRecuperarClave serial NOT NULL,
- fechaCreacion     timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,
- pin                char(6) NOT NULL,
- idUsuario        integer NOT NULL,
- PRIMARY KEY (idRecuperarClave),
- FOREIGN KEY (idUsuario) REFERENCES usuario (idUsuario)
+CREATE TABLE recuperarClave (
+    idRecuperarClave SERIAL NOT NULL,
+    fechaCreacion TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    pin char(6) NOT NULL,
+    idUsuario integer NOT NULL,
+    PRIMARY KEY (idRecuperarClave),
+    FOREIGN KEY (idUsuario) REFERENCES usuario (idUsuario)
 );
 
 CREATE TABLE cliente (
@@ -65,6 +64,7 @@ CREATE TABLE producto (
     imgURL VARCHAR(100) NOT NULL,
     existenciasCompra INT NOT NULL,
     idCategoriaProducto INT NOT NULL,
+    existe BOOLEAN NOT NULL DEFAULT TRUE;
     PRIMARY KEY (idProducto),
     FOREIGN KEY (idCategoriaProducto) REFERENCES categoriaProducto (idCategoriaProducto)
 );
@@ -114,6 +114,7 @@ CREATE TABLE informacionAlquiler (
     poliza NUMERIC(9,2) NOT NULL,
     existenciasAlquiler INT NOT NULL,
     idProducto INT NOT NULL,
+    existe BOOLEAN NOT NULL DEFAULT
     PRIMARY KEY (idInformacionAlquiler),
     FOREIGN KEY (idProducto) REFERENCES producto (idProducto)
 );
@@ -129,7 +130,7 @@ CREATE TABLE ordenAlquiler (
     fechaEntrega DATE,
     fechaDespacho DATE,
     fechaOrdenAlquiler TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
-    total NUMERIC(9,2), 
+    total NUMERIC(9,2),
     idSucursal int,
     idCliente int NOT NULL,
     idEstadoOrdenAlquiler INT NOT NULL,

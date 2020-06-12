@@ -1,8 +1,12 @@
+// Declaración de APIs
 const API_PRODUCTOS = HOME_PATH + 'api/dashboard/productos.php?action=';
 const API_REVIEW = HOME_PATH + 'api/dashboard/reviews.php?action=';
-
+const API_CATEGORIES = HOME_PATH + 'api/dashboard/categories.php?action=';
+const API_INFO_ALQUILER = HOME_PATH + 'api/dashboard/rentalInformation.php?action=';
+// Se ejecuta cuando la página cargó
 $(document).ready(function () {
     readRows(API_PRODUCTOS, $('#productosSpinner')[0]);
+    getProductCategories();
 });
 
 // Función para llenar la tabla con los datos enviados por readRows().
@@ -83,11 +87,88 @@ function fillTable(dataset) {
         });
     }
 }
+// Función para rellenar el select de Agregar/Modificar un producto
+function getProductCategories(){
+    $.ajax({
+        url: API_CATEGORIES + 'show',
+        type: 'post',
+        dataType: 'json',
+        success: function (response) {
+            let jsonResponse = response.dataset;
+            let dropDown = $('#products-categories').html();
 
-function deleteProduct(id, el = false){
-    console.log(id);
+            jsonResponse.forEach(categorie => {
+                dropDown += `
+                    <option value="${categorie.idcategoriaproducto}">${categorie.categoria}</option>
+                `;
+            });
+
+            $('#products-categories').html(dropDown);
+        },
+        error: function (jqXHR) {
+            // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+            if (jqXHR.status == 200) {
+                console.log(jqXHR.responseText);
+            } else {
+                console.log(jqXHR.status + ' ' + jqXHR.statusText);
+            }
+        }
+    });
 }
+// // Función para editar un producto
+// function editRow(id){
+//     $.ajax({
+//         dataType: 'json',
+//         url: API_PRODUCTOS + 'update',
+//         data: { idproducto: id },
+//         type: 'post',
+//         success: function( response ) {
+//             if ( response.status ) {
+//                 $('#sucursales-form')[0].reset();
+//                 $('#sucursales-title')[0].innerHTML = 'Modificar un producto';
+//                 $('#sucursales-submit')[0].innerHTML = 'Modificar producto';
+//                 $('#sucursales-cancel').toggleClass('d-none');
+//                 $('[name ="nombre"]').attr("data-id",response.dataset.idsucursal)
+//                 $('[name ="nombre"]' ).val( response.dataset.nombre );
+//                 $('[name ="ubicacion"]' ).val( response.dataset.ubicacion );
+//             } else {
+//                 swal( 2, response.exception );
+//             }
+//         },
+//         error: function( jqXHR ) {
+//         // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+//         if ( jqXHR.status == 200 ) {
+//             console.log( jqXHR.responseText );
+//         } else {
+//             console.log( jqXHR.status + ' ' + jqXHR.statusText );
+//         }
+//     }});
+// }
+// $( '#sucursales-form' ).submit(function( event ) {
+//     event.preventDefault();
+//     if($('input[name ="nombre"]').is('[data-id]')) {
+//         saveRow( API, 'update', this, document.getElementById('sucursales-submit'), ['Sucursal'] ,$('input[name ="nombre"]').attr("data-id"), cancelUpdate );
+//     }
+//     else{
+//         saveRow( API_SUCURSALES, 'create', this, document.getElementById('sucursales-submit'), ['Sucursal'] );
+//     }
+// });
 
+// $('#sucursales-cancel')[0].addEventListener("click", cancelUpdate);
+
+// function cancelUpdate(){
+//     $('#sucursales-form')[0].reset();
+//     $('#sucursales-title')[0].innerHTML = 'Añadir una nueva sucursal';
+//     $('#sucursales-submit')[0].innerHTML = 'Añadir sucursal';
+//     $('#sucursales-cancel').toggleClass('d-none');
+//     $('input[name ="nombre"]').removeAttr('data-id');
+// }
+// Función para eliminar un producto
+function deleteProduct(idproducto, el = false){
+    let identifier = { 'idproducto': idproducto };
+    confirmDelete(API_PRODUCTOS, identifier, el);
+}
+// Función para conseguir la información general de las reseñas de un producto
 function getProductReviewsData(idproducto, el = false ) {
     let identifier = { 'idproducto': idproducto };
 
@@ -118,7 +199,7 @@ function getProductReviewsData(idproducto, el = false ) {
         }
     });
 }
-
+// Función para conseguir las reseñas de un producto
 function getProductReviews(identifier, el = false, empty = false ){
     if (empty === false){
         $.ajax({
@@ -173,14 +254,14 @@ function getProductReviews(identifier, el = false, empty = false ){
                 });
                 $('#review_contenedor').html(reviews);
             },
-        error: function (jqXHR) {
-            // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
-            if (jqXHR.status == 200) {
-                console.log(jqXHR.responseText);
-            } else {
-                console.log(jqXHR.status + ' ' + jqXHR.statusText);
-            }
-        }});
+            error: function (jqXHR) {
+                // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+                if (jqXHR.status == 200) {
+                    console.log(jqXHR.responseText);
+                } else {
+                    console.log(jqXHR.status + ' ' + jqXHR.statusText);
+                }
+            }});
     } else {
         let reviewContainerContent = `
                             <div class="col-12 justify-content-center">
@@ -189,8 +270,8 @@ function getProductReviews(identifier, el = false, empty = false ){
         $('#review_contenedor').html(reviewContainerContent);
     }
 };
-
-function deleteReview( idreview, idproducto, el=false, text=false)
+// Función para eliminar una reseña de un producto
+function deleteReview( idreview, idproducto, el=false)
 {
     let identifier = { 'idreview': idreview };
     console.log(idreview);
@@ -202,7 +283,7 @@ function deleteReview( idreview, idproducto, el=false, text=false)
             buttons.innerHTML = '<div class="spinner-grow" role="status"><span class="sr-only">Cargando...</span></div>';
         }
     }
-    swal(4, (text ? text : '¿Desea eliminar la reseña?'), false, 0, true, del);
+    swal(4, '¿Desea eliminar la reseña?', false, 0, true, del);
     function del() {
         $.ajax({
             type: 'post',
@@ -226,4 +307,4 @@ function deleteReview( idreview, idproducto, el=false, text=false)
             }
         });
     }
-}
+};
