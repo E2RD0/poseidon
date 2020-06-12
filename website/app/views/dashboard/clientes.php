@@ -11,10 +11,14 @@ dashboardTemplate::dashMenu('clientes');
                 <div class="col-md-12 col-lg-12 p-0">
                     <ul class="nav nav-categorias" role="tablist">
                         <li class="nav-item">
-                            <a data-toggle="tab" href="#alquileres" class="nav-link active dash__tab_title" aria-expanded="true">Clientes</a>
+                            <a id="tabClientes" data-toggle="tab" href="#alquileres" class="nav-link active dash__tab_title" aria-expanded="true">Clientes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="tabEdit" data-toggle="tab" href="#editarCliente" class="nav-link dash__tab_title" aria-expanded="true">Editar cliente</a>
                         </li>
                     </ul>
                 </div>
+                <div class="tab-content">
                 <div class="tab-pane active py-3 px-3 px-sm-0" id="alquileres" role="tabpanel">
                     <div class="table-responsive">
                         <table class="table dash__main_table w-100" id="table">
@@ -26,313 +30,122 @@ dashboardTemplate::dashMenu('clientes');
                                     <th>Correo</th>
                                     <th>Dirección</th>
                                     <th class="text-right">Teléfono</th>
-                                    <th class="text-right">Fecha de registro</th>
+                                    <th>Estado</th>
+                                    <th>Opciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Andrew</td>
-                                    <td>Mike</td>
-                                    <td>andrew.m@gmail.com</td>
-                                    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        <div id="mas1" aria-expanded="false" class="collapse">
-                                            <div class="well">
-                                                explicabo iste veniam provident quasi laboriosam, aperiam numquam aut laudantium
-                                                harum sapiente obcaecati repellendus tempora enim quo voluptatibus,
-                                                reprehenderit, molestias at?
-                                            </div>
-                                        </div>
-                                        <label data-toggle="collapse" data-target="#mas1" aria-expanded="false" aria-controls="mas1">
-                                            <i class="fas fa-ellipsis-h"></i>
-                                        </label>
-                                    </td>
-                                    <td class="text-right">98989898</td>
-                                    <td class="text-right">09/05/2015</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Andrew</td>
-                                    <td>Mike</td>
-                                    <td>andrew.m@gmail.co</td>
-                                    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        <div id="mas2" aria-expanded="false" class="collapse">
-                                            <div class="well">
-                                                explicabo iste veniam provident quasi laboriosam, aperiam numquam aut laudantium
-                                                harum sapiente obcaecati repellendus tempora enim quo voluptatibus,
-                                                reprehenderit, molestias at?
-                                            </div>
-                                        </div>
-                                        <label data-toggle="collapse" data-target="#mas2" aria-expanded="false" aria-controls="mas2">
-                                            <i class="fas fa-ellipsis-h"></i>
-                                        </label>
-                                    </td>
-                                    <td class="text-right">98989898</td>
-                                    <td class="text-right">09/05/2015</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Andrew</td>
-                                    <td>Mike</td>
-                                    <td>andrew.m@gmail.co</td>
-                                    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        <div id="mas3" aria-expanded="false" class="collapse">
-                                            <div class="well">
-                                                explicabo iste veniam provident quasi laboriosam, aperiam numquam aut laudantium
-                                                harum sapiente obcaecati repellendus tempora enim quo voluptatibus,
-                                                reprehenderit, molestias at?
-                                            </div>
-                                        </div>
-                                        <label data-toggle="collapse" data-target="#mas3" aria-expanded="false" aria-controls="mas3">
-                                            <i class="fas fa-ellipsis-h"></i>
-                                        </label>
-                                    </td>
-                                    <td class="text-right">98989898</td>
-                                    <td class="text-right">09/05/2015</td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>Andrew</td>
-                                    <td>Mike</td>
-                                    <td>andrew.m@gmail.co</td>
-                                    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        <div id="mas4" aria-expanded="false" class="collapse">
-                                            <div class="well">
-                                                explicabo iste veniam provident quasi laboriosam, aperiam numquam aut laudantium
-                                                harum sapiente obcaecati repellendus tempora enim quo voluptatibus,
-                                                reprehenderit, molestias at?
-                                            </div>
-                                        </div>
-                                        <label data-toggle="collapse" data-target="#mas4" aria-expanded="false" aria-controls="mas4">
-                                            <i class="fas fa-ellipsis-h"></i>
-                                        </label>
-                                    </td>
-                                    <td class="text-right">98989898</td>
-                                    <td class="text-right">09/05/2015</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Andrew</td>
-                                    <td>Mike</td>
-                                    <td>andrew.m@gmail.co</td>
-                                    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        <div id="mas5" aria-expanded="false" class="collapse">
-                                            <div class="well">
-                                                explicabo iste veniam provident quasi laboriosam, aperiam numquam aut laudantium
-                                                harum sapiente obcaecati repellendus tempora enim quo voluptatibus,
-                                                reprehenderit, molestias at?
-                                            </div>
-                                        </div>
-                                        <label data-toggle="collapse" data-target="#mas5" aria-expanded="false" aria-controls="mas5">
-                                            <i class="fas fa-ellipsis-h"></i>
-                                        </label>
-                                    </td>
-                                    <td class="text-right">98989898</td>
-                                    <td class="text-right">09/05/2015</td>
-                                </tr>
-                                <tr>
-                                    <td>6</td>
-                                    <td>Andrew</td>
-                                    <td>Mike</td>
-                                    <td>andrew.m@gmail.co</td>
-                                    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        <div id="mas6" aria-expanded="false" class="collapse">
-                                            <div class="well">
-                                                explicabo iste veniam provident quasi laboriosam, aperiam numquam aut laudantium
-                                                harum sapiente obcaecati repellendus tempora enim quo voluptatibus,
-                                                reprehenderit, molestias at?
-                                            </div>
-                                        </div>
-                                        <label data-toggle="collapse" data-target="#mas6" aria-expanded="false" aria-controls="mas6">
-                                            <i class="fas fa-ellipsis-h"></i>
-                                        </label>
-                                    </td>
-                                    <td class="text-right">98989898</td>
-                                    <td class="text-right">09/05/2015</td>
-                                </tr>
-                                <tr>
-                                    <td>7</td>
-                                    <td>Andrew</td>
-                                    <td>Mike</td>
-                                    <td>andrew.m@gmail.co</td>
-                                    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        <div id="mas7" aria-expanded="false" class="collapse">
-                                            <div class="well">
-                                                explicabo iste veniam provident quasi laboriosam, aperiam numquam aut laudantium
-                                                harum sapiente obcaecati repellendus tempora enim quo voluptatibus,
-                                                reprehenderit, molestias at?
-                                            </div>
-                                        </div>
-                                        <label data-toggle="collapse" data-target="#mas7" aria-expanded="false" aria-controls="mas7">
-                                            <i class="fas fa-ellipsis-h"></i>
-                                        </label>
-                                    </td>
-                                    <td class="text-right">98989898</td>
-                                    <td class="text-right">09/05/2015</td>
-                                </tr>
-                                <tr>
-                                    <td>8</td>
-                                    <td>Andrew</td>
-                                    <td>Mike</td>
-                                    <td>andrew.m@gmail.co</td>
-                                    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        <div id="mas8" aria-expanded="false" class="collapse">
-                                            <div class="well">
-                                                explicabo iste veniam provident quasi laboriosam, aperiam numquam aut laudantium
-                                                harum sapiente obcaecati repellendus tempora enim quo voluptatibus,
-                                                reprehenderit, molestias at?
-                                            </div>
-                                        </div>
-                                        <label data-toggle="collapse" data-target="#mas8" aria-expanded="false" aria-controls="mas8">
-                                            <i class="fas fa-ellipsis-h"></i>
-                                        </label>
-                                    </td>
-                                    <td class="text-right">98989898</td>
-                                    <td class="text-right">09/05/2015</td>
-                                </tr>
-                                <tr>
-                                    <td>9</td>
-                                    <td>Andrew</td>
-                                    <td>Mike</td>
-                                    <td>andrew.m@gmail.co</td>
-                                    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        <div id="mas9" aria-expanded="false" class="collapse">
-                                            <div class="well">
-                                                explicabo iste veniam provident quasi laboriosam, aperiam numquam aut laudantium
-                                                harum sapiente obcaecati repellendus tempora enim quo voluptatibus,
-                                                reprehenderit, molestias at?
-                                            </div>
-                                        </div>
-                                        <label data-toggle="collapse" data-target="#mas9" aria-expanded="false" aria-controls="mas9">
-                                            <i class="fas fa-ellipsis-h"></i>
-                                        </label>
-                                    </td>
-                                    <td class="text-right">98989898</td>
-                                    <td class="text-right">09/05/2015</td>
-                                </tr>
-                                <tr>
-                                    <td>10</td>
-                                    <td>Andrew</td>
-                                    <td>Mike</td>
-                                    <td>andrew.m@gmail.co</td>
-                                    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        <div id="mas10" aria-expanded="false" class="collapse">
-                                            <div class="well">
-                                                explicabo iste veniam provident quasi laboriosam, aperiam numquam aut laudantium
-                                                harum sapiente obcaecati repellendus tempora enim quo voluptatibus,
-                                                reprehenderit, molestias at?
-                                            </div>
-                                        </div>
-                                        <label data-toggle="collapse" data-target="#mas10" aria-expanded="false" aria-controls="mas10">
-                                            <i class="fas fa-ellipsis-h"></i>
-                                        </label>
-                                    </td>
-                                    <td class="text-right">98989898</td>
-                                    <td class="text-right">09/05/2015</td>
-                                </tr>
-                                <tr>
-                                    <td>11</td>
-                                    <td>Andrew</td>
-                                    <td>Mike</td>
-                                    <td>andrew.m@gmail.co</td>
-                                    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        <div id="mas11" aria-expanded="false" class="collapse">
-                                            <div class="well">
-                                                explicabo iste veniam provident quasi laboriosam, aperiam numquam aut laudantium
-                                                harum sapiente obcaecati repellendus tempora enim quo voluptatibus,
-                                                reprehenderit, molestias at?
-                                            </div>
-                                        </div>
-                                        <label data-toggle="collapse" data-target="#mas11" aria-expanded="false" aria-controls="mas11">
-                                            <i class="fas fa-ellipsis-h"></i>
-                                        </label>
-                                    </td>
-                                    <td class="text-right">98989898</td>
-                                    <td class="text-right">09/05/2015</td>
-                                </tr>
-                                <tr>
-                                    <td>12</td>
-                                    <td>Andrew</td>
-                                    <td>Mike</td>
-                                    <td>andrew.m@gmail.co</td>
-                                    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        <div id="mas12" aria-expanded="false" class="collapse">
-                                            <div class="well">
-                                                explicabo iste veniam provident quasi laboriosam, aperiam numquam aut laudantium
-                                                harum sapiente obcaecati repellendus tempora enim quo voluptatibus,
-                                                reprehenderit, molestias at?
-                                            </div>
-                                        </div>
-                                        <label data-toggle="collapse" data-target="#mas12" aria-expanded="false" aria-controls="mas12">
-                                            <i class="fas fa-ellipsis-h"></i>
-                                        </label>
-                                    </td>
-                                    <td class="text-right">98989898</td>
-                                    <td class="text-right">09/05/2015</td>
-                                </tr>
-                                <tr>
-                                    <td>13</td>
-                                    <td>Andrew</td>
-                                    <td>Mike</td>
-                                    <td>andrew.m@gmail.co</td>
-                                    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        <div id="mas13" aria-expanded="false" class="collapse">
-                                            <div class="well">
-                                                explicabo iste veniam provident quasi laboriosam, aperiam numquam aut laudantium
-                                                harum sapiente obcaecati repellendus tempora enim quo voluptatibus,
-                                                reprehenderit, molestias at?
-                                            </div>
-                                        </div>
-                                        <label data-toggle="collapse" data-target="#mas13" aria-expanded="false" aria-controls="mas13">
-                                            <i class="fas fa-ellipsis-h"></i>
-                                        </label>
-                                    </td>
-                                    <td class="text-right">98989898</td>
-                                    <td class="text-right">09/05/2015</td>
-                                </tr>
-                                <tr>
-                                    <td>14</td>
-                                    <td>Andrew</td>
-                                    <td>Mike</td>
-                                    <td>andrew.m@gmail.co</td>
-                                    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        <div id="mas14" aria-expanded="false" class="collapse">
-                                            <div class="well">
-                                                explicabo iste veniam provident quasi laboriosam, aperiam numquam aut laudantium
-                                                harum sapiente obcaecati repellendus tempora enim quo voluptatibus,
-                                                reprehenderit, molestias at?
-                                            </div>
-                                        </div>
-                                        <label data-toggle="collapse" data-target="#mas14" aria-expanded="false" aria-controls="mas14">
-                                            <i class="fas fa-ellipsis-h"></i>
-                                        </label>
-                                    </td>
-                                    <td class="text-right">98989898</td>
-                                    <td class="text-right">09/05/2015</td>
-                                </tr>
-                                <tr>
-                                    <td>15</td>
-                                    <td>Andrew</td>
-                                    <td>Mike</td>
-                                    <td>andrew.m@gmail.co</td>
-                                    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        <div id="mas15" aria-expanded="false" class="collapse">
-                                            <div class="well">
-                                                explicabo iste veniam provident quasi laboriosam, aperiam numquam aut laudantium
-                                                harum sapiente obcaecati repellendus tempora enim quo voluptatibus,
-                                                reprehenderit, molestias at?
-                                            </div>
-                                        </div>
-                                        <label data-toggle="collapse" data-target="#mas15" aria-expanded="false" aria-controls="mas15">
-                                            <i class="fas fa-ellipsis-h"></i>
-                                        </label>
-                                    </td>
-                                    <td class="text-right">98989898</td>
-                                    <td class="text-right">09/05/2015</td>
-                                </tr>
                             </tbody>
                         </table>
+                        <div id="spinner" class="w-100 text-center">
+                          No hay ningún registro
+                        </div>
                     </div>
+                </div>
+                <div class="tab-pane py-3 px-3 px-sm-0" id="editarCliente" role="tabpanel">
+                    <form id="clients-form" method="post" action="" class="row my-5">
+                        <div class="col-12 col-lg-6 mx-md-auto">
+                            <div class="ml-lg-4">
+                                <div class="row mt-4 ml-md-2">
+                                    <div class="col-12 col-md-2 ml-md-0">
+                                        <p class="text-md-right">Nombre(s)</p>
+                                    </div>
+                                    <div class="col-12 col-md-10 mt-md-2">
+                                        <div class="col-12">
+                                            <div class="form-field">
+                                                <div class="form-field__control">
+                                                    <input id="inputNombre" name="nombre" type="text" class="dash__text_fields form-field__input" />
+                                                </div>
+                                                <p class="form-error-label" id="errorNombre"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-4 ml-md-2">
+                                    <div class="col-12 col-md-2 ml-md-0">
+                                        <p class="text-md-right">Apellido(s)</p>
+                                    </div>
+                                    <div class="col-12 col-md-10 mt-md-2">
+                                        <div class="col-12">
+                                            <div class="form-field">
+                                                <div class="form-field__control">
+                                                    <input id="inputApellido" name="apellido" type="text" class="dash__text_fields form-field__input" />
+                                                </div>
+                                                <p class="form-error-label" id="errorApellido"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-4 ml-md-2">
+                                    <div class="col-12 col-md-2 ml-md-0">
+                                        <p class="text-md-right">Correo eléctronico</p>
+                                    </div>
+                                    <div class="col-12 col-md-10 mt-md-2">
+                                        <div class="col-12">
+                                            <div class="form-field">
+                                                <div class="form-field__control">
+                                                    <input name="email" id="inputEmail" type="email" class="dash__text_fields form-field__input" />
+                                                </div>
+                                                <p class="form-error-label" id="errorEmail"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-4 ml-md-2">
+                                    <div class="col-12 col-md-2 ml-md-0">
+                                        <p class="text-md-right">Dirección</p>
+                                    </div>
+                                    <div class="col-12 col-md-10 mt-md-2">
+                                        <div class="col-12">
+                                            <div class="form-field">
+                                                <div class="form-field__control">
+                                                    <textarea name="direccion" id="inputDirección" type="text" class="dash__text_fields form-field__input"></textarea>
+                                                </div>
+                                                <p class="form-error-label" id="errorDirección"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-4 ml-md-2">
+                                    <div class="col-12 col-md-2 ml-md-0">
+                                        <p class="text-md-right">Teléfono(s)</p>
+                                    </div>
+                                    <div class="col-12 col-md-10 mt-md-2">
+                                        <div class="col-12">
+                                            <div class="form-field">
+                                                <div class="form-field__control">
+                                                    <input id="inputTeléfono" name="telefono" type="text" class="dash__text_fields form-field__input" />
+                                                </div>
+                                                <p class="form-error-label" id="errorTeléfono"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row my-4 ml-md-2">
+                                    <div class="col-12 col-md-2 ml-md-0">
+                                        <p class="text-md-right">Estado</p>
+                                    </div>
+                                    <div class="col-12 col-md-10 mt-md-2">
+                                        <div class="dropdown ml-3">
+                                            <select class="custom-select" name="idEstadoCliente" id="inputTipo">
+                                                <option selected value="">Selecciona...</option>
+                                            </select>
+                                            <p class="form-error-label" id="errorTipo"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-center justify-content-md-end">
+                                <div class="">
+                                    <div class="mr-md-5 text-center">
+                                        <button id="clients-cancel" type="button" class="ml-auto btn recover__button">Cancelar</button>
+                                        <button id="clients-submit" type="submit" class="btn main__button">Actualizar cliente</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
                 </div>
             </div>
         </div>
@@ -340,5 +153,5 @@ dashboardTemplate::dashMenu('clientes');
 </main>
 
 <?php
-dashboardTemplate::dashEnd('clientes.php');
+dashboardTemplate::dashEnd('clients.js');
 ?>

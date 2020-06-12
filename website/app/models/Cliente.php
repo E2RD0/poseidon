@@ -11,6 +11,7 @@ class Cliente
     private $password;
     private $telefono;
     private $direccion;
+    private $idEstadoCliente;
 
     public function __construct()
     {
@@ -27,6 +28,18 @@ class Cliente
         $v->rule('integer', 'Id');
         if ($v->validate()) {
             $this->id = $value;
+            return true;
+        } else {
+            return $v->errors();
+        }
+    }
+    public function setIdEstado($value)
+    {
+        $v = new \Valitron\Validator(array('Id' => $value));
+        $v->rule('required', 'Id');
+        $v->rule('integer', 'Id');
+        if ($v->validate()) {
+            $this->idEstadoCliente = $value;
             return true;
         } else {
             return $v->errors();
@@ -74,19 +87,26 @@ class Cliente
         return $this->email;
     }
 
-    public function setEmail($value)
+    public function setEmail($value, $isLogin = false)
     {
         $v = new \Valitron\Validator(array('Email' => $value));
         $v->rule('required', 'Email');
         $v->rule('email', 'Email');
-        if ($v->validate()) {
-            if (!$this->clientExists('email', $value)) {
+        if($v->validate()) {
+            if($isLogin){
                 $this->email = $value;
                 return true;
-            } else {
-                $errors = [];
-                $errors['Email'] = ['Ya existe una cuenta con este correo'];
-                return $errors;
+            }
+            else{
+                if(!$this->clientExists('email', $value)){
+                    $this->email = $value;
+                    return true;
+                }
+                else {
+                    $errors = [];
+                    $errors['Email'] = ['Ya existe una cuenta con este correo'];
+                    return $errors;
+                }
             }
         } else {
             return $v->errors();
@@ -154,12 +174,22 @@ class Cliente
         $db->bind(':value', $value);
         return boolval($db->rowCount());
     }
-    public function getClient()
+
+    public function getClients()
     {
         $db = new \Common\Database;
-        $db->query('SELECT * FROM cliente');
+        $db->query('SELECT idCliente, nombre, apellido, email, direccion, telefono, contrasena, c.idEstadoCliente, e.estado FROM cliente c INNER JOIN estadoCliente e ON c.idEstadoCliente = e.idEstadoCliente ');
         return $db->resultSet();
     }
+
+    public function getClient($id)
+    {
+        $db = new \Common\Database;
+        $db->query('SELECT idCliente, nombre, apellido, email, direccion, telefono, contrasena, c.idEstadoCliente, e.estado FROM cliente c INNER JOIN estadoCliente e ON c.idEstadoCliente = e.idEstadoCliente WHERE idCliente = :id');
+        $db->bind(':id', $id);
+        return $db->getResult();
+    }
+
     public function clientCount()
     {
         $db = new \Common\Database;
@@ -191,11 +221,17 @@ class Cliente
         $db->bind(':idcliente', $user->idcliente);
         return $db->execute();
     }
-    public function deleteClient($value)
+    public function changeStateClient($value, $idEstado)
     {
         $db = new \Common\Database;
-        $db->query('DELETE FROM cliente WHERE idcliente = :id)');
+        $db->query('UPDATE cliente SET idEstadoCliente = :idEstado WHERE idcliente = :id');
+        $db->bind(':idEstado', $idEstado);
         $db->bind(':id', $value);
         return $db->execute();
+    }
+    public function getTypes(){
+        $db = new \Common\Database;
+        $db->query('SELECT * FROM estadoCliente');
+        return $db->resultSet();
     }
 }
