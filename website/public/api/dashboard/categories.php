@@ -22,8 +22,8 @@ if (isset($_GET['action'])) {
                 $result = $categoriesController->create($_POST, $result);
                 break;
             case 'update':
-                    $result = $categoriesController->update($_POST, $result);
-                    break;
+                $result = $categoriesController->update($_POST, $result);
+                break;
             case 'delete':
                 $result = $categoriesController->delete($_POST, $result);
                 break;

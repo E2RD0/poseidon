@@ -64,7 +64,14 @@ class OpcionesGenerales
         }
     }
 
-    public function existCategory($value)
+    public function getOneParameter($value)
+    {
+        $db = new \Common\Database;
+        $db->query('SELECT * FROM opcionesgenerales WHERE idopcion = :value');
+        $db->bind(':value', $value);
+        return $db->getResult();
+    }
+    public function existParameter($value)
     {
         $db = new \Common\Database;
         $db->query('SELECT * FROM opcionesgenerales WHERE idopcion = :value');
@@ -92,13 +99,13 @@ class OpcionesGenerales
         $db->bind(':valor', $value->valor);
         return $db->execute();
     }
-    public function modifyGeneralOption($value)
+    public function modifyGeneralOption($value, $id)
     {
         $db = new \Common\Database;
         $db->query('UPDATE opcionesgenerales SET clave = :clave, valor = :valor WHERE idopcion = :idopcion');
         $db->bind(':clave', $value->clave);
         $db->bind(':valor', $value->valor);
-        $db->bind(':idopcion', $value->idopcion);
+        $db->bind(':idopcion', $id);
         return $db->execute();
     }
     public function deleteGeneralOption($value)

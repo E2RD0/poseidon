@@ -1,7 +1,7 @@
-const API_PARAMETROS = HOME_PATH + 'api/dashboard/generaloptions.php?action=';
+const API_SUCURSALES = HOME_PATH + 'api/dashboard/sucursales.php?action=';
 
 $( document ).ready(function() {
-    readRows( API_PARAMETROS, $('#parameterSpinner')[0]);
+    readRows( API_SUCURSALES, $('#sucursalesSpinner')[0]);
 });
 
 // Función para llenar la tabla con los datos enviados por readRows().
@@ -26,9 +26,8 @@ function fillTable( dataset )
                 className: 'td-actions text-center'}
             ],
             columns: [
-                { data: 'idopcion' },
-                { data: 'clave' },
-                { data: 'valor' },
+                { data: 'idsucursal' },
+                { data: 'nombre' },
                 { data: null,
                 orderable: false,
                 render:function(data, type, row)
@@ -37,14 +36,14 @@ function fillTable( dataset )
                         <div class="dropdown">
                             <i class="fas fa-ellipsis-h dash__dropdown" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                <button class="dropdown-item" onclick="editRow(${data['idopcion']}, this) "type="button">
+                                <button class="dropdown-item" onclick="editRow(${data['idsucursal']}, this) "type="button">
                                     <span>
                                         <i class="fas fa-edit"></i>
                                         <p>Modíficar</p>
                                     </span>
                                 </button>
                             <div class="dropdown-divider"></div>
-                            <button class="dropdown-item" onclick="deleteRow(${data['idopcion']}, this)" type="button">
+                            <button class="dropdown-item" onclick="deleteRow(${data['idsucursal']}, this)" type="button">
                                 <span>
                                     <i class="fas fa-times"></i>
                                     <p>Eliminar</p>
@@ -63,18 +62,18 @@ function fillTable( dataset )
 function editRow(id){
     $.ajax({
         dataType: 'json',
-        url: API_PARAMETROS + 'readOne',
-        data: { idopcion: id },
+        url: API_SUCURSALES + 'readOne',
+        data: { idsucursal: id },
         type: 'post',
         success: function( response ) {
             if ( response.status ) {
-                $('#parameters-form')[0].reset();
-                $('#parameters-title')[0].innerHTML = 'Modificar un parámetro';
-                $('#parameters-submit')[0].innerHTML = 'Modificar parámetro';
-                $('#parameters-cancel').toggleClass('d-none');
-                $('input[name ="clave"]').attr("data-id",response.dataset.idopcion)
-                $('input[name ="clave"]' ).val( response.dataset.clave );
-                $('input[name ="valor"]' ).val( response.dataset.valor );
+                $('#sucursales-form')[0].reset();
+                $('#sucursales-title')[0].innerHTML = 'Modificar una sucursal';
+                $('#sucursales-submit')[0].innerHTML = 'Modificar sucursal';
+                $('#sucursales-cancel').toggleClass('d-none');
+                $('[name ="nombre"]').attr("data-id",response.dataset.idsucursal)
+                $('[name ="nombre"]' ).val( response.dataset.nombre );
+                $('[name ="ubicacion"]' ).val( response.dataset.ubicacion );
             } else {
                 swal( 2, response.exception );
             }
@@ -89,28 +88,28 @@ function editRow(id){
     }});
 }
 
-$( '#parameters-form' ).submit(function( event ) {
+$( '#sucursales-form' ).submit(function( event ) {
     event.preventDefault();
-    if($('input[name ="clave"]').is('[data-id]')) {
-        saveRow( API_PARAMETROS, 'update', this, document.getElementById('parameters-submit'), ['Parametro'] ,$('input[name ="clave"]').attr("data-id"), cancelUpdate );
+    if($('input[name ="nombre"]').is('[data-id]')) {
+        saveRow( API_SUCURSALES, 'update', this, document.getElementById('sucursales-submit'), ['Sucursal'] ,$('input[name ="nombre"]').attr("data-id"), cancelUpdate );
     }
     else{
-        saveRow( API_PARAMETROS, 'create', this, document.getElementById('parameters-submit'), ['Parametro'] );
+        saveRow( API_SUCURSALES, 'create', this, document.getElementById('sucursales-submit'), ['Sucursal'] );
     }
 });
 
-$('#parameters-cancel')[0].addEventListener("click", cancelUpdate);
+$('#sucursales-cancel')[0].addEventListener("click", cancelUpdate);
 
 function cancelUpdate(){
-    $('#parameters-form')[0].reset();
-    $('#parameters-title')[0].innerHTML = 'Añadir un nuevo parámetro';
-    $('#parameters-submit')[0].innerHTML = 'Añadir parámetro';
-    $('#parameters-cancel').toggleClass('d-none');
-    $('input[name ="clave"]').removeAttr('data-id');
+    $('#sucursales-form')[0].reset();
+    $('#sucursales-title')[0].innerHTML = 'Añadir una nueva sucursal';
+    $('#sucursales-submit')[0].innerHTML = 'Añadir sucursal';
+    $('#sucursales-cancel').toggleClass('d-none');
+    $('input[name ="nombre"]').removeAttr('data-id');
 }
 
 function deleteRow(id, el)
 {
-    let identifier = { idclave: id };
-    confirmDelete( API_PARAMETROS, identifier, el);
+    let identifier = { idsucursal: id };
+    confirmDelete( API_SUCURSALES, identifier, el);
 }

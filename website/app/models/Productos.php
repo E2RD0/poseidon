@@ -140,11 +140,16 @@ class Productos
             return $v->errors();
         }
     }
-
     public function getProducts()
     {
         $db = new \Common\Database;
         $db->query('SELECT * FROM getProducts()');
+        return $db->resultSet();
+    }
+    public function getProductQuantities()
+    {
+        $db = new \Common\Database;
+        $db->query('SELECT * FROM getProductQuantities()');
         return $db->resultSet();
     }
     public function productCount()

@@ -38,7 +38,7 @@ class Sucursal
     {
         $v = new \Valitron\Validator(array('Nombre' => $value));
         $v->rule('required', 'Nombre');
-        $v->rule('alpha', 'Nombre');
+        $v->rule('ascii', 'Nombre');
         if ($v->validate()) {
             $this->nombre = $value;
             return true;
@@ -56,7 +56,7 @@ class Sucursal
     {
         $v = new \Valitron\Validator(array('Ubicacion' => $value));
         $v->rule('required', 'Ubicacion');
-        $v->rule('alpha', 'Ubicacion');
+        $v->rule('ascii', 'Ubicacion');
         if ($v->validate()) {
             $this->ubicacion = $value;
             return true;
@@ -65,40 +65,55 @@ class Sucursal
         }
     }
 
-    public function getGeneralOptions()
+    public function getOneBranch($value)
     {
         $db = new \Common\Database;
-        $db->query('SELECT * FROM sucursal');
+        $db->query('SELECT * FROM sucursal WHERE idsucursal = :idsucursal');
+        $db->bind(':idsucursal', $value);
+        return $db->getResult();
+    }
+    public function existBranch($value)
+    {
+        $db = new \Common\Database;
+        $db->query('SELECT * FROM sucursal WHERE idsucursal = :idsucursal');
+        $db->bind(':idsucursal', $value);
+        return boolval($db->rowCount());
+    }
+    public function getBranches()
+    {
+        $db = new \Common\Database;
+        $db->query('SELECT idsucursal, nombre FROM sucursal');
         return $db->resultSet();
     }
-    public function getGeneralOptionsCount()
+    public function getBranchesCount()
     {
         $db = new \Common\Database;
         $db->query('SELECT * FROM sucursal');
         return $db->rowCount();
     }
-    public function insertGeneralOption($value)
+    public function insertBranch($value)
     {
         $db = new \Common\Database;
-        $db->query('INSERT into sucursal (idsucursal, nombre, ubicacion) VALUES(DEFAULT, :nombre, :ubicacion)');
+        $db->query('INSERT into sucursal (idsucursal, nombre, ubicacion)
+                    VALUES(DEFAULT, :nombre, :ubicacion)');
         $db->bind(':nombre', $value->nombre);
         $db->bind(':ubicacion', $value->ubicacion);
         return $db->execute();
     }
-    public function modifyRentalDetailStatus($value)
+    public function modifyBranch($value, $id)
     {
         $db = new \Common\Database;
         $db->query('UPDATE sucursal SET nombre = :nombre, ubicacion = :ubicacion WHERE idsucursal = :idsucursal');
         $db->bind(':nombre', $value->nombre);
         $db->bind(':ubicacion', $value->ubicacion);
-        $db->bind(':idsucursal', $value->idsucursal);
+        $db->bind(':idsucursal', $id);
         return $db->execute();
     }
-    public function deleteRentalDetailStatus($value)
+    public function deleteBranch($value)
     {
         $db = new \Common\Database;
-        $db->query('DELETE FROM sucursal WHERE idsucursal = :id)');
-        $db->bind(':id', $value);
+        $db->query('DELETE FROM sucursal WHERE idsucursal = :idsucursal');
+        $db->bind(':idsucursal', $value);
         return $db->execute();
     }
 }

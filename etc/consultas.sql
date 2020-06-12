@@ -636,7 +636,8 @@ BEGIN
             ROW_NUMBER() OVER () AS idreview,
             cliente.nombre || ' ' || cliente.apellido AS cliente,
             review.calificacion AS puntuacion,
-            review.comentario AS comentario
+            review.comentario AS comentario,
+            idreview AS idreal
         FROM
             review
             JOIN detalleorden ON detalleorden.iddetalleorden = review.iddetalleorden
@@ -683,4 +684,29 @@ BEGIN
             reviews := review_info.reviews;
             RETURN NEXT;
         END LOOP;
+END; $$ LANGUAGE 'plpgsql';
+
+--getProductQuantites()
+CREATE
+    OR REPLACE FUNCTION getProductQuantities() RETURNS TABLE (
+        producto VARCHAR,
+        cantidad INT
+    ) AS $$
+DECLARE
+    product_info RECORD;
+BEGIN
+    FOR product_info IN (
+        SELECT
+                    nombre,
+                    existenciascompra AS cantidad
+                FROM
+                    producto
+                ORDER BY
+                    idproducto DESC
+                LIMIT 4)
+            LOOP
+                    producto := product_info.nombre;
+                    cantidad := product_info.cantidad;
+                    RETURN NEXT;
+            END LOOP;
 END; $$ LANGUAGE 'plpgsql';

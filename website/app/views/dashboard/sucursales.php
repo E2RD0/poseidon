@@ -28,85 +28,16 @@ dashboardTemplate::dashMenu('sucursales');
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Playa El Tunco</td>
-                                                <td class="td-actions text-center">
-                                                    <div class="dropdown">
-                                                        <i class="fas fa-ellipsis-h dash__dropdown" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
-                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                                            <button class="dropdown-item" type="button">
-                                                                <span>
-                                                                    <i class="fas fa-edit"></i>
-                                                                    <p>Modíficar</p>
-                                                                </span>
-                                                            </button>
-                                                            <div class="dropdown-divider"></div>
-                                                            <button class="dropdown-item" type="button">
-                                                                <span>
-                                                                    <i class="fas fa-times"></i>
-                                                                    <p>Eliminar</p>
-                                                                </span>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Barra de Santiago</td>
-                                                <td class="td-actions text-center">
-                                                    <div class="dropdown">
-                                                        <i class="fas fa-ellipsis-h dash__dropdown" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
-                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                                            <button class="dropdown-item" type="button">
-                                                                <span>
-                                                                    <i class="fas fa-edit"></i>
-                                                                    <p>Modíficar</p>
-                                                                </span>
-                                                            </button>
-                                                            <div class="dropdown-divider"></div>
-                                                            <button class="dropdown-item" type="button">
-                                                                <span>
-                                                                    <i class="fas fa-times"></i>
-                                                                    <p>Eliminar</p>
-                                                                </span>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>El puerto de la libertad</td>
-                                                <td class="td-actions text-center">
-                                                    <div class="dropdown">
-                                                        <i class="fas fa-ellipsis-h dash__dropdown" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
-                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                                            <button class="dropdown-item" type="button">
-                                                                <span>
-                                                                    <i class="fas fa-edit"></i>
-                                                                    <p>Modíficar</p>
-                                                                </span>
-                                                            </button>
-                                                            <div class="dropdown-divider"></div>
-                                                            <button class="dropdown-item" type="button">
-                                                                <span>
-                                                                    <i class="fas fa-times"></i>
-                                                                    <p>Eliminar</p>
-                                                                </span>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
                                         </tbody>
                                     </table>
+                                    <div id="sucursalesSpinner" class="w-100 text-center">
+                                        No hay ningún registro
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <?php
-                        dashboardTemplate::dashSucursales('add');
+                        dashboardTemplate::dashSucursales();
                         ?>
                     </div>
                 </div>
@@ -115,5 +46,5 @@ dashboardTemplate::dashMenu('sucursales');
     </div>
 </main>
 <?php
-dashboardTemplate::dashEnd();
+dashboardTemplate::dashEnd('sucursales.js');
 ?>

@@ -84,6 +84,10 @@ function fillTable(dataset) {
     }
 }
 
+function deleteProduct(id, el = false){
+    console.log(id);
+}
+
 function getProductReviewsData(idproducto, el = false ) {
     let identifier = { 'idproducto': idproducto };
 
@@ -149,15 +153,17 @@ function getProductReviews(identifier, el = false, empty = false ){
                                             </div>
                                             <div class="col-12 col-xl-8 pt-3 ml-xl-n3">
                                                 <div class="row">
-                                                    <div class="col-11 text-right">
-                                                        <button type="button" class="close review__close" id="review_eliminar" onclick="deleteReview(${review.idreview}, this)">
+                                                    <div class="col-11">
+                                                        <div class="col-12">
+                                                            <p class="mr-xl-5" id="review_comentario">${review.comentario}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-1 text-left">
+                                                        <button type="button" class="close review__close" id="review_eliminar" onclick="deleteReview(${review.idreal}, ${identifier.idproducto}, this)">
                                                             <span aria-hidden="true">
                                                                 <i class="fas fa-times p-1"></i>
                                                             </span>
                                                         </button>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <p class="mr-xl-5" id="review_comentario">${review.comentario}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -184,10 +190,40 @@ function getProductReviews(identifier, el = false, empty = false ){
     }
 };
 
-function modifyOrder(id, el = false){
-    console.log(id);
-}
+function deleteReview( idreview, idproducto, el=false, text=false)
+{
+    let identifier = { 'idreview': idreview };
+    console.log(idreview);
 
-function deleteOrder(id, el = false){
-    console.log(id);
+    function before(){};
+    if(el){
+        var buttons = el;
+        function before() {
+            buttons.innerHTML = '<div class="spinner-grow" role="status"><span class="sr-only">Cargando...</span></div>';
+        }
+    }
+    swal(4, (text ? text : '¿Desea eliminar la reseña?'), false, 0, true, del);
+    function del() {
+        $.ajax({
+            type: 'post',
+            url: API_REVIEW + 'delete',
+            data: identifier,
+            dataType: 'json',
+            beforeSend: before,
+        })
+        .done(function( response ) {
+            if ( response.status ) {
+                getProductReviewsData( idproducto );
+            } else {
+                swal( 2, response.exception);
+            }
+        })
+        .fail(function( jqXHR ) {
+            if ( jqXHR.status == 200 ) {
+                console.log( jqXHR.responseText );
+            } else {
+                console.log( jqXHR.status + ' ' + jqXHR.statusText );
+            }
+        });
+    }
 }

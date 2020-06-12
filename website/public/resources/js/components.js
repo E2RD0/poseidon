@@ -143,7 +143,7 @@ function confirmDelete( api, identifier, el=false, text=false)
     }
 }
 
-function saveRow( api, action, form, submitButton, checkErrors =[], id=0, complete = false)
+function saveRow( api, action, form, submitButton, checkErrors = [], id=0, complete = false)
 {
     var inner = submitButton.innerHTML;
     $.ajax({
@@ -160,7 +160,7 @@ function saveRow( api, action, form, submitButton, checkErrors =[], id=0, comple
         }
     })
     .done(function( response ) {
-        // If user is registered succesfully
+        // If user is registered successfully
         if (response.status==1) {
             readRows(api);
             swal(1, response.message);

@@ -69,6 +69,7 @@ function editRow(id){
     .done(function( response ) {
         if ( response.status ) {
             $('#categories-form')[0].reset();
+            $('#categories-title')[0].innerHTML = 'Modificar una categoría';
             $('#categories-submit')[0].innerHTML = 'Modificar categoría';
             $('#categories-cancel').toggleClass('d-none');
             $('#inputCategoría').attr("data-id",response.dataset.idcategoriaproducto)
@@ -104,8 +105,6 @@ $( '#categories-form' ).submit(function( event ) {
 });
 
 $('#categories-cancel')[0].addEventListener("click", cancelUpdate);
-
-
 
 function cancelUpdate(){
     $('#categories-form')[0].reset();

@@ -25,6 +25,15 @@ class Products extends \Common\Controller
         }
         return $result;
     }
+    public function getProductQuantities($result)
+    {
+        if ($result['dataset'] = $this->productsModel->getProductQuantities()) {
+            $result['status'] = 1;
+        } else {
+            $result['exception'] = 'No hay productos registrados';
+        }
+        return $result;
+    }
     public function create($data, $result)
     {
         $data = \Helpers\Validation::trimForm($data);
