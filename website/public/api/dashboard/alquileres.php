@@ -1,31 +1,25 @@
 <?php
 
 require_once __DIR__ . '/../../../app/init.php';
-require_once __DIR__ . '/../../../app/controllers/Orders.php';
+require_once __DIR__ . '/../../../app/controllers/Rentals.php';
 
 if (isset($_GET['action'])) {
     session_start();
     $action = $_GET['action'];
-    $ordersController = new \Orders;
+    $rentalsController = new \Rentals;
     $result = array('status' => 0, 'message' => null, 'exception' => null, 'errors' => []);
 
 
     if (isset($_SESSION['user_id'])) {
         switch ($action) {
             case 'show':
-                $result = $ordersController->showOrders($result);
-                break;
-            case 'orderCount':
-                $result = $ordersController->getOrdersCount($result);
+                $result = $rentalsController->showRentals($result);
                 break;
             case 'generalDetails':
-                $result = $ordersController->getOrderGeneralDetails($_POST, $result);
+                $result = $rentalsController->getRentalGeneralDetails($_POST, $result);
                 break;
             case 'specificDetails':
-                $result = $ordersController->getOrderDetails($_POST, $result);
-                break;
-            case 'recentOrders':
-                $result = $ordersController->getRecentOrders($result);
+                $result = $rentalsController->getRentalDetails($_POST, $result);
                 break;
             default:
                 \Common\Core::http404();

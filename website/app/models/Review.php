@@ -83,12 +83,16 @@ class Review
             return $v->errors();
         }
     }
-
-    public function getReviews($value)
+    public function getProductReviews($data)
     {
         $db = new \Common\Database;
-        $db->query('SELECT * FROM review WHERE idreview = :idreview');
-        $db->bind(':idreview', $value);
+        $db->query('SELECT * FROM getProductReviews(' . $data . ')');
+        return $db->resultSet();
+    }
+    public function getProductReviewData($data)
+    {
+        $db = new \Common\Database;
+        $db->query('SELECT * FROM getProductReviewData(' . $data . ')');
         return $db->resultSet();
     }
     public function getReviewsCount($value)
@@ -98,6 +102,7 @@ class Review
         $db->bind(':idreview', $value);
         return $db->rowCount();
     }
+
     public function insertReview($value)
     {
         $db = new \Common\Database;

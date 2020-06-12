@@ -23,14 +23,14 @@ dashboardTemplate::dashMenu('ordenes');
                                     <th>No. de orden</th>
                                     <th>Nombre del cliente</th>
                                     <th>Dirección</th>
-                                    <th>Total</th>
+                                    <th>Subtotal</th>
                                     <th class="text-center">Fecha de la compra</th>
                                     <th class="text-right"></th>
                                 </tr>
                             </thead>
                             <tbody>
                             </tbody>
-                            <div id="categoriesSpinner" class="w-100 text-center">
+                            <div id="ordersSpinner" class="w-100 text-center">
                                 No hay ningún registro
                             </div>
                         </table>

@@ -27,9 +27,9 @@ class dashboardTemplate
                 <div class="wrapper">');
     }
 
-    public static function dashEnd($ajax)
+    public static function dashEnd(...$ajax)
     {
-        echo ('</div>
+         echo '</div>
             </body>
             <script src="' . HOME_PATH . 'resources/js/vendor/jquery-3.4.1.min.js"></script>
             <script src="' . HOME_PATH . 'resources/js/vendor/bootstrap.bundle.min.js"></script>
@@ -41,9 +41,11 @@ class dashboardTemplate
             <script src="' . HOME_PATH . 'resources/js/vendor/sweetalert2.all.min.js"></script>
             <script> var HOME_PATH = "'. HOME_PATH .'" </script>
             <script src="' . HOME_PATH . 'resources/js/components.js"></script>
-            <script src="' . HOME_PATH . 'resources/js/ajax/account.js"></script>
-            <script src="' . HOME_PATH . 'resources/js/ajax/' .$ajax.'"></script>
-            </html>');
+            <script src="' . HOME_PATH . 'resources/js/ajax/account.js"></script>';
+        foreach ($ajax as $script) {
+            echo '<script src="' . HOME_PATH . 'resources/js/ajax/' . $script .'"></script>';
+        }
+        echo '</html>';
     }
 
     public static function dashMenu($page)
@@ -176,7 +178,7 @@ class dashboardTemplate
                             </a>
                         </li>' .
                         (($page == 'productos') ? '<li class="active">' : '<li class="">') . '
-                            <a href="productos.php">
+                            <a href="' . HOME_PATH . 'dashboard/productos">
                                 <span class="icon">
                                     <svg class="icon__svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 33 33" style="enable-background:new 0 0 33 33;" xml:space="preserve" width="33" height="33">
                                         <style type="text/css">
@@ -203,7 +205,7 @@ class dashboardTemplate
                             </a>
                         </li>' .
                         (($page == 'clientes') ? '<li class="active">' : '<li class="">') . '
-                            <a href="clientes.php">
+                            <a href="' . HOME_PATH . 'dashboard/clientes">
                                 <span class="icon">
                                     <svg class="icon__svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 33 28.8" style="enable-background:new 0 0 33 28.8;" xml:space="preserve" width="33" height="28.8">
                                         <style type="text/css">
@@ -237,7 +239,7 @@ class dashboardTemplate
                             </a>
                         </li>' .
                         (($page == 'usuarios') ? '<li class="active">' : '<li class="">') . '
-                            <a href="usuarios.php">
+                            <a href="' . HOME_PATH . 'dashboard/usuarios">
                                 <span class="icon">
                                     <svg version="1.1" class="icon__svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 33 32.8" style="enable-background:new 0 0 33 32.8;" xml:space="preserve" width="33" height="32.8">
                                         <style type="text/css">
@@ -257,7 +259,7 @@ class dashboardTemplate
                             </a>
                         </li>' .
                         (($page == 'parametros') ? '<li class="active">' : '<li class="">') . '
-                            <a href="parametros.php">
+                            <a href="' . HOME_PATH . 'dashboard/opcionesgenerales">
                                 <span class="icon">
                                     <svg class="icon__svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 33 33" style="enable-background:new 0 0 33 33;" xml:space="preserve" width="33" height="33">
                                         <style type="text/css">
@@ -282,7 +284,7 @@ class dashboardTemplate
                     <div class="dash__footer">
                         <ul>' .
                         (($page == 'user') ? '<li class="active">' : '<li class="">') . '
-                                <a href="user.php">
+                                <a href="' . HOME_PATH . 'dashboard/user">
                                     <span class="icon">
                                         <svg class="icon__svg" width="33px" height="33px" data-name="Layer 2" viewBox="0 0 33 33" xmlns="http://www.w3.org/2000/svg">
                                             <style type="text/css">
@@ -340,20 +342,20 @@ class dashboardTemplate
                             </div>
 
                             <ul class="navbar__links">
-                                <li><a href="dashboard.php">Dashboard</a></li>
-                                <li><a href="ordenes.php">Ordenes</a></li>
-                                <li><a href="alquileres">Alquileres</a></li>
-                                <li><a href="sucursales.php">Sucursales</a></li>
-                                <li><a href="categorias.php">Categorías</a></li>
-                                <li><a href="productos.php">Productos</a></li>
-                                <li><a href="clientes.php">Clientes</a></li>
-                                <li><a href="usuarios.php">Usuarios</a></li>
-                                <li><a href="parametros.php">Parámetros</a></li>
+                                <li><a href="' . HOME_PATH . 'dashboard">Dashboard</a></li>
+                                <li><a href="' . HOME_PATH . 'dashboard/ordenes">Ordenes</a></li>
+                                <li><a href="' . HOME_PATH . 'dashboard/alquileres">Alquileres</a></li>
+                                <li><a href="' . HOME_PATH . 'dashboard/sucursales">Sucursales</a></li>
+                                <li><a href="' . HOME_PATH . 'dashboard/categorias">Categorías</a></li>
+                                <li><a href="' . HOME_PATH . 'dashboard/productos">Productos</a></li>
+                                <li><a href="' . HOME_PATH . 'dashboard/clientes">Clientes</a></li>
+                                <li><a href="' . HOME_PATH . 'dashboard/usuarios">Usuarios</a></li>
+                                <li><a href="' . HOME_PATH . 'dashboard/opcionesgenerales">Parámetros</a></li>
                             </ul>
 
                             <ul class="navbar__links navbar__icons">
-                                <li><a href="user.php"><img src="' . HOME_PATH . 'resources/img/dashboard/cuenta.svg"></a></li>
-                                <li><a href="index.php"><img src="' . HOME_PATH . 'resources/img/dashboard/logout.svg"></a></li>
+                                <li><a href="' . HOME_PATH . 'dashboard/user"><img src="' . HOME_PATH . 'resources/img/dashboard/cuenta.svg"></a></li>
+                                <li><a href="javascript:void" onclick="logout();"><img src="' . HOME_PATH . 'resources/img/dashboard/logout.svg"></a></li>
                             </ul>
                         </div>
                     </nav>
@@ -378,7 +380,7 @@ class dashboardTemplate
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-12 d-flex flex-row justify-content-between mt-4 m-1">
-                                    <h3 class="dash__modal_title p-0 ml-4">Orden No. 1</h3>
+                                    <h3 class="dash__modal_title p-0 ml-4" id="modal_id"></h3>
                                     <button
                                         type="button"
                                         class="close mr-5"
@@ -397,7 +399,7 @@ class dashboardTemplate
                                             <p class="dash__modal_field">Cliente</p>
                                         </div>
                                         <div class="col-8">
-                                            <p>Grand Marshal</p>
+                                            <p id="modal_cliente"></p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -405,26 +407,25 @@ class dashboardTemplate
                                             <p class="dash__modal_field">Email</p>
                                         </div>
                                         <div class="col-8">
-                                            <p>grandmarshal@gmail.com</p>
+                                            <p id="modal_email"></p>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <p class="dash__modal_field">TelÃ©fono</p>
+                                            <p class="dash__modal_field">Teléfono</p>
                                         </div>
                                         <div class="col-8">
-                                            <p>01718332233</p>
+                                            <p id="modal_telefono"></p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <p class=" dash__modal_field">DirecciÃ³n</p>
+                                            <p class="dash__modal_field">Dirección</p>
                                         </div>
                                         <div class="col-md-8">
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae beatae
-                                                consequatur eveniet culpa omnis obcaecati quibusdam, sint dolore.</p>
+                                            <p id="modal_direccion"></p>
                                         </div>
                                     </div>
                                 </div>
@@ -442,37 +443,10 @@ class dashboardTemplate
                                         <th scope="col">Precio</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Pencil (2B)</td>
-                                        <td>1 Dozen</td>
-                                        <td>$9.99</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Sharpner</td>
-                                        <td>1 single</td>
-                                        <td>$15.99</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Drawing Paper</td>
-                                        <td>1 quire</td>
-                                        <td>$89.99</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">4</th>
-                                        <td>CAT5 Cable</td>
-                                        <td>2 meter</td>
-                                        <td>$99.99</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">5</th>
-                                        <td>Sticky Notes</td>
-                                        <td>2 packet</td>
-                                        <td>$349.99</td>
-                                    </tr>
+                                <tbody id="modal_table">
+                                    <div id="modalSpinner" class="w-100 text-center">
+                                        No hay ningún registro
+                                    </div>
                                 </tbody>
                             </table>
                         </div>
@@ -484,7 +458,7 @@ class dashboardTemplate
                                             <p class="dash__modal_field">Fecha de compra</p>
                                         </div>
                                         <div class="col-md-7 col-6">
-                                            <p>07/02/2020</p>
+                                            <p id="modal_fecha_compra"></p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -492,39 +466,33 @@ class dashboardTemplate
                                             <p class="dash__modal_field">Fecha de entrega</p>
                                         </div>
                                         <div class="col-md-7 col-6">
-                                            <p>08/02/2020</p>
+                                            <p id="modal_fecha_entrega"></p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6 my-3">
                                     <div class="row">
                                         <div class="col-md-8 col-6 dash__align">
-                                            <p class="dash__modal_field">Subtotal
-                                            </p>
+                                            <p class="dash__modal_field">Subtotal</p>
                                         </div>
                                         <div class="col-md-4 col-6">
-                                            <p>$565.95
-                                            </p>
+                                            <p id="modal_subtotal"></p>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-8 col-6 dash__align">
-                                            <p class="dash__modal_field">IVA (13%)
-                                            </p>
+                                            <p class="dash__modal_field">IVA (13%)</p>
                                         </div>
                                         <div class="col-md-4 col-6">
-                                            <p>$73.58
-                                            </p>
+                                            <p id="modal_iva"></p>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-8 col-6 dash__align">
-                                            <p class="dash__modal_field">Total (+IVA)
-                                            </p>
+                                            <p class="dash__modal_field">Total (+IVA)</p>
                                         </div>
                                         <div class="col-md-4 col-6">
-                                            <p>$639.53
-                                            </p>
+                                            <p id="modal_total"></p>
                                         </div>
                                     </div>
                                 </div>
@@ -557,7 +525,7 @@ class dashboardTemplate
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-12 d-flex flex-row justify-content-between mt-4 m-1">
-                                <h3 class="dash__modal_title p-0 ml-4">Alquiler No. 1</h3>
+                                <h3 class="dash__modal_title p-0 ml-4" id="modal_idalquiler"></h3>
                                 <button
                                     type="button"
                                     class="close mr-5"
@@ -576,7 +544,7 @@ class dashboardTemplate
                                         <p class="dash__modal_field">Cliente</p>
                                     </div>
                                     <div class="col-8">
-                                        <p>Grand Marshal</p>
+                                        <p id="modal_cliente"></p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -584,15 +552,15 @@ class dashboardTemplate
                                         <p class="dash__modal_field">Email</p>
                                     </div>
                                     <div class="col-8">
-                                        <p>grandmarshal@gmail.com</p>
+                                        <p id="modal_email"></p>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <p class="dash__modal_field">TelÃ©fono</p>
+                                        <p class="dash__modal_field">Teléfono</p>
                                     </div>
                                     <div class="col-8">
-                                        <p>01718332233</p>
+                                        <p id="modal_telefono"></p>
                                     </div>
                                 </div>
                             </div>
@@ -602,7 +570,7 @@ class dashboardTemplate
                                         <p class=" dash__modal_field">Sucursal</p>
                                     </div>
                                     <div class="col-md-8">
-                                        <p>Lorem ipsum dolor sit amet.</p>
+                                        <p id="modal_sucursal"></p></p>
                                     </div>
                                 </div>
                                 <div class="row flex-wrap">
@@ -610,15 +578,15 @@ class dashboardTemplate
                                         <p class="dash__modal_field">Fecha de alquiler</p>
                                     </div>
                                     <div class="col-md-7 col-6">
-                                        <p>10/02/2020</p>
+                                        <p id="modal_fechaalquiler"></p>
                                     </div>
                                 </div>
                                 <div class="row flex-wrap">
                                     <div class="col-md-5 col-6">
-                                        <p class="dash__modal_field">Fecha de devoluciÃ³n</p>
+                                        <p class="dash__modal_field">Fecha de devolución</p>
                                     </div>
                                     <div class="col-md-7 col-6">
-                                        <p>09/02/2020</p>
+                                        <p id="modal_fechadevolucion"></p>
                                     </div>
                                 </div>
                             </div>
@@ -632,42 +600,14 @@ class dashboardTemplate
                                 <tr class="dash_modal_thead">
                                     <th scope="col">No.</th>
                                     <th scope="col">Producto</th>
-                                    <th scope="col">Cantidad</th>
-                                    <th scope="col">Precio de alquiler</th>
+                                    <th scope="col">Precio del alquiler</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Pencil (2B)</td>
-                                    <td>1 Dozen</td>
-                                    <td>$9.99</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Sharpner</td>
-                                    <td>1 single</td>
-                                    <td>$15.99</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Drawing Paper</td>
-                                    <td>1 quire</td>
-                                    <td>$89.99</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">4</th>
-                                    <td>CAT5 Cable</td>
-                                    <td>2 meter</td>
-                                    <td>$99.99</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">5</th>
-                                    <td>Sticky Notes</td>
-                                    <td>2 packet</td>
-                                    <td>$349.99</td>
-                                </tr>
+                            <tbody id="modal_table">
                             </tbody>
+                            <div id="modalSpinner" class="w-100 text-center">
+                                No hay ningún registro
+                            </div>
                         </table>
                     </div>
                     <div class="dash__modal_bottom">
@@ -678,39 +618,33 @@ class dashboardTemplate
                                         <p class="dash__modal_field">Fecha de compra</p>
                                     </div>
                                     <div class="col-md-7 col-6">
-                                        <p>07/02/2020</p>
+                                        <p id="modal_fechacompra"></p>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6 my-3">
                                 <div class="row">
                                     <div class="col-md-8 col-6 dash__align">
-                                        <p class="dash__modal_field">Subtotal
-                                        </p>
+                                        <p class="dash__modal_field">Subtotal</p>
                                     </div>
                                     <div class="col-md-4 col-6">
-                                        <p>$565.95
-                                        </p>
+                                        <p id="modal_subtotal"></p>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-8 col-6 dash__align">
-                                        <p class="dash__modal_field">IVA (13%)
-                                        </p>
+                                        <p class="dash__modal_field">IVA (13%)</p>
                                     </div>
                                     <div class="col-md-4 col-6">
-                                        <p>$73.58
-                                        </p>
+                                        <p id="modal_iva"></p>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-8 col-6 dash__align">
-                                        <p class="dash__modal_field">Total (+IVA)
-                                        </p>
+                                        <p class="dash__modal_field">Total (+IVA)</p>
                                     </div>
                                     <div class="col-md-4 col-6">
-                                        <p>$639.53
-                                        </p>
+                                        <p id="modal_total"></p>
                                     </div>
                                 </div>
                             </div>
@@ -772,6 +706,49 @@ class dashboardTemplate
                     </div>
                 </div>
             </div>
+        ');
+    }
+
+    public static function dashReviews(){
+        echo ('
+            <div class="modal fade dash__full" id="review" tabindex="-1" role="dialog" aria-labelledby="review" aria-hidden="true" data-backdrop="static">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-zoom dash_review-modal-mxs" role="document" id="check_mq">
+                    <div class="modal-content">
+                        <div class="container-fluid">
+                            <div class="row mx-lg-5">
+                                <div class="col-12 col-md-2 mt-1">
+                                    <ul class="nav nav-categorias justify-content-center justify-content-lg-start" role="tablist">
+                                        <li class="nav-item">
+                                            <a data-toggle="tab" href="#productos" class="nav-link active dash__tab_title" aria-expanded="true">Reseñas</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-10">
+                                    <div class="row">
+                                        <div class="col-6 mt-3">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <p class="font-weight-bold">Producto:</p>
+                                                    <p class="mt-n3" id="producto"></p>
+                                                    <p class="mt-n3 dash__sc1c_text font-italic" id="review_contador"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 text-right mt-2">
+                                            <button type="button" class="ml-auto btn recover__button" data-dismiss="modal">Atrás</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-5">
+                                <div class="col-12">
+                                    <div class="row mx-xl-5" id="review_contenedor">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
         ');
     }
 

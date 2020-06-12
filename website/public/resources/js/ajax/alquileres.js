@@ -1,7 +1,7 @@
-const API_ORDENES = HOME_PATH + 'api/dashboard/ordenes.php?action=';
+const API_ORDENES = HOME_PATH + 'api/dashboard/alquileres.php?action=';
 
 $(document).ready(function () {
-    readRows(API_ORDENES, $('#ordersSpinner')[0]);
+    readRows(API_ORDENES, $('#alquileresSpinner')[0]);
 });
 
 // Función para llenar la tabla con los datos enviados por readRows().
@@ -30,15 +30,16 @@ function fillTable(dataset) {
             columns: [
                 { data: 'idorden' },
                 { data: 'cliente' },
-                { data: 'direccion' },
-                { data: 'total' },
+                { data: 'sucursal' },
                 { data: 'fechacompra' },
+                { data: 'fechasalquiler' },
+                { data: 'totalalquiler' },
                 {
                     data: null,
                     orderable: false,
                     render: function (data, type, row) {
                         return `
-                        <button class="btn dash__table_button" type="button" data-toggle="modal" data-target="#orden" onclick="getOrderDetails(${data['idorden']}, this)" id="modal_open">
+                        <button class="btn dash__table_button" type="button" data-toggle="modal" data-target="#alquiler" onclick="getRentalDetails(${data['idorden']}, this)" id="modal_open">
                             Más detalles
                         </button>`;
                     },
@@ -49,8 +50,7 @@ function fillTable(dataset) {
     }
 }
 
-
-function getOrderDetails( idorden, el = false ) {
+function getRentalDetails( idorden, el = false ) {
     let identifier = { idorden: idorden };
     console.log(identifier);
 
@@ -74,21 +74,23 @@ function getOrderDetails( idorden, el = false ) {
         complete: after,
         success: function (response) {
             let jsonResponse = response.dataset;
+            console.log(jsonResponse);
 
-            jsonResponse.forEach(order => {
-                $('#modal_id').html('Orden No. '+order.idorden);
-                $('#modal_cliente').html(order.cliente);
-                $('#modal_email').html(order.email);
-                $('#modal_telefono').html(order.telefono);
-                $('#modal_direccion').html(order.direccion);
-                $('#modal_fecha_compra').html(order.fechacompra);
-                $('#modal_fecha_entrega').html(order.fechaentrega);
-                $('#modal_subtotal').html('$'+order.subtotal);
-                $('#modal_iva').html('$'+order.iva);
-                $('#modal_total').html('$'+order.total);
+            jsonResponse.forEach(rental => {
+                $('#modal_idalquiler').html('Alquiler No. '+rental.idalquiler);
+                $('#modal_cliente').html(rental.cliente);
+                $('#modal_email').html(rental.email);
+                $('#modal_telefono').html(rental.telefono);
+                $('#modal_sucursal').html(rental.sucursal);
+                $('#modal_fechaalquiler').html(rental.fechaalquiler);
+                $('#modal_fechadevolucion').html(rental.fechadevolucion);
+                $('#modal_fechacompra').html(rental.fechacompra);
+                $('#modal_subtotal').html('$'+rental.subtotal);
+                $('#modal_iva').html('$'+rental.iva);
+                $('#modal_total').html('$'+rental.total);
             });
 
-            fetchOrderDetails(identifier, $('#modalSpinner')[0]);
+            fetchRentalDetails(identifier, $('#modalSpinner')[0]);
         },
         error: function (jqXHR) {
             // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
@@ -101,7 +103,7 @@ function getOrderDetails( idorden, el = false ) {
     });
 };
 
-function fetchOrderDetails( id, el = false ){
+function fetchRentalDetails( id, el = false ){
 
     function before() { };
     function after() { };
@@ -123,14 +125,14 @@ function fetchOrderDetails( id, el = false ){
         success: function (response) {
             let jsonResponse = response.dataset;
             let tableRow = '';
+            console.log(jsonResponse);
 
-            jsonResponse.forEach(order => {
+            jsonResponse.forEach(rental => {
                 tableRow += `
                             <tr>
-                                <th scope="row">${order.idproducto}</th>
-                                <td>${order.nombre}</td>
-                                <td>${order.cantidad}</td>
-                                <td>${order.preciounitario}</td>
+                                <th scope="row">${rental.idproducto}</th>
+                                <td>${rental.nombre}</td>
+                                <td>${rental.precioalquiler}</td>
                             </tr>`;
             });
             $('#modal_table').html(tableRow);

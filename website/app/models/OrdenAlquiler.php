@@ -159,19 +159,31 @@ class OrdenAlquiler
             return $v->errors();
         }
     }
-
-    public function getRentalOrders()
-    {
-        $db = new \Common\Database;
-        $db->query('SELECT * FROM ordenalquiler');
-        return $db->resultSet();
-    }
     public function getRentalOrdersCount()
     {
         $db = new \Common\Database;
-        $db->query('SELECT * FROM ordenalquiler');
+        $db->query('SELECT * FROM getRentals()');
         return $db->rowCount();
     }
+    public function getRentalOrders()
+    {
+        $db = new \Common\Database;
+        $db->query('SELECT * FROM getRentals()');
+        return $db->resultSet();
+    }
+    public function getRentalGeneralDetails($value)
+    {
+        $db = new \Common\Database;
+        $db->query('SELECT * FROM getRentalGeneralDetails(' . $value . ')');
+        return $db->resultSet();
+    }
+    public function getRentalDetails($value)
+    {
+        $db = new \Common\Database;
+        $db->query('SELECT * FROM getRentalDetails(' . $value . ')');
+        return $db->resultSet();
+    }
+
     public function insertRentalOrder($user)
     {
         $db = new \Common\Database;

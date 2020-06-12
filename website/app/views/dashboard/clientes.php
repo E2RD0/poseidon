@@ -340,5 +340,5 @@ dashboardTemplate::dashMenu('clientes');
 </main>
 
 <?php
-dashboardTemplate::dashEnd();
+dashboardTemplate::dashEnd('clientes.php');
 ?>

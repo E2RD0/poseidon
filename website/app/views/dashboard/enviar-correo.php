@@ -43,5 +43,5 @@ loginTemplate::loginHead("Recuperar contraseña");
 </main>
 
 <?php
-loginTemplate::loginEnd();
+loginTemplate::loginEnd('recover-password.js');
 ?>
