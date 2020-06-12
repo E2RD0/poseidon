@@ -21,7 +21,12 @@ dashboardTemplate::dashMenu('user');
                                 <div class="tab-pane active py-3 px-3 px-sm-0" id="agregarusuario" role="tabpanel">
                                     <div class="row my-5">
                                         <div class="col-12 col-lg-6 mx-md-auto">
-                                            <div class="ml-lg-4">
+                                            <form class="ml-lg-4" action="" method="post" id="settings-form">
+                                              <div class="d-flex justify-content-center" id="spinnerSettings">
+                                              <div class="spinner-grow" role="status" >
+                                                <span class="sr-only">Loading...</span>
+                                              </div>
+                                              </div>
                                                 <div class="row mt-4 ml-md-2">
                                                     <div class="col-12 col-md-3 ml-md-0">
                                                         <p class="text-md-right">Nombre(s)</p>
@@ -30,8 +35,9 @@ dashboardTemplate::dashMenu('user');
                                                         <div class="col-12">
                                                             <div class="form-field">
                                                                 <div class="form-field__control">
-                                                                    <input id="text" type="text" class="dash__text_fields form-field__input" />
+                                                                    <input id="inputNombre" name="nombre" type="text" class="dash__text_fields form-field__input" required />
                                                                 </div>
+                                                                <p class="form-error-label" id="errorNombre"></p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -44,8 +50,9 @@ dashboardTemplate::dashMenu('user');
                                                         <div class="col-12">
                                                             <div class="form-field">
                                                                 <div class="form-field__control">
-                                                                    <input id="text" type="text" class="dash__text_fields form-field__input" />
+                                                                    <input id="inputApellido" name="apellido" type="text" class="dash__text_fields form-field__input" required />
                                                                 </div>
+                                                                <p class="form-error-label" id="errorApellido"></p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -58,22 +65,24 @@ dashboardTemplate::dashMenu('user');
                                                         <div class="col-12">
                                                             <div class="form-field">
                                                                 <div class="form-field__control">
-                                                                    <input id="text" type="email" class="dash__text_fields form-field__input" />
+                                                                    <input id="inputEmail" name="email" type="email" class="dash__text_fields form-field__input" required />
                                                                 </div>
+                                                                <p class="form-error-label" id="errorEmail"></p>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="row mt-4 ml-md-2">
                                                     <div class="col-12 col-md-3 ml-md-0">
-                                                        <p class="text-md-right">Cambiar contraseña</p>
+                                                        <p class="text-md-right" id="pCambiarContraseña">Cambiar contraseña</p>
                                                     </div>
                                                     <div class="col-12 col-md-8">
                                                         <div class="col-12">
                                                             <div class="form-field">
                                                                 <div class="form-field__control">
-                                                                    <input id="clave" type="password" class="dash__text_fields form-field__input" required id="recordar" data-toggle="collapse" href="#contra" role="button" aria-expanded="false" aria-controls="collapseExample" />
-                                                                    <i class="fas fa-eye password__show"></i> </div>
+                                                                    <input id="inputContraseña" name="password" type="password" class="dash__text_fields form-field__input" />
+                                                                </div>
+                                                                <p class="form-error-label" id="errorContraseña"></p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -87,8 +96,9 @@ dashboardTemplate::dashMenu('user');
                                                             <div class="col-12">
                                                                 <div class="form-field">
                                                                     <div class="form-field__control">
-                                                                        <input id="clave" type="password" class="dash__text_fields form-field__input" required />
-                                                                        <i class="fas fa-eye password__show"></i> </div>
+                                                                        <input id="inputNuevaContraseña" name="newPassword" type="password" class="dash__text_fields form-field__input" />
+                                                                    </div>
+                                                                        <p class="form-error-label" id="errorNuevaContraseña"></p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -101,9 +111,10 @@ dashboardTemplate::dashMenu('user');
                                                             <div class="col-12">
                                                                 <div class="form-field">
                                                                     <div class="form-field__control">
-                                                                        <input id="clave" type="password" class="dash__text_fields form-field__input" required />
+                                                                        <input id="inputNewPasswordR" name="newPasswordR" type="password" class="dash__text_fields form-field__input" />
                                                                         <i class="fas fa-eye password__show"></i>
                                                                     </div>
+                                                                    <p class="form-error-label" id="errorNewPasswordR"></p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -112,12 +123,12 @@ dashboardTemplate::dashMenu('user');
                                                 <div class="row justify-content-center justify-content-md-end">
                                                     <div class="">
                                                         <div class="mr-md-5 text-center">
-                                                            <button type="button" class="ml-auto btn recover__button" onclick="location.href='dashboard.php'">Cancelar</button>
-                                                            <button type="button" class="btn main__button">Guardar cambios</button>
+                                                            <button type="button" class="ml-auto btn recover__button" onclick="redirect('dashboard', true)">Cancelar</button>
+                                                            <button id="settings-submit" type="submit" class="btn main__button">Guardar cambios</button>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -129,5 +140,5 @@ dashboardTemplate::dashMenu('user');
         </div>
 </main>
 <?php
-dashboardTemplate::dashEnd();
+dashboardTemplate::dashEnd('accountSettings.js');
 ?>

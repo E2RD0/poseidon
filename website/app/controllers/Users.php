@@ -64,6 +64,8 @@ class Users extends \Common\Controller
             if ($userHash) {
                 if (password_verify($password, trim($userHash->contrasena))) {
                     $_SESSION['user_id'] = $userHash->idusuario;
+                    $_SESSION['user_name'] = $userHash->nombre;
+                    $_SESSION['user_type'] = $userHash->idtipousuario;
                     $_SESSION['user_email'] = $email;
                     $result['status'] = 1;
                     $result['message'] = 'Autenticación correcta';
@@ -92,4 +94,83 @@ class Users extends \Common\Controller
         }
         return $result;
     }
+
+    public function getUserInfo($id, $result)
+    {
+        if ($result['dataset'] = $this->usersModel-> getUser($id)) {
+            $result['status'] = 1;
+        } else {
+            $result['exception'] = 'Hubo un error al cargar los datos';
+        }
+        return $result;
+    }
+
+    public function updateUser($userData, $result)
+    {
+        $userData = \Helpers\Validation::trimForm($userData);
+        $idUsuario = isset($userData['id']) ? $userData['id']: $_SESSION['user_id'] ;
+        $idTipoUsuario = isset($userData['idTipoUsuario']) ? $userData['idTipoUsuario']: $_SESSION['user_type'] ;
+
+        $userInfo= $this->usersModel->getUser($idUsuario);
+
+        $nombre = $userData['nombre'];
+        $apellido = $userData['apellido'];
+        $email = $userInfo->email == $userData['email'] ?  $userInfo->email : $userData['email'] ;
+        $currentPassword = $userData['password'];
+        $newPassword = $userData['newPassword'];
+        $newPasswordR = $userData['newPasswordR'];
+
+        $user = new Usuario;
+        $errors = [];
+        $errors = $user->setId($idUsuario) === true ? $errors : array_merge($errors, $user->setId($idUsuario));
+        $errors = $user->setNombre($nombre) === true ? $errors : array_merge($errors, $user->setNombre($nombre));
+        $errors = $user->setApellido($apellido) === true ? $errors : array_merge($errors, $user->setApellido($apellido));
+        if($email != $userInfo->email)
+        {
+            $errors = $user->setEmail($email) === true ? $errors : array_merge($errors, $user->setEmail($email));
+        }
+        else {
+            $errors = $user->setEmail($email, true) === true ? $errors : array_merge($errors, $user->setEmail($email, true));
+        }
+        $errors = $user->setIdTipo($idTipoUsuario) === true ? $errors : array_merge($errors, $user->setIdTipo($idTipoUsuario));
+
+        if($currentPassword || $newPassword || $newPasswordR){
+            if (password_verify($currentPassword, trim($userInfo->contrasena))) {
+                $errors = $user->setPassword($newPassword,true, 'Nueva Contraseña') === true ? $errors : array_merge($errors, $user->setPassword($newPassword, true, 'Nueva Contraseña'));
+                if($newPasswordR){
+                    if($newPassword != $newPasswordR){
+                        $errors['NewPasswordR'] = ['Las contraseñas no coinciden'];
+                    }
+                }
+                else{
+                    $errors['NewPasswordR'] = ['Este campo es obligatorio'];
+                }
+            }
+            else{
+                $errors['Contraseña'] = ['Contraseña incorrecta.'];
+                $errors = $user->setPassword($currentPassword,false) === true ? $errors : array_merge($errors, $user->setPassword($currentPassword, false));
+            }
+        }
+        //If there aren't any errors
+        if (!boolval($errors)) {
+            if ($this->usersModel->updateUser($user)) {
+                $result['status'] = 1;
+                $result['message'] = 'Usuario actualizado correctamente';
+                if(!isset($userData['id'])){
+                    $_SESSION['user_id'] = $user->getId();
+                    $_SESSION['user_name'] = $user->getNombre();
+                    $_SESSION['user_type'] = $user->getIdTipo();
+                    $_SESSION['user_email'] = $user->getEmail();
+                }
+            } else {
+                $result['status'] = -1;
+                $result['exception'] = \Common\Database::$exception;
+            }
+        } else {
+            $result['exception'] = 'Error en uno de los campos';
+            $result['errors'] = $errors;
+        }
+        return $result;
+    }
+
 }

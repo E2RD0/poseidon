@@ -53,7 +53,7 @@ class Categories extends \Common\Controller
     public function update($data, $result) {
         $data = \Helpers\Validation::trimForm($data);
         $nombreCategoria = $data['categoria'];
-        $idCategoria = intval($data['id_categoria']);
+        $idCategoria = intval($data['id']);
 
         $categoria = new CategoriaProducto;
         $errors = [];

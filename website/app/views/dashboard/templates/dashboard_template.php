@@ -12,7 +12,6 @@ class dashboardTemplate
                 <meta http-equiv="x-ua-compatible" content="ie=edge">
                 <meta name="theme-color" content="#171717">
                 <title>' . $title . '</title>
-                <link rel="manifest" href="site.webmanifest">
                 <link rel="stylesheet" href="' . HOME_PATH . 'resources/css/all.min.css">
                 <link rel="stylesheet" href="' . HOME_PATH . 'resources/webfonts/fonts-dashboard.css">
                 <link rel="stylesheet" href="' . HOME_PATH . 'resources/css/normalize.css">
@@ -297,12 +296,12 @@ class dashboardTemplate
                                         </svg>
                                     </span>
                                     <span class="title">
-                                        <p>Bryan</p>
+                                        <p>' . $_SESSION['user_name'] . '</p>
                                     </span>
                                 </a>
                             </li>
                             <li>
-                                <a href="javascript:void" onclick="logout();">
+                                <a href="javascript:void(0)" onclick="logout();">
                                     <span class="icon">
                                         <svg class="icon__svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 33 33" style="enable-background:new 0 0 33 33;" xml:space="preserve" width="33" height="33">
                                             <style type="text/css">

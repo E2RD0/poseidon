@@ -1,7 +1,7 @@
 //Check for errors on input fields
 function checkFields(errors, fieldName){
-    var label = document.getElementById('error' + fieldName);
-    var input = document.getElementById('input' + fieldName);
+    var label = document.getElementById('error' + fieldName.replace(/ /g,''));
+    var input = document.getElementById('input' + fieldName.replace(/ /g,''));
     if (errors[fieldName]) {
         label.innerHTML = errors[fieldName][0];
         input.classList.add('error');
@@ -60,8 +60,13 @@ function swal(type, text, url = false, timer=0, allowCancel = false, callback = 
 }
 
 //redirects to specified url
-function redirect(url){
-    window.location.replace(window.location.origin + HOME_PATH + url);
+function redirect(url, link=false){
+    if(link){
+        window.location.href = window.location.origin + HOME_PATH + url;
+    }
+    else{
+        window.location.replace(window.location.origin + HOME_PATH + url);
+    }
 }
 
 function readRows( api , el=false)
@@ -144,7 +149,7 @@ function saveRow( api, action, form, submitButton, id=0, complete = false)
     $.ajax({
         type: 'post',
         url: api + action,
-        data: $(form).serialize()+"&id_categoria="+id,
+        data: $(form).serialize()+"&id="+id,
         dataType: 'json',
         beforeSend: function() {
             submitButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Cargando...';

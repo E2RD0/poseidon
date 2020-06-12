@@ -14,4 +14,8 @@ class User extends \Common\Controller
     {
         $this->loadView('dashboard', 'index', false);
     }
+    public function settings()
+    {
+        $this->loadView('dashboard', 'user');
+    }
 }
