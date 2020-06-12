@@ -105,15 +105,20 @@ function confirmDelete( api, identifier, el=false, text=false)
     function before(){};
     function after(){};
     if(el){
-        var buttons = el.closest(".td-actions");
-        var innerButtons = buttons.innerHTML;
+        if(el.closest(".td-actions")){
+            var buttons = el.closest(".td-actions");
+            var innerButtons = buttons.innerHTML;
+        }
         function before() {
-            buttons.innerHTML = '<div class="spinner-grow" role="status"><span class="sr-only">Cargando...</span></div>';
+            if(buttons)
+                buttons.innerHTML = '<div class="spinner-grow" role="status"><span class="sr-only">Cargando...</span></div>';
         }
         function after() {
-            buttons.innerHTML = innerButtons;
-            $(buttons).children().find('.dropdown').toggleClass('show');
-            $(buttons).children().find('.dropdown-menu').toggleClass('show');
+            if(buttons){
+                buttons.innerHTML = innerButtons;
+                $(buttons).children().find('.dropdown').toggleClass('show');
+                $(buttons).children().find('.dropdown-menu').toggleClass('show');
+            }
         }
     }
     swal(4, (text ? text : '¿Desea eliminar el registro?'), false, 0, true, del);
@@ -144,7 +149,7 @@ function confirmDelete( api, identifier, el=false, text=false)
     }
 }
 
-function saveRow( api, action, form, submitButton, checkErrors = [], id=0, complete = false)
+function saveRow( api, action, form, submitButton, checkErrors = [], id=0, complete = false, done=false)
 {
     var inner = submitButton.innerHTML;
     $.ajax({
@@ -154,10 +159,6 @@ function saveRow( api, action, form, submitButton, checkErrors = [], id=0, compl
         dataType: 'json',
         beforeSend: function() {
             submitButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Cargando...';
-        },
-        complete: function() {
-            submitButton.innerHTML = inner;
-            if(complete){complete()};
         }
     })
     .done(function( response ) {
@@ -174,6 +175,28 @@ function saveRow( api, action, form, submitButton, checkErrors = [], id=0, compl
         checkErrors.forEach( function(el) {
             checkFields(errors, el);
         });
+    })
+    .always(function( response ) {
+        if(response){
+            if (response.status==1) {
+                if(done){done();}
+                else{
+                    submitButton.innerHTML = inner;
+                }
+            }
+            else {
+                if(complete){complete();}
+                else {
+                    submitButton.innerHTML = inner;
+                }
+            }
+        }
+        else {
+            if(complete){complete();}
+            else {
+                submitButton.innerHTML = inner;
+            }
+        }
     })
     .fail(function( jqXHR ) {
         // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.

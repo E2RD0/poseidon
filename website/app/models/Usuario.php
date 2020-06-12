@@ -126,9 +126,9 @@ class Usuario
 
     public function setIdTipo($value)
     {
-        $v = new \Valitron\Validator(array('Id' => $value));
-        $v->rule('required', 'Id');
-        $v->rule('integer', 'Id');
+        $v = new \Valitron\Validator(array('Tipo' => $value));
+        $v->rule('required', 'Tipo');
+        $v->rule('integer', 'Tipo');
         if($v->validate()) {
             $this->idTipo = $value;
             return true;
@@ -143,11 +143,27 @@ class Usuario
         $db->bind(':value', $value);
         return boolval($db->rowCount());
     }
+
     public function getUsers(){
         $db = new \Common\Database;
-        $db->query('SELECT * FROM usuario');
+        $db->query('SELECT idUsuario, nombre, apellido, email, contrasena, u.idtipousuario, tipo FROM usuario u INNER JOIN tipoUsuario t ON u.idTipoUsuario = t.idTipoUsuario');
         return $db->resultSet();
     }
+
+    public function getTypes(){
+        $db = new \Common\Database;
+        $db->query('SELECT * FROM tipoUsuario');
+        return $db->resultSet();
+    }
+
+    public function deleteUser($value)
+    {
+        $db = new \Common\Database;
+        $db->query('DELETE FROM usuario WHERE idusuario = :id');
+        $db->bind(':id', $value);
+        return $db->execute();
+    }
+
     public function userCount(){
         $db = new \Common\Database;
         $db->query('SELECT * FROM usuario');

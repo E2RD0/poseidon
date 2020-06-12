@@ -17,13 +17,85 @@ class Users extends \Common\Controller
         return $result;
     }
 
-    public function userRegister($userData, $result, $idTipoUsuario=1)
+    public function showTypes($result)
+    {
+        if ($result['dataset'] = $this->usersModel->getTypes()) {
+            $result['status'] = 1;
+        } else {
+            $result['exception'] = 'No hay tipos de usuario registrados';
+        }
+        return $result;
+    }
+
+    public function showUsers($result)
+    {
+        if ($result['dataset'] = $this->usersModel->getUsers()) {
+            $result['status'] = 1;
+        } else {
+            $result['exception'] = 'No hay usuarios registrados';
+        }
+        return $result;
+    }
+
+    public function readOne($data, $result)
+    {
+        $id = intval($data['id']);
+        $user = new Usuario;
+
+        if ($user->setId($id) && $user->userExists('idusuario',$id)) {
+            if($_SESSION['user_id'] != $id){
+                if ($result['dataset'] = $user->getUser($id)) {
+                    $result['status'] = 1;
+                } else {
+                    $result['exception'] = \Common\Database::$exception;
+                }
+            } else {
+                $result['exception'] = 'No se puede modificar a sí mismo.';
+            }
+        } else {
+            $result['exception'] = 'Usuario inexistente';
+        }
+        return $result;
+    }
+
+    public function create($data, $result) {
+        return $this->userRegister($data, $result);
+    }
+    public function update($data, $result){
+         return $this->updateUser($data, $result);
+    }
+
+    public function delete($data, $result)
+    {
+        $id = intval($data['id']);
+        $user = new Usuario;
+
+        if ($user->setId($id) && $user->userExists('idusuario',$id)) {
+            if($_SESSION['user_id'] != $id){
+                if ($user->deleteUser($id)) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Usuario eliminado correctamente';
+                } else {
+                    $result['exception'] = \Common\Database::$exception;
+                }
+            }
+            else {
+                $result['exception'] = 'No se puede eliminar a sí mismo.';
+            }
+        } else {
+            $result['exception'] = 'Usuario inexistente';
+        }
+        return $result;
+    }
+
+    public function userRegister($userData, $result)
     {
         $userData = \Helpers\Validation::trimForm($userData);
         $nombre = $userData['nombre'];
         $apellido = $userData['apellido'];
         $email = $userData['email'];
         $password = $userData['password'];
+        $idTipoUsuario = isset($userData['idTipoUsuario']) ? $userData['idTipoUsuario']: 1 ;
 
         $user = new Usuario;
         $errors = [];
@@ -115,10 +187,14 @@ class Users extends \Common\Controller
 
         $nombre = $userData['nombre'];
         $apellido = $userData['apellido'];
-        $email = $userInfo->email == $userData['email'] ?  $userInfo->email : $userData['email'] ;
+        $email = $userData['email'] ;
         $currentPassword = $userData['password'];
-        $newPassword = $userData['newPassword'];
-        $newPasswordR = $userData['newPasswordR'];
+        $newPassword = "";
+        $newPasswordR = "";
+        if (isset($userData['newPassword']) && isset($userData['newPasswordR'])) {
+            $newPassword = $userData['newPassword'];
+            $newPasswordR = $userData['newPasswordR'];
+        }
 
         $user = new Usuario;
         $errors = [];
@@ -135,20 +211,25 @@ class Users extends \Common\Controller
         $errors = $user->setIdTipo($idTipoUsuario) === true ? $errors : array_merge($errors, $user->setIdTipo($idTipoUsuario));
 
         if($currentPassword || $newPassword || $newPasswordR){
-            if (password_verify($currentPassword, trim($userInfo->contrasena))) {
-                $errors = $user->setPassword($newPassword,true, 'Nueva Contraseña') === true ? $errors : array_merge($errors, $user->setPassword($newPassword, true, 'Nueva Contraseña'));
-                if($newPasswordR){
-                    if($newPassword != $newPasswordR){
-                        $errors['NewPasswordR'] = ['Las contraseñas no coinciden'];
+            if(!isset($userData['id'])) {
+                if (password_verify($currentPassword, trim($userInfo->contrasena))) {
+                    $errors = $user->setPassword($newPassword,true, 'Nueva Contraseña') === true ? $errors : array_merge($errors, $user->setPassword($newPassword, true, 'Nueva Contraseña'));
+                    if($newPasswordR){
+                        if($newPassword != $newPasswordR){
+                            $errors['NewPasswordR'] = ['Las contraseñas no coinciden'];
+                        }
+                    }
+                    else{
+                        $errors['NewPasswordR'] = ['Este campo es obligatorio'];
                     }
                 }
                 else{
-                    $errors['NewPasswordR'] = ['Este campo es obligatorio'];
+                    $errors['Contraseña'] = ['Contraseña incorrecta.'];
+                    $errors = $user->setPassword($currentPassword,false) === true ? $errors : array_merge($errors, $user->setPassword($currentPassword, false));
                 }
             }
             else{
-                $errors['Contraseña'] = ['Contraseña incorrecta.'];
-                $errors = $user->setPassword($currentPassword,false) === true ? $errors : array_merge($errors, $user->setPassword($currentPassword, false));
+                    $errors = $user->setPassword($currentPassword,true) === true ? $errors : array_merge($errors, $user->setPassword($currentPassword, true));
             }
         }
         //If there aren't any errors

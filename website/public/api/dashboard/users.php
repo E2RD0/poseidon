@@ -15,6 +15,24 @@ if (isset($_GET['action'])) {
             case 'logout':
                 $result = $userController->userLogout($result);
                 break;
+            case 'type':
+                $result = $userController->showTypes($result);
+                break;
+            case 'show':
+                $result = $userController->showUsers($result);
+                break;
+            case 'readOne':
+                $result = $userController->readOne($_POST, $result);
+                break;
+            case 'create':
+                $result = $userController->create($_POST, $result);
+                break;
+            case 'update':
+                $result = $userController->update($_POST, $result);
+                break;
+            case 'delete':
+                $result = $userController->delete($_POST, $result);
+                break;
             case 'info':
                 $result = $userController->getUserInfo($_SESSION['user_id'], $result);
                 break;
