@@ -143,7 +143,7 @@ function confirmDelete( api, identifier, el=false, text=false)
     }
 }
 
-function saveRow( api, action, form, submitButton, id=0, complete = false)
+function saveRow( api, action, form, submitButton, checkErrors =[], id=0, complete = false)
 {
     var inner = submitButton.innerHTML;
     $.ajax({
@@ -155,7 +155,6 @@ function saveRow( api, action, form, submitButton, id=0, complete = false)
             submitButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Cargando...';
         },
         complete: function() {
-            form.reset();
             submitButton.innerHTML = inner;
             if(complete){complete()};
         }
@@ -165,12 +164,15 @@ function saveRow( api, action, form, submitButton, id=0, complete = false)
         if (response.status==1) {
             readRows(api);
             swal(1, response.message);
+            form.reset();
         } else if(response.status==-1){
             console.log('error con db');
             swal(2, response.exception);
         }
         var errors = response.errors;
-        checkFields(errors, 'Categoría');
+        checkErrors.forEach( function(el) {
+            checkFields(errors, el);
+        });
     })
     .fail(function( jqXHR ) {
         // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.

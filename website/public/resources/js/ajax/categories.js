@@ -96,10 +96,10 @@ function deleteRow(id, el)
 $( '#categories-form' ).submit(function( event ) {
     event.preventDefault();
     if($('#inputCategoría').is('[data-id]')) {
-        saveRow( API_CATEGORIAS, 'update', this, document.getElementById('categories-submit'), $('#inputCategoría').attr("data-id"), cancelUpdate );
+        saveRow( API_CATEGORIAS, 'update', this, document.getElementById('categories-submit'), ['Categoría'], $('#inputCategoría').attr("data-id"), cancelUpdate );
     }
     else{
-        saveRow( API_CATEGORIAS, 'create', this, document.getElementById('categories-submit') );
+        saveRow( API_CATEGORIAS, 'create', this, document.getElementById('categories-submit'), ['Categoría'] );
     }
 });
 
