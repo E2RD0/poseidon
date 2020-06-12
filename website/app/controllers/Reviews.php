@@ -39,6 +39,23 @@ class Reviews extends \Common\Controller
         }
         return $result;
     }
+    public function delete($data, $result)
+    {
+        $idReview = intval($data['idreview']);
+        $categoria = new Review;
+
+        if ($categoria->setIdReview($idReview)) {
+            if ($categoria->deleteReview($idReview)) {
+                $result['status'] = 1;
+                $result['message'] = 'Review eliminada correctamente';
+            } else {
+                $result['exception'] = \Common\Database::$exception;
+            }
+        } else {
+            $result['exception'] = 'Review inexistente';
+        }
+        return $result;
+    }
     // public function delete($data, $result)
     // {
     //     $idProducto = intval($data['id_producto']);

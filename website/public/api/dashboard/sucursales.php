@@ -1,31 +1,31 @@
 <?php
 
 require_once __DIR__ . '/../../../app/init.php';
-require_once __DIR__ . '/../../../app/controllers/GeneralOptions.php';
+require_once __DIR__ . '/../../../app/controllers/Branch.php';
 
 if (isset($_GET['action'])) {
     session_start();
     $action = $_GET['action'];
-    $parametersController = new \GeneralOptions;
+    $branchController = new \Branch;
     $result = array('status' => 0, 'message' => null, 'exception' => null, 'errors' => []);
 
 
     if (isset($_SESSION['user_id'])) {
         switch ($action) {
             case 'show':
-                $result = $parametersController->showGeneralOptions($result);
-                break;
-            case 'create':
-                $result = $parametersController->create($_POST, $result);
-                break;
-            case 'delete':
-                $result = $parametersController->delete($_POST, $result);
+                $result = $branchController->showBranches($result);
                 break;
             case 'readOne':
-                $result = $parametersController->readOne($_POST, $result);
+                $result = $branchController->readOne($_POST, $result);
+                break;
+            case 'create':
+                $result = $branchController->create($_POST, $result);
                 break;
             case 'update':
-                $result = $parametersController->update($_POST, $result);
+                $result = $branchController->update($_POST, $result);
+                break;
+            case 'delete':
+                $result = $branchController->delete($_POST, $result);
                 break;
             default:
                 \Common\Core::http404();

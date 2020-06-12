@@ -659,57 +659,8 @@ class dashboardTemplate
         </div>');
     }
 
-    public static function dashSucursales($status)
+    public static function dashReviews()
     {
-        echo ('<div class="col-md-6 col-12">
-                <div class="col-md-12 col-lg-12 p-0">
-                    <ul class="nav nav-categorias" role="tablist">
-                        <li class="nav-item">
-                            <a data-toggle="tab" href="#alquileres" class="nav-link active dash__tab_title" aria-expanded="true">
-                                ' . (($status == 'add') ? 'Añadir una nueva sucursal' : 'Modificar una sucursal') . '
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="tab-pane active py-3 px-3 px-sm-0" id="alquileres" role="tabpanel">
-                    <div class="row mt-4">
-                        <div class="col-md-4 col-12 text-lg-right">
-                            <p>Nombre de la sucursal</p>
-                        </div>
-                        <div class="col-md-6 col-12">
-                            <div class="form-field">
-                                <div class="form-field__control">
-                                    <input id="text" type="text" class="dash__text_fields form-field__input" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-md-4 col-12 text-lg-right">
-                            <p>Dirección</p>
-                        </div>
-                        <div class="col-md-6 col-12">
-                            <div class="form-field">
-                                <div class="form-field__control">
-                                    <textarea id="exampleTextarea" class="form-field__textarea dash__text_fields"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 text-center">
-                            <span class="ml-5">
-                                <button type="button" class="btn recover__button">Cancelar</button>
-                                <button type="button" class="btn main__button">
-                                    ' . (($status == 'add') ? 'Añadir surcusal' : 'Modificar sucursal') . '
-                                </button>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        ');
-    }
-
-    public static function dashReviews(){
         echo ('
             <div class="modal fade dash__full" id="review" tabindex="-1" role="dialog" aria-labelledby="review" aria-hidden="true" data-backdrop="static">
                 <div class="modal-dialog modal-dialog-centered modal-dialog-zoom dash_review-modal-mxs" role="document" id="check_mq">
@@ -752,89 +703,147 @@ class dashboardTemplate
         ');
     }
 
-    public static function dashCategorias($status)
+    public static function dashSucursales()
+    {
+        echo ('<div class="col-md-6 col-12">
+                <div class="col-md-12 col-lg-12 p-0">
+                    <ul class="nav nav-categorias" role="tablist">
+                        <li class="nav-item">
+                            <a data-toggle="tab" href="#alquileres" class="nav-link active dash__tab_title" aria-expanded="true" id="sucursales-title">
+                                Añadir una nueva sucursal
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-pane active py-3 px-3 px-sm-0" id="alquileres" role="tabpanel">
+                    <form id="sucursales-form" method="POST" action="">
+                        <div class="row mt-4">
+                            <div class="col-md-4 col-12 text-lg-right">
+                                <p>Nombre de la sucursal</p>
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <div class="form-field">
+                                    <div class="form-field__control">
+                                        <input id="inputSucursal" type="text" name="nombre" class="dash__text_fields form-field__input"/>
+                                    </div>
+                                </div>
+                                <p class="form-error-label" id="errorSucursal"></p>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-4 col-12 text-lg-right">
+                                <p>Dirección</p>
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <div class="form-field">
+                                    <div class="form-field__control">
+                                        <textarea id="inputSucursal" name="ubicacion" class="form-field__textarea dash__text_fields"></textarea>
+                                    </div>
+                                    <p class="form-error-label" id="errorSucursal"></p>
+                                </div>
+                            </div>
+                            <div class="col-12 text-center">
+                                <span class="ml-5">
+                                    <button type="button" class="btn recover__button d-none" id="sucursales-cancel">Cancelar</button>
+                                    <button type="submit" class="btn main__button" id="sucursales-submit">
+                                        Añadir surcusal
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        ');
+    }
+
+    public static function dashCategorias()
     {
         echo ('<div class="col-md-6 col-12">
                             <div class="col-md-12 col-lg-12 p-0">
                                 <ul class="nav nav-categorias" role="tablist">
                                     <li class="nav-item">
-                                        <a data-toggle="tab" href="#alquileres" class="nav-link active dash__tab_title" aria-expanded="true">
-                                            ' . (($status == 'add') ? 'Añadir una nueva categoría' : 'Modificar una categorí­a') . '
+                                        <a data-toggle="tab" href="#alquileres" class="nav-link active dash__tab_title" aria-expanded="true" id="categories-title">
+                                            Añadir una nueva categoría
                                         </a>
                                     </li>
                                 </ul>
                             </div>
                             <div class="tab-pane active py-3 px-3 px-sm-0" id="alquileres" role="tabpanel">
                                 <form id="categories-form" method="POST" action="">
-                                <div class="row mt-4">
-                                    <div class="col-md-4 col-12 text-lg-right">
-                                        <p>Nombre de la categoría</p>
-                                    </div>
-                                    <div class="col-md-6 col-12">
-                                        <div class="form-field">
-                                            <div class="form-field__control">
-                                                <input id="inputCategoría" type="text" name="categoria" required class="dash__text_fields form-field__input" />
+                                    <div class="row mt-4">
+                                        <div class="col-md-4 col-12 text-lg-right">
+                                            <p>Nombre de la categoría</p>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-field">
+                                                <div class="form-field__control">
+                                                    <input id="inputCategoría" type="text" name="categoria" required class="dash__text_fields form-field__input">
+                                                </div>
+                                                <p class="form-error-label" id="errorCategoría"></p>
                                             </div>
-                                            <p class="form-error-label" id="errorCategoría"></p>
+                                        </div>
+                                        <div class="col-12 text-center">
+                                            <span class="ml-5">
+                                                <button type="button" id="categories-cancel" class="btn recover__button d-none">Cancelar</button>
+                                                <button type="submit" class="btn main__button" id="categories-submit">
+                                                    Añadir categoría
+                                                </button>
+                                            </span>
                                         </div>
                                     </div>
-                                    <div class="col-12 text-center">
-                                        <span class="ml-5">
-                                            <button type="button" id="categories-cancel" class="btn recover__button ' . (($status == 'add') ? 'd-none' : 'd-block') . '">Cancelar</button>
-                                            <button type="submit" class="btn main__button" id="categories-submit">
-                                                ' . (($status == 'add') ? 'Añadir categoría' : 'Modificar categorí­a') . '
-                                            </button>
-                                        </span>
-                                    </div>
-                                </div>
                                 </form>
                             </div>
                         </div>');
     }
 
-    public static function dashParametros($status)
+    public static function dashParametros()
     {
         echo ('<div class="col-md-6 col-12">
                             <div class="col-md-12 col-lg-12 p-0">
                                 <ul class="nav nav-categorias" role="tablist">
                                     <li class="nav-item">
-                                        <a data-toggle="tab" href="#alquileres" class="nav-link active dash__tab_title" aria-expanded="true">
-                                            ' . (($status == 'add') ? 'Añadir un nuevo parámetro' : 'Modificar un parámetro') . '
+                                        <a data-toggle="tab" href="#alquileres" class="nav-link active dash__tab_title" aria-expanded="true" id="parameters-title">
+                                            Añadir un nuevo parámetro
                                         </a>
                                     </li>
                                 </ul>
                             </div>
                             <div class="tab-pane active py-3 px-3 px-sm-0" id="alquileres" role="tabpanel">
-                                <div class="row mt-4">
-                                    <div class="col-md-4 col-12 text-lg-right">
-                                        <p>Nombre del parámetro</p>
-                                    </div>
-                                    <div class="col-md-6 col-12">
-                                        <div class="form-field">
-                                            <div class="form-field__control">
-                                                <input id="text" type="text" class="dash__text_fields form-field__input" />
+                                <form id="parameters-form" method="POST" action="">
+                                    <div class="row mt-4">
+                                        <div class="col-md-4 col-12 text-lg-right">
+                                            <p>Nombre del parámetro</p>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-field">
+                                                <div class="form-field__control">
+                                                    <input id="inputParametro" type="text" name="clave" class="dash__text_fields form-field__input">
+                                                </div>
+                                                <p class="form-error-label" id="errorParametro"></p>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-4 col-12 text-lg-right">
-                                        <p>Parámetro</p>
-                                    </div>
-                                    <div class="col-md-6 col-12">
-                                        <div class="form-field">
-                                            <div class="form-field__control">
-                                                <input id="text" type="text" class="dash__text_fields form-field__input" />
+                                        <div class="col-md-4 col-12 text-lg-right">
+                                            <p>Parámetro</p>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-field">
+                                                <div class="form-field__control">
+                                                    <input id="inputParametro" type="text" name="valor" class="dash__text_fields form-field__input">
+                                                </div>
+                                                <p class="form-error-label" id="errorParametro"></p>
                                             </div>
                                         </div>
+                                        <div class="col-12 text-center">
+                                            <span class="ml-5">
+                                                <button type="button" id="parameters-cancel" class="btn recover__button d-none">Cancelar</button>
+                                                <button type="submit" id="parameters-submit" class="btn main__button">
+                                                    Añadir parámetro
+                                                </button>
+                                            </span>
+                                        </div>
                                     </div>
-                                    <div class="col-12 text-center">
-                                        <span class="ml-5">
-                                            <button type="button" class="btn recover__button">Cancelar</button>
-                                            <button type="button" class="btn main__button">
-                                                ' . (($status == 'add') ? 'Añadir parámetro' : 'Modificar parámetro') . '
-                                            </button>
-                                        </span>
-                                    </div>
-                                </div>
+                                </form>
                             </div>
                         </div>');
     }

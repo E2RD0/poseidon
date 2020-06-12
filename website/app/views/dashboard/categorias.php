@@ -36,7 +36,7 @@ dashboardTemplate::dashMenu('categorias');
                                 </div>
                             </div>
                         </div>
-                        <?php dashboardTemplate::dashCategorias('add'); ?>
+                        <?php dashboardTemplate::dashCategorias(); ?>
                     </div>
                 </div>
             </div>

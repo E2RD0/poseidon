@@ -113,7 +113,7 @@ class Review
         $db->bind(':idproducto', $value->idproducto);
         return $db->execute();
     }
-    public function modifyOrderDetail($value)
+    public function modifyReview($value)
     {
         $db = new \Common\Database;
         $db->query('UPDATE review SET comentario = :comentario, calificacion = :calificacion, iddetalleorden = :iddetalleorden WHERE idreview = :idreview');
@@ -124,10 +124,10 @@ class Review
         $db->bind(':idreview', $value->idreview);
         return $db->execute();
     }
-    public function deleteOrderDetail($value)
+    public function deleteReview($value)
     {
         $db = new \Common\Database;
-        $db->query('DELETE FROM review WHERE idreview = :id)');
+        $db->query('DELETE FROM review WHERE idreview = :id');
         $db->bind(':id', $value);
         return $db->execute();
     }

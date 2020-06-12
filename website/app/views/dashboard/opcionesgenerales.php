@@ -31,13 +31,13 @@ dashboardTemplate::dashMenu('parametros');
                                         <tbody>
                                         </tbody>
                                     </table>
-                                    <div id="categoriesSpinner" class="w-100 text-center">
+                                    <div id="parameterSpinner" class="w-100 text-center">
                                         No hay ningún registro
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <?php dashboardTemplate::dashParametros('add'); ?>
+                        <?php dashboardTemplate::dashParametros(); ?>
                     </div>
                 </div>
             </div>

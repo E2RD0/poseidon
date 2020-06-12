@@ -39,7 +39,7 @@ dashboardTemplate::dashMenu('dashboard');
                                 </thead>
                                 <tbody>
                                 </tbody>
-                                <div id="categoriesSpinner" class="w-100 text-center">
+                                <div id="dashboardSpinner" class="w-100 text-center">
                                     No hay ningún registro
                                 </div>
                             </table>
@@ -55,56 +55,14 @@ dashboardTemplate::dashMenu('dashboard');
                         <div class="col d-flex flex-row justify-content-between my-3">
                             <p class="dash__main_title p-0">Productos</p>
                             <span class="p-1">
-                                <button class="btn dash__main_button" type="button" onclick="location.href='dashboard.php'">
+                                <button class="btn dash__main_button" type="button" onclick="location.href='dashboard/productos'">
                                     Ver todos
                                 </button>
                             </span>
                         </div>
                     </div>
                     <hr class="dash__div">
-                    <div class="row dash__side_card1_container">
-                        <div class="col-lg-3 col-md-3 col-sm-12 col-12">
-                            <p class="dash__sc1_text">Tabla de surf X</p>
-                        </div>
-                        <div class="col-lg-9 col-md-9 col-sm-12 col-12 dash__bar">
-                            <div class="progress">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 5%" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <p class="dash__sc1c_text">5 restantes</p>
-                        </div>
-                    </div>
-                    <div class="row dash__side_card1_container">
-                        <div class="col-lg-3 col-md-4 col-sm-12 col-12">
-                            <p class="dash__sc1_text">Tabla de surf X</p>
-                        </div>
-                        <div class="col-lg-9 c8ol-md-8 col-sm-12 col-12 dash__bar">
-                            <div class="progress">
-                                <div class="progress-bar bg-warning" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <p class="dash__sc1c_text">20 restantes</p>
-                        </div>
-                    </div>
-                    <div class="row dash__side_card1_container">
-                        <div class="col-lg-3 col-md-4 col-sm-12 col-12">
-                            <p class="dash__sc1_text">Tabla de surf X</p>
-                        </div>
-                        <div class="col-lg-9 c8ol-md-8 col-sm-12 col-12 dash__bar">
-                            <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 90%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="35"></div>
-                            </div>
-                            <p class="dash__sc1c_text">30 restantes</p>
-                        </div>
-                    </div>
-                    <div class="row dash__side_card1_container">
-                        <div class="col-lg-3 col-md-4 col-sm-12 col-12">
-                            <p class="dash__sc1_text">Tabla de surf X</p>
-                        </div>
-                        <div class="col-lg-9 c8ol-md-8 col-sm-12 col-12 dash__bar">
-                            <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="20"></div>
-                            </div>
-                            <p class="dash__sc1c_text">20 restantes</p>
-                        </div>
+                    <div id="productsSpinner">
                     </div>
                 </div>
             </div>
@@ -144,5 +102,5 @@ dashboardTemplate::dashMenu('dashboard');
 
 <?php
 dashboardTemplate::dashModalOrden();
-dashboardTemplate::dashEnd('ordenes.js','dashboard.js');
+dashboardTemplate::dashEnd('ordenes.js', 'dashboard.js');
 ?>

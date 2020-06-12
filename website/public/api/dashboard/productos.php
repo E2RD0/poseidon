@@ -6,14 +6,17 @@ require_once __DIR__ . '/../../../app/controllers/Products.php';
 if (isset($_GET['action'])) {
     session_start();
     $action = $_GET['action'];
-    $rentalsController = new \Products;
+    $productsController = new \Products;
     $result = array('status' => 0, 'message' => null, 'exception' => null, 'errors' => []);
 
 
     if (isset($_SESSION['user_id'])) {
         switch ($action) {
             case 'show':
-                $result = $rentalsController->showProducts($result);
+                $result = $productsController->showProducts($result);
+                break;
+            case 'productQuantities':
+                $result = $productsController->getProductQuantities($result);
                 break;
             default:
                 \Common\Core::http404();
