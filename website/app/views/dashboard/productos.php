@@ -16,7 +16,7 @@ dashboardTemplate::dashMenu('productos');
                                         <a data-toggle="tab" href="#productos" class="nav-link active dash__tab_title" aria-expanded="true">Productos</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a data-toggle="tab" href="#agregarproducto" class="nav-link dash__tab_title" aria-expanded="true">Agregar un producto</a>
+                                        <a data-toggle="tab" href="#agregarproducto" class="nav-link dash__tab_title" aria-expanded="true" id="products-title">Agregar un producto</a>
                                     </li>
                                 </ul>
                             </div>
@@ -84,7 +84,7 @@ dashboardTemplate::dashMenu('productos');
                                                         <div class="col-12 col-md-10 mt-md-2">
                                                             <div class="input-group ml-3">
                                                                 <select class="custom-select" name="idcategoriaproducto" id="products-categories">
-                                                                    <option selected>Selecciona...</option>
+                                                                    <option selected value="0">Selecciona...</option>
                                                                 </select>
                                                                 <p class="form-error-label" id="errorProducts"></p>
                                                             </div>
@@ -127,7 +127,8 @@ dashboardTemplate::dashMenu('productos');
                                                         <div class="col-3 mt-md-3 mt-1">
                                                             <div class="row ml-md-3">
                                                                 <p class="">
-                                                                    <input type="checkbox" class="c filled-in" id="sePuedeAlquilar" data-toggle="collapse" href="#alquilar" role="textbox" aria-expanded="false" aria-controls="collapseExample" />
+                                                                    <input type="hidden" name="sepuedealquilar" value="off" />
+                                                                    <input type="checkbox" class="c filled-in" id="sePuedeAlquilar" name="sepuedealquilar" data-toggle="collapse" href="#alquilar" role="checkbox" aria-expanded="false" aria-controls="collapseExample" />
                                                                     <label for="sePuedeAlquilar"></label>
                                                                 </p>
                                                                 <p class="form-error-label" id="errorProducts"></p>
@@ -209,8 +210,8 @@ dashboardTemplate::dashMenu('productos');
                                         <div class="row justify-content-md-end justify-content-center">
                                             <div class="">
                                                 <div class="mr-md-5 text-center">
-                                                    <button type="button" class="ml-auto btn recover__button d-none">Cancelar</button>
-                                                    <button type="submit" class="btn main__button">Agregar producto</button>
+                                                    <button type="button" class="ml-auto btn recover__button d-none" id="products-cancel">Cancelar</button>
+                                                    <button type="submit" class="btn main__button" id="products-submit">Agregar producto</button>
                                                 </div>
                                             </div>
                                         </div>

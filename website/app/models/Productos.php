@@ -42,7 +42,7 @@ class Productos
     {
         $v = new \Valitron\Validator(array('Nombre' => $value));
         $v->rule('required', 'Nombre');
-        $v->rule('alpha', 'Nombre');
+        $v->rule('ascii', 'Nombre');
         if ($v->validate()) {
             $this->nombre = $value;
             return true;
@@ -78,9 +78,9 @@ class Productos
     {
         $v = new \Valitron\Validator(array('Descripcion' => $value));
         $v->rule('required', 'Descripcion');
-        $v->rule('alphaNum', 'Descripcion');
+        $v->rule('ascii', 'Descripcion');
         if ($v->validate()) {
-            $this->precio = $value;
+            $this->descripcion = $value;
             return true;
         } else {
             return $v->errors();
@@ -96,7 +96,7 @@ class Productos
     {
         $v = new \Valitron\Validator(array('ImgURL' => $value));
         $v->rule('required', 'ImgURL');
-        $v->rule('alphaNum', 'ImgURL');
+        $v->rule('ascii', 'ImgURL');
         if ($v->validate()) {
             $this->imgurl = $value;
             return true;
@@ -143,7 +143,7 @@ class Productos
     public function existProduct($value)
     {
         $db = new \Common\Database;
-        $db->query('SELECT * FROM producto WHERE idproducto = :value');
+        $db->query('SELECT * FROM producto WHERE nombre = :value');
         $db->bind(':value', $value);
         return boolval($db->rowCount());
     }
@@ -165,30 +165,31 @@ class Productos
         $db->query('SELECT * FROM producto');
         return $db->rowCount();
     }
-    public function insertProduct($user)
+    public function insertProduct($producto)
     {
         $db = new \Common\Database;
-        $db->query('INSERT into producto (idproducto, nombre, precio, descripcion, imgurl, existenciascompra, idcategoriaproducto) VALUES(DEFAULT, :nombre, :precio, :descripcion, :imgurl, :existenciascompra, :idcategoriaproducto)');
-        $db->bind(':nombre', $user->nombre);
-        $db->bind(':precio', $user->precio);
-        $db->bind(':descripcion', $user->descripcion);
-        $db->bind(':imgurl', $user->imgurl);
-        $db->bind(':existenciascompra', $user->existenciascompra);
-        $db->bind(':idcategoriaproducto', $user->idcategoriaproducto);
-        return $db->execute();
+        $db->query('INSERT into producto VALUES (DEFAULT, :nombre, :precio, :descripcion, :imgurl, :existenciascompra, :idcategoriaproducto) RETURNING idproducto');
+        $db->bind(':nombre', $producto->nombre);
+        $db->bind(':precio', $producto->precio);
+        $db->bind(':descripcion', $producto->descripcion);
+        $db->bind(':imgurl', 'simon');
+        $db->bind(':existenciascompra', $producto->existenciascompra);
+        $db->bind(':idcategoriaproducto', $producto->idcategoriaproducto);
+        return $db->getResult();
     }
-    public function modifyProduct($user)
+    public function modifyProduct($producto)
     {
         $db = new \Common\Database;
         $db->query('UPDATE producto SET nombre = :nombre, precio = :precio, descripcion = :descripcion, imgurl = :imgurl, existenciascompra = :existenciascompra, idcategoriaproducto = :idcategoriaproducto WHERE idproducto = :idproducto)');
-        $db->bind(':nombre', $user->nombre);
-        $db->bind(':precio', $user->precio);
-        $db->bind(':descripcion', $user->descripcion);
-        $db->bind(':imgurl', $user->imgurl);
-        $db->bind(':existenciascompra', $user->existenciascompra);
-        $db->bind(':idcategoriaproducto', $user->idcategoriaproducto);
-        $db->bind(':idproducto', $user->idproducto);
+        $db->bind(':nombre', $producto->nombre);
+        $db->bind(':precio', $producto->precio);
+        $db->bind(':descripcion', $producto->getDescripcion());
+        $db->bind(':imgurl', $producto->imgurl);
+        $db->bind(':existenciascompra', $producto->existencias);
+        $db->bind(':idcategoriaproducto', $producto->idcategoriaproducto);
+        $db->bind(':idproducto', $producto->idproducto);
         return $db->execute();
+
     }
     public function deleteProduct($value)
     {
