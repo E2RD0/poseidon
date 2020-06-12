@@ -38,6 +38,11 @@ CREATE TABLE recuperarClave (
     PRIMARY KEY (idRecuperarClave),
     FOREIGN KEY (idUsuario) REFERENCES usuario (idUsuario)
 );
+CREATE TABLE estadoCliente(
+  idEstadoCliente SERIAL NOT NULL,
+  estado VARCHAR(50) UNIQUE NOT NULL,
+  PRIMARY KEY (idEstadoCliente)
+);
 
 CREATE TABLE cliente (
     idCliente SERIAL,
@@ -47,7 +52,9 @@ CREATE TABLE cliente (
     contrasena VARCHAR(100) NOT NULL,
     telefono VARCHAR(25) UNIQUE NOT NULL,
     direccion VARCHAR(200) NOT NULL,
-    PRIMARY KEY (idCliente)
+    idEstadoCliente INT NOT NULL DEFAULT 1,
+    PRIMARY KEY (idCliente),
+    FOREIGN KEY (idEstadoCliente) REFERENCES estadoCliente (idEstadoCliente)
 );
 
 CREATE TABLE categoriaProducto (
@@ -64,7 +71,7 @@ CREATE TABLE producto (
     imgURL VARCHAR(100) NOT NULL,
     existenciasCompra INT NOT NULL,
     idCategoriaProducto INT NOT NULL,
-    existe BOOLEAN NOT NULL DEFAULT TRUE;
+    existe BOOLEAN NOT NULL DEFAULT TRUE,
     PRIMARY KEY (idProducto),
     FOREIGN KEY (idCategoriaProducto) REFERENCES categoriaProducto (idCategoriaProducto)
 );
@@ -114,7 +121,7 @@ CREATE TABLE informacionAlquiler (
     poliza NUMERIC(9,2) NOT NULL,
     existenciasAlquiler INT NOT NULL,
     idProducto INT NOT NULL,
-    existe BOOLEAN NOT NULL DEFAULT
+    existe BOOLEAN NOT NULL DEFAULT true,
     PRIMARY KEY (idInformacionAlquiler),
     FOREIGN KEY (idProducto) REFERENCES producto (idProducto)
 );

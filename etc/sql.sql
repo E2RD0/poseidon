@@ -13,6 +13,11 @@ INSERT INTO tipoUsuario VALUES
 (DEFAULT, 'Administrador'),
 (DEFAULT, 'Gerente');
 
+INSERT INTO estadoCliente VALUES
+(DEFAULT, 'Activo'),
+(DEFAULT, 'Inactivo'),
+(DEFAULT, 'Suspendido');
+
 INSERT INTO usuario VALUES
 (DEFAULT,'Eduardo', 'Estrada', 'e2rd0@mail.com', '$argon2i$v=19$m=1024,t=4,p=2$MtxLemFoVnZFaEJuT1NyYg$4j2ZFDn1fVS70ZExmlJ33rXOinafcBXrp6A6grHEPkI', 1 ),
 (DEFAULT,'Bryan', 'Galdámez', 'bryan@mail.com', '$argon2i$v=19$m=1024,t=4,p=2$MtxLemFoVnZFaEJuT1NyYg$4j2ZFDn1fVS70ZExmlJ33rXOinafcBXrp6A6grHEPkI', 2),
@@ -21,10 +26,10 @@ INSERT INTO usuario VALUES
 (DEFAULT,'Aureliano', 'Buendía', 'aureliano@mail.com', '$argon2i$v=19$m=1024,t=4,p=2$MtxLemFoVnZFaEJuT1NyYg$4j2ZFDn1fVS70ZExmlJ33rXOinafcBXrp6A6grHEPkI', 3);
 
 INSERT INTO cliente VALUES
-(DEFAULT,'Roberto', 'Marenco', 'roberto@mail.com', '$argon2i$v=19$m=1024,t=4,p=2$MtxLemFoVnZFaEJuT1NyYg$4j2ZFDn1fVS70ZExmlJ33rXOinafcBXrp6A6grHEPkI', '+50372887071', 'Reparto Maquilishuat Av. Los Cedros #84, San Salvador, El Salvador'),
-(DEFAULT,'Julio', 'Alvarenga', 'julio@mail.com', '$argon2i$v=19$m=1024,t=4,p=2$MtxLemFoVnZFaEJuT1NyYg$4j2ZFDn1fVS70ZExmlJ33rXOinafcBXrp6A6grHEPkI', '+50372887172', 'Iglesia Miramonte, San Salvador'),
-(DEFAULT,'Gerardo', 'Borje', 'gerardo@mail.com', '$argon2i$v=19$m=1024,t=4,p=2$MtxLemFoVnZFaEJuT1NyYg$4j2ZFDn1fVS70ZExmlJ33rXOinafcBXrp6A6grHEPkI', '+50372887273', 'Rpto Morazán I Cl El Salvador No 154 Soya'),
-(DEFAULT,'Alberto', 'Castillo', 'alberto@mail.com', '$argon2i$v=19$m=1024,t=4,p=2$MtxLemFoVnZFaEJuT1NyYg$4j2ZFDn1fVS70ZExmlJ33rXOinafcBXrp6A6grHEPkI', '+50372887374', 'Resid Las Colinas Políg 9 Pje 6 No 7, Sta Tecla'),
+(DEFAULT,'Roberto', 'Marenco', 'roberto@mail.com', '$argon2i$v=19$m=1024,t=4,p=2$MtxLemFoVnZFaEJuT1NyYg$4j2ZFDn1fVS70ZExmlJ33rXOinafcBXrp6A6grHEPkI', '+50372887071', 'Reparto Maquilishuat Av. Los Cedros #84, San Salvador, El Salvador', 1),
+(DEFAULT,'Julio', 'Alvarenga', 'julio@mail.com', '$argon2i$v=19$m=1024,t=4,p=2$MtxLemFoVnZFaEJuT1NyYg$4j2ZFDn1fVS70ZExmlJ33rXOinafcBXrp6A6grHEPkI', '+50372887172', 'Iglesia Miramonte, San Salvador', 1),
+(DEFAULT,'Gerardo', 'Borje', 'gerardo@mail.com', '$argon2i$v=19$m=1024,t=4,p=2$MtxLemFoVnZFaEJuT1NyYg$4j2ZFDn1fVS70ZExmlJ33rXOinafcBXrp6A6grHEPkI', '+50372887273', 'Rpto Morazán I Cl El Salvador No 154 Soya', 2),
+(DEFAULT,'Alberto', 'Castillo', 'alberto@mail.com', '$argon2i$v=19$m=1024,t=4,p=2$MtxLemFoVnZFaEJuT1NyYg$4j2ZFDn1fVS70ZExmlJ33rXOinafcBXrp6A6grHEPkI', '+50372887374', 'Resid Las Colinas Políg 9 Pje 6 No 7, Sta Tecla', 3),
 (DEFAULT,'Berenice', 'Domínguez', 'berenice@mail.com', '$argon2i$v=19$m=1024,t=4,p=2$MtxLemFoVnZFaEJuT1NyYg$4j2ZFDn1fVS70ZExmlJ33rXOinafcBXrp6A6grHEPkI', '+50372887475', 'Centro Comercial Salvador Del Mundo Módulo #12, Detrás De Pizza Hut Entre Ave 63 Y 65 San Salvador'),
 (DEFAULT,'Carlos', 'Escamilla', 'carlos@mail.com', '$argon2i$v=19$m=1024,t=4,p=2$MtxLemFoVnZFaEJuT1NyYg$4j2ZFDn1fVS70ZExmlJ33rXOinafcBXrp6A6grHEPkI', '+50372887576', 'URBANIZACION EL PROGRESO, LOTE NUMERO SEIS, POLIGONO “D”, JURISDICCION DE EL CONGO'),
 (DEFAULT,'David', 'Flores', 'david@mail.com', '$argon2i$v=19$m=1024,t=4,p=2$MtxLemFoVnZFaEJuT1NyYg$4j2ZFDn1fVS70ZExmlJ33rXOinafcBXrp6A6grHEPkI', '+50372887677', 'Col Escalón Cl Juan José Cañas No 249 Unidad Médica Escalón'),
