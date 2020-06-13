@@ -38,7 +38,7 @@ class Sucursal
     {
         $v = new \Valitron\Validator(array('Nombre' => $value));
         $v->rule('required', 'Nombre');
-        $v->rule('ascii', 'Nombre');
+        $v->rule('alpha', 'Nombre');
         if ($v->validate()) {
             $this->nombre = $value;
             return true;

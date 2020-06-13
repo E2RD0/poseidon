@@ -93,9 +93,9 @@ class InformacionAlquiler
 
     public function setIdProducto($value)
     {
-        $v = new \Valitron\Validator(array('ExistenciasAlquiler' => $value));
-        $v->rule('required', 'ExistenciasAlquiler');
-        $v->rule('integer', 'ExistenciasAlquiler');
+        $v = new \Valitron\Validator(array('IdProducto' => $value));
+        $v->rule('required', 'IdProducto');
+        $v->rule('integer', 'IdProducto');
         if ($v->validate()) {
             $this->idproducto = $value;
             return true;

@@ -109,6 +109,7 @@ $('#categories-cancel')[0].addEventListener("click", cancelUpdate);
 function cancelUpdate(){
     $('#categories-form')[0].reset();
     $('#inputCategoría').removeAttr('data-id');
+    $('#categories-title')[0].innerHTML = 'Añadir una categoría';
     $('#categories-submit')[0].innerHTML = 'Añadir categoría';
     $('#categories-cancel').toggleClass('d-none');
 }

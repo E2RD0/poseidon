@@ -39,6 +39,12 @@ if (isset($_GET['action'])) {
             case 'updateUser':
                 $result = $userController->updateUser($_POST, $result);
                 break;
+            case 'getSidebar':
+                $result = $userController->getSidebarStatus($result);
+                break;
+            case 'setSidebar':
+                $result = $userController->setSidebarStatus($_POST ,$result);
+                break;
             default:
                 \Common\Core::http404();
         }
@@ -57,9 +63,9 @@ if (isset($_GET['action'])) {
             case 'recoverPassword':
                 $result = $userController->userRecoverPassword($_POST, $result);
                 break;
-                case 'recoverCode':
-                    $result = $userController->userRecoverCode($_POST, $result);
-                    break;
+            case 'recoverCode':
+                $result = $userController->userRecoverCode($_POST, $result);
+                break;
             default:
                 \Common\Core::http404();
         }

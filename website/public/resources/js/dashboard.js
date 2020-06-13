@@ -9,14 +9,75 @@ $(document).ready(function () {
     };
 
     document.addEventListener("click", function(event) {
-    var isClickInside = nav.contains(event.target);
+        var isClickInside = nav.contains(event.target);
+        if (!isClickInside && nav.classList.contains("menu-opened")) {
+            nav.classList.remove("menu-opened");
+            document.body.classList.toggle("no-scroll");
+        };
+    });
 
-    if (!isClickInside && nav.classList.contains("menu-opened")) {
-      nav.classList.remove("menu-opened");
-      document.body.classList.toggle("no-scroll");
+    if (getSidebarStatus() == 'toggled') {
+        hideSidebar();
     }
-  })
+    $('.toggle').click(function () {
+        if (getSidebarStatus() == 'toggled') setSidebarStatus('extended'); else setSidebarStatus('toggled');
+    });
+
 })
+
+function hideSidebar(){
+    $('.wrapper').toggleClass('hide');
+};
+
+function getSidebarStatus(){
+    let sidebarStatus = '';
+    $.ajax({
+        async: false,
+        url: HOME_PATH + 'api/dashboard/users.php?action=getSidebar',
+        dataType: 'json',
+        success: function( response ) {
+            if ( response.status ) {
+                sidebarStatus = response.dataset.status;
+            } else {
+                swal( 2, response.exception );
+            }
+        },
+        error: function( jqXHR ) {
+            // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+            if ( jqXHR.status == 200 ) {
+                console.log( jqXHR.responseText );
+            } else {
+                console.log( jqXHR.status + ' ' + jqXHR.statusText );
+            }
+        }
+    });
+    return sidebarStatus;
+};
+
+function setSidebarStatus(status){
+    let data = {'status': status};
+    $.ajax({
+        url: HOME_PATH + 'api/dashboard/users.php?action=setSidebar',
+        type: 'post',
+        data: data,
+        success: function( response ) {
+            if ( response.status ) {
+                hideSidebar();
+            } else {
+                swal( 2, response.exception );
+            }
+        },
+        error: function( jqXHR ) {
+            // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+            if ( jqXHR.status == 200 ) {
+                console.log( jqXHR.responseText );
+            } else {
+                console.log( jqXHR.status + ' ' + jqXHR.statusText );
+            }
+        }
+    });
+};
+
 //Materialize's Textfields
 const setActive = (el, active) => {
     const formField = el.parentNode.parentNode
@@ -49,12 +110,6 @@ const setActive = (el, active) => {
             }
         }
     )
-//Sidebar
-$(document).ready(function () {
-    $('.toggle').click(function () {
-        $('.wrapper').toggleClass('hide');
-    });
-})
 //Chart
 var colors = [
     '#FEDB3F',
@@ -145,7 +200,7 @@ $(function () {
 });
 var input = document.getElementById( 'upload' );
 var infoArea = document.getElementById( 'upload-label' );
-input.addEventListener( 'change', showFileName );
+//input.addEventListener( 'change', showFileName );
 function showFileName( event ) {
   var input = event.srcElement;
   var fileName = input.files[0].name;
