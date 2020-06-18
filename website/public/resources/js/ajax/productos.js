@@ -72,7 +72,7 @@ function fillTable(dataset) {
                                     </span>
                                 </button>
                                 <div class="dropdown-divider"></div>
-                                <button class="dropdown-item" type="button" onclick="deleteProduct(${data['idproducto']}, this)">
+                                <button class="dropdown-item" type="button" onclick="deleteProduct( ${data['idproducto']}, this )">
                                     <span>
                                         <i class="fas fa-times"></i>
                                         <p>Eliminar</p>
@@ -95,7 +95,7 @@ function getProductCategories(){
         dataType: 'json',
         success: function (response) {
             let jsonResponse = response.dataset;
-            let dropDown = $('#products-categories').html();
+            let dropDown = $('#inputCategoria').html();
 
             jsonResponse.forEach(categorie => {
                 dropDown += `
@@ -103,7 +103,7 @@ function getProductCategories(){
                 `;
             });
 
-            $('#products-categories').html(dropDown);
+            $('#inputCategoria').html(dropDown);
         },
         error: function (jqXHR) {
             // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
@@ -148,13 +148,12 @@ function editRow(id){
 $( '#products-form' ).submit(function( event ) {
     event.preventDefault();
     if($('input[name ="nombre"]').is('[data-id]')) {
-        saveRow( API_PRODUCTOS, 'update', this, document.getElementById('products-submit'), ['Products'] ,$('input[name ="nombre"]').attr("data-id"), cancelUpdate );
-        $('#agregarproducto').toggleClass('active');
-        $('#productos').toggleClass('active');
-        $('#sePuedeAlquilar').toggleClass('collapsed');
+        if (saveRow( API_PRODUCTOS, 'update', this, document.getElementById('products-submit'), ['Nombre', 'Descripcion', 'Categoria', 'Precio', 'Existencias', 'Poliza', 'PrecioAlquiler', 'ExistenciasAlquiler'] ,$('input[name ="nombre"]').attr("data-id"), cancelUpdate ))
+            $('#products').click();
     }
     else{
-        saveRow( API_PRODUCTOS, 'create', this, document.getElementById('products-submit'), ['Products'] );
+        if (saveRow( API_PRODUCTOS, 'create', this, document.getElementById('products-submit'), ['Nombre', 'Descripcion', 'Categoria', 'Precio', 'Existencias', 'Poliza', 'PrecioAlquiler', 'ExistenciasAlquiler'] ))
+            $('#products').click();
     }
 });
 
@@ -162,14 +161,14 @@ $('#products-cancel')[0].addEventListener("click", cancelUpdate);
 
 function cancelUpdate(){
     $('#products-form')[0].reset();
-    $('#products-title')[0].innerHTML = 'Añadir un producto';
+    $('#products-title')[0].innerHTML = 'Agregar un producto';
     $('#products-submit')[0].innerHTML = 'Agregar producto';
     $('#products-cancel').toggleClass('d-none');
     $('input[name ="nombre"]').removeAttr('data-id');
 }
 //Función para eliminar un producto
-function deleteProduct(idproducto, el = false){
-    let identifier = { 'idproducto': idproducto };
+function deleteProduct(id, el = false){
+    let identifier = {'idproducto': id};
     confirmDelete(API_PRODUCTOS, identifier, el);
 }
 // Función para conseguir la información general de las reseñas de un producto

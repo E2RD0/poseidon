@@ -128,7 +128,9 @@ class Products extends \Common\Controller
         $idProducto = intval($data['idproducto']);
         $producto = new Productos;
 
-        if ($producto->setIdProducto($idProducto) && $producto->existProduct($idProducto)) {
+        $nombre = $producto->getProductName($idProducto)->nombre;
+
+        if ($producto->setIdProducto($idProducto) && $producto->existProduct($nombre)) {
             if ($producto->deleteProduct($idProducto)) {
                 $result['status'] = 1;
                 $result['message'] = 'Producto eliminado correctamente';

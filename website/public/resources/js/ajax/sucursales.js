@@ -91,10 +91,10 @@ function editRow(id){
 $( '#sucursales-form' ).submit(function( event ) {
     event.preventDefault();
     if($('input[name ="nombre"]').is('[data-id]')) {
-        saveRow( API_SUCURSALES, 'update', this, document.getElementById('sucursales-submit'), ['Sucursal'] ,$('input[name ="nombre"]').attr("data-id"), cancelUpdate );
+        saveRow( API_SUCURSALES, 'update', this, document.getElementById('sucursales-submit'), ['Nombre', 'Ubicacion'] ,$('input[name ="nombre"]').attr("data-id"), cancelUpdate );
     }
     else{
-        saveRow( API_SUCURSALES, 'create', this, document.getElementById('sucursales-submit'), ['Sucursal'] );
+        saveRow( API_SUCURSALES, 'create', this, document.getElementById('sucursales-submit'), ['Nombre', 'Ubicacion'] );
     }
 });
 

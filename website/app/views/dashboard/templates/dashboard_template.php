@@ -37,9 +37,9 @@ class dashboardTemplate
             <script src="' . HOME_PATH . 'resources/js/vendor/datatables.min.js"></script>
             <script src="' . HOME_PATH . 'resources/js/plugins.js"></script>
             <script src="' . HOME_PATH . 'resources/js/vendor/dropzone.min.js"></script>
+            <script> var HOME_PATH = "' . HOME_PATH . '" </script>
             <script src="' . HOME_PATH . 'resources/js/dashboard.js"></script>
             <script src="' . HOME_PATH . 'resources/js/vendor/sweetalert2.all.min.js"></script>
-            <script> var HOME_PATH = "'. HOME_PATH .'" </script>
             <script src="' . HOME_PATH . 'resources/js/components.js"></script>
             <script src="' . HOME_PATH . 'resources/js/ajax/account.js"></script>';
         foreach ($ajax as $script) {
@@ -55,12 +55,12 @@ class dashboardTemplate
                     <div class="toggle">
                         <i class="fas fa-chevron-left"></i>
                     </div>
-                    <a href="dashboard.php">
+                    <a href="' . HOME_PATH . 'dashboard" title="Poseidon">
                         <img src="' . HOME_PATH . 'resources/img/dashboard/poseidon-l.svg" alt="Logo Poseidon" class="img-fluid dash__logo">
                     </a>
                     <ul class="">' .
                         (($page == 'dashboard') ? '<li class="active">' : '<li class="">') . '
-                            <a href="'. HOME_PATH . 'dashboard">
+                            <a href="'. HOME_PATH . 'dashboard" title="Dashboard">
                                 <span class="icon">
                                     <svg class="icon__svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 33 33" style="enable-background:new 0 0 33 33;" xml:space="preserve" width="33" height="33">
                                         <style type="text/css">
@@ -82,7 +82,7 @@ class dashboardTemplate
                             </a>
                         </li>' .
                         (($page == 'ordenes') ? '<li class="active">' : '<li class="">') . '
-                            <a href="'. HOME_PATH . 'dashboard/ordenes">
+                            <a href="'. HOME_PATH . 'dashboard/ordenes" title="Ordenes">
                                 <span class="icon">
                                     <svg class="icon__svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 33 38.5" style="enable-background:new 0 0 33 38.5;" xml:space="preserve" width="30" height="38.5">
                                         <style type="text/css">
@@ -106,7 +106,7 @@ class dashboardTemplate
                             </a>
                         </li>' .
                         (($page == 'alquileres') ? '<li class="active">' : '<li class="">') . '
-                            <a href="'. HOME_PATH . 'dashboard/alquileres">
+                            <a href="'. HOME_PATH . 'dashboard/alquileres" title="Alquileres">
                                 <span class="icon">
                                     <svg class="icon__svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 33 30.7" style="enable-background:new 0 0 33 30.7;" xml:space="preserve" width="33" height="30.7">
                                         <style type="text/css">
@@ -130,7 +130,7 @@ class dashboardTemplate
                             </a>
                         </li>' .
                         (($page == 'sucursales') ? '<li class="active">' : '<li class="">') . '
-                            <a href="'. HOME_PATH . 'dashboard/sucursales">
+                            <a href="'. HOME_PATH . 'dashboard/sucursales" title="Sucursales">
                                 <span class="icon">
                                     <svg class="icon__svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 33 45.7" style="enable-background:new 0 0 33 45.7;" xml:space="preserve" width="33" height="34.95">
                                         <style type="text/css">
@@ -150,7 +150,7 @@ class dashboardTemplate
                             </a>
                         </li>' .
                         (($page == 'categorias') ? '<li class="active">' : '<li class="">') . '
-                            <a href="'. HOME_PATH . 'dashboard/categorias">
+                            <a href="'. HOME_PATH . 'dashboard/categorias" title="Categorias">
                                 <span class="icon">
                                     <svg class="icon__svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 33 50.2" style="enable-background:new 0 0 33 50.2;" xml:space="preserve" width="33" height="40.2">
                                         <style type="text/css">
@@ -178,7 +178,7 @@ class dashboardTemplate
                             </a>
                         </li>' .
                         (($page == 'productos') ? '<li class="active">' : '<li class="">') . '
-                            <a href="' . HOME_PATH . 'dashboard/productos">
+                            <a href="' . HOME_PATH . 'dashboard/productos" title="Productos">
                                 <span class="icon">
                                     <svg class="icon__svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 33 33" style="enable-background:new 0 0 33 33;" xml:space="preserve" width="33" height="33">
                                         <style type="text/css">
@@ -205,7 +205,7 @@ class dashboardTemplate
                             </a>
                         </li>' .
                         (($page == 'clientes') ? '<li class="active">' : '<li class="">') . '
-                            <a href="' . HOME_PATH . 'dashboard/clientes">
+                            <a href="' . HOME_PATH . 'dashboard/clientes" title="Clientes">
                                 <span class="icon">
                                     <svg class="icon__svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 33 28.8" style="enable-background:new 0 0 33 28.8;" xml:space="preserve" width="33" height="28.8">
                                         <style type="text/css">
@@ -239,7 +239,7 @@ class dashboardTemplate
                             </a>
                         </li>' .
                         (($page == 'usuarios') ? '<li class="active">' : '<li class="">') . '
-                            <a href="' . HOME_PATH . 'dashboard/usuarios">
+                            <a href="' . HOME_PATH . 'dashboard/usuarios" title="Usuarios">
                                 <span class="icon">
                                     <svg version="1.1" class="icon__svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 33 32.8" style="enable-background:new 0 0 33 32.8;" xml:space="preserve" width="33" height="32.8">
                                         <style type="text/css">
@@ -259,7 +259,7 @@ class dashboardTemplate
                             </a>
                         </li>' .
                         (($page == 'parametros') ? '<li class="active">' : '<li class="">') . '
-                            <a href="' . HOME_PATH . 'dashboard/opcionesgenerales">
+                            <a href="' . HOME_PATH . 'dashboard/opcionesgenerales" title="Parámetros">
                                 <span class="icon">
                                     <svg class="icon__svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 33 33" style="enable-background:new 0 0 33 33;" xml:space="preserve" width="33" height="33">
                                         <style type="text/css">
@@ -284,7 +284,7 @@ class dashboardTemplate
                     <div class="dash__footer">
                         <ul>' .
                         (($page == 'user') ? '<li class="active">' : '<li class="">') . '
-                                <a href="' . HOME_PATH . 'dashboard/user">
+                                <a href="' . HOME_PATH . 'dashboard/user" title="'.$_SESSION['user_name'].'">
                                     <span class="icon">
                                         <svg class="icon__svg" width="33px" height="33px" data-name="Layer 2" viewBox="0 0 33 33" xmlns="http://www.w3.org/2000/svg">
                                             <style type="text/css">
@@ -303,7 +303,7 @@ class dashboardTemplate
                                 </a>
                             </li>
                             <li>
-                                <a href="javascript:void(0)" onclick="logout();">
+                                <a href="javascript:void(0)" onclick="logout();" title="Cerrar sesión">
                                     <span class="icon">
                                         <svg class="icon__svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 33 33" style="enable-background:new 0 0 33 33;" xml:space="preserve" width="33" height="33">
                                             <style type="text/css">
@@ -724,10 +724,10 @@ class dashboardTemplate
                             <div class="col-md-6 col-12">
                                 <div class="form-field">
                                     <div class="form-field__control">
-                                        <input id="inputSucursal" type="text" name="nombre" class="dash__text_fields form-field__input"/>
+                                        <input id="inputNombre" type="text" name="nombre" class="dash__text_fields form-field__input"/>
                                     </div>
                                 </div>
-                                <p class="form-error-label" id="errorSucursal"></p>
+                                <p class="form-error-label" id="errorNombre"></p>
                             </div>
                         </div>
                         <div class="row mt-3">
@@ -737,9 +737,9 @@ class dashboardTemplate
                             <div class="col-md-6 col-12">
                                 <div class="form-field">
                                     <div class="form-field__control">
-                                        <textarea id="inputSucursal" name="ubicacion" class="form-field__textarea dash__text_fields"></textarea>
+                                        <textarea id="inputUbicacion" name="ubicacion" class="form-field__textarea dash__text_fields"></textarea>
                                     </div>
-                                    <p class="form-error-label" id="errorSucursal"></p>
+                                    <p class="form-error-label" id="errorUbicacion"></p>
                                 </div>
                             </div>
                             <div class="col-12 text-center">
@@ -818,9 +818,9 @@ class dashboardTemplate
                                         <div class="col-md-6 col-12">
                                             <div class="form-field">
                                                 <div class="form-field__control">
-                                                    <input id="inputParametro" type="text" name="clave" class="dash__text_fields form-field__input">
+                                                    <input id="inputClave" type="text" name="clave" class="dash__text_fields form-field__input">
                                                 </div>
-                                                <p class="form-error-label" id="errorParametro"></p>
+                                                <p class="form-error-label" id="errorClave"></p>
                                             </div>
                                         </div>
                                         <div class="col-md-4 col-12 text-lg-right">
@@ -829,9 +829,9 @@ class dashboardTemplate
                                         <div class="col-md-6 col-12">
                                             <div class="form-field">
                                                 <div class="form-field__control">
-                                                    <input id="inputParametro" type="text" name="valor" class="dash__text_fields form-field__input">
+                                                    <input id="inputValor" type="text" name="valor" class="dash__text_fields form-field__input">
                                                 </div>
-                                                <p class="form-error-label" id="errorParametro"></p>
+                                                <p class="form-error-label" id="errorValor"></p>
                                             </div>
                                         </div>
                                         <div class="col-12 text-center">

@@ -92,10 +92,10 @@ function editRow(id){
 $( '#parameters-form' ).submit(function( event ) {
     event.preventDefault();
     if($('input[name ="clave"]').is('[data-id]')) {
-        saveRow( API_PARAMETROS, 'update', this, document.getElementById('parameters-submit'), ['Parametro'] ,$('input[name ="clave"]').attr("data-id"), cancelUpdate );
+        saveRow( API_PARAMETROS, 'update', this, document.getElementById('parameters-submit'), ['Clave', 'Valor'] ,$('input[name ="clave"]').attr("data-id"), cancelUpdate );
     }
     else{
-        saveRow( API_PARAMETROS, 'create', this, document.getElementById('parameters-submit'), ['Parametro'] );
+        saveRow( API_PARAMETROS, 'create', this, document.getElementById('parameters-submit'), ['Clave', 'Valor'] );
     }
 });
 

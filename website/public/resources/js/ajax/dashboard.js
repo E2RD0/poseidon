@@ -1,6 +1,6 @@
 const API_PRODUCTOS = HOME_PATH + 'api/dashboard/productos.php?action=';
 
-$(document).ready(function () {
+$(function () {
     readRows(API_ORDENES, $('#dashboardSpinner')[0], 'recentOrders');
     getOrdersCount($('#dashboardOrderSpinner')[0]);
     getProductQuantities(($('#productsSpinner')[0]));
@@ -25,7 +25,7 @@ function getOrdersCount(el = false){
                 console.log( jqXHR.status + ' ' + jqXHR.statusText );
             }
     }});
-}
+};
 
 function getProductQuantities(el = false){
     $.ajax({
@@ -64,4 +64,4 @@ function getProductQuantities(el = false){
                 console.log( jqXHR.status + ' ' + jqXHR.statusText );
             }
     }});
-}
+};

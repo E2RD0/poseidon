@@ -140,6 +140,7 @@ class Users extends \Common\Controller
                     $_SESSION['user_name'] = $userHash->nombre;
                     $_SESSION['user_type'] = $userHash->idtipousuario;
                     $_SESSION['user_email'] = $email;
+                    $_SESSION['sidebar_status'] = 'extended';
                     $result['status'] = 1;
                     $result['message'] = 'Autenticación correcta';
                 } else {
@@ -153,6 +154,32 @@ class Users extends \Common\Controller
         } else {
             $result['exception'] = 'Error en uno de los campos';
             $result['errors'] = $errors;
+        }
+        return $result;
+    }
+
+    public function getSidebarStatus($result)
+    {
+        if (isset($_SESSION['sidebar_status'])) {
+            $result['dataset'] = array('status' => $_SESSION['sidebar_status']);
+            $result['status'] = 1;
+            $result['message'] = 'Se ha conseguido el estado correctamente';
+        } else {
+            $result['status'] = -1;
+            $result['exception'] = 'Ocurrió un problema al conseguir el estado';
+        }
+        return $result;
+    }
+
+    public function setSidebarStatus($value ,$result)
+    {
+        if (isset($_SESSION['sidebar_status'])) {
+            $_SESSION['sidebar_status'] = $value['status'];
+            $result['status'] = 1;
+            $result['message'] = 'Se ha cambiado el estado correctamente';
+        } else {
+            $result['status'] = -1;
+            $result['exception'] = 'Ocurrió un problema al modificar el estado';
         }
         return $result;
     }

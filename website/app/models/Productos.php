@@ -112,9 +112,9 @@ class Productos
 
     public function setExistenciasCompra($value)
     {
-        $v = new \Valitron\Validator(array('Teléfono' => $value));
-        $v->rule('required', 'Teléfono');
-        $v->rule('integer', 'Teléfono');
+        $v = new \Valitron\Validator(array('Existencias' => $value));
+        $v->rule('required', 'Existencias');
+        $v->rule('integer', 'Existencias');
         if ($v->validate()) {
             $this->existenciascompra = $value;
             return true;
@@ -130,9 +130,9 @@ class Productos
 
     public function setIdCategoriaProducto($value)
     {
-        $v = new \Valitron\Validator(array('Dirección' => $value));
-        $v->rule('required', 'Dirección');
-        $v->rule('integer', 'Dirección');
+        $v = new \Valitron\Validator(array('Categoria' => $value));
+        $v->rule('required', 'Categoria');
+        $v->rule('integer', 'Categoria');
         if ($v->validate()) {
             $this->idcategoriaproducto = $value;
             return true;
@@ -143,9 +143,16 @@ class Productos
     public function existProduct($value)
     {
         $db = new \Common\Database;
-        $db->query('SELECT * FROM producto WHERE nombre = :value');
-        $db->bind(':value', $value);
+        $db->query('SELECT * FROM producto WHERE nombre = :nombre');
+        $db->bind(':nombre', $value);
         return boolval($db->rowCount());
+    }
+    public function getProductName($value)
+    {
+        $db = new \Common\Database;
+        $db->query('SELECT nombre FROM producto WHERE idproducto = :idproducto');
+        $db->bind(':idproducto', $value);
+        return $db->getResult();
     }
     public function getProducts()
     {

@@ -13,7 +13,7 @@ dashboardTemplate::dashMenu('productos');
                             <div class="col-md-12 col-lg-12 p-0">
                                 <ul class="nav nav-categorias justify-content-center justify-content-lg-start" role="tablist">
                                     <li class="nav-item">
-                                        <a data-toggle="tab" href="#productos" class="nav-link active dash__tab_title" aria-expanded="true">Productos</a>
+                                        <a data-toggle="tab" href="#productos" class="nav-link active dash__tab_title" aria-expanded="true" id="products">Productos</a>
                                     </li>
                                     <li class="nav-item">
                                         <a data-toggle="tab" href="#agregarproducto" class="nav-link dash__tab_title" aria-expanded="true" id="products-title">Agregar un producto</a>
@@ -55,9 +55,9 @@ dashboardTemplate::dashMenu('productos');
                                                             <div class="col-12">
                                                                 <div class="form-field">
                                                                     <div class="form-field__control">
-                                                                        <input id="inputProducts" type="text" name="nombre" class="dash__text_fields form-field__input" />
+                                                                        <input id="inputNombre" type="text" name="nombre" class="dash__text_fields form-field__input" />
                                                                     </div>
-                                                                    <p class="form-error-label" id="errorProducts"></p>
+                                                                    <p class="form-error-label" id="errorNombre"></p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -70,9 +70,9 @@ dashboardTemplate::dashMenu('productos');
                                                             <div class="col-12">
                                                                 <div class="form-field">
                                                                     <div class="form-field__control">
-                                                                        <textarea id="inputProducts" name="descripcion" class="form-field__textarea dash__text_fields"></textarea>
+                                                                        <textarea id="inputDescripcion" name="descripcion" class="form-field__textarea dash__text_fields"></textarea>
                                                                     </div>
-                                                                    <p class="form-error-label" id="errorProducts"></p>
+                                                                    <p class="form-error-label" id="errorDescripcion"></p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -83,10 +83,13 @@ dashboardTemplate::dashMenu('productos');
                                                         </div>
                                                         <div class="col-12 col-md-10 mt-md-2">
                                                             <div class="input-group ml-3">
-                                                                <select class="custom-select" name="idcategoriaproducto" id="products-categories">
-                                                                    <option selected value="0">Selecciona...</option>
-                                                                </select>
-                                                                <p class="form-error-label" id="errorProducts"></p>
+                                                                <div>
+                                                                    <select class="custom-select" name="idcategoriaproducto" id="inputCategoria">
+                                                                        <option selected value="Selecciona...">Selecciona...</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="w-100"></div>
+                                                                <p class="form-error-label" id="errorCategoria"></p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -98,9 +101,9 @@ dashboardTemplate::dashMenu('productos');
                                                             <div class="col-md-4 col-12">
                                                                 <div class="form-field">
                                                                     <div class="form-field__control">
-                                                                        <input id="inputProducts" type="text" name="precio" class="dash__text_fields form-field__input" />
+                                                                        <input id="inputPrecio" type="text" name="precio" class="dash__text_fields form-field__input" />
                                                                     </div>
-                                                                    <p class="form-error-label" id="errorProducts"></p>
+                                                                    <p class="form-error-label" id="errorPrecio"></p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -113,9 +116,9 @@ dashboardTemplate::dashMenu('productos');
                                                             <div class="col-md-4 col-12">
                                                                 <div class="form-field">
                                                                     <div class="form-field__control">
-                                                                        <input id="inputProducts" type="text" name="existenciascompra" class="dash__text_fields form-field__input" />
+                                                                        <input id="inputExistencias" type="text" name="existenciascompra" class="dash__text_fields form-field__input" />
                                                                     </div>
-                                                                    <p class="form-error-label" id="errorProducts"></p>
+                                                                    <p class="form-error-label" id="errorExistencias"></p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -131,7 +134,6 @@ dashboardTemplate::dashMenu('productos');
                                                                     <input type="checkbox" class="c filled-in" id="sePuedeAlquilar" name="sepuedealquilar" data-toggle="collapse" href="#alquilar" role="checkbox" aria-expanded="false" aria-controls="collapseExample" />
                                                                     <label for="sePuedeAlquilar"></label>
                                                                 </p>
-                                                                <p class="form-error-label" id="errorProducts"></p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -144,9 +146,9 @@ dashboardTemplate::dashMenu('productos');
                                                                 <div class="col-md-4 col-12">
                                                                     <div class="form-field">
                                                                         <div class="form-field__control">
-                                                                            <input id="inputProducts" type="text" name="poliza" class="dash__text_fields form-field__input" />
+                                                                            <input id="inputPoliza" type="text" name="poliza" class="dash__text_fields form-field__input" />
                                                                         </div>
-                                                                        <p class="form-error-label" id="errorProducts"></p>
+                                                                        <p class="form-error-label" id="errorPoliza"></p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -159,9 +161,9 @@ dashboardTemplate::dashMenu('productos');
                                                                 <div class="col-md-4 col-12">
                                                                     <div class="form-field">
                                                                         <div class="form-field__control">
-                                                                            <input id="inputProducts" type="text" name="precioalquiler" class="dash__text_fields form-field__input" />
+                                                                            <input id="inputPrecioAlquiler" type="text" name="precioalquiler" class="dash__text_fields form-field__input" />
                                                                         </div>
-                                                                        <p class="form-error-label" id="errorProducts"></p>
+                                                                        <p class="form-error-label" id="errorPrecioAlquiler"></p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -174,9 +176,9 @@ dashboardTemplate::dashMenu('productos');
                                                                 <div class="col-md-4 col-12">
                                                                     <div class="form-field">
                                                                         <div class="form-field__control">
-                                                                            <input id="inputProducts" type="text" name="existenciasalquiler" class="dash__text_fields form-field__input" />
+                                                                            <input id="inputExistenciasAlquiler" type="text" name="existenciasalquiler" class="dash__text_fields form-field__input" />
                                                                         </div>
-                                                                        <p class="form-error-label" id="errorProducts"></p>
+                                                                        <p class="form-error-label" id="errorExistenciasAlquiler"></p>
                                                                     </div>
                                                                 </div>
                                                             </div>
