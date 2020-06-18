@@ -72,7 +72,7 @@ function getClientState(){
         success: function (response) {
             if(response){
                 let jsonResponse = response.dataset;
-                let dropDown = $('#inputTipo').html();
+                let dropDown = $('#inputEstado').html();
 
                 jsonResponse.forEach(type => {
                     dropDown += `
@@ -80,7 +80,7 @@ function getClientState(){
                     `;
                 });
 
-                $('#inputTipo').html(dropDown);
+                $('#inputEstado').html(dropDown);
             }
         },
         error: function (jqXHR) {
@@ -104,13 +104,13 @@ function editRow(id){
     .done(function( response ) {
         if ( response.status ) {
             $('#clients-form')[0].reset();
-            $('#inputEmail').attr("data-id",response.dataset.idusuario)
+            $('#inputEmail').attr("data-id",response.dataset.idcliente)
             $( '#inputNombre' ).val( response.dataset.nombre );
             $( '#inputApellido' ).val( response.dataset.apellido );
             $( '#inputEmail' ).val( response.dataset.email );
             $( '#inputDirección' ).val( response.dataset.direccion );
             $( '#inputTeléfono' ).val( response.dataset.telefono );
-            $( '#inputTipo' ).val( response.dataset.idestadocliente );
+            $( '#inputEstado' ).val( response.dataset.idestadocliente );
             $('#tabEdit').click();
         } else {
             swal( 2, response.exception );
@@ -183,7 +183,7 @@ function confirmChange(identifier, el=false, text=false)
 $( '#clients-form' ).submit(function( event ) {
     event.preventDefault();
     if($('#inputEmail').is('[data-id]')) {
-        //saveRow( API_CLIENTES, 'update', this, document.getElementById('clients-submit'),['Nombre', 'Apellido', 'Email', 'Dirección', 'Teléfono' 'Tipo'], $('#inputEmail').attr("data-id"), false, cancelUpdate );
+        saveRow( API_CLIENTES, 'update', this, document.getElementById('clients-submit'),['Nombre', 'Apellido', 'Email', 'Dirección', 'Teléfono', 'Estado'], $('#inputEmail').attr("data-id"), false, cancelUpdate );
     }
 });
 
@@ -191,6 +191,7 @@ $('#clients-cancel')[0].addEventListener("click", cancelUpdate);
 
 function cancelUpdate(){
     $('#clients-form')[0].reset();
+    $('#clients-submit')[0].innerHTML = 'Actualizar cliente';
     $('#inputEmail').removeAttr('data-id');
     $('#tabClientes').click();
 }

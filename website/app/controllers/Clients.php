@@ -6,16 +6,6 @@ class Clients extends \Common\Controller
         $this->model = $this->loadModel('Cliente');
     }
 
-    public function categoriesCount($result)
-    {
-        if ($this->categoriesModel->categoriesCount()) {
-            $result['status'] = 1;
-            $result['message'] = 'Existe al menos una categoria';
-        } else {
-            $result['exception'] = 'No hay ninguna categoria registrada';
-        }
-        return $result;
-    }
     public function show($result)
     {
         if ($result['dataset'] = $this->model->getClients()) {
@@ -36,7 +26,8 @@ class Clients extends \Common\Controller
         return $result;
     }
 
-    public function create($data, $result) {
+    public function create($data, $result)
+    {
         $data = \Helpers\Validation::trimForm($data);
         $nombreCategoria = $data['categoria'];
 
@@ -48,62 +39,57 @@ class Clients extends \Common\Controller
             if ($this->categoriesModel->insertCategory($nombreCategoria)) {
                 $result['status'] = 1;
                 $result['message'] = 'Categoría ingresada correctamente';
-            }
-            else {
+            } else {
                 $result['status'] = -1;
                 $result['exception'] = \Common\Database::$exception;
             }
-        }
-        else {
+        } else {
             $result['exception'] = 'Error en uno de los campos';
             $result['errors'] = $errors;
         }
         return $result;
     }
 
-    public function update($data, $result) {
+    public function update($data, $result)
+    {
         $data = \Helpers\Validation::trimForm($data);
-        $idCliente = intval($data['id']);
-        $idEstadoCliente = intval($data['idEstadoCliente']);
-        $nombre = $userData['nombre'];
-        $apellido = $userData['apellido'];
-        $email = $userData['email'] ;
-        $telefono = $userData['telefono'] ;
-        $direccion = $userData['direccion'] ;
+        $idCliente = $data['id'];
+        $idEstadoCliente = $data['idEstadoCliente'];
+        $nombre = $data['nombre'];
+        $apellido = $data['apellido'];
+        $email = $data['email'] ;
+        $telefono = $data['telefono'] ;
+        $direccion = $data['direccion'] ;
 
-        $userInfo= $this->model->getClient($idCliente);
+        $clienteInfo= $this->model->getClient($idCliente);
 
 
-        $user = new Cliente;
+        $cliente = new Cliente;
         $errors = [];
-        $errors = $user->setId($idCliente) === true ? $errors : array_merge($errors, $user->setId($idCliente));
-        $errors = $user->setNombre($nombre) === true ? $errors : array_merge($errors, $user->setNombre($nombre));
-        $errors = $user->setApellido($apellido) === true ? $errors : array_merge($errors, $user->setApellido($apellido));
-        if($email != $userInfo->email)
-        {
-            $errors = $user->setEmail($email) === true ? $errors : array_merge($errors, $user->setEmail($email));
+        $errors = $cliente->setId($idCliente) === true ? $errors : array_merge($errors, $cliente->setId($idCliente));
+        $errors = $cliente->setNombre($nombre) === true ? $errors : array_merge($errors, $cliente->setNombre($nombre));
+        $errors = $cliente->setApellido($apellido) === true ? $errors : array_merge($errors, $cliente->setApellido($apellido));
+        if ($email != $clienteInfo->email) {
+            $errors = $cliente->setEmail($email) === true ? $errors : array_merge($errors, $cliente->setEmail($email));
+        } else {
+            $errors = $cliente->setEmail($email, true) === true ? $errors : array_merge($errors, $cliente->setEmail($email, true));
         }
-        else {
-            $errors = $user->setEmail($email, true) === true ? $errors : array_merge($errors, $user->setEmail($email, true));
-        }
-        $errors = $user->setIdEstado($idEstadoCliente) === true ? $errors : array_merge($errors, $user->setIdEstado($idEstadoCliente));
-        $errors = $user->setTelefono($telefono) === true ? $errors : array_merge($errors, $user->setTelefono($telefono));
-        $errors = $user->setDireccion($direccion) === true ? $errors : array_merge($errors, $user->setTelefono($direccion));
-/*
+        $errors = $cliente->setIdEstado($idEstadoCliente) === true ? $errors : array_merge($errors, $cliente->setIdEstado($idEstadoCliente));
+        $errors = $cliente->setTelefono($telefono) === true ? $errors : array_merge($errors, $cliente->setTelefono($telefono));
+        $errors = $cliente->setDireccion($direccion) === true ? $errors : array_merge($errors, $cliente->setDireccion($direccion));
+
         if (!boolval($errors)) {
-            if ($this->model->updateCategory($nombreCategoria, $idCategoria)) {
+            if ($this->model->updateCliente($cliente)) {
                 $result['status'] = 1;
                 $result['message'] = 'Categoría modificada correctamente';
-            }
-            else {
+            } else {
                 $result['status'] = -1;
                 $result['exception'] = \Common\Database::$exception;
             }
-        }
-        else {
+        } else {
             $result['exception'] = 'Error en uno de los campos';
             $result['errors'] = $errors;
-        }*/
+        }
         return $result;
     }
 
@@ -113,7 +99,7 @@ class Clients extends \Common\Controller
         $idEstado= intval($data['idEstado']);
         $cliente = new Cliente;
 
-        if ($cliente->setId($id) && $cliente->clientExists('idCliente',$id)) {
+        if ($cliente->setId($id) && $cliente->clientExists('idCliente', $id)) {
             if ($cliente->changeStateClient($id, $idEstado)) {
                 $result['status'] = 1;
                 $result['message'] = 'Estado actualizado correctamente';
@@ -131,7 +117,7 @@ class Clients extends \Common\Controller
         $id = intval($data['id']);
         $cliente = new Cliente;
 
-        if ($cliente->setId($id) && $cliente->clientExists('idCliente',$id)) {
+        if ($cliente->setId($id) && $cliente->clientExists('idCliente', $id)) {
             if ($result['dataset'] = $cliente->getClient($id)) {
                 $result['status'] = 1;
             } else {

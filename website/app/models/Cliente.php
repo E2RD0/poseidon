@@ -35,9 +35,9 @@ class Cliente
     }
     public function setIdEstado($value)
     {
-        $v = new \Valitron\Validator(array('Id' => $value));
-        $v->rule('required', 'Id');
-        $v->rule('integer', 'Id');
+        $v = new \Valitron\Validator(array('Estado' => $value));
+        $v->rule('required', 'Estado');
+        $v->rule('integer', 'Estado');
         if ($v->validate()) {
             $this->idEstadoCliente = $value;
             return true;
@@ -92,17 +92,15 @@ class Cliente
         $v = new \Valitron\Validator(array('Email' => $value));
         $v->rule('required', 'Email');
         $v->rule('email', 'Email');
-        if($v->validate()) {
-            if($isLogin){
+        if ($v->validate()) {
+            if ($isLogin) {
                 $this->email = $value;
                 return true;
-            }
-            else{
-                if(!$this->clientExists('email', $value)){
+            } else {
+                if (!$this->clientExists('email', $value)) {
                     $this->email = $value;
                     return true;
-                }
-                else {
+                } else {
                     $errors = [];
                     $errors['Email'] = ['Ya existe una cuenta con este correo'];
                     return $errors;
@@ -158,8 +156,7 @@ class Cliente
     {
         $v = new \Valitron\Validator(array('Dirección' => $value));
         $v->rule('required', 'Dirección');
-        $v->rule('integer', 'Dirección');
-        if ($v->validate()){
+        if ($v->validate()) {
             $this->direccion = $value;
             return true;
         } else {
@@ -208,17 +205,17 @@ class Cliente
         $db->bind(':direccion', $user->direccion);
         return $db->execute();
     }
-    public function modifyClient($user)
+    public function updateCliente($user)
     {
         $db = new \Common\Database;
-        $db->query('UPDATE cliente SET nombre = :nombre, apellido = :apellido, email = :email, contrasena = :hash, telefono = :telefono, direccion = :direccion WHERE idcliente = :idcliente)');
+        $db->query('UPDATE cliente SET nombre = :nombre, apellido = :apellido, email = :email, telefono = :telefono, direccion = :direccion, idEstadoCliente = :idEstado WHERE idcliente = :idcliente');
         $db->bind(':nombre', $user->nombre);
         $db->bind(':apellido', $user->apellido);
         $db->bind(':email', $user->email);
-        $db->bind(':hash', password_hash($user->password, PASSWORD_ARGON2ID));
         $db->bind(':telefono', $user->telefono);
         $db->bind(':direccion', $user->direccion);
-        $db->bind(':idcliente', $user->idcliente);
+        $db->bind(':idcliente', $user->id);
+        $db->bind(':idEstado', $user->idEstadoCliente);
         return $db->execute();
     }
     public function changeStateClient($value, $idEstado)
@@ -229,7 +226,8 @@ class Cliente
         $db->bind(':id', $value);
         return $db->execute();
     }
-    public function getTypes(){
+    public function getTypes()
+    {
         $db = new \Common\Database;
         $db->query('SELECT * FROM estadoCliente');
         return $db->resultSet();

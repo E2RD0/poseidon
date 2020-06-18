@@ -127,10 +127,10 @@ dashboardTemplate::dashMenu('clientes');
                                     </div>
                                     <div class="col-12 col-md-10 mt-md-2">
                                         <div class="dropdown ml-3">
-                                            <select class="custom-select" name="idEstadoCliente" id="inputTipo">
+                                            <select class="custom-select" name="idEstadoCliente" id="inputEstado">
                                                 <option selected value="">Selecciona...</option>
                                             </select>
-                                            <p class="form-error-label" id="errorTipo"></p>
+                                            <p class="form-error-label" id="errorEstado"></p>
                                         </div>
                                     </div>
                                 </div>

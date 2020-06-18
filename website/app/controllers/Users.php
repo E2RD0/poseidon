@@ -42,8 +42,8 @@ class Users extends \Common\Controller
         $id = intval($data['id']);
         $user = new Usuario;
 
-        if ($user->setId($id) && $user->userExists('idusuario',$id)) {
-            if($_SESSION['user_id'] != $id){
+        if ($user->setId($id) && $user->userExists('idusuario', $id)) {
+            if ($_SESSION['user_id'] != $id) {
                 if ($result['dataset'] = $user->getUser($id)) {
                     $result['status'] = 1;
                 } else {
@@ -58,11 +58,13 @@ class Users extends \Common\Controller
         return $result;
     }
 
-    public function create($data, $result) {
+    public function create($data, $result)
+    {
         return $this->userRegister($data, $result);
     }
-    public function update($data, $result){
-         return $this->updateUser($data, $result);
+    public function update($data, $result)
+    {
+        return $this->updateUser($data, $result);
     }
 
     public function delete($data, $result)
@@ -70,16 +72,15 @@ class Users extends \Common\Controller
         $id = intval($data['id']);
         $user = new Usuario;
 
-        if ($user->setId($id) && $user->userExists('idusuario',$id)) {
-            if($_SESSION['user_id'] != $id){
+        if ($user->setId($id) && $user->userExists('idusuario', $id)) {
+            if ($_SESSION['user_id'] != $id) {
                 if ($user->deleteUser($id)) {
                     $result['status'] = 1;
                     $result['message'] = 'Usuario eliminado correctamente';
                 } else {
                     $result['exception'] = \Common\Database::$exception;
                 }
-            }
-            else {
+            } else {
                 $result['exception'] = 'No se puede eliminar a sí mismo.';
             }
         } else {
@@ -201,35 +202,30 @@ class Users extends \Common\Controller
         $errors = $user->setId($idUsuario) === true ? $errors : array_merge($errors, $user->setId($idUsuario));
         $errors = $user->setNombre($nombre) === true ? $errors : array_merge($errors, $user->setNombre($nombre));
         $errors = $user->setApellido($apellido) === true ? $errors : array_merge($errors, $user->setApellido($apellido));
-        if($email != $userInfo->email)
-        {
+        if ($email != $userInfo->email) {
             $errors = $user->setEmail($email) === true ? $errors : array_merge($errors, $user->setEmail($email));
-        }
-        else {
+        } else {
             $errors = $user->setEmail($email, true) === true ? $errors : array_merge($errors, $user->setEmail($email, true));
         }
         $errors = $user->setIdTipo($idTipoUsuario) === true ? $errors : array_merge($errors, $user->setIdTipo($idTipoUsuario));
 
-        if($currentPassword || $newPassword || $newPasswordR){
-            if(!isset($userData['id'])) {
+        if ($currentPassword || $newPassword || $newPasswordR) {
+            if (!isset($userData['id'])) {
                 if (password_verify($currentPassword, trim($userInfo->contrasena))) {
-                    $errors = $user->setPassword($newPassword,true, 'Nueva Contraseña') === true ? $errors : array_merge($errors, $user->setPassword($newPassword, true, 'Nueva Contraseña'));
-                    if($newPasswordR){
-                        if($newPassword != $newPasswordR){
+                    $errors = $user->setPassword($newPassword, true, 'Nueva Contraseña') === true ? $errors : array_merge($errors, $user->setPassword($newPassword, true, 'Nueva Contraseña'));
+                    if ($newPasswordR) {
+                        if ($newPassword != $newPasswordR) {
                             $errors['NewPasswordR'] = ['Las contraseñas no coinciden'];
                         }
-                    }
-                    else{
+                    } else {
                         $errors['NewPasswordR'] = ['Este campo es obligatorio'];
                     }
-                }
-                else{
+                } else {
                     $errors['Contraseña'] = ['Contraseña incorrecta.'];
-                    $errors = $user->setPassword($currentPassword,false) === true ? $errors : array_merge($errors, $user->setPassword($currentPassword, false));
+                    $errors = $user->setPassword($currentPassword, false) === true ? $errors : array_merge($errors, $user->setPassword($currentPassword, false));
                 }
-            }
-            else{
-                    $errors = $user->setPassword($currentPassword,true) === true ? $errors : array_merge($errors, $user->setPassword($currentPassword, true));
+            } else {
+                $errors = $user->setPassword($currentPassword, true) === true ? $errors : array_merge($errors, $user->setPassword($currentPassword, true));
             }
         }
         //If there aren't any errors
@@ -237,7 +233,7 @@ class Users extends \Common\Controller
             if ($this->usersModel->updateUser($user)) {
                 $result['status'] = 1;
                 $result['message'] = 'Usuario actualizado correctamente';
-                if(!isset($userData['id'])){
+                if (!isset($userData['id'])) {
                     $_SESSION['user_id'] = $user->getId();
                     $_SESSION['user_name'] = $user->getNombre();
                     $_SESSION['user_type'] = $user->getIdTipo();
@@ -267,17 +263,15 @@ class Users extends \Common\Controller
             $userInfo = $this->usersModel->checkPassword($email);
             if ($userInfo) {
                 $pin = strtoupper($this->pin());
-                if($this->usersModel->saveRecoveryCode($pin, $userInfo->idusuario)){
-                    if(\Helpers\EmailSender::sendEmail('Código para recuperar contraseña', $email, "El código de recuperación es: $pin.\n")){
+                if ($this->usersModel->saveRecoveryCode($pin, $userInfo->idusuario)) {
+                    if (\Helpers\EmailSender::sendEmail('Código para recuperar contraseña', $email, "El código de recuperación es: $pin.\n")) {
                         $result['status'] = 1;
                         $result['message'] = 'Se ha enviado el pin correctamente';
-                    }
-                    else{
+                    } else {
                         $result['status'] = -1;
                         $result['exception'] = 'Error al enviar correo electrónico';
                     }
-                }
-                else{
+                } else {
                     $result['status'] = -1;
                     $result['exception'] = \Common\Database::$exception;
                 }
@@ -299,20 +293,17 @@ class Users extends \Common\Controller
         $userInfo = $this->usersModel->checkPassword($email);
         $errors[] = '';
 
-        if($userInfo){
-            if(empty($pin)){
+        if ($userInfo) {
+            if (empty($pin)) {
                 $errors['Código'] = ['Este campo es obligatorio.'];
-            }
-            else{
-                if($pin==($this->usersModel->getPasswordPin($userInfo->idusuario))->pin){
+            } else {
+                if ($pin==($this->usersModel->getPasswordPin($userInfo->idusuario))->pin) {
                     $result['status'] = 1;
-                }
-                else {
+                } else {
                     $errors['Código'] = ['El código es incorrecto.'];
                 }
             }
-        }
-        else {
+        } else {
             $errors['Código'] = ['El código es incorrecto.'];
         }
 
@@ -320,7 +311,8 @@ class Users extends \Common\Controller
         return $result;
     }
 
-    private function pin($lenght = 6) {
+    private function pin($lenght = 6)
+    {
         // uniqid gives 13 chars, but you could adjust it to your needs.
         if (function_exists("random_bytes")) {
             $bytes = random_bytes(ceil($lenght / 2));
