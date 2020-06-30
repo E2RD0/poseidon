@@ -696,6 +696,16 @@ a.go-back{
   display: block;
   margin-bottom: 1em;
 }
+.form-input.error{
+    border: 1px solid #FF5722;
+}
+.form-error-label{
+    text-align: left;
+    margin: 0;
+    margin-left: 1em;
+    font-size: 0.9rem;
+    color: #E53935;
+}
 a.form-forgotten-pass{
   color: inherit;
 }
@@ -1024,56 +1034,56 @@ a.form-forgotten-pass{
   background-color: #f1f1f1;
   transition: background-color 100ms ease-in;
 }
- @-webkit-keyframes 
+ @-webkit-keyframes
 decrement-prev {  from {
  opacity: 1;
  -webkit-transform: translateY(0);
  transform: translateY(0);
 }
 }
- @keyframes 
+ @keyframes
 decrement-prev {  from {
  opacity: 1;
  -webkit-transform: translateY(0);
  transform: translateY(0);
 }
 }
-@-webkit-keyframes 
+@-webkit-keyframes
 decrement-next {  from {
  opacity: 0;
  -webkit-transform: translateY(-50px);
  transform: translateY(-50px);
 }
 }
-@keyframes 
+@keyframes
 decrement-next {  from {
  opacity: 0;
  -webkit-transform: translateY(-50px);
  transform: translateY(-50px);
 }
 }
-@-webkit-keyframes 
+@-webkit-keyframes
 increment-prev {  from {
  opacity: 1;
  -webkit-transform: translateY(0);
  transform: translateY(0);
 }
 }
-@keyframes 
+@keyframes
 increment-prev {  from {
  opacity: 1;
  -webkit-transform: translateY(0);
  transform: translateY(0);
 }
 }
-@-webkit-keyframes 
+@-webkit-keyframes
 increment-next {  from {
  opacity: 0;
  -webkit-transform: translateY(50px);
  transform: translateY(50px);
 }
 }
-@keyframes 
+@keyframes
 increment-next {  from {
  opacity: 0;
  -webkit-transform: translateY(50px);

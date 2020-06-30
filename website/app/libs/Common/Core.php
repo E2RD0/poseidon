@@ -4,6 +4,7 @@ namespace Common;
 class Core
 {
     /*Map url /controller/method/parameter and set default values*/
+    protected $currentContext= 'admin';
     protected $currentController = 'Root';
     protected $currentMethod = "index" ;
     protected $parameters = [];
@@ -12,23 +13,26 @@ class Core
         $url = $this -> getUrl();
 
         //verify if a file for the controller exists
-        $urlController = ucwords($url[0]);
-        if (file_exists(__DIR__ . '/../../routes/' . $urlController . '.php')) {
-            $this->currentController= ucwords($urlController);
+        $urlContext = strtolower($url[0]);
+        $urlController = isset($url[1]) ? ucwords($url[1]) : ''; //Convert to upper case the first character
+        if (file_exists(__DIR__ . '/../../routes/' . $urlContext . '/' . $urlController . '.php')) {
+            $this->currentContext= $urlContext;
+            $this->currentController= $urlController;
         }
-        elseif (strtolower($urlController) != 'index.php') {
+        elseif ($urlContext != 'index.php' && $urlContext != $this->currentContext) {
             self::http404();
         }
         unset($url[0]);
-        require_once __DIR__ . '/../../routes/' . $this->currentController . '.php';
+        unset($url[1]);
+        require_once __DIR__ . '/../../routes/' . $this->currentContext . '/' . $this->currentController . '.php';
         $this->currentController = new $this->currentController;
 
         //verify if method exists
-        if (isset($url[1])) {
-            $urlMethod = $url[1];
+        if (isset($url[2])) {
+            $urlMethod = $url[2];
             if (method_exists($this->currentController, $urlMethod)) {
                 $this->currentMethod = $urlMethod;
-                unset($url[1]);
+                unset($url[2]);
             }
             else{
                 self::http404();

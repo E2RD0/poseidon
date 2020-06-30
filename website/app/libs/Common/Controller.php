@@ -13,17 +13,18 @@ namespace Common;
 
      public function loadView($context, $nameView, $loginRequired = true, $data = [])
      {
+         $urlContext = $context == 'dashboard' ? 'admin' : $context;
          $pathFile = __DIR__ . '/../../views/' . $context . '/' . $nameView . '.php';
          if (file_exists($pathFile)) {
              session_start();
              $loggedIn = isset($_SESSION['user_id']);
              if ($loginRequired) {
                  if (!$loggedIn) {
-                     \Helpers\Url::redirect('user/login');
+                     \Helpers\Url::redirect($urlContext . '/user/login');
                  }
              } else {
                  if ($loggedIn) {
-                     \Helpers\Url::redirect('dashboard');
+                     \Helpers\Url::redirect( $urlContext .'/dashboard');
                  }
              }
              require_once $pathFile;

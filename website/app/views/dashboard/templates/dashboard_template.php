@@ -41,9 +41,9 @@ class dashboardTemplate
             <script src="' . HOME_PATH . 'resources/js/dashboard.js"></script>
             <script src="' . HOME_PATH . 'resources/js/vendor/sweetalert2.all.min.js"></script>
             <script src="' . HOME_PATH . 'resources/js/components.js"></script>
-            <script src="' . HOME_PATH . 'resources/js/ajax/account.js"></script>';
+            <script src="' . HOME_PATH . 'resources/js/ajax/admin/account.js"></script>';
         foreach ($ajax as $script) {
-            echo '<script src="' . HOME_PATH . 'resources/js/ajax/' . $script .'"></script>';
+            echo '<script src="' . HOME_PATH . 'resources/js/ajax/admin/' . $script .'"></script>';
         }
         echo '</html>';
     }

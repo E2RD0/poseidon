@@ -5,6 +5,6 @@ class Root extends \Common\Controller{
       //$this->usersModel = $this->loadModel('Usuario');
   }
   public function index(){
-      Helpers\Url::redirect('user/login');
+      Helpers\Url::redirect('admin/user/login');
   }
 }
