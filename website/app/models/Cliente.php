@@ -45,6 +45,10 @@ class Cliente
             return $v->errors();
         }
     }
+    public function getIdEstado()
+    {
+        return $this->idEstadoCliente;
+    }
 
     public function getNombre()
     {
@@ -139,7 +143,6 @@ class Cliente
     public function setTelefono($value)
     {
         $v = new \Valitron\Validator(array('Teléfono' => $value));
-        $v->rule('required', 'Teléfono');
         $v->rule('integer', 'Teléfono');
         if ($v->validate()) {
             $this->telefono = $value;
@@ -157,7 +160,6 @@ class Cliente
     public function setDireccion($value)
     {
         $v = new \Valitron\Validator(array('Dirección' => $value));
-        $v->rule('required', 'Dirección');
         if ($v->validate()) {
             $this->direccion = $value;
             return true;
@@ -194,6 +196,12 @@ class Cliente
         $db = new \Common\Database;
         $db->query('SELECT * FROM cliente');
         return $db->rowCount();
+    }
+    public function checkPassword($email){
+        $db = new \Common\Database;
+        $db->query('SELECT idCliente, idEstadoCliente, nombre, contrasena from cliente WHERE email = :email');
+        $db->bind(':email', $email);
+        return $db->getResult();
     }
     public function registerClient($user)
     {

@@ -40,13 +40,13 @@
     <ul class="navbar__links navbar__icons">
       <li><a href="#"><img src="../../resources/img/tienda/icons/search.svg"></a></li>
       <li><a href="carrito.php"><img src="../../resources/img/tienda/icons/cart.svg"></a></li>
-      <li><a href="iniciarSesion.php"><img src="../../resources/img/tienda/icons/user.svg"></a></li>
+      <li><a href="#" onclick="<?php echo (isset($_SESSION['client_id']) ? 'redirect(\'store/user/dashboard\', true)' : 'redirect(\'store/user/login\', true)');?>"><img src="../../resources/img/tienda/icons/user.svg"></a></li>
     </ul>
     </div>
     </nav>
 
-    <?php if($s_index){ 
-      echo '    
+    <?php if($s_index){
+      echo '
       <div class="container header__content">
         <div class="row">
         <div class="col-md-10">
@@ -58,4 +58,3 @@
       </div>';
     } ?>
   </header>
-  

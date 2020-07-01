@@ -12,6 +12,12 @@ if (isset($_GET['action'])) {
 
     if (isset($_SESSION['client_id'])) {
         switch ($action) {
+            case 'logout':
+                $result = $controller->clientLogout($result);
+                break;
+            case 'info':
+                $result = $controller->getClientInfo($_SESSION['client_id'], $result);
+                break;
             case 'show':
                 $result = $controller->show($result);
                 break;

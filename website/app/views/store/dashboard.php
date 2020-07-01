@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once('functions.php');
 template::getHeader('Dashboard ~ Poseidón');
 ?>
@@ -25,7 +25,7 @@ template::getHeader('Dashboard ~ Poseidón');
     <div class="tab-content text-left container">
         <div class="tab-pane active" id="tab-1" role="tabpanel">
             <p>
-                Hola Eduardo. (¿No eres tú? <a class="text-dark font-weight-bold" href="iniciarSesion.php">Cerrar sesión</a>)
+                Hola <span id="labelNombre"><?php echo isset($_SESSION['client_name']) ? $_SESSION['client_name'] : '';?></span>. (¿No eres tú? <a class="text-dark font-weight-bold" href="#" onclick="logout();">Cerrar sesión</a>)
             </p>
             <p>
                 Desde tu cuenta puedes ver tus ordenes recientes, alquileres y también cambiar tu contraseña y datos personales.
@@ -159,48 +159,62 @@ template::getHeader('Dashboard ~ Poseidón');
               </ul>
             </nav>
         </div>
-    
+
         <div class="tab-pane" id="tab-4" role="tabpanel">
-          <form class="mb-5">
+          <div class="d-flex justify-content-center" id="spinnerSettings">
+            <div class="spinner-grow" role="status" >
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
+
+          <form class="mb-5" action="" method="post" id="settings-form">
             <div class="row">
               <div class="col-lg-6 mb-3">
-                <input class="form-input" type="text" required name="name" placeholder="Nombres">
+                <p class="form-error-label" id="errorNombre"></p>
+                <input id="inputNombre" class="form-input" type="text" required name="nombre" placeholder="Nombres">
               </div>
               <div class="col-lg-6 mb-3">
-                <input class="form-input" type="text" required name="lastname" placeholder="Apellidos">  
+                <p class="form-error-label" id="errorApellido"></p>
+                <input id="inputApellido" class="form-input" type="text" required name="apellido" placeholder="Apellidos">
               </div>
             </div>
             <div class="row">
               <div class="col-lg-6 mb-3">
-                <input class="form-input" type="email" required name="email" placeholder="Correo Electrónico">
+                <p class="form-error-label" id="errorEmail"></p>
+                <input id="inputEmail" class="form-input" type="email" required name="email" placeholder="Correo Electrónico">
               </div>
               <div class="col-lg-6 mb-3">
-                <input class="form-input" type="tel" required name="tel" placeholder="Teléfono">
+                <p class="form-error-label" id="errorTeléfono"></p>
+                <input id="inputTeléfono" class="form-input" type="tel" required name="telefono" placeholder="Teléfono">
               </div>
             </div>
             <div class="row">
               <div class="col-12 mb-3">
-                <input class="form-input" type="text" required name="address" placeholder="Dirección">
+                <p class="form-error-label" id="errorDirección"></p>
+                <textarea id="inputDirección" class="form-input" type="text" required name="direccion" placeholder="Dirección"></textarea>
               </div>
             </div>
             <div class="text-center">
               <h5 class="mt-5 mb-4">Cambia tu contraseña</h5>
               <div class="row">
                 <div class="col-lg-6 mb-3">
-                  <input class="form-input" type="password" required name="pass" placeholder="Contraseña actual">
+                  <p class="form-error-label" id="errorContraseña"></p>
+                  <input id="inputContraseña" class="form-input" type="password" name="password" placeholder="Contraseña actual">
                 </div>
               </div>
               <div class="row">
                 <div class="col-lg-6 mb-3">
-                  <input class="form-input" type="password" required name="pass" placeholder="Contraseña nueva">
+                  <p class="form-error-label" id="errorNuevaContraseña"></p>
+                  <input id="inputNuevaContraseña" name="newPassword" class="form-input" type="password" placeholder="Contraseña nueva">
                 </div>
                 <div class="col-lg-6 mb-3">
-                  <input class="form-input" type="password" required name="pass" placeholder="Repetir contraseña">
+                  <p class="form-error-label" id="errorNewPasswordR"></p>
+                  <input id="inputNewPasswordR" name="newPasswordR" class="form-input" type="password" placeholder="Repetir contraseña">
                 </div>
               </div>
             </div>
             <div class="row justify-content-center mt-5">
-              <button class="col-md-6 btn btn--cta btn-primary">Actualizar</button>
+              <button id="settings-submit" type="submit"class="col-md-6 btn btn--cta btn-primary">Actualizar</button>
             </div>
             </form>
         </div>
@@ -209,4 +223,4 @@ template::getHeader('Dashboard ~ Poseidón');
 </div>
 </div>
 
-<?php template::getSimpleFooter();?>
+<?php template::getSimpleFooter('accountSettings.js');?>
