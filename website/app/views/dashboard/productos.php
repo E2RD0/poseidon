@@ -194,14 +194,14 @@ dashboardTemplate::dashMenu('productos');
                                                     <div class="col-12 col-md-8 ml-md-4 ml-0">
                                                         <div class="row rounded bg-gray shadow-sm">
                                                             <div class="input-group mt-2 mx-2">
-                                                                <input id="upload" type="file" onchange="readURL(this);" class="form-control border-0" multiple>
-                                                                <label id="upload-label" for="upload" class="font-weight-light text-muted">Ningun archivo seleccionado</label>
+                                                                <input id="upload" type="file" onchange="readURL(this);" class="d-none form-control border-0" multiple>
                                                                 <div class="input-group-append">
                                                                     <label for="upload" class="btn btn-light m-0 rounded-pill"> <i class="fa fa-cloud-upload text-muted"></i><small class="text-uppercase font-weight-bold text-muted">Añadir imagen</small></label>
+                                                                    <label id="upload-label" for="upload" class="font-weight-light text-muted">Ningun archivo seleccionado</label>
                                                                 </div>
                                                             </div>
-                                                            <div class="image-area">
-                                                                <img id="imageResult" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block">
+                                                            <div class="image-area" id="img-area">
+                                                                <!--<img id="imageResult" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block">!-->
                                                             </div>
                                                         </div>
                                                     </div>

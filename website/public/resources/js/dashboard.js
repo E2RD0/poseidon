@@ -183,26 +183,35 @@ $(document).ready(function () {
 })
 //Display selected image
 function readURL(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
+    if (input.files) {
+        /*var reader = new FileReader();
 
         reader.onload = function (e) {
             $('#imageResult')
                 .attr('src', e.target.result);
         };
-        reader.readAsDataURL(input.files[0]);
+        reader.readAsDataURL(input.files[0]);*/
+        var imgArea = document.getElementById('img-area');
+        imgArea.innerHTML = '';
+        for (var i = 0; i < input.files.length; i++) { //for multiple files
+
+            (function(file) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    var img = document.createElement("img");
+                    $(img).attr('src', e.target.result);
+                    imgArea.appendChild(img);
+                }
+                reader.readAsDataURL(file);
+            })(input.files[i]);
+        }
     }
 }
-$(function () {
-    $('#upload').on('change', function () {
-        readURL(input);
-    });
-});
 var input = document.getElementById( 'upload' );
 var infoArea = document.getElementById( 'upload-label' );
-//input.addEventListener( 'change', showFileName );
+input.addEventListener( 'change', showFileName );
 function showFileName( event ) {
   var input = event.srcElement;
   var fileName = input.files[0].name;
-  infoArea.textContent = 'Nombre de archivo: ' + fileName;
+  infoArea.textContent = 'Archivo: ' + fileName;
 }

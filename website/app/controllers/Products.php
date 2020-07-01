@@ -35,6 +35,10 @@ class Products extends \Common\Controller
         }
         return $result;
     }
+    private function uploadImage($img){
+
+    }
+
     public function create($data, $result)
     {
         $data = \Helpers\Validation::trimForm($data);

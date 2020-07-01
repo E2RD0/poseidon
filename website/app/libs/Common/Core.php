@@ -4,7 +4,7 @@ namespace Common;
 class Core
 {
     /*Map url /controller/method/parameter and set default values*/
-    protected $currentContext= 'admin';
+    protected $currentContext= 'store';
     protected $currentController = 'Root';
     protected $currentMethod = "index" ;
     protected $parameters = [];
@@ -15,11 +15,17 @@ class Core
         //verify if a file for the controller exists
         $urlContext = strtolower($url[0]);
         $urlController = isset($url[1]) ? ucwords($url[1]) : ''; //Convert to upper case the first character
-        if (file_exists(__DIR__ . '/../../routes/' . $urlContext . '/' . $urlController . '.php')) {
-            $this->currentContext= $urlContext;
-            $this->currentController= $urlController;
+
+        if(file_exists(__DIR__ . '/../../routes/' . $urlContext . '/')){
+            $this->currentContext = $urlContext;
+            if (file_exists(__DIR__ . '/../../routes/' . $urlContext . '/' . $urlController . '.php')) {
+                $this->currentController= $urlController;
+            }
+            elseif($urlController!="") {
+                self::http404();
+            }
         }
-        elseif ($urlContext != 'index.php' && $urlContext != $this->currentContext) {
+        elseif ($urlContext != 'index.php') {
             self::http404();
         }
         unset($url[0]);

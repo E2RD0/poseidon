@@ -9,7 +9,7 @@
 <div class="container-fluid text-center text-md-left mb-5">
   <div class="row">
     <div class="col-lg-6 col-md-6 mt-md-0 mt-3">
-      <a href="index.php"><img class="navbar__logo" src="../../resources/img/tienda/logo.svg" alt="Logo de Poseidón"></a>
+      <a href="index.php"><img class="navbar__logo" src="<?= HOME_PATH ?>resources/img/tienda/logo.svg" alt="Logo de Poseidón"></a>
       <p class="footer__text my-4">Poseidón es una tienda de equipo de surf. <br>Usa nuestros productos y conviértete en el dios de las olas.</p>
       <ul class="footer__social list-unstyled">
         <li><a href="https://www.facebook.com"><i class="fab fa-facebook-f fa-lg"></i></a></li>
@@ -70,10 +70,20 @@
 
 <!-- Javascript -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="../../resources/js/vendor/jquery-3.4.1.min.js"><\/script>')</script>
-<script src="../../resources/js/plugins.js"></script>
-<script src="../../resources/js/vendor/bootstrap.min.js"></script>
-<script src="../../resources/js/tienda.js"></script>
+<script>window.jQuery || document.write('<script src="<?= HOME_PATH ?>resources/js/vendor/jquery-3.4.1.min.js"><\/script>')</script>
+<script src="<?= HOME_PATH ?>resources/js/plugins.js"></script>
+<script src="<?= HOME_PATH ?>resources/js/vendor/bootstrap.min.js"></script>
+<script> var HOME_PATH = "<?= HOME_PATH ?>" </script>
+<script src="<?= HOME_PATH ?>resources/js/tienda.js"></script>
+<script src="<?= HOME_PATH ?>resources/js/vendor/rater.min.js"></script>
+<script src="<?= HOME_PATH ?>resources/js/vendor/sweetalert2.all.min.js"></script>
+<script src="<?= HOME_PATH ?>resources/js/components.js"></script>
+<script src="<?= HOME_PATH ?>resources/js/ajax/store/account.js"></script>
+<?php
+foreach ($ajax as $script) {
+    echo '<script src="' . HOME_PATH . 'resources/js/ajax/store/' . $script .'"></script>';
+}
+ ?>
 </body>
 
 </html>

@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once('functions.php');
 template::getHeader('Tabla blanca de caoba ~ Poseidón');
 ?>
@@ -7,50 +7,59 @@ template::getHeader('Tabla blanca de caoba ~ Poseidón');
     <div class="product-breadcrumb mb-5">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item home"><a href="#"><img src="../../resources/img/tienda/icons/home.svg" alt="Ícono de casa"></a></li>
-          <li class="breadcrumb-item"><a href="#">Tablas</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Tabla blanca de caoba</li>
+          <li class="breadcrumb-item home"><a href="<?= HOME_PATH?>shop"><img src="<?= HOME_PATH?>resources/img/tienda/icons/home.svg" alt="Ícono de casa"></a></li>
+          <li class="breadcrumb-item"><a href="#"><?= $data->categoria?></a></li>
+          <li class="breadcrumb-item active" aria-current="page"><?= $data->nombre?></li>
         </ol>
       </nav>
     </div>
     <div class="row mb-5 pb-5">
         <div class="product-image col-md-6 mb-5 mb-md-0">
             <ul class="preview-thumbnail nav nav-tabs col-lg-2">
-                <li class="active"><a data-target="#pic-1" data-toggle="tab"><div class="product-thumbnail img_1-1"></div></a></li>
-                <li><a data-target="#pic-2" data-toggle="tab"><div class="product-thumbnail img_1-2"></div></a></li>
-                <li><a data-target="#pic-3" data-toggle="tab"><div class="product-thumbnail img_1-3"></div></a></li>
+                <li class="active"><a data-target="#pic-1" data-toggle="tab"><div class="product-thumbnail" style="background-image: url(<?= HOME_PATH?>resources/img/tienda/products/<?= $data->imgurl?>)"></div></a></li>
+                <!--<li><a data-target="#pic-2" data-toggle="tab"><div class="product-thumbnail img_1-2"></div></a></li>
+                <li><a data-target="#pic-3" data-toggle="tab"><div class="product-thumbnail img_1-3"></div></a></li>-->
             </ul>
             <div class="preview-pic pl-lg-0 tab-content col-lg-10">
-                <div class="tab-pane active" id="pic-1"><img src="../../resources/img/tienda/producto.jpg" /></div>
-                <div class="tab-pane" id="pic-2"><img src="https://farm4.staticflickr.com/3766/12953056854_b8cdf14f21.jpg" /></div>
-                <div class="tab-pane" id="pic-3"><img src="https://farm8.staticflickr.com/7187/6895047173_d4b1a0d798.jpg" /></div>
-              </div>
+                <div class="tab-pane active" id="pic-1"><img src="<?= HOME_PATH?>resources/img/tienda/products/<?= $data->imgurl?>" /></div>
+                <!--<div class="tab-pane" id="pic-2"><img src="https://farm4.staticflickr.com/3766/12953056854_b8cdf14f21.jpg" /></div>
+                <div class="tab-pane" id="pic-3"><img src="https://farm8.staticflickr.com/7187/6895047173_d4b1a0d798.jpg" /></div>-->
+            </div>
         </div>
         <div class="product-info col-md-6">
-          <h1>Tabla blanca de caoba</h1>
-          <p class="product-price">$389.99</p>
+          <h1><?= $data->nombre?></h1>
+          <p class="product-price">$<?= $data->precio?></p>
           <div class="product-description">
               <h4>Descripción</h4>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a nulla nibh. Sed in sagittis sapien, ut semper lacus. Curabitur et facilisis lorem, viverra aliquam.</p>
+              <p><?= $data->descripcion?></p>
           </div>
-          <div class="product-actions mt-4">
-            <p>Cantidad: </p>
-            <div class="d-block mb-4 d-md-block d-lg-flex d-sm-flex">
-            <div class='ctrl mr-3 mb-2 mb-sm-0 mb-md-2 mb-lg-0' min="1" max="12">
-              <div class='ctrl__button ctrl__button--decrement'>&ndash;</div>
-              <div class='ctrl__counter'>
-                <input class='ctrl__counter-input' maxlength='10' type='text' value='1'>
-                <div class='ctrl__counter-num'>1</div>
+          <div class="product-description">
+              <h4>Disponibles:</h4>
+              <p><?= $data->existenciascompra?></p>
+          </div>
+          <?php
+          if ($data->existenciascompra>0) {
+            echo '<div class="product-actions mt-4">
+              <p>Cantidad: </p>
+              <div class="d-block mb-4 d-md-block d-lg-flex d-sm-flex">
+              <div class="ctrl mr-3 mb-2 mb-sm-0 mb-md-2 mb-lg-0" min="1" max="' . $data->existenciascompra .'">
+                <div class="ctrl__button ctrl__button--decrement">&ndash;</div>
+                <div class="ctrl__counter">
+                  <input id="cantidadProducto" class="ctrl__counter-input" maxlength="10" type="text" value="1">
+                  <div class="ctrl__counter-num">1</div>
+                </div>
+                <div class="ctrl__button ctrl__button--increment">+</div>
               </div>
-              <div class='ctrl__button ctrl__button--increment'>+</div>
-            </div>
-            <!--<button class="btn btn--cta btn-primary">Añadir al carrito</button>-->
-            <a href="carrito.php" class="btn btn--cta btn-primary">Añadir al carrito</a>
+              <button onclick="addCart('. $data->idproducto. ')" class="btn btn--cta btn-primary">Añadir al carrito</button>
 
-            </div>
-            <!--<button class="btn btn--cta">Alquilar <i class="ml-2 fas fa-angle-right"></i></button>-->
-            <a href="carrito.php" class="btn btn--cta">Alquilar <i class="ml-2 fas fa-angle-right"></i></a>
-          </div>
+              </div>
+              <button onclick="addCartAlquiler('. $data->idproducto. ')" class="btn btn--cta">Alquilar <i class="ml-2 fas fa-angle-right"></i></button>
+            </div>';
+          }
+          else{
+            echo "Se han agotado las existencias.";
+          }
+          ?>
         </div>
         <div class="product-review">
             <div class="product-reviews-summary"></div>
@@ -94,7 +103,7 @@ template::getHeader('Tabla blanca de caoba ~ Poseidón');
             </div>
           </div>
         </div>
-        <div class="text-center mt-4"><button class="btn btn--cta btn-primary">Dar opinión</button></div>
+        <div class="text-center mt-4"><button class="btn btn--cta btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Dar opinión</button></div>
       </div>
       <div class="col-md-6 user-ratings mt-4 mt-md-0">
           <div class="user-rating">
@@ -113,7 +122,7 @@ template::getHeader('Tabla blanca de caoba ~ Poseidón');
               </p>
             </div>
           </div>
-          
+
           <div class="user-rating">
             <i class="fas fa-user-circle fa-3x mr-3"></i>
             <div>
@@ -152,4 +161,27 @@ template::getHeader('Tabla blanca de caoba ~ Poseidón');
     </div>
 </main>
 
-<?php template::getFooter(); ?>
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <form>
+        <div class="modal-header">
+          <h5 class="modal-title h4" id="myLargeModalLabel">Escribir reseña</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body clearfix">
+          <textarea id="inputReview" class="form-input" type="text" required="" name="review" placeholder="Escribe tus comentarios..."></textarea>
+          <div id="inputRating" data-rate-value=5></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn--cta btn-default" data-dismiss="modal">Cerrar</button>
+          <button class="btn btn--cta btn-primary" type="submit">Enviar</button>
+        </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+<?php template::getFooter('product.js'); ?>

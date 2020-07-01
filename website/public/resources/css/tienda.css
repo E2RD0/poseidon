@@ -1099,7 +1099,11 @@ increment-next {  from {
 .fa-star,.fa-star-half-alt{
 	color:#FBB03B;
 }
-
+#inputRating{
+    font-size:30px;
+    color: #FBB03B;
+    float: right;
+}
 .rating{
 	width: 50%;
   float:left;

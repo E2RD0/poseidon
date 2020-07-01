@@ -149,11 +149,11 @@ $( '#products-form' ).submit(function( event ) {
     event.preventDefault();
     if($('input[name ="nombre"]').is('[data-id]')) {
         if (saveRow( API_PRODUCTOS, 'update', this, document.getElementById('products-submit'), ['Nombre', 'Descripcion', 'Categoria', 'Precio', 'Existencias', 'Poliza', 'PrecioAlquiler', 'ExistenciasAlquiler'] ,$('input[name ="nombre"]').attr("data-id"), cancelUpdate ))
-            $('#products').click();
+            $('#productos').click();
     }
     else{
         if (saveRow( API_PRODUCTOS, 'create', this, document.getElementById('products-submit'), ['Nombre', 'Descripcion', 'Categoria', 'Precio', 'Existencias', 'Poliza', 'PrecioAlquiler', 'ExistenciasAlquiler'] ))
-            $('#products').click();
+            $('#productos').click();
     }
 });
 

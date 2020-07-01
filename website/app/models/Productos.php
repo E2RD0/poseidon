@@ -143,8 +143,8 @@ class Productos
     public function existProduct($value)
     {
         $db = new \Common\Database;
-        $db->query('SELECT * FROM producto WHERE nombre = :nombre');
-        $db->bind(':nombre', $value);
+        $db->query('SELECT * FROM producto WHERE idProducto = :id');
+        $db->bind(':id', $value);
         return boolval($db->rowCount());
     }
     public function getProductName($value)
@@ -159,6 +159,13 @@ class Productos
         $db = new \Common\Database;
         $db->query('SELECT * FROM getProducts()');
         return $db->resultSet();
+    }
+    public function getProduct($id)
+    {
+        $db = new \Common\Database;
+        $db->query('SELECT idProducto, nombre, precio, descripcion, imgUrl, existenciascompra, p.idCategoriaProducto, cp.categoria FROM producto p INNER JOIN categoriaProducto cp ON p.idCategoriaProducto = cp.idCategoriaProducto where idProducto = :id');
+        $db->bind(':id', $id);
+        return $db->getResult();
     }
     public function getProductQuantities()
     {
@@ -179,7 +186,7 @@ class Productos
         $db->bind(':nombre', $producto->nombre);
         $db->bind(':precio', $producto->precio);
         $db->bind(':descripcion', $producto->descripcion);
-        $db->bind(':imgurl', 'simon');
+        $db->bind(':imgurl', '1.jpg');
         $db->bind(':existenciascompra', $producto->existenciascompra);
         $db->bind(':idcategoriaproducto', $producto->idcategoriaproducto);
         return $db->getResult();
