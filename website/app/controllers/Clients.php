@@ -26,19 +26,27 @@ class Clients extends \Common\Controller
         return $result;
     }
 
-    public function create($data, $result)
+    public function clientRegister($userData, $result)
     {
-        $data = \Helpers\Validation::trimForm($data);
-        $nombreCategoria = $data['categoria'];
+        $userData = \Helpers\Validation::trimForm($userData);
+        $nombre = $userData['nombre'];
+        $apellido = $userData['apellido'];
+        $email = $userData['email'];
+        $password = $userData['password'];
+        $idEstadoCliente = isset($userData['idEstadoCliente']) ? $userData['idEstadoCliente']: 1 ;
 
-        $categoria = new CategoriaProducto;
+        $user = new Cliente;
         $errors = [];
-        $errors = $categoria->setCategoria($nombreCategoria) === true ? $errors : array_merge($errors, $categoria->setCategoria($nombreCategoria));
-
+        $errors = $user->setNombre($nombre) === true ? $errors : array_merge($errors, $user->setNombre($nombre));
+        $errors = $user->setApellido($apellido) === true ? $errors : array_merge($errors, $user->setApellido($apellido));
+        $errors = $user->setEmail($email) === true ? $errors : array_merge($errors, $user->setEmail($email));
+        $errors = $user->setPassword($password) === true ? $errors : array_merge($errors, $user->setPassword($password));
+        $errors = $user->setIdEstado($idEstadoCliente) === true ? $errors : array_merge($errors, $user->setIdEstado($idEstadoCliente));
+        //If there aren't any errors
         if (!boolval($errors)) {
-            if ($this->categoriesModel->insertCategory($nombreCategoria)) {
+            if ($this->model->registerClient($user)) {
                 $result['status'] = 1;
-                $result['message'] = 'Categoría ingresada correctamente';
+                $result['message'] = 'Usuario registrado correctamente';
             } else {
                 $result['status'] = -1;
                 $result['exception'] = \Common\Database::$exception;
@@ -81,7 +89,7 @@ class Clients extends \Common\Controller
         if (!boolval($errors)) {
             if ($this->model->updateCliente($cliente)) {
                 $result['status'] = 1;
-                $result['message'] = 'Categoría modificada correctamente';
+                $result['message'] = 'Cliente actualizado correctamente';
             } else {
                 $result['status'] = -1;
                 $result['exception'] = \Common\Database::$exception;
@@ -128,4 +136,5 @@ class Clients extends \Common\Controller
         }
         return $result;
     }
+
 }

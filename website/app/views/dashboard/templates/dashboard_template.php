@@ -82,7 +82,7 @@ class dashboardTemplate
                             </a>
                         </li>' .
                         (($page == 'ordenes') ? '<li class="active">' : '<li class="">') . '
-                            <a href="'. HOME_PATH . 'dashboard/ordenes" title="Ordenes">
+                            <a href="'. HOME_PATH . 'admin/dashboard/ordenes" title="Ordenes">
                                 <span class="icon">
                                     <svg class="icon__svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 33 38.5" style="enable-background:new 0 0 33 38.5;" xml:space="preserve" width="30" height="38.5">
                                         <style type="text/css">
@@ -106,7 +106,7 @@ class dashboardTemplate
                             </a>
                         </li>' .
                         (($page == 'alquileres') ? '<li class="active">' : '<li class="">') . '
-                            <a href="'. HOME_PATH . 'dashboard/alquileres" title="Alquileres">
+                            <a href="'. HOME_PATH . 'admin/dashboard/alquileres" title="Alquileres">
                                 <span class="icon">
                                     <svg class="icon__svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 33 30.7" style="enable-background:new 0 0 33 30.7;" xml:space="preserve" width="33" height="30.7">
                                         <style type="text/css">
@@ -130,7 +130,7 @@ class dashboardTemplate
                             </a>
                         </li>' .
                         (($page == 'sucursales') ? '<li class="active">' : '<li class="">') . '
-                            <a href="'. HOME_PATH . 'dashboard/sucursales" title="Sucursales">
+                            <a href="'. HOME_PATH . 'admin/dashboard/sucursales" title="Sucursales">
                                 <span class="icon">
                                     <svg class="icon__svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 33 45.7" style="enable-background:new 0 0 33 45.7;" xml:space="preserve" width="33" height="34.95">
                                         <style type="text/css">
@@ -150,7 +150,7 @@ class dashboardTemplate
                             </a>
                         </li>' .
                         (($page == 'categorias') ? '<li class="active">' : '<li class="">') . '
-                            <a href="'. HOME_PATH . 'dashboard/categorias" title="Categorias">
+                            <a href="'. HOME_PATH . 'admin/dashboard/categorias" title="Categorias">
                                 <span class="icon">
                                     <svg class="icon__svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 33 50.2" style="enable-background:new 0 0 33 50.2;" xml:space="preserve" width="33" height="40.2">
                                         <style type="text/css">
@@ -178,7 +178,7 @@ class dashboardTemplate
                             </a>
                         </li>' .
                         (($page == 'productos') ? '<li class="active">' : '<li class="">') . '
-                            <a href="' . HOME_PATH . 'dashboard/productos" title="Productos">
+                            <a href="' . HOME_PATH . 'admin/dashboard/productos" title="Productos">
                                 <span class="icon">
                                     <svg class="icon__svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 33 33" style="enable-background:new 0 0 33 33;" xml:space="preserve" width="33" height="33">
                                         <style type="text/css">
@@ -205,7 +205,7 @@ class dashboardTemplate
                             </a>
                         </li>' .
                         (($page == 'clientes') ? '<li class="active">' : '<li class="">') . '
-                            <a href="' . HOME_PATH . 'dashboard/clientes" title="Clientes">
+                            <a href="' . HOME_PATH . 'admin/dashboard/clientes" title="Clientes">
                                 <span class="icon">
                                     <svg class="icon__svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 33 28.8" style="enable-background:new 0 0 33 28.8;" xml:space="preserve" width="33" height="28.8">
                                         <style type="text/css">
@@ -239,7 +239,7 @@ class dashboardTemplate
                             </a>
                         </li>' .
                         (($page == 'usuarios') ? '<li class="active">' : '<li class="">') . '
-                            <a href="' . HOME_PATH . 'dashboard/usuarios" title="Usuarios">
+                            <a href="' . HOME_PATH . 'admin/dashboard/usuarios" title="Usuarios">
                                 <span class="icon">
                                     <svg version="1.1" class="icon__svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 33 32.8" style="enable-background:new 0 0 33 32.8;" xml:space="preserve" width="33" height="32.8">
                                         <style type="text/css">
@@ -259,7 +259,7 @@ class dashboardTemplate
                             </a>
                         </li>' .
                         (($page == 'parametros') ? '<li class="active">' : '<li class="">') . '
-                            <a href="' . HOME_PATH . 'dashboard/opcionesgenerales" title="Parámetros">
+                            <a href="' . HOME_PATH . 'admin/dashboard/opcionesgenerales" title="Parámetros">
                                 <span class="icon">
                                     <svg class="icon__svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 33 33" style="enable-background:new 0 0 33 33;" xml:space="preserve" width="33" height="33">
                                         <style type="text/css">
@@ -284,7 +284,7 @@ class dashboardTemplate
                     <div class="dash__footer">
                         <ul>' .
                         (($page == 'user') ? '<li class="active">' : '<li class="">') . '
-                                <a href="' . HOME_PATH . 'dashboard/user" title="'.$_SESSION['user_name'].'">
+                                <a href="' . HOME_PATH . 'admin/dashboard/user" title="'.$_SESSION['user_name'].'">
                                     <span class="icon">
                                         <svg class="icon__svg" width="33px" height="33px" data-name="Layer 2" viewBox="0 0 33 33" xmlns="http://www.w3.org/2000/svg">
                                             <style type="text/css">
@@ -343,18 +343,18 @@ class dashboardTemplate
 
                             <ul class="navbar__links">
                                 <li><a href="' . HOME_PATH . 'dashboard">Dashboard</a></li>
-                                <li><a href="' . HOME_PATH . 'dashboard/ordenes">Ordenes</a></li>
-                                <li><a href="' . HOME_PATH . 'dashboard/alquileres">Alquileres</a></li>
-                                <li><a href="' . HOME_PATH . 'dashboard/sucursales">Sucursales</a></li>
-                                <li><a href="' . HOME_PATH . 'dashboard/categorias">Categorías</a></li>
-                                <li><a href="' . HOME_PATH . 'dashboard/productos">Productos</a></li>
-                                <li><a href="' . HOME_PATH . 'dashboard/clientes">Clientes</a></li>
-                                <li><a href="' . HOME_PATH . 'dashboard/usuarios">Usuarios</a></li>
-                                <li><a href="' . HOME_PATH . 'dashboard/opcionesgenerales">Parámetros</a></li>
+                                <li><a href="' . HOME_PATH . 'admin/dashboard/ordenes">Ordenes</a></li>
+                                <li><a href="' . HOME_PATH . 'admin/dashboard/alquileres">Alquileres</a></li>
+                                <li><a href="' . HOME_PATH . 'admin/dashboard/sucursales">Sucursales</a></li>
+                                <li><a href="' . HOME_PATH . 'admin/dashboard/categorias">Categorías</a></li>
+                                <li><a href="' . HOME_PATH . 'admin/dashboard/productos">Productos</a></li>
+                                <li><a href="' . HOME_PATH . 'admin/dashboard/clientes">Clientes</a></li>
+                                <li><a href="' . HOME_PATH . 'admin/dashboard/usuarios">Usuarios</a></li>
+                                <li><a href="' . HOME_PATH . 'admin/dashboard/opcionesgenerales">Parámetros</a></li>
                             </ul>
 
                             <ul class="navbar__links navbar__icons">
-                                <li><a href="' . HOME_PATH . 'dashboard/user"><img src="' . HOME_PATH . 'resources/img/dashboard/cuenta.svg"></a></li>
+                                <li><a href="' . HOME_PATH . 'admin/dashboard/user"><img src="' . HOME_PATH . 'resources/img/dashboard/cuenta.svg"></a></li>
                                 <li><a href="javascript:void" onclick="logout();"><img src="' . HOME_PATH . 'resources/img/dashboard/logout.svg"></a></li>
                             </ul>
                         </div>

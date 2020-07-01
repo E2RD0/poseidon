@@ -22,7 +22,7 @@ $( '#recover-form' ).submit(function( event ) {
     .done(function( response ) {
         // If user is registered succesfully
         if ( response.status == 1) {
-            redirect('user/recoverCode');
+            redirect('admin/user/recoverCode');
         } else if (response.status == -1){
             swal(2, response.exception);
         }
@@ -57,7 +57,7 @@ $( '#code-form' ).submit(function( event ) {
     .done(function( response ) {
         // If user is registered succesfully
         if ( response.status == 1) {
-            redirect('user/newPassword');
+            redirect('admin/user/newPassword');
         } else if (response.status == -1){
             swal(2, response.exception);
         }

@@ -116,12 +116,14 @@ class Cliente
         return $this->password;
     }
 
-    public function setPassword($value)
+    public function setPassword($value, $checkStrength = true, $name='Contraseña')
     {
-        $v = new \Valitron\Validator(array('Contraseña' => $value));
-        $v->rule('required', 'Contraseña');
-        $v->rule('lengthMin', 'Contraseña', 6);
-        if ($v->validate()) {
+        $v = new \Valitron\Validator(array( $name => $value));
+        $v->rule('required', $name );
+        if($checkStrength){
+            $v->rule('lengthMin', $name , 6);
+        }
+        if($v->validate()) {
             $this->password = $value;
             return true;
         } else {
@@ -193,16 +195,14 @@ class Cliente
         $db->query('SELECT * FROM cliente');
         return $db->rowCount();
     }
-    public function insertClient($user)
+    public function registerClient($user)
     {
         $db = new \Common\Database;
-        $db->query('INSERT into cliente (idCliente, nombre, apellido, email, contrasena, telefono, direccion) VALUES(DEFAULT, :nombre, :apellido, :email, :hash, :telefono, :direccion)');
+        $db->query('INSERT into cliente (idCliente, nombre, apellido, email, contrasena) VALUES(DEFAULT, :nombre, :apellido, :email, :hash)');
         $db->bind(':nombre', $user->nombre);
         $db->bind(':apellido', $user->apellido);
         $db->bind(':email', $user->email);
         $db->bind(':hash', password_hash($user->password, PASSWORD_ARGON2ID));
-        $db->bind(':telefono', $user->telefono);
-        $db->bind(':direccion', $user->direccion);
         return $db->execute();
     }
     public function updateCliente($user)

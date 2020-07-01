@@ -27,7 +27,7 @@ loginTemplate::loginHead("Recuperar contraseña");
                         </div>
                         <div class="row pt-3">
                             <div class="col text-center">
-                                <button class="btn recover__button" type="button" onclick="redirect('user/login')">
+                                <button class="btn recover__button" type="button" onclick="redirect('admin/user/login')">
                                     Cancelar
                                 </button>
                                 <button class="btn main__button" type="submit" id="code-submit">Verificar</button>

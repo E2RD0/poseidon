@@ -1,28 +1,21 @@
-const API_USUARIOS = HOME_PATH + 'api/dashboard/users.php?action=';
-
-$( document ).ready(function() {
-    checkUsuarios();
-});
-
 $( '#register-form' ).submit(function( event ) {
     event.preventDefault();
     $.ajax({
         type: 'post',
-        url: API_USUARIOS + 'register',
+        url: API + 'register',
         data: $( '#register-form' ).serialize(),
         dataType: 'json',
         beforeSend: function() {
             $("#register-submit")[0].innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Cargando...';
         },
         complete: function() {
-            $("#register-submit")[0].innerHTML = 'Registrarme';
+            $("#register-submit")[0].innerHTML = 'Regístrate';
         }
-
     })
     .done(function( response ) {
         // If user is registered succesfully
         if (response.status==1) {
-            redirect('admin/user/login')
+            swal( 1, 'Usuario registrado correctamente', 'store/user/login' );
         } else if(response.status==-1){
             console.log('error con db');
             swal(2, response.exception);

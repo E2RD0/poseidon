@@ -8,17 +8,17 @@ function checkUsuarios()
     })
     .done(function( response ) {
         let current = window.location.pathname;
-        if ( current == HOME_PATH + 'user/register' ) {
+        if ( current == HOME_PATH + 'admin/user/register' ) {
             //if at least one user exists
             if (response.status) {
-                swal(3, response.message +'. Redireccionando a inicio de sesión...', 'user/login', 3000);
+                swal(3, response.message +'. Redireccionando a inicio de sesión...', 'admin/user/login', 3000);
             } else {
                 swal(5, 'Se necesita registrar el primer usuario del sistema');
             }
         } else {
             //redirect to register if there isn't at least one user
             if (!response.status ) {
-                swal(3, response.exception +'. Redireccionando a registro...', 'user/register', 3000);
+                swal(3, response.exception +'. Redireccionando a registro...', 'admin/user/register', 3000);
             }
         }
     })
@@ -41,7 +41,7 @@ function logout()
         })
         .done(function( response ) {
             if ( response.status ) {
-                swal( 1, response.message, 'user/login' );
+                swal( 1, response.message, 'admin/user/login' );
             } else {
                 swal( 2, response.exception);
             }
