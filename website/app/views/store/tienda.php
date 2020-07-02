@@ -1,31 +1,33 @@
-<?php 
+<?php
 require_once('functions.php');
-template::getHeader('Productos ~ Poseidón');
+$funData = template::getHeader('Productos ~ Poseidón');
+$categories = $funData['categories'];
 ?>
 
   <div class="container store-cards">
     <div class="row">
     <aside class="col-md-4 col-lg-3">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body" id="categorias">
               <h5 class="card-title mb-4">Categoría</h5>
-              <div class="custom-control custom-checkbox checkbox-cat">
-                <input type="radio" class="custom-control-input" id="customCheck" name="categoryRadio" data-target="#all" checked>
-                <label class="custom-control-label" for="customCheck">Todos<span class="cat-count">(5)</span></label>
-            </div>
-
-            <div class="custom-control custom-checkbox checkbox-cat">
-                <input type="radio" class="custom-control-input" id="customCheck1" name="categoryRadio" data-target="#tablas">
-                <label class="custom-control-label" for="customCheck1">Tablas<span class="cat-count">(2)</span></label>
-            </div>
-            <div class="custom-control custom-checkbox checkbox-cat">
-                <input type="radio" class="custom-control-input" id="customCheck2" name="categoryRadio" data-target="#ropa">
-                <label class="custom-control-label" for="customCheck2">Ropa<span class="cat-count">(1)</span></label>
-            </div>
-            <div class="custom-control custom-checkbox checkbox-cat">
-                <input type="radio" class="custom-control-input" id="customCheck3" name="categoryRadio" data-target="#accesorios">
-                <label class="custom-control-label" for="customCheck3">Accesorios<span class="cat-count">(1)</span></label>
-            </div>
+            <?php
+            if (isset($categories['dataset'])) {
+              $content = '';
+              $num = 0;
+              foreach ($categories['dataset'] as $row) {
+                $num += $row->numproductos;
+                $content = $content . '<div class="custom-control custom-checkbox checkbox-cat">
+                <input type="radio" class="custom-control-input" id="check'. $row->categoria. '" name="categoryRadio" data-target="#'. $row->categoria. '">
+                <label class="custom-control-label" for="check'. $row->categoria.'">'. $row->categoria.'<span class="cat-count">('. $row->numproductos.')</span></label>
+                </div>';
+              }
+              echo '<div class="custom-control custom-checkbox checkbox-cat">
+                    <input type="radio" class="custom-control-input" id="checkTodos" name="categoryRadio" data-target="#all" checked>
+                    <label class="custom-control-label" for="checkTodos">Todos<span class="cat-count">('. $num.')</span></label>
+                    </div>';
+              echo $content;
+            }
+            ?>
             </div>
           </div>
           <div class="card price-range pb-3">
@@ -33,156 +35,55 @@ template::getHeader('Productos ~ Poseidón');
               <h5 class="card-title">Precio</h5>
               <div class="easy-basket-filter">
                <div class="easy-basket-filter-info">
-                 <p class="iLower"><input type="text" class="easy-basket-lower" value="0" min="0" max="5000" maxlength=6/></p>
-                 <p class="iUpper"><input type="text" class="easy-basket-upper" value="5000" min="0" max="5000" maxlength=6/></p>
+                 <p class="iLower"><input id="inputRangeLow" type="text" class="easy-basket-lower" value="0" min="0" max="0" maxlength="5"></p>
+                 <p class="iUpper"><input id="inputRangeHigh" type="text" class="easy-basket-upper" value="0" min="0" max="0" maxlength="5"></p>
                </div>
-               
+
                <div class="easy-basket-filter-range">
-                 <input type="range" class="lower range" step="any" min="0" max="5000" value="0"/>
-                 <input type="range" class="upper range" step="any" min="0" max="5000" value="5000"/>
+                 <input id="priceRangeLow" type="range" class="lower range" step="1" min="0" max="0" value="0"/>
+                 <input id="priceRangeHigh" type="range" class="upper range" step="1" min="0" max="0" value="0"/>
                  <div class="fill"></div>
-               </div>	
+               </div>
              </div>
 
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"><i class="fas fa-search"></i> Búsqueda</h5>
+              <input class="form-input" id="search" type="text" name="search"  placeholder="Búsqueda...">
             </div>
           </div>
     </aside>
   <main class="text-center col-md-8 col-lg-9">
     <div class="tab-content text-left container">
+      <div class="w-100 text-center" id="spinner"></div>
         <div class="tab-pane active" id="all" role="tabpanel">
           <div class="products products-featured row">
-    
-          <div class="product has-post-thumbnail featured col-lg-4 col-md-6">
-            <a href="producto.php" class="product__link">
-              <div class="product__image">
-                <img width="300" height="300" src="../../resources/img/tienda/products/1.jpg" class="" alt="" srcset=""/>
-              </div>
-              <h2 class="product__title">Tabla de surf 1</h2>
-              <span class="product__price">$119.99</span>
-            </a>
-            <div class="product__rating">
-              <div class="star-rating" title="Rated 0 out of 5"><span class="review-count">(0)</span></div>
-            </div>
-          </div>
-    
-          <div class="product has-post-thumbnail featured col-lg-4 col-md-6">
-            <a href="producto.php" class="product__link">
-              <div class="product__image">
-                <img width="300" height="300" src="../../resources/img/tienda/products/2.jpg" class="" alt="" srcset=""/>
-              </div>
-              <h2 class="product__title">Traje de surfing</h2>
-              <span class="product__price">$120.00</span>
-            </a>
-            <div class="product__rating">
-              <div class="star-rating" title="Rated 0 out of 5"><span class="review-count">(0)</span></div>
-            </div>
-          </div>
-    
-          <div class="product has-post-thumbnail featured col-lg-4 col-md-6">
-            <a href="producto.php" class="product__link">
-              <div class="product__image">
-                <img width="300" height="300" src="../../resources/img/tienda/products/3.jpg" class="" alt="" srcset=""/>
-              </div>
-              <h2 class="product__title">Hang up surfing</h2>
-              <span class="product__price">$49.99</span>
-            </a>
-            <div class="product__rating">
-              <div class="star-rating" title="Rated 0 out of 5"><span class="review-count">(0)</span></div>
-            </div>
-          </div>
-    
-          <div class="product has-post-thumbnail featured col-lg-4 col-md-6">
-            <a href="producto.php" class="product__link">
-              <div class="product__image">
-                <img width="300" height="300" src="../../resources/img/tienda/products/4.jpg" class="" alt="" srcset=""/>
-              </div>
-              <h2 class="product__title">Tabla surf 2</h2>
-              <span class="product__price">$200.00</span>
-            </a>
-            <div class="product__rating">
-              <div class="star-rating" title="Rated 0 out of 5"><span class="review-count">(0)</span></div>
-            </div>
-          </div>
-    
-    
-          </div>
+            <div class="not-available d-none w-100 text-center m-5 ">No hay productos disponibles.</div>
         </div>
-    
-        <div class="tab-pane" id="tablas" role="tabpanel">
-          <div class="products products-featured row">
-    
-            <div class="product has-post-thumbnail featured col-lg-3 col-md-6">
-              <a href="producto.php" class="product__link">
-                <div class="product__image">
-                  <img width="300" height="300" src="../../resources/img/tienda/products/1.jpg" class="" alt="" srcset=""/>
-                </div>
-                <h2 class="product__title">Tabla de surf 1</h2>
-                <span class="product__price">$119.99</span>
-              </a>
-              <div class="product__rating">
-                <div class="star-rating" title="Rated 0 out of 5"><span class="review-count">(0)</span></div>
-              </div>
+      </div>
+      <?php
+      if (isset($categories['dataset'])) {
+        $content = '';
+        foreach ($categories['dataset'] as $row) {
+          echo '
+          <div class="tab-pane" id="'. $row->categoria.'" role="tabpanel">
+            <div class="products products-featured row">
+              <div class="not-available d-none w-100 text-center m-5 ">No hay productos disponibles.</div>
             </div>
-    
-            <div class="product has-post-thumbnail featured col-lg-3 col-md-6">
-              <a href="producto.php" class="product__link">
-                <div class="product__image">
-                  <img width="300" height="300" src="../../resources/img/tienda/products/4.jpg" class="" alt="" srcset=""/>
-                </div>
-                <h2 class="product__title">Tabla surf 2</h2>
-                <span class="product__price">$200.00</span>
-              </a>
-              <div class="product__rating">
-                <div class="star-rating" title="Rated 0 out of 5"><span class="review-count">(0)</span></div>
-              </div>
-            </div>
-    
-            </div>
-        </div>
-        <div class="tab-pane" id="ropa" role="tabpanel">
-          <div class="products products-featured row">
-    
-            <div class="product has-post-thumbnail featured col-lg-3 col-md-6">
-              <a href="producto.php" class="product__link">
-                <div class="product__image">
-                  <img width="300" height="300" src="../../resources/img/tienda/products/2.jpg" class="" alt="" srcset=""/>
-                </div>
-                <h2 class="product__title">Traje de surfing</h2>
-                <span class="product__price">$120.00</span>
-              </a>
-              <div class="product__rating">
-                <div class="star-rating" title="Rated 0 out of 5"><span class="review-count">(0)</span></div>
-              </div>
-            </div>
-    
-            </div>
-        </div>
-    
-        <div class="tab-pane" id="accesorios" role="tabpanel">
-          <div class="products products-featured row">
-    
-            <div class="product has-post-thumbnail featured col-lg-3 col-md-6">
-              <a href="producto.php" class="product__link">
-                <div class="product__image">
-                  <img width="300" height="300" src="../../resources/img/tienda/products/3.jpg" class="" alt="" srcset=""/>
-                </div>
-                <h2 class="product__title">Hang up surfing</h2>
-                <span class="product__price">$49.99</span>
-              </a>
-              <div class="product__rating">
-                <div class="star-rating" title="Rated 0 out of 5"><span class="review-count">(0)</span></div>
-              </div>
-            </div>
-    
-            </div>
-        </div>
-    
+          </div>';
+        }
+      }
+      ?>
+
         </div>
         <div class="position-relative container">
-        <a class="btn-products-more btn btn--cta" href="#">Cargar más</a>
+        <a id="loadMoreProducts" class="btn-products-more btn btn--cta" href="#">Cargar más</a>
         </div>
   </main>
 </div>
 </div>
 
-<?php template::getFooter();?>
+<?php template::getFooter('products.js');?>

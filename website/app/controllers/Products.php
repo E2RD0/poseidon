@@ -26,6 +26,24 @@ class Products extends \Common\Controller
         }
         return $result;
     }
+    public function showFeaturedProducts($result)
+    {
+        if ($result['dataset'] = $this->productsModel->getFeaturedProducts()) {
+            $result['status'] = 1;
+        } else {
+            $result['exception'] = 'No hay productos registrados';
+        }
+        return $result;
+    }
+    public function getProductInfo($result)
+    {
+        if ($result['dataset'] = $this->productsModel->getProductInfo()) {
+            $result['status'] = 1;
+        } else {
+            $result['exception'] = 'No hay productos registrados';
+        }
+        return $result;
+    }
     public function getProductQuantities($result)
     {
         if ($result['dataset'] = $this->productsModel->getProductQuantities()) {

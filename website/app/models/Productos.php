@@ -160,11 +160,22 @@ class Productos
         $db->query('SELECT * FROM getProducts()');
         return $db->resultSet();
     }
+    public function getFeaturedProducts()
+    {
+        $db = new \Common\Database;
+        $db->query('SELECT * FROM getFeaturedProducts()');
+        return $db->resultSet();
+    }
     public function getProduct($id)
     {
         $db = new \Common\Database;
         $db->query('SELECT idProducto, nombre, precio, descripcion, imgUrl, existenciascompra, p.idCategoriaProducto, cp.categoria FROM producto p INNER JOIN categoriaProducto cp ON p.idCategoriaProducto = cp.idCategoriaProducto where idProducto = :id');
         $db->bind(':id', $id);
+        return $db->getResult();
+    }
+    public function getProductInfo(){
+        $db = new \Common\Database;
+        $db->query('SELECT count(idproducto), max(precio), min(precio)  from producto');
         return $db->getResult();
     }
     public function getProductQuantities()
@@ -186,7 +197,7 @@ class Productos
         $db->bind(':nombre', $producto->nombre);
         $db->bind(':precio', $producto->precio);
         $db->bind(':descripcion', $producto->descripcion);
-        $db->bind(':imgurl', '1.jpg');
+        $db->bind(':imgurl', 'default.png');
         $db->bind(':existenciascompra', $producto->existenciascompra);
         $db->bind(':idcategoriaproducto', $producto->idcategoriaproducto);
         return $db->getResult();

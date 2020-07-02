@@ -21,6 +21,12 @@ if (isset($_GET['action'])) {
             case 'show':
                 $result = $productsController->showProducts($result);
                 break;
+            case 'showFeatured':
+                $result = $productsController->showFeaturedProducts($result);
+                break;
+            case 'info':
+                $result = $productsController->getProductInfo($result);
+                break;
             default:
                 \Common\Core::http404();
         }

@@ -31,4 +31,4 @@ template::getHeader('Poseidón ~ Tienda de surf', true);
     </div>
   </section>
 
-  <?php template::getFooter('products.js');?>
+  <?php template::getFooter('featuredProducts.js');?>

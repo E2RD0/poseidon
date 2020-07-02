@@ -56,7 +56,7 @@ class CategoriaProducto
     public function getCategories()
     {
         $db = new \Common\Database;
-        $db->query('SELECT * FROM categoriaproducto ORDER BY idcategoriaproducto');
+        $db->query('SELECT cp.idcategoriaproducto, categoria, COUNT(p.idcategoriaproducto) AS numProductos FROM categoriaproducto cp INNER JOIN producto p on p.idcategoriaproducto = cp.idcategoriaproducto GROUP BY cp.idcategoriaproducto ORDER BY idcategoriaproducto');
         return $db->resultSet();
     }
     public function getOneCategory($value)

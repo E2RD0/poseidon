@@ -580,7 +580,7 @@ END;
 $$ LANGUAGE 'plpgsql';
 
 --getProducts()
-DROP function  getProducts();
+--DROP function  getProducts();
 CREATE OR REPLACE FUNCTION getProducts() RETURNS TABLE(
     idproducto INT,
     nombre VARCHAR,
@@ -615,6 +615,63 @@ BEGIN
         GROUP BY
             producto.idproducto,
             categoriaproducto.categoria
+        ORDER BY
+            producto.idproducto
+    ) LOOP
+        idproducto := products.idproducto;
+        nombre := products.nombre;
+        cantidad := products.cantidad;
+        precio := products.precio;
+        categoria := products.categoria;
+        idcategoriaproducto := products.idcategoriaproducto;
+        descripcion := products.descripcion;
+        imgurl := products.imgurl;
+        calificacion := products.calificacion;
+        RETURN NEXT;
+    END LOOP;
+END; $$ LANGUAGE 'plpgsql';
+
+--getFeaturedProducts()
+--DROP function  getFeaturedProducts();
+CREATE OR REPLACE FUNCTION getFeaturedProducts() RETURNS TABLE(
+    idproducto INT,
+    nombre VARCHAR,
+    cantidad INT,
+    precio NUMERIC(6,2),
+    idcategoriaproducto INT,
+    categoria VARCHAR,
+    descripcion VARCHAR,
+    imgurl VARCHAR,
+    calificacion numeric(2,1)
+) AS $$
+DECLARE
+    products RECORD;
+BEGIN
+    FOR products IN (
+        SELECT
+            producto.idproducto,
+            producto.nombre,
+            producto.existenciascompra AS cantidad,
+            producto.precio,
+            producto.idcategoriaproducto,
+            categoriaproducto.categoria AS categoria,
+            producto.descripcion,
+            producto.imgurl,
+            AVG(review.calificacion) AS calificacion
+        FROM
+            producto
+            INNER JOIN categoriaproducto ON categoriaproducto.idcategoriaproducto = producto.idcategoriaproducto
+            LEFT JOIN review ON review.idproducto = producto.idproducto
+        WHERE
+            producto.existe = TRUE
+        GROUP BY
+            producto.idproducto,
+            categoriaproducto.categoria
+        HAVING
+            AVG(review.calificacion) >=4
+        ORDER BY
+            producto.idproducto
+        LIMIT 12
     ) LOOP
         idproducto := products.idproducto;
         nombre := products.nombre;

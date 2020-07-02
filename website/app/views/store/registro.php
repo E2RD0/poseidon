@@ -4,7 +4,7 @@ template::getHeader('Regístrate ~ Poseidón');
 ?>
 
   <main class="form container mb-5">
-    <a href="tienda.php" class="go-back"><i class="fas fa-arrow-left fa-lg mr-4"></i>Ir a la tienda</a>
+    <a href="<?= HOME_PATH?>store/shop" class="go-back"><i class="fas fa-arrow-left fa-lg mr-4"></i>Ir a la tienda</a>
     <div class="row">
     <div class="col-md-6 text-center form-container">
       <h1 class="form-title">Crea una nueva cuenta para poder comprar en la tienda</h1>
@@ -30,7 +30,7 @@ template::getHeader('Regístrate ~ Poseidón');
         <!--<button class="btn btn--cta btn-primary form-submit my-4" type="submit">Regístrate</button>-->
         <button id="register-submit" class="btn btn--cta btn-primary form-submit my-4" type="submit">Regístrate</button>
       </form>
-      <p class="form-text">¿Ya tienes una cuenta? <a class="ml-sm-3" href="#" onclick="redirect('store/user/login', true)">Inicia sesión</a></p>
+      <p class="form-text">¿Ya tienes una cuenta? <a class="ml-sm-3" href="<?= HOME_PATH?>store/user/login">Inicia sesión</a></p>
     </div>
     </div>
   </main>

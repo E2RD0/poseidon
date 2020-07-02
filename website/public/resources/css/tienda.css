@@ -517,6 +517,9 @@ background: #000;
 .section-products-tabs .section-header{
   margin-bottom: 5em;
 }
+.products.products-featured .not-available:only-child{
+    display: block !important;
+}
 .nav-categorias{
   border-bottom: 1px solid #dbdbdb;
   width: 60%;

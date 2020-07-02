@@ -69,7 +69,7 @@ function redirect(url, link=false){
     }
 }
 
-function readRows( api , el=false, action = 'show')
+function readRows( api , el=false, action = 'show', fun=false)
 {
     function before(){};
     function after(){}
@@ -88,7 +88,12 @@ function readRows( api , el=false, action = 'show')
         complete: after
     })
     .done(function( response ) {
-        fillTable( response.dataset );
+        if(fun){
+            fun(response.dataset);
+        }
+        else{
+            fillTable( response.dataset );
+        }
     })
     .fail(function( jqXHR ) {
         // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.

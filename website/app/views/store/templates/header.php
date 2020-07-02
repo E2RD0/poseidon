@@ -34,11 +34,10 @@
     <ul class="navbar__links">
       <?php
       require_once __DIR__ . '/../../../controllers/Categories.php';
-      $controller = new \Categories;
-      $result = [];
-      $result = $controller->showCategories($result);
-      if (isset($result['dataset'])) {
-        foreach ($result['dataset'] as $row) {
+      $controllerCategories = new \Categories;
+      $categories = $controllerCategories->showCategories([]);
+      if (isset($categories['dataset'])) {
+        foreach ($categories['dataset'] as $row) {
           echo '<li><a href="'. HOME_PATH . 'store/shop#t-' . $row->categoria . '">' . $row->categoria . '</a></li>';
         }
       }
