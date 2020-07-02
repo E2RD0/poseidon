@@ -580,13 +580,17 @@ END;
 $$ LANGUAGE 'plpgsql';
 
 --getProducts()
-
+DROP function  getProducts();
 CREATE OR REPLACE FUNCTION getProducts() RETURNS TABLE(
     idproducto INT,
     nombre VARCHAR,
     cantidad INT,
     precio NUMERIC(6,2),
-    categoria VARCHAR
+    idcategoriaproducto INT,
+    categoria VARCHAR,
+    descripcion VARCHAR,
+    imgurl VARCHAR,
+    calificacion numeric(2,1)
 ) AS $$
 DECLARE
     products RECORD;
@@ -597,20 +601,30 @@ BEGIN
             producto.nombre,
             producto.existenciascompra AS cantidad,
             producto.precio,
-            categoriaproducto.categoria AS categoria
+            producto.idcategoriaproducto,
+            categoriaproducto.categoria AS categoria,
+            producto.descripcion,
+            producto.imgurl,
+            AVG(review.calificacion) AS calificacion
         FROM
             producto
-            JOIN categoriaproducto ON categoriaproducto.idcategoriaproducto = producto.idcategoriaproducto
+            INNER JOIN categoriaproducto ON categoriaproducto.idcategoriaproducto = producto.idcategoriaproducto
+            LEFT JOIN review ON review.idproducto = producto.idproducto
         WHERE
             producto.existe = TRUE
-        ORDER BY
-            producto.idproducto ASC
+        GROUP BY
+            producto.idproducto,
+            categoriaproducto.categoria
     ) LOOP
         idproducto := products.idproducto;
         nombre := products.nombre;
         cantidad := products.cantidad;
         precio := products.precio;
         categoria := products.categoria;
+        idcategoriaproducto := products.idcategoriaproducto;
+        descripcion := products.descripcion;
+        imgurl := products.imgurl;
+        calificacion := products.calificacion;
         RETURN NEXT;
     END LOOP;
 END; $$ LANGUAGE 'plpgsql';

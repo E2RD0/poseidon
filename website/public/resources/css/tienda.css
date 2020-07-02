@@ -612,10 +612,11 @@ background: #000;
   overflow: hidden;
 }
 .star-rating:before {
-  content: "\f005\f005\f005\f005\f005";
+  content: attr(data-rating);
   font-family: "Font Awesome 5 Free";
   letter-spacing: .313em;
-  color: #FED700;
+  color: #FBB03B;
+  font-weight: 900;
   margin-left: 1em;
 }
 .btn-products-more:before{

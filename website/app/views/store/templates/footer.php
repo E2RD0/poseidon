@@ -2,7 +2,7 @@
   <div class=" section-cta jumbotron jumbotron-fluid">
     <div class="container">
       <h3 class="display-6">Compra tablas de surf con <br>diseños llamativos y originales</h3>
-      <a href="tienda.php#t-tablas" class="btn btn--cta btn-secondary">Ver catálogo de tablas</a>
+      <a href="<?= HOME_PATH?>store/shop#t-Tablas" class="btn btn--cta btn-secondary">Ver catálogo de tablas</a>
     </div>
   </div>
 <!-- Footer Links -->
@@ -23,7 +23,7 @@
 
       <ul class="list-unstyled footer__links">
         <li>
-          <a href="dashboard.php">Mi cuenta</a>
+          <a href="<?= HOME_PATH?>store/user/dashboard">Mi cuenta</a>
         </li>
         <li>
           <a href="#">Acerca de</a>

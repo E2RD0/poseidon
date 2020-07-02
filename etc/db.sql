@@ -106,13 +106,16 @@ CREATE TABLE detalleOrden (
     FOREIGN KEY (idProducto) REFERENCES producto (idProducto)
 );
 
-CREATE TABLE review (
+CREATE TABLE review
+(
     idReview SERIAL,
     comentario VARCHAR(400) NOT NULL,
     calificacion SMALLINT NOT NULL,
-    idDetalleOrden INT NOT NULL,
+    idProducto INT NOT NULL,
+    idCliente INT NOT NULL,
     PRIMARY KEY (idReview),
-    FOREIGN KEY (idDetalleOrden) REFERENCES detalleOrden (idDetalleOrden)
+    FOREIGN KEY (idProducto) REFERENCES producto (idProducto),
+    FOREIGN KEY (idCliente) REFERENCES cliente (idCliente)
 );
 
 CREATE TABLE informacionAlquiler (

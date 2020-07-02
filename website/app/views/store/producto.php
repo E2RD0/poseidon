@@ -1,6 +1,6 @@
 <?php
 require_once('functions.php');
-template::getHeader('Tabla blanca de caoba ~ Poseidón');
+template::getHeader($data->nombre.' ~ Poseidón');
 ?>
 
   <main class="container product-page">
