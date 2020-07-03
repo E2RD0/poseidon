@@ -27,6 +27,12 @@ if (isset($_GET['action'])) {
             case 'info':
                 $result = $productsController->getProductInfo($result);
                 break;
+            case 'reviews':
+                $result = $productsController->getReviewsProduct($_POST, $result);
+                break;
+            case 'newReview':
+                $result = $productsController->newReview($_POST, $result);
+                break;
             default:
                 \Common\Core::http404();
         }

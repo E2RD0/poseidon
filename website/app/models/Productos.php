@@ -166,6 +166,13 @@ class Productos
         $db->query('SELECT * FROM getFeaturedProducts()');
         return $db->resultSet();
     }
+    public function getReviews($id)
+    {
+        $db = new \Common\Database;
+        $db->query('SELECT r.idreview, comentario, calificacion, r.idproducto, r.idcliente, c.nombre, c.apellido FROM review r INNER JOIN cliente c ON c.idcliente = r.idcliente where idproducto=:id');
+        $db->bind(':id', $id);
+        return $db->resultSet();
+    }
     public function getProduct($id)
     {
         $db = new \Common\Database;

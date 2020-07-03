@@ -44,6 +44,22 @@ class Products extends \Common\Controller
         }
         return $result;
     }
+    public function getReviewsProduct($data, $result)
+    {
+        $idProducto = intval($data['id_producto']);
+        $producto = new Productos;
+
+        if ($producto->setId($idProducto) && $producto->existProduct($idProducto)) {
+            if ($result['dataset'] = $producto->getReviews($idProducto)) {
+                $result['status'] = 1;
+            } else {
+                $result['exception'] = \Common\Database::$exception;
+            }
+        } else {
+            $result['exception'] = 'Producto inexistente';
+        }
+        return $result;
+    }
     public function getProductQuantities($result)
     {
         if ($result['dataset'] = $this->productsModel->getProductQuantities()) {
@@ -170,7 +186,7 @@ class Products extends \Common\Controller
         $idProducto = intval($data['id_producto']);
         $producto = new Productos;
 
-        if ($producto->setId($idProducto) && $producto->existCategory($idProducto)) {
+        if ($producto->setId($idProducto) && $producto->existProduct($idProducto)) {
             if ($result['dataset'] = $producto->getOneCategory($idProducto)) {
                 $result['status'] = 1;
             } else {
