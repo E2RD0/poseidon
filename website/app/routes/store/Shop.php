@@ -1,14 +1,17 @@
 <?php
-class Shop extends \Common\Controller{
+class Shop extends \Common\Controller
+{
 
-  public function __construct(){
-      //$this->usersModel = $this->loadModel('Usuario');
-  }
-  public function index(){
-      $this->loadView('store', 'tienda', false);
-  }
-  public function cart()
-  {
-      $this->loadView('store', 'carrito');
-  }
+    public function __construct()
+    {
+        //$this->usersModel = $this->loadModel('Usuario');
+    }
+    public function index()
+    {
+        $this->loadView('store', 'tienda', false);
+    }
+    public function cart()
+    {
+        $this->loadView('store', 'carrito');
+    }
 }

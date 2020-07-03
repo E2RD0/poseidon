@@ -22,7 +22,7 @@ if (isset($_GET['action'])) {
             case 'updateDetail':
                 $result = $controller->updateDetail($data, $result);
                 break;
-            case 'deleteDetail':
+            case 'delete':
                 $result = $controller->deleteDetail($data, $result);
                 break;
             case 'finishOrder':

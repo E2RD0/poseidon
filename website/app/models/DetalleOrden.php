@@ -112,7 +112,13 @@ class DetalleOrden
         $db->bind(':idproducto', $orden->idproducto);
         return $db->execute();
     }
-
+    public function getIdOrderDetail($detalleorden){
+        $db = new \Common\Database;
+        $db->query('SELECT iddetalleorden, cantidad FROM detalleorden WHERE idorden = :idorden AND idproducto = :idproducto');
+        $db->bind(':idorden', $detalleorden->idorden);
+        $db->bind(':idproducto', $detalleorden->idproducto);
+        return $db->resultSet();
+    }
     public function getOrderDetails($value)
     {
         $db = new \Common\Database;
@@ -130,21 +136,17 @@ class DetalleOrden
     public function modifyOrderDetail($value)
     {
         $db = new \Common\Database;
-        $db->query('UPDATE detallealquiler
-        SET cantidad = :cantidad, preciounitario = :preciounitario, idorden = :idorden, idproducto = :idproducto
-        WHERE iddetalleorden = :idinformacionalquiler');
+        $db->query('UPDATE detalleorden SET cantidad = :cantidad WHERE iddetalleorden = :id');
         $db->bind(':cantidad', $value->cantidad);
-        $db->bind(':preciounitario', $value->preciounitario);
-        $db->bind(':idorden', $value->idorden);
-        $db->bind(':idproducto', $value->idproducto);
-        $db->bind(':iddetalleorden', $value->iddetalleorden);
+        $db->bind(':id', $value->iddetalleorden);
         return $db->execute();
     }
-    public function deleteOrderDetail($value)
+    public function deleteDetail($value, $idOrden)
     {
         $db = new \Common\Database;
-        $db->query('DELETE FROM detalleorden WHERE iddetalleorden = :id)');
-        $db->bind(':id', $value);
+        $db->query('DELETE FROM detalleorden WHERE iddetalleorden = :id AND idorden = :idorden');
+        $db->bind(':id', $value->iddetalleorden);
+        $db->bind(':idorden', $idOrden);
         return $db->execute();
     }
 }

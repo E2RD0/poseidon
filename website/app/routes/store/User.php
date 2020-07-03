@@ -20,6 +20,11 @@ class User extends \Common\Controller
         $this->loadView('store', 'dashboard');
     }
 
+    public function checking()
+    {
+        $this->loadView('store', 'checkCompra');
+    }
+
     public function recoverPassword()
     {
         $this->loadView('dashboard', 'enviar-correo', -1);

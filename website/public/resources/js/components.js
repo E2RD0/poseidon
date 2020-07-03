@@ -105,8 +105,9 @@ function readRows( api , el=false, action = 'show', fun=false)
     });
 }
 
-function confirmDelete( api, identifier, el=false, text=false)
+function confirmDelete( api, identifier, el=false, text=false, complete = false)
 {
+
     function before(){};
     function after(){};
     if(el){
@@ -138,8 +139,7 @@ function confirmDelete( api, identifier, el=false, text=false)
         })
         .done(function( response ) {
             if ( response.status ) {
-                readRows( api );
-                swal( 1, response.message);
+                swal( 1, response.message, null, null, null, complete ? complete() : readRows(api));
             } else {
                 swal( 2, response.exception);
             }

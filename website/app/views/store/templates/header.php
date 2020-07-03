@@ -20,7 +20,7 @@
   <header class="header-main <?php if(!$s_index) echo'header-main--normal'?>">
     <nav class="container-fluid navbar navbar--main <?php if(!$s_index) echo 'navbar--normal'?>">
     <div class="container">
-    <a href="<?= HOME_PATH ?>" class="navbar-brand"><img class="navbar__logo d-inline-block align-top" src="<?= HOME_PATH ?>resources/img/tienda/logo.svg" alt="Logo de Poseidón"></a>
+    <a href="<?= HOME_PATH . 'store'?>" class="navbar-brand"><img class="navbar__logo d-inline-block align-top" src="<?= HOME_PATH ?>resources/img/tienda/logo.svg" alt="Logo de Poseidón"></a>
 
     <div class="burger-container">
       <div id="burger">

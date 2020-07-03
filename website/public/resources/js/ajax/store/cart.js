@@ -22,7 +22,7 @@ function readCart(el = false){
                 jsonResponse.forEach(producto => {
                     total += producto.preciounitario*producto.cantidad;
                     productos += `
-                                <tr>
+                                <tr iddetalleorden="${producto.iddetalleorden}">
                                     <th scope="row" class="border-0">
                                         <div class="p-2">
                                             <img src="${HOME_PATH + 'resources/img/tienda/products/'+producto.imgurl}" alt="" width="70" class="img-fluid rounded-circle shadow-sm" id="imagen">
@@ -44,7 +44,7 @@ function readCart(el = false){
                                     </td>
                                     <td class="align-middle" id="subtotal"><strong title="$${producto.preciounitario*producto.cantidad}">$${producto.preciounitario*producto.cantidad}</strong></td>
                                     <td class="border-0 align-middle">
-                                        <button type="button" class="close review__close" id="review_eliminar" onclick="deleteProduct(${producto.idproducto}, this)">
+                                        <button type="button" class="close review__close" id="review_eliminar" onclick="deleteProduct(${producto.iddetalleorden}, this)">
                                             <span aria-hidden="true">
                                                 <i class="fas fa-times p-1"></i>
                                             </span>
@@ -54,10 +54,10 @@ function readCart(el = false){
                 });
                 $('#productosOrden').html(productos);
                 $('#cartEnd').html(`<p class="my-0 mr-4">Costo total: <strong id="total">$${total.toFixed(2)}</strong></p>
-                                    <a href="store/user/verificarOrden" class="btn btn--cta btn-primary">Continuar</a>`);
+                                    <a href="../user/checking" class="btn btn--cta btn-primary">Continuar</a>`);
                 $('#productosSpinner').html('');
             } else {
-                $('#productosSpinner').html('Aún no has comprado nada. <a href="">Regresar al inicio.</a>');
+                $('#productosSpinner').html('Aún no has comprado nada. <a href="store/shop">Regresar a la tienda.</a>');
             }
         },
         error: function (jqXHR) {
@@ -69,3 +69,8 @@ function readCart(el = false){
             }
         }});
 };
+
+function deleteProduct(id, el = false){
+    let identifier = {iddetalleorden: id};
+    confirmDelete( API_CARRITO, identifier, el, '¿Desea eliminar el producto?', readCart($('#productosSpinner')[0]));
+}

@@ -4,8 +4,8 @@ class Orders extends \Common\Controller
     public function __construct()
     {
         $this->ordersModel = $this->loadModel('Orden');
-        $this->orderDetailModel = $this->loadModel('DetalleOrden');
-        $this->productModel = $this->loadModel('Productos');
+        $this->ordersDetailModel = $this->loadModel('DetalleOrden');
+        $this->productsModel = $this->loadModel('Productos');
     }
 
     public function ordersCount($result)
@@ -94,32 +94,42 @@ class Orders extends \Common\Controller
 
         $orden = $ordenController->readOrder($idCliente);
         if ($orden['status']) {
-            if ($productoController->setIdProducto($idProducto) && $precio = $productoController->getProductPrice($idProducto)->precio) {
-                $errors = [];
+            $preerrors = [];
 
-                $errors = $detalleordenController->setCantidad($cantidad) === true ? $errors : array_merge($errors, $detalleordenController->setCantidad($cantidad));
-                $errors = $detalleordenController->setIdProducto($idProducto) === true ? $errors : array_merge($errors, $detalleordenController->setIdProducto($idProducto));
-                $errors = $detalleordenController->setPrecioUnitario($precio) === true ? $errors : array_merge($errors, $detalleordenController->setPrecioUnitario($precio));
-                $errors = $detalleordenController->setIdOrden(intval($orden['idorden'])) === true ? $errors : array_merge($errors, $detalleordenController->setIdOrden(intval($orden['idorden'])));
+            $preerrors = $detalleordenController->setIdProducto($idProducto) === true ? $preerrors : array_merge($preerrors, $detalleordenController->setPrecioUnitario($idProducto));
+            $preerrors = $detalleordenController->setIdOrden(intval($orden['idorden'])) === true ? $preerrors : array_merge($preerrors, $detalleordenController->setIdOrden(intval($orden['idorden'])));
 
-                if (!boolval($errors)) {
-                    if ($detalleordenController->createDetail($detalleordenController)) {
-                        $result['status'] = 1;
-                        $result['message'] = 'Producto agregado al carrito exitosamente';
+            if (!boolval($preerrors)) {
+                if (!boolval($detalleorden = $detalleordenController->getIdOrderDetail($detalleordenController))) {
+                    if ($productoController->setIdProducto($idProducto) && $precio = $productoController->getProductPrice($idProducto)->precio) {
+                        $errors = [];
+
+                        $errors = $detalleordenController->setCantidad($cantidad) === true ? $errors : array_merge($errors, $detalleordenController->setCantidad($cantidad));
+                        $errors = $detalleordenController->setIdProducto($idProducto) === true ? $errors : array_merge($errors, $detalleordenController->setIdProducto($idProducto));
+                        $errors = $detalleordenController->setPrecioUnitario($precio) === true ? $errors : array_merge($errors, $detalleordenController->setPrecioUnitario($precio));
+                        $errors = $detalleordenController->setIdOrden(intval($orden['idorden'])) === true ? $errors : array_merge($errors, $detalleordenController->setIdOrden(intval($orden['idorden'])));
+
+                        if (!boolval($errors)) {
+                            if ($detalleordenController->createDetail($detalleordenController)) {
+                                $result['status'] = 1;
+                                $result['message'] = 'Producto agregado al carrito exitosamente';
+                            } else {
+                                $result['exception'] = \Common\Database::$exception;
+                            }
+                        } else {
+                            $result['exception'] = 'Error en uno de los campos';
+                            $result['errors'] = $errors;
+                        }
                     } else {
                         $result['exception'] = \Common\Database::$exception;
                     }
                 } else {
-                    $result['exception'] = 'Error en uno de los campos';
-                    $result['errors'] = $errors;
+                    $data['cantidad'] += $detalleorden['0']->cantidad;
+                    return $this->updateDetail(array_merge($data, array('iddetalleorden'=>$detalleorden['0']->iddetalleorden)), $result);
                 }
-            } else {
-                $result['exception'] = \Common\Database::$exception;
             }
-        } else {
-            $result['exception'] = \Common\Database::$exception;
+            return $result;
         }
-        return $result;
     }
 
     public function readCart($data, $result)
@@ -144,32 +154,49 @@ class Orders extends \Common\Controller
 
     public function updateDetail($data, $result)
     {
-        if ($pedido->setIdPedido($_SESSION['id_pedido'])) {
-            $_POST = $pedido->validateForm($_POST);
-            if ($pedido->setIdDetalle($_POST['id_detalle'])) {
-                if ($pedido->setCantidad($_POST['cantidad_producto'])) {
-                    if ($pedido->updateDetail()) {
-                        $result['status'] = 1;
-                        $result['message'] = 'Cantidad modificada correctamente';
-                    } else {
-                        $result['exception'] = 'Ocurrió un problema al modificar la cantidad';
-                    }
-                } else {
-                    $result['exception'] = 'Cantidad incorrecta';
-                }
+        $data = \Helpers\Validation::trimForm($data);
+
+        $cantidad = intval($data['cantidad']);
+        $iddetalleorden = intval($data['iddetalleorden']);
+
+        $detalleordenController = new DetalleOrden;
+
+        $errors = [];
+
+        $errors = $detalleordenController->setIdDetalleOrden($iddetalleorden) === true ? $errors : array_merge($errors, $detalleordenController->setIdDetalleOrden($iddetalleorden));
+        $errors = $detalleordenController->setCantidad($cantidad) === true ? $errors : array_merge($errors, $detalleordenController->setCantidad($cantidad));
+
+        if (!boolval($errors)) {
+            if ($detalleordenController->modifyOrderDetail($detalleordenController)) {
+                $result['status'] = 1;
+                $result['message'] = 'Cantidad modificada correctamente';
             } else {
-                $result['exception'] = 'Detalle incorrecto';
+                $result['exception'] = 'Ocurrió un problema al modificar la cantidad';
             }
         } else {
-            $result['exception'] = 'Pedido incorrecto';
+            $result['exception'] = 'Detalle incorrecto';
+            $result['errors'] = $errors;
         }
         return $result;
     }
     public function deleteDetail($data, $result)
     {
-        if ($pedido->setIdPedido($_SESSION['id_pedido'])) {
-            if ($pedido->setIdDetalle($_POST['id_detalle'])) {
-                if ($pedido->deleteDetail()) {
+        $data = \Helpers\Validation::trimForm($data);
+
+        $idCliente = intval($data['idcliente']);
+        $iddetalleorden = intval($data['iddetalleorden']);
+
+        $detalleordenController = new DetalleOrden;
+        $ordenController = new Orden;
+
+        $orden = $ordenController->readOrder($idCliente);
+        if ($orden['status']) {
+            $errors = [];
+
+            $errors = $detalleordenController->setIdDetalleOrden($iddetalleorden) === true ? $errors : array_merge($errors, $detalleordenController->setIdDetalleOrden($iddetalleorden));
+
+            if (!boolval($errors)) {
+                if ($detalleordenController->deleteDetail($detalleordenController, $orden['idorden'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Producto removido correctamente';
                 } else {
@@ -179,7 +206,7 @@ class Orders extends \Common\Controller
                 $result['exception'] = 'Detalle incorrecto';
             }
         } else {
-            $result['exception'] = 'Pedido incorrecto';
+            $result['exception'] = 'No hay ningún carrito de compra activo.';
         }
         return $result;
     }
