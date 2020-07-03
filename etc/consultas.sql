@@ -778,7 +778,7 @@ BEGIN
             END LOOP;
 END; $$ LANGUAGE 'plpgsql';
 
-//getOrdersByClient
+--getOrdersByClient
 CREATE
 	OR REPLACE FUNCTION getOrdersByClient (id_cliente INT) RETURNS TABLE ( idorden INT, estado VARCHAR, total NUMERIC, fechacompra VARCHAR ) AS $$ DECLARE
 	var RECORD;
@@ -836,7 +836,7 @@ END LOOP;
 END;
 
 $$ LANGUAGE'plpgsql';
-//readCart()
+--readCart()
 CREATE
 	OR REPLACE FUNCTION readCart ( id_orden INT ) RETURNS TABLE ( idproducto INT, imgurl VARCHAR, nombre VARCHAR, preciounitario NUMERIC, cantidad INT ) AS $$ DECLARE
 	cart_info RECORD;

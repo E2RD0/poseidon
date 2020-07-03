@@ -4,7 +4,7 @@ class Clients extends \Common\Controller
     public function __construct()
     {
         $this->model = $this->loadModel('Cliente');
-        $this->model = $this->loadModel('Orden');
+        $this->modelOrden = $this->loadModel('Orden');
     }
 
     public function show($result)

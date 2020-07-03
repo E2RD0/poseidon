@@ -7,7 +7,7 @@ template::getHeader($data->nombre.' ~ Poseidón');
     <div class="product-breadcrumb mb-5">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item home"><a href="<?= HOME_PATH ?>shop"><img src="<?= HOME_PATH ?>resources/img/tienda/icons/home.svg" alt="Ícono de casa"></a></li>
+                <li class="breadcrumb-item home"><a href="<?= HOME_PATH ?>store/shop"><img src="<?= HOME_PATH ?>resources/img/tienda/icons/home.svg" alt="Ícono de casa"></a></li>
                 <li class="breadcrumb-item"><a href="#"><?= $data->categoria ?></a></li>
                 <li class="breadcrumb-item active" aria-current="page"><?= $data->nombre ?></li>
             </ol>
@@ -107,56 +107,7 @@ template::getHeader($data->nombre.' ~ Poseidón');
                 <div class="text-center mt-4"><button class="btn btn--cta btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Dar opinión</button></div>
             </div>
             <div class="col-md-6 user-ratings mt-4 mt-md-0">
-                <div class="user-rating">
-                    <i class="fas fa-user-circle fa-3x mr-3"></i>
-                    <div>
-                        <h4 class="rating-username">Roberto Campos</h4>
-                        <div class="rating-score mb-2">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
-                        <p class="rating-comment">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-                        </p>
-                    </div>
-                </div>
-
-                <div class="user-rating">
-                    <i class="fas fa-user-circle fa-3x mr-3"></i>
-                    <div>
-                        <h4 class="rating-username">María Martínez</h4>
-                        <div class="rating-score mb-2">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
-                        <p class="rating-comment">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="user-rating">
-                    <i class="fas fa-user-circle fa-3x mr-3"></i>
-                    <div>
-                        <h4 class="rating-username">Laura Navas</h4>
-                        <div class="rating-score mb-2">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
-                        <p class="rating-comment">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-                        </p>
-                    </div>
-                </div>
+              <div class="w-100 text-center"><div class="spinner-grow" role="status"><span class="sr-only">Cargando...</span></div></div>
             </div>
         </div>
     </div>

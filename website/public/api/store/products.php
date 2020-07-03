@@ -12,6 +12,21 @@ if (isset($_GET['action'])) {
 
     if (isset($_SESSION['client_id'])) {
         switch ($action) {
+            case 'show':
+                $result = $productsController->showProducts($result);
+                break;
+            case 'showFeatured':
+                $result = $productsController->showFeaturedProducts($result);
+                break;
+            case 'info':
+                $result = $productsController->getProductInfo($result);
+                break;
+            case 'reviews':
+                $result = $productsController->getReviewsProduct($_POST, $result);
+                break;
+            case 'newReview':
+                $result = $productsController->newReview($_POST, $result);
+                break;
             default:
                 \Common\Core::http404();
         }
@@ -29,9 +44,6 @@ if (isset($_GET['action'])) {
                 break;
             case 'reviews':
                 $result = $productsController->getReviewsProduct($_POST, $result);
-                break;
-            case 'newReview':
-                $result = $productsController->newReview($_POST, $result);
                 break;
             default:
                 \Common\Core::http404();

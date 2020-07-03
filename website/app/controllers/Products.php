@@ -49,7 +49,7 @@ class Products extends \Common\Controller
         $idProducto = intval($data['id_producto']);
         $producto = new Productos;
 
-        if ($producto->setId($idProducto) && $producto->existProduct($idProducto)) {
+        if ($producto->setIdProducto($idProducto) && $producto->existProduct($idProducto)) {
             if ($result['dataset'] = $producto->getReviews($idProducto)) {
                 $result['status'] = 1;
             } else {

@@ -7,7 +7,7 @@ $(document).ready(function () {
 
 // Función para llenar la tabla con los datos enviados por readRows().
 function fillTable(dataset) {
-    if(typeof dataset !== 'undefined' && dataset.length > 0){
+    if(typeof dataset !== 'undefined' && dataset.length > 0 && dataset!=null){
         dataset.forEach( function(row) {
             product = `
             <div class="product has-post-thumbnail featured col-lg-4 col-md-6">
@@ -69,11 +69,11 @@ function range(){
 function search(){
     let minRange = Math.min($('#priceRangeLow').val(), $('#priceRangeHigh').val());
     let maxRange = Math.max($('#priceRangeLow').val(), $('#priceRangeHigh').val());
-    let search = $('#search').val();
+    let search = $('#search').val().toLowerCase();
 
     $(".products .product").each(function() {
         let price = $('.product__price', this).html().substr(1);
-        let name = $('.product__title', this).html().trim();
+        let name = $('.product__title', this).html().trim().toLowerCase();
         if(parseInt(price) >= minRange && parseInt(price) <= maxRange){
             if(name.startsWith(search) || name == search || name.search(search)!=-1){
                 $(this).show();
