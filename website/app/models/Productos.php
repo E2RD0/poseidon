@@ -180,6 +180,32 @@ class Productos
         $db->bind(':id', $id);
         return $db->resultSet();
     }
+    public function existsOrden($idProducto, $idCliente)
+    {
+        $db = new \Common\Database;
+        $db->query('SELECT o.idcliente, d.idproducto from orden o INNER JOIN detalleorden d ON d.idorden = o.idorden WHERE idcliente =:idcliente AND idproducto=:idproducto AND idestadoorden!=1');
+        $db->bind(':idcliente', $idCliente);
+        $db->bind(':idproducto', $idProducto);
+        return $db->rowCount();
+    }
+    public function existsReview($idProducto, $idCliente)
+    {
+        $db = new \Common\Database;
+        $db->query('SELECT * from review where idcliente=:idcliente AND idproducto=:idproducto');
+        $db->bind(':idcliente', $idCliente);
+        $db->bind(':idproducto', $idProducto);
+        return $db->getResult();
+    }
+    public function newReview($idProducto, $calificacion, $comentario, $idCliente)
+    {
+        $db = new \Common\Database;
+        $db->query('INSERT into review VALUES (DEFAULT, :comentario, :calificacion, :idProducto, :idCliente)');
+        $db->bind(':comentario', $comentario);
+        $db->bind(':calificacion', $calificacion);
+        $db->bind(':idProducto', $idProducto);
+        $db->bind(':idCliente', $idCliente);
+        return $db->execute();
+    }
     public function getProduct($id)
     {
         $db = new \Common\Database;

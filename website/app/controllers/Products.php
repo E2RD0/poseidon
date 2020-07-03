@@ -60,6 +60,53 @@ class Products extends \Common\Controller
         }
         return $result;
     }
+    public function checkReview($data, $result)
+    {
+        $idProducto = intval($data['id_producto']);
+        $idCliente = $_SESSION['client_id'];
+        $producto = new Productos;
+
+        if ($producto->existsOrden($idProducto, $idCliente) > 0) {
+            $review = $producto->existsReview($idProducto, $idCliente);
+            if ($review) {
+                $result['dataset'] = $review;
+                $result['status'] = 1;
+            }
+            else {
+                $result['status'] = 0;
+            }
+        } else {
+            $result['status'] = -1;
+            $result['exception'] = 'Para poder hacer una reseña se debe haber comprado el producto.';
+        }
+        return $result;
+    }
+    public function newReview($data, $result)
+    {
+        $idProducto = intval($data['id_producto']);
+        $calificacion = intval($data['calificacion']);
+        $comentario = $data['review'];
+        $idCliente = $_SESSION['client_id'];
+        $producto = new Productos;
+
+        if ($producto->existsOrden($idProducto, $idCliente) > 0) {
+            $review = $producto->existsReview($idProducto, $idCliente);
+            if ($review) {
+                $result['exception'] = 'Ya existe una reseña.';
+            }
+            else {
+                if($producto->newReview($idProducto, $calificacion, $comentario, $idCliente)){
+                    $result['status'] = 1;
+                }
+                else{
+                    $result['exception'] = 'Error al ingresar la reseña.';
+                }
+            }
+        } else {
+            $result['exception'] = 'Para poder hacer una reseña se debe haber comprado el producto.';
+        }
+        return $result;
+    }
     public function getReviewsInfo($data, $result)
     {
         $idProducto = intval($data['id_producto']);

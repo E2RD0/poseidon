@@ -27,6 +27,9 @@ if (isset($_GET['action'])) {
             case 'reviewsInfo':
                 $result = $productsController->getReviewsInfo($_POST, $result);
                 break;
+            case 'checkReview':
+                $result = $productsController->checkReview($_POST, $result);
+                break;
             case 'newReview':
                 $result = $productsController->newReview($_POST, $result);
                 break;

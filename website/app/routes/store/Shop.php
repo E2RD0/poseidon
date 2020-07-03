@@ -7,4 +7,8 @@ class Shop extends \Common\Controller{
   public function index(){
       $this->loadView('store', 'tienda', false);
   }
+  public function cart()
+  {
+      $this->loadView('store', 'carrito');
+  }
 }

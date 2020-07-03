@@ -75,10 +75,10 @@ template::getHeader($data->nombre.' ~ Poseidón');
                     <div class="rating w-100">
                         <h2 class="mb-1"><?= $data->calificacion!=null ? round($data->calificacion, 1) : 'N/A'?></h2>
                         <?= $data->calificacion!=null ? str_repeat ('<i class="fas fa-star"></i>', round($data->calificacion) ): ''?>
-                        <p><i class="far fa-user mr-2"></i> <?=$data->numreviews?> opiniones</p>
+                        <p><i class="far fa-user mr-2"></i> <?= $data->numreviews ?> <?=$data->numreviews== 1 ? 'opinión' : 'opiniones'?></p>
                     </div>
                 </div>
-                <div class="text-center mt-4"><button class="btn btn--cta btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Dar opinión</button></div>
+                <div class="text-center mt-4"><button id="giveReview" onclick="<?= isset( $_SESSION['client_id'] )? 'checkReview();' : 'redirect(\'store/user/login\', true);' ?>" class="btn btn--cta btn-primary" data-toggle="modal">Dar opinión</button></div>
             </div>
             <div class="col-md-6 user-ratings mt-4 mt-md-0">
               <div class="w-100 text-center"><div class="spinner-grow" role="status"><span class="sr-only">Cargando...</span></div></div>
@@ -87,10 +87,10 @@ template::getHeader($data->nombre.' ~ Poseidón');
     </div>
 </main>
 
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div id="modal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <form>
+            <form action="" method="post" id="review-form">
                 <div class="modal-header">
                     <h5 class="modal-title h4" id="myLargeModalLabel">Escribir reseña</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -103,7 +103,7 @@ template::getHeader($data->nombre.' ~ Poseidón');
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn--cta btn-default" data-dismiss="modal">Cerrar</button>
-                    <button class="btn btn--cta btn-primary" type="submit">Enviar</button>
+                    <button id="review-submit" class="btn btn--cta btn-primary" type="submit">Enviar</button>
                 </div>
             </form>
         </div>

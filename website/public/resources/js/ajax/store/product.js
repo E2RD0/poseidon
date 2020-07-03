@@ -1,6 +1,9 @@
 const API_PEDIDOS = HOME_PATH + 'api/store/cart.php?action=';
 const API_PRODUCTOS = HOME_PATH + 'api/store/products.php?action=';
 
+const regex = /.*view\/(.*)/g;
+let match = regex.exec(window.location.href);
+let idProducto = Number(match[1]);
 // Options
 var options = {
     max_value: 5,
@@ -47,16 +50,14 @@ function addCart() {
 }
 
 $(document).ready(function () {
-    const regex = /.*view\/(.*)/g;
-    let match = regex.exec(window.location.href);
-    getReviews(Number(match[1]));
+    getReviews();
 });
 
-function getReviews(id){
+function getReviews(){
     $.ajax({
         url: API_PRODUCTOS + 'reviews',
         type: 'post',
-        data: { id_producto: id },
+        data: { id_producto: idProducto },
         dataType: 'json',
         success: function (response) {
             let dataset = response.dataset;
@@ -94,6 +95,77 @@ function getReviews(id){
         }
     });
 }
+function checkReview(){
+    $.ajax({
+        url: API_PRODUCTOS + 'checkReview',
+        type: 'post',
+        data: { id_producto: idProducto},
+        dataType: 'json',
+        success: function (response) {
+            if(response.status == 1){
+                $('#review-form').trigger("reset");
+                dataset = response.dataset;
+                $('#myLargeModalLabel').html('Ver reseña anterior');
+                $('#inputReview').attr('disabled', '');
+                $('#inputReview').val(dataset.comentario);
+                $("#inputRating").rate("setValue",dataset.calificacion );
+                $('#review-submit').attr('disabled', '');
+                $('#modal').modal('show');
+            }
+            else if (response.status == 0) {
+                $('#review-form').trigger("reset");
+                $('#myLargeModalLabel').html('Escribir reseña');
+                $("#inputRating").rate("setValue",5 );
+                $('#modal').modal('show');
+            }
+            else{
+                swal(3, response.exception)
+            }
+        },
+        error: function (jqXHR) {
+            // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+            if (jqXHR.status == 200) {
+                console.log(jqXHR.responseText);
+            } else {
+                console.log(jqXHR.status + ' ' + jqXHR.statusText);
+            }
+        },
+        beforeSend: function () {$('#giveReview').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Cargando...')},
+        complete: function () {$('#giveReview').html('Dar opinión')}
+    });
+}
+function newReview(){
+    $.ajax({
+        url: API_PRODUCTOS + 'newReview',
+        type: 'post',
+        data: { id_producto: idProducto, review: $('#inputReview').val(), calificacion: $("#inputRating").rate("getValue")},
+        dataType: 'json',
+        success: function (response) {
+            if(response.status){
+                swal(1, 'Reseña ingresada correctamente.');
+            }
+            else {
+                swal(2, response.exception);
+            }
+            getReviews();
+        },
+        error: function (jqXHR) {
+            // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+            if (jqXHR.status == 200) {
+                console.log(jqXHR.responseText);
+            } else {
+                console.log(jqXHR.status + ' ' + jqXHR.statusText);
+            }
+        },
+        beforeSend: function () {$('#review-submit').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Cargando...')},
+        complete: function () {$('#review-submit').html('Enviar'); $('#modal').modal('hide');}
+    });
+}
+
+$( '#review-form' ).submit(function( event ) {
+    event.preventDefault();
+    newReview();
+});
 /*function getReviewsInfo(id){
     $.ajax({
         url: API_PRODUCTOS + 'reviewsInfo',

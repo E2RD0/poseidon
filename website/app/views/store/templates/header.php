@@ -47,7 +47,7 @@
 
     <ul class="navbar__links navbar__icons">
       <li><a href="#"><img src="<?= HOME_PATH ?>resources/img/tienda/icons/search.svg"></a></li>
-      <li><a href="carrito.php"><img src="<?= HOME_PATH ?>resources/img/tienda/icons/cart.svg"></a></li>
+      <li><a href="<?= HOME_PATH?>store/shop/cart"><img src="<?= HOME_PATH ?>resources/img/tienda/icons/cart.svg"></a></li>
       <li><a href="<?= HOME_PATH?>store/user/dashboard"><img src="<?= HOME_PATH ?>resources/img/tienda/icons/user.svg"></a></li>
     </ul>
     </div>
