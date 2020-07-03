@@ -1,5 +1,6 @@
 $( '#login-form' ).submit(function( event ) {
     event.preventDefault();
+    console.log(API);
     $.ajax({
         type: 'post',
         url: API + 'login',

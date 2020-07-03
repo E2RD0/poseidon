@@ -183,6 +183,35 @@ class Orden
         $db->bind(':idestadoorden', $user->idestadoorden);
         return $db->execute();
     }
+    public function getOrdersByClient($value)
+    {
+        $db = new \Common\Database;
+        $db->query('SELECT * FROM getOrdersByClient(' . $value . ')');
+        return $db->resultSet();
+    }
+    public function readOrder($value)
+    {
+        $db = new \Common\Database;
+
+        $orden = ['idorden' => 0, 'status' => null];
+
+        $db->query('SELECT idorden FROM orden WHERE idestadoorden = 1 AND idcliente = :idcliente');
+        $db->bind(':idcliente', $value);
+        if ($orden['idorden'] = $db->resultSet()['0']->idorden) {
+            $orden['status'] = true;
+        } else {
+            $db->query('INSERT into orden (idorden, fechacompra, idcliente, idestadoorden) VALUES (DEFAULT, DEFAULT, :idcliente, 1) RETURNING idorden');
+            $db->bind(':idcliente', $value);
+            $orden['idorden'] = $db->resultSet()['0']->idorden ? $orden['status'] = true : $orden['status'] = false;
+        }
+        return $orden;
+    }
+    public function readCart($idorden){
+        $db = new \Common\Database;
+        $db->query('SELECT * FROM readCart(:idorden)');
+        $db->bind(':idorden', $idorden);
+        return $db->resultSet();
+    }
     public function modifyOrder($user)
     {
         $db = new \Common\Database;

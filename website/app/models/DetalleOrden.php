@@ -102,6 +102,16 @@ class DetalleOrden
             return $v->errors();
         }
     }
+    public function createDetail($orden)
+    {
+        $db = new \Common\Database;
+        $db->query('INSERT INTO detalleorden VALUES (DEFAULT, :cantidad, :preciounitario, :idorden, :idproducto)');
+        $db->bind(':cantidad', $orden->cantidad);
+        $db->bind(':preciounitario', $orden->preciounitario);
+        $db->bind(':idorden', $orden->idorden);
+        $db->bind(':idproducto', $orden->idproducto);
+        return $db->execute();
+    }
 
     public function getOrderDetails($value)
     {
@@ -110,23 +120,12 @@ class DetalleOrden
         $db->bind(':idorden', $value);
         return $db->resultSet();
     }
-    public function getRentalDetailsCount($value)
+    public function getOrderDetailsCount($value)
     {
         $db = new \Common\Database;
         $db->query('SELECT * FROM detalleorden WHERE idorden = :idorden');
         $db->bind(':idorden', $value);
         return $db->rowCount();
-    }
-    public function insertRentalDetail($value)
-    {
-        $db = new \Common\Database;
-        $db->query('INSERT into detallealquiler (iddetalleorden, cantidad, preciounitario, idorden, idproducto)
-                    VALUES(DEFAULT, :cantidad, :preciounitario, :idorden, :idproducto)');
-        $db->bind(':cantidad', $value->cantidad);
-        $db->bind(':preciounitario', $value->preciounitario);
-        $db->bind(':idorden', $value->idorden);
-        $db->bind(':idproducto', $value->idproducto);
-        return $db->execute();
     }
     public function modifyOrderDetail($value)
     {

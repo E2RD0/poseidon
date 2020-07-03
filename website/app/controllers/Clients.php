@@ -4,6 +4,7 @@ class Clients extends \Common\Controller
     public function __construct()
     {
         $this->model = $this->loadModel('Cliente');
+        $this->model = $this->loadModel('Orden');
     }
 
     public function show($result)
@@ -70,7 +71,7 @@ class Clients extends \Common\Controller
         $errors = $cliente->setPassword($password, false) === true ? $errors : array_merge($errors, $cliente->setPassword($password, false));
         //If there aren't any errors
         if (!boolval($errors)) {
-            $userHash = $this->model->checkPassword($email);
+            $userHash = $cliente->checkPassword($email);
             if ($userHash) {
                 if (password_verify($password, trim($userHash->contrasena))) {
                     if($userHash->idestadocliente != 3){
@@ -226,6 +227,24 @@ class Clients extends \Common\Controller
             }
         } else {
             $result['exception'] = 'Cliente inexistente';
+        }
+        return $result;
+    }
+
+    public function getOrders($data, $result)
+    {
+        $cliente = new Cliente;
+        $orden = new Orden;
+
+        if ($cliente->setId($data) && $cliente->clientExists('idCliente', $data)) {
+            if ($result['dataset'] = $orden->getOrdersByClient($data)) {
+                $result['status'] = 1;
+                $result['message'] = 'Ordenes cargadas correctamente';
+            } else {
+                $result['exception'] = \Common\Database::$exception;
+            }
+        } else {
+            $result['exception'] = 'No existe el cliente';
         }
         return $result;
     }

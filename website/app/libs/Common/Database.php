@@ -1,8 +1,10 @@
 <?php
+
 namespace Common;
 
 //Database connection class
-class Database{
+class Database
+{
     private $host;
     private $port;
     private $user;
@@ -17,7 +19,8 @@ class Database{
     public static $exception = "";
 
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->host = DB_HOST;
         $this->port = DB_PORT;
         $this->user = DB_USER;
@@ -37,11 +40,13 @@ class Database{
         }
     }
 
-    public function query($sql){
+    public function query($sql)
+    {
         $this->stmt = $this->dbh->prepare($sql);
     }
 
-    public function bind($parameter, $value){
+    public function bind($parameter, $value)
+    {
         $type;
         switch (true) {
             case is_int($value):
@@ -60,26 +65,29 @@ class Database{
         $this->stmt->bindValue($parameter, $value, $type);
     }
 
-    public function execute(){
-        try{
+    public function execute()
+    {
+        try {
             return $this->stmt->execute();
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             self::setException($e->getCode(), $e->getMessage());
         }
     }
 
-    public function getResult(){
+    public function getResult()
+    {
         $this->execute();
         return $this->stmt->fetch(\PDO::FETCH_OBJ);
     }
 
-    public function resultSet(){
+    public function resultSet()
+    {
         $this->execute();
         return $this->stmt->fetchAll(\PDO::FETCH_OBJ);
     }
 
-    public function rowCount(){
+    public function rowCount()
+    {
         $this->execute();
         return $this->stmt->rowCount();
     }
@@ -106,6 +114,4 @@ class Database{
                 self::$exception = $message;
         }
     }
-
-
 }

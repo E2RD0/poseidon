@@ -778,3 +778,93 @@ BEGIN
             END LOOP;
 END; $$ LANGUAGE 'plpgsql';
 
+//getOrdersByClient
+CREATE
+	OR REPLACE FUNCTION getOrdersByClient (id_cliente INT) RETURNS TABLE ( idorden INT, estado VARCHAR, total NUMERIC, fechacompra VARCHAR ) AS $$ DECLARE
+	var RECORD;
+	iva_value NUMERIC;
+BEGIN
+		iva_value := (
+			SELECT
+					valor
+			FROM
+					opcionesgenerales
+			WHERE
+					clave = 'IVA'
+		);
+		FOR var IN (
+		SELECT
+			Ordenes.orden AS idorden,
+			to_char( orden.fechacompra, 'DD Mon YY HH12:MI:SS' ) AS fechacompra,
+			CASE WHEN estadoorden.estado = 'compraFinalizada' THEN 'Comprado'
+					 WHEN estadoorden.estado = 'productoEntregado' THEN 'Entregado'
+			END AS estado,
+			Ordenes."Total" AS total
+		FROM
+			(
+			SELECT
+				detalleorden.idorden AS orden,
+				SUM (
+					SUM ( detalleorden.preciounitario * detalleorden.cantidad ) + (
+						SUM ( detalleorden.preciounitario * detalleorden.cantidad ) * iva_value)) OVER ( PARTITION BY detalleorden.idorden ) AS "Total"
+			FROM
+				detalleorden
+				JOIN orden ON orden.idorden = detalleorden.idorden
+				JOIN cliente ON cliente.idcliente = orden.idcliente
+			WHERE
+				cliente.idcliente = id_cliente
+			GROUP BY
+				"orden"
+			) AS Ordenes
+			JOIN orden ON orden.idorden = Ordenes.orden
+			JOIN estadoorden ON orden.idestadoorden = estadoorden.idestadoorden
+		WHERE
+				estadoorden.estado NOT LIKE 'carrito'
+		ORDER BY
+			idorden ASC
+		)
+		LOOP
+		idorden := var.idorden;
+		fechacompra := var.fechacompra;
+		estado := var.estado;
+		total := var.total;
+
+	RETURN NEXT;
+
+END LOOP;
+
+END;
+
+$$ LANGUAGE'plpgsql';
+//readCart()
+CREATE
+	OR REPLACE FUNCTION readCart ( id_orden INT ) RETURNS TABLE ( idproducto INT, imgurl VARCHAR, nombre VARCHAR, preciounitario NUMERIC, cantidad INT ) AS $$ DECLARE
+	cart_info RECORD;
+BEGIN
+		FOR cart_info IN (
+			SELECT
+				producto.idproducto,
+				producto.imgurl,
+				producto.nombre,
+				detalleorden.preciounitario,
+				detalleorden.cantidad
+			FROM
+				detalleorden
+				JOIN orden ON detalleorden.idorden = orden.idorden
+				JOIN producto ON detalleorden.idproducto = producto.idproducto
+			WHERE
+				orden.idorden = id_orden
+			ORDER BY
+				detalleorden.iddetalleorden ASC
+		)
+		LOOP
+		idproducto := cart_info.idproducto;
+		imgurl := cart_info.imgurl;
+		nombre := cart_info.nombre;
+		preciounitario := cart_info.preciounitario;
+		cantidad := cart_info.cantidad;
+	RETURN NEXT;
+
+END LOOP;
+
+END; $$ LANGUAGE'plpgsql';

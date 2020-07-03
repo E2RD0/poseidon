@@ -53,7 +53,7 @@
     </div>
     </nav>
 
-    <?php if($s_index){
+    <?php if ($s_index) {
       echo '
       <div class="container header__content">
         <div class="row">

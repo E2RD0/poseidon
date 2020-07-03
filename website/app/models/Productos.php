@@ -183,6 +183,12 @@ class Productos
     public function getProductInfo(){
         $db = new \Common\Database;
         $db->query('SELECT count(idproducto), max(precio), min(precio)  from producto');
+    }
+    public function getProductPrice($id)
+    {
+        $db = new \Common\Database;
+        $db->query('SELECT precio FROM producto WHERE idProducto = :id');
+        $db->bind(':id', $id);
         return $db->getResult();
     }
     public function getProductQuantities()

@@ -38,6 +38,7 @@ CREATE TABLE recuperarClave (
     PRIMARY KEY (idRecuperarClave),
     FOREIGN KEY (idUsuario) REFERENCES usuario (idUsuario)
 );
+
 CREATE TABLE estadoCliente(
   idEstadoCliente SERIAL NOT NULL,
   estado VARCHAR(50) UNIQUE NOT NULL,

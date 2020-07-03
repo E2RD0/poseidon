@@ -33,6 +33,9 @@ if (isset($_GET['action'])) {
             case 'changeState':
                 $result = $controller->changeState($_POST, $result);
                 break;
+            case 'getOrders':
+                $result = $controller->getOrders($_SESSION['client_id'], $result);
+                break;
             default:
                 \Common\Core::http404();
         }
