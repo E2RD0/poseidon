@@ -68,40 +68,14 @@ template::getHeader($data->nombre.' ~ Poseidón');
         </div>
     </div>
     <div class="rating-section mt-5 pt-5 mb-5">
-        <h2 class="text-center text-uppercase mb-5 pb-5">Reseñas (3)</h2>
+        <h2 class="text-center text-uppercase mb-5 pb-5">Reseñas (<?=$data->numreviews?>)</h2>
         <div class="row">
             <div class="col-md-6 mb-5 mb-md-0">
-                <div class="clearfix">
-                    <div class="rating">
-                        <h2 class="mb-1">4.5</h2>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                        <p><i class="far fa-user mr-2"></i> 14 opiniones</p>
-                    </div>
-                    <div class="rating-process">
-                        <div class="rating-right-part">
-                            <p><i class="fas fa-star mr-2"></i>5</p>
-                            <div class="progress-1"></div>
-                        </div>
-                        <div class="rating-right-part">
-                            <p><i class="fas fa-star mr-2"></i>4</p>
-                            <div class="progress-2"></div>
-                        </div>
-                        <div class="rating-right-part">
-                            <p><i class="fas fa-star mr-2"></i>3</p>
-                            <div class="progress-3"></div>
-                        </div>
-                        <div class="rating-right-part">
-                            <p><i class="fas fa-star mr-2"></i></i>2</p>
-                            <div class="progress-4"></div>
-                        </div>
-                        <div class="rating-right-part">
-                            <p><i class="fas fa-star mr-2"></i></i>1</p>
-                            <div class="progress-5"></div>
-                        </div>
+                <div class="clearfix rating-info">
+                    <div class="rating w-100">
+                        <h2 class="mb-1"><?= $data->calificacion!=null ? round($data->calificacion, 1) : 'N/A'?></h2>
+                        <?= $data->calificacion!=null ? str_repeat ('<i class="fas fa-star"></i>', round($data->calificacion) ): ''?>
+                        <p><i class="far fa-user mr-2"></i> <?=$data->numreviews?> opiniones</p>
                     </div>
                 </div>
                 <div class="text-center mt-4"><button class="btn btn--cta btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Dar opinión</button></div>

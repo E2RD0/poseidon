@@ -94,3 +94,38 @@ function getReviews(id){
         }
     });
 }
+/*function getReviewsInfo(id){
+    $.ajax({
+        url: API_PRODUCTOS + 'reviewsInfo',
+        type: 'post',
+        data: { id_producto: id },
+        dataType: 'json',
+        success: function (response) {
+            let dataset = response.dataset;
+            let container = $('.rating-process');
+            let num = parseInt($('.rating-process').attr('data-rating'));
+            container.html('');
+            if(typeof dataset !== 'undefined' && dataset.length > 0 && dataset!=null){
+                dataset.forEach(row => {
+                    container.append(`
+                    <div class="rating-right-part">
+                    <p><i class="fas fa-star mr-2"></i>${row.calificacion}</p>
+                    <div class="progress-1" data-rating="${(row.count / num)*100}"></div>
+                    </div>`
+                    );
+                });
+            }
+            else {
+                //container.html('<div class="text-center w-100"><p>Todavía no hay ninguna reseña.</p></div>')
+            }
+        },
+        error: function (jqXHR) {
+            // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+            if (jqXHR.status == 200) {
+                console.log(jqXHR.responseText);
+            } else {
+                console.log(jqXHR.status + ' ' + jqXHR.statusText);
+            }
+        }
+    });
+}*/

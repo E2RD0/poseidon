@@ -1150,7 +1150,9 @@ increment-next {  from {
     border-radius: 9px;
 }
 .progress-1:after{
-	width: 20%;
+    --x: attr(data-rating);
+    width: calc(var(--x));
+	/*width: attr(data-rating);*/
 }
 .progress-2:after{
 	width: 60%;

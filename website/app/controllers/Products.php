@@ -60,6 +60,22 @@ class Products extends \Common\Controller
         }
         return $result;
     }
+    public function getReviewsInfo($data, $result)
+    {
+        $idProducto = intval($data['id_producto']);
+        $producto = new Productos;
+
+        if ($producto->setIdProducto($idProducto) && $producto->existProduct($idProducto)) {
+            if ($result['dataset'] = $producto->getReviewsInfo($idProducto)) {
+                $result['status'] = 1;
+            } else {
+                $result['exception'] = \Common\Database::$exception;
+            }
+        } else {
+            $result['exception'] = 'Producto inexistente';
+        }
+        return $result;
+    }
     public function getProductQuantities($result)
     {
         if ($result['dataset'] = $this->productsModel->getProductQuantities()) {

@@ -173,10 +173,19 @@ class Productos
         $db->bind(':id', $id);
         return $db->resultSet();
     }
+    public function getReviewsInfo($id)
+    {
+        $db = new \Common\Database;
+        $db->query('SELECT count(idreview), calificacion from review WHERE idproducto = :id GROUP BY calificacion ORDER BY calificacion DESC');
+        $db->bind(':id', $id);
+        return $db->resultSet();
+    }
     public function getProduct($id)
     {
         $db = new \Common\Database;
-        $db->query('SELECT idProducto, nombre, precio, descripcion, imgUrl, existenciascompra, p.idCategoriaProducto, cp.categoria FROM producto p INNER JOIN categoriaProducto cp ON p.idCategoriaProducto = cp.idCategoriaProducto where idProducto = :id');
+        $db->query('SELECT p.idProducto, nombre, precio, descripcion, imgUrl, existenciascompra, p.idCategoriaProducto, cp.categoria, AVG(r.calificacion) AS calificacion, count(r.idreview) AS numReviews
+        FROM producto p INNER JOIN categoriaProducto cp ON p.idCategoriaProducto = cp.idCategoriaProducto LEFT JOIN review r ON r.idproducto = p.idproducto where p.idProducto = :id
+        GROUP BY p.idproducto, cp.categoria');
         $db->bind(':id', $id);
         return $db->getResult();
     }

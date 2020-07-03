@@ -24,6 +24,9 @@ if (isset($_GET['action'])) {
             case 'reviews':
                 $result = $productsController->getReviewsProduct($_POST, $result);
                 break;
+            case 'reviewsInfo':
+                $result = $productsController->getReviewsInfo($_POST, $result);
+                break;
             case 'newReview':
                 $result = $productsController->newReview($_POST, $result);
                 break;
@@ -44,6 +47,9 @@ if (isset($_GET['action'])) {
                 break;
             case 'reviews':
                 $result = $productsController->getReviewsProduct($_POST, $result);
+                break;
+            case 'reviewsInfo':
+                $result = $productsController->getReviewsInfo($_POST, $result);
                 break;
             default:
                 \Common\Core::http404();
