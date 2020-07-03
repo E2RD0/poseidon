@@ -25,9 +25,9 @@ function readCart(el = false){
                                 <tr>
                                     <th scope="row" class="border-0">
                                         <div class="p-2">
-                                            <img src="${producto.imgurl}" alt="" width="70" class="img-fluid rounded-circle shadow-sm" id="imagen">
+                                            <img src="${HOME_PATH + 'resources/img/tienda/products/'+producto.imgurl}" alt="" width="70" class="img-fluid rounded-circle shadow-sm" id="imagen">
                                             <div class="ml-3 d-inline-block align-middle">
-                                                <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block align-middle" id="nombreproducto" title="${producto.nombre}">${producto.nombre}</a></h5><span class="text-muted font-weight-light" id="idproducto" title="#${producto.idproducto}">#${producto.idproducto}</span>
+                                                <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block align-middle text-wrap overflow-hidden" id="nombreproducto" title="${producto.nombre}">${producto.nombre}</a></h5><span class="text-muted font-weight-light" id="idproducto" title="#${producto.idproducto}">#${producto.idproducto}</span>
                                             </div>
                                         </div>
                                     </th>

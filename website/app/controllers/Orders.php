@@ -4,8 +4,8 @@ class Orders extends \Common\Controller
     public function __construct()
     {
         $this->ordersModel = $this->loadModel('Orden');
-        $this->ordersModel = $this->loadModel('DetalleOrden');
-        $this->ordersModel = $this->loadModel('Productos');
+        $this->orderDetailModel = $this->loadModel('DetalleOrden');
+        $this->productModel = $this->loadModel('Productos');
     }
 
     public function ordersCount($result)
