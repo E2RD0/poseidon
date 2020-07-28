@@ -2,6 +2,7 @@ const API_CARRITO = HOME_PATH + 'api/store/cart.php?action=';
 
 $(function () {
     readCart($('#productosSpinner')[0]);
+    getAddress();
 });
 
 function readCart(el = false){
@@ -46,3 +47,23 @@ function readCart(el = false){
             }
         }});
 };
+
+function getAddress(){
+    $.ajax({
+        url: API_CARRITO + 'getAddress',
+        type: 'post',
+        dataType: 'json',
+        success: function (response) {
+            if(response.status > 0){
+                $('#inputeAddress').val(response.dataset);
+            }
+        },
+        error: function (jqXHR) {
+            // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+            if (jqXHR.status == 200) {
+                console.log(jqXHR.responseText);
+            } else {
+                console.log(jqXHR.status + ' ' + jqXHR.statusText);
+            }
+        }});
+}

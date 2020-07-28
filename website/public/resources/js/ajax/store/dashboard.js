@@ -5,9 +5,9 @@ $(document).ready(function () {
 });
 //Método para rellenar la tabla de ordenes
 function fillTable(dataset) {
-    var table = $('#table');
+    var table = $('#tablaOrdenes');
     if ($.fn.dataTable.isDataTable(table)) {
-        table = $('#table').DataTable();
+        table = $('#tablaOrdenes').DataTable();
         table.clear();
         table.rows.add(dataset);
         table.draw();

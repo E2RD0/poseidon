@@ -131,27 +131,6 @@ class Orders extends \Common\Controller
             return $result;
         }
     }
-
-    public function readCart($data, $result)
-    {
-        $idCliente = intval($data['idcliente']);
-        $ordenController = new Orden;
-
-        $orden = $ordenController->readOrder($idCliente);
-
-        if ($orden['status']) {
-            if ($result['dataset'] = $ordenController->readCart(intval($orden['idorden']))) {
-                $result['status'] = 1;
-                $result['message'] = 'Carrito cargado correctamente';
-            } else {
-                $result['exception'] = \Common\Database::$exception;
-            }
-        } else {
-            $result['exception'] = 'No hay ningún carrito activo.';
-        }
-        return $result;
-    }
-
     public function updateDetail($data, $result)
     {
         $data = \Helpers\Validation::trimForm($data);
@@ -176,6 +155,26 @@ class Orders extends \Common\Controller
         } else {
             $result['exception'] = 'Detalle incorrecto';
             $result['errors'] = $errors;
+        }
+        return $result;
+    }
+
+    public function readCart($data, $result)
+    {
+        $idCliente = intval($data['idcliente']);
+        $ordenController = new Orden;
+
+        $orden = $ordenController->readOrder($idCliente);
+
+        if ($orden['status']) {
+            if ($result['dataset'] = $ordenController->readCart(intval($orden['idorden']))) {
+                $result['status'] = 1;
+                $result['message'] = 'Carrito cargado correctamente';
+            } else {
+                $result['exception'] = \Common\Database::$exception;
+            }
+        } else {
+            $result['exception'] = 'No hay ningún carrito activo.';
         }
         return $result;
     }
@@ -225,6 +224,25 @@ class Orders extends \Common\Controller
             }
         } else {
             $result['exception'] = 'Pedido incorrecto';
+        }
+        return $result;
+    }
+    public function getAddress($data, $result)
+    {
+        $idCliente = intval($data['idcliente']);
+        $orden = new Orden;
+
+        if ($orden->setIdCliente($idCliente)) {
+            $direccion = $orden->getClientAddress($idCliente)->direccion;
+            if ($direccion != null) {
+                $result['dataset'] = $direccion;
+                $result['status'] = 1;
+                $result['message'] = 'Dirección conseguida correctamente';
+            } else {
+                $result['message'] = 'No existe una dirección asignada';
+            }
+        } else {
+            $result['exception'] = 'Hubo un problema al conseguir el identificador del cliente.';
         }
         return $result;
     }

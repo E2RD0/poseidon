@@ -9,15 +9,15 @@ if (isset($_GET['action'])) {
     $controller = new \Orders;
     $result = array('status' => 0, 'message' => null, 'exception' => null, 'errors' => []);
 
-
     if (isset($_SESSION['client_id'])) {
-        $data = array_merge($_POST, array('idcliente' => $_SESSION['client_id']));
+        $client_id = array('idcliente' => $_SESSION['client_id']);
+        $data = array_merge($_POST, $client_id);
         switch ($action) {
             case 'createDetail':
                 $result = $controller->createDetail($data, $result);
                 break;
             case 'readCart':
-                $result = $controller->readCart(array('idcliente' => $_SESSION['client_id']), $result);
+                $result = $controller->readCart($client_id, $result);
                 break;
             case 'updateDetail':
                 $result = $controller->updateDetail($data, $result);
@@ -27,6 +27,9 @@ if (isset($_GET['action'])) {
                 break;
             case 'finishOrder':
                 $result = $controller->finishOrder($data, $result);
+                break;
+            case 'getAddress':
+                $result = $controller->getAddress($client_id, $result);
                 break;
             default:
                 \Common\Core::http404();

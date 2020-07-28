@@ -34,7 +34,7 @@ template::getHeader('Dashboard ~ Poseidón');
 
                 <div class="tab-pane" id="tab-2" role="tabpanel">
                     <div class="table-responsive text-center col-12">
-                        <table class="table-dashboard table table-borderless table-striped rounded mw-100 w-100 responsive" id="table">
+                        <table class="table-dashboard table table-borderless table-striped rounded mw-100 w-100 responsive" id="tablaOrdenes">
                             <thead>
                                 <tr>
                                     <th>Orden</th>

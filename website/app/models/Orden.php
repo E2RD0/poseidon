@@ -189,6 +189,13 @@ class Orden
         $db->query('SELECT * FROM getOrdersByClient(' . $value . ')');
         return $db->resultSet();
     }
+    public function getClientAddress($value)
+    {
+        $db = new \Common\Database;
+        $db->query('SELECT direccion FROM cliente WHERE idcliente = :idcliente');
+        $db->bind(':idcliente', $value);
+        return $db->getResult();
+    }
     public function readOrder($value)
     {
         $db = new \Common\Database;

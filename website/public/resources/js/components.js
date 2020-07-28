@@ -139,7 +139,7 @@ function confirmDelete( api, identifier, el=false, text=false, complete = false)
         })
         .done(function( response ) {
             if ( response.status ) {
-                swal( 1, response.message, null, null, null, complete ? complete() : readRows(api));
+                swal( 1, response.message, undefined, undefined, undefined, complete ? complete() : readRows(api));
             } else {
                 swal( 2, response.exception);
             }

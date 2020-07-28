@@ -72,5 +72,5 @@ function readCart(el = false){
 
 function deleteProduct(id, el = false){
     let identifier = {iddetalleorden: id};
-    confirmDelete( API_CARRITO, identifier, el, '¿Desea eliminar el producto?', readCart($('#productosSpinner')[0]));
+    confirmDelete( API_CARRITO, identifier, el, '¿Desea eliminar el producto?', readCart());
 }
