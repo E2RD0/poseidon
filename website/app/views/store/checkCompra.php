@@ -18,11 +18,11 @@ template::getHeader('Completar compra ~ Poseidón');
                 <div class="my-5 row">
                     <div class="col-md-7">
                         <label class="label-input font-weight-bold mb-3" for="inputeAddress">Dirección de entrega</label>
-                        <input class="form-input" type="text" required name="address" id="inputeAddress" required>
+                        <input class="form-input" type="text" required name="address" id="inputeAddress">
                     </div>
                     <div class="col-md-5">
                         <label class="label-input font-weight-bold mb-3" for="inputeDate">Fecha de entrega</label>
-                        <input class="form-input" type="date" required="" name="date" placeholder="DD/MM/YYYY" id="inputDate" required>
+                        <input class="form-input" type="date" required name="date" placeholder="DD/MM/YYYY" id="inputDate">
                     </div>
                 </div>
             </div>
@@ -36,10 +36,10 @@ template::getHeader('Completar compra ~ Poseidón');
             </div>
         </div>
         <div class="d-flex justify-content-between flex-column flex-md-row align-items-center">
-            <a href="carrito.php" class="go-back font-weight-bold mb-md-0 mb-5"><i class="fas fa-arrow-left fa-lg mr-4"></i>Regresar</a>
+            <a href="../shop/cart" class="go-back font-weight-bold mb-md-0 mb-5"><i class="fas fa-arrow-left fa-lg mr-4"></i>Regresar</a>
             <div class="text-center">
                 <a href="../shop" class="btn btn--cta mb-4 mb-sm-0">Volver a la tienda</a>
-                <button type="submit" class="btn btn--cta btn-primary mb-4 mb-sm-0">Confirmar</button>
+                <button type="confirm" class="btn btn--cta btn-primary mb-4 mb-sm-0">Confirmar</button>
             </div>
         </div>
     </form>

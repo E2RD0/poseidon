@@ -53,6 +53,7 @@ CREATE TABLE cliente (
     contrasena VARCHAR(100) NOT NULL,
     telefono VARCHAR(25) UNIQUE,
     direccion VARCHAR(200),
+    fechaIngreso TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     idEstadoCliente INT NOT NULL DEFAULT 1,
     PRIMARY KEY (idCliente),
     FOREIGN KEY (idEstadoCliente) REFERENCES estadoCliente (idEstadoCliente)
@@ -85,8 +86,10 @@ CREATE TABLE estadoOrden (
 
 CREATE TABLE orden (
     idOrden SERIAL,
+    subTotal NUMERIC(9,2),
+    ivaAplicado NUMERIC(9,2),
     total NUMERIC(9,2),
-    fechaCompra TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+    fechaCompra TIMESTAMP,
     fechaEntrega DATE,
     direccion VARCHAR(200),
     idCliente int NOT NULL,

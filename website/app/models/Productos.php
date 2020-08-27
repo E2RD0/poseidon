@@ -140,6 +140,41 @@ class Productos
             return $v->errors();
         }
     }
+    public function mostSoldProductsChart()
+    {
+        $db = new \Common\Database;
+        $db->query('SELECT
+                        nombre,
+                        COUNT ( iddetalleorden ) as cantidad
+                    FROM
+                        detalleorden
+                        JOIN orden USING ( idorden )
+                        JOIN producto USING ( idproducto )
+                    GROUP BY
+                        idproducto,
+                        nombre
+                    ORDER BY
+                        cantidad DESC
+                        LIMIT 5');
+        return $db->resultSet();
+    }
+    public function productsByCategoryChart()
+    {
+        $db = new \Common\Database;
+        $db->query('SELECT
+                        categoria,
+                        COUNT ( idproducto ) as cantidad
+                    FROM
+                        producto
+                        JOIN categoriaproducto USING ( idcategoriaproducto )
+                    GROUP BY
+                        idcategoriaproducto,
+                        categoria
+                    ORDER BY
+                        cantidad DESC
+                        LIMIT 5');
+        return $db->resultSet();
+    }
     public function existProduct($value)
     {
         $db = new \Common\Database;
@@ -183,7 +218,7 @@ class Productos
     public function existsOrden($idProducto, $idCliente)
     {
         $db = new \Common\Database;
-        $db->query('SELECT o.idcliente, d.idproducto from orden o INNER JOIN detalleorden d ON d.idorden = o.idorden WHERE idcliente =:idcliente AND idproducto=:idproducto AND idestadoorden!=1');
+        $db->query('SELECT o.idcliente, d.idproducto FROM orden o INNER JOIN detalleorden d ON d.idorden = o.idorden WHERE idcliente =:idcliente AND idproducto=:idproducto AND idestadoorden != 1');
         $db->bind(':idcliente', $idCliente);
         $db->bind(':idproducto', $idProducto);
         return $db->rowCount();
@@ -230,7 +265,7 @@ class Productos
     public function getProductQuantities()
     {
         $db = new \Common\Database;
-        $db->query('SELECT * FROM getProductQuantities()');
+        $db->query('SELECT * FROM getProductQuantities(5)');
         return $db->resultSet();
     }
     public function productCount()

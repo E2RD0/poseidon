@@ -16,6 +16,15 @@ class Categories extends \Common\Controller
         }
         return $result;
     }
+    public function showCategoriesWCount($result)
+    {
+        if ($result['dataset'] = $this->categoriesModel->getCategoriesWCount()) {
+            $result['status'] = 1;
+        } else {
+            $result['exception'] = 'No hay categorías registradas';
+        }
+        return $result;
+    }
     public function showCategories($result)
     {
         if ($result['dataset'] = $this->categoriesModel->getCategories()) {

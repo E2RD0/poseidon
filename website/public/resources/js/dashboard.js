@@ -17,7 +17,7 @@ $(document).ready(function () {
     });
 
     if (getSidebarStatus() == 'toggled') {
-        hideSidebar();
+       hideSidebar();
     }
     $('.toggle').click(function () {
         if (getSidebarStatus() == 'toggled') setSidebarStatus('extended'); else setSidebarStatus('toggled');
@@ -109,64 +109,7 @@ const setActive = (el, active) => {
                 setActive(el, true)
             }
         }
-    )
-//Chart
-var colors = [
-    '#FEDB3F',
-    '#28a745',
-    '#333333',
-    '#c3e6cb',
-    '#dc3545',
-    '#6c757d'
-];
-var chBar = document.getElementById('chBar');
-if (chBar) {
-    new Chart(chBar, {
-        type: 'bar',
-        data: {
-            labels: [
-                "Tabla de surf X",
-                "Tabla de surf X",
-                "Tabla de surf X",
-                "Tabla de surf X",
-                "Tabla de surf X",
-                "Tabla de surf X"
-            ],
-            datasets: [
-                 {
-                    data: [
-                        639,
-                        465,
-                        493,
-                        478,
-                        589,
-                        632
-                    ],
-                    backgroundColor: colors[0]
-                }
-            ]
-        },
-        options: {
-            legend: {
-                display: false
-            },
-            scales: {
-                xAxes: [
-                    {
-                        barPercentage: 0.4,
-                        categoryPercentage: 0.5
-                    }
-                ]
-            }
-        }
-    });
-}
-//Datatables initializer
-/*$(document).ready( function () {
-    $('#table').DataTable({
-        responsive: true
-    });
-} )*/
+)
 //Adaptative Modals
 $(function () {
     if (window.matchMedia('(max-width: 425px)').matches){
@@ -174,13 +117,7 @@ $(function () {
         document.getElementById('check_mq').classList.add("w-100");
     }
 })
-//Adaptative canvas -Doesn't works
-$(document).ready(function () {
-    $('.toggle').click(function () {
-        document.getElementById('canva').classList.remove("col-lg-12");
-        document.getElementById('canva').classList.add("col-lg-11");
-    });
-})
+
 //Display selected image
 function readURL(input) {
     if (input.files) {

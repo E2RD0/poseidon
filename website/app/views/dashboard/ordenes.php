@@ -23,7 +23,7 @@ dashboardTemplate::dashMenu('ordenes');
                                     <th>No. de orden</th>
                                     <th>Nombre del cliente</th>
                                     <th>Dirección</th>
-                                    <th>Subtotal</th>
+                                    <th>Total</th>
                                     <th class="text-center">Fecha de la compra</th>
                                     <th class="text-right"></th>
                                 </tr>

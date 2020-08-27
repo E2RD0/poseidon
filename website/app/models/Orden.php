@@ -5,6 +5,8 @@ class Orden
     private $db;
 
     private $idorden;
+    private $subtotal;
+    private $ivaAplicado;
     private $total;
     private $fechacompra;
     private $fechaentrega;
@@ -27,6 +29,42 @@ class Orden
         $v->rule('integer', 'IdOrden');
         if ($v->validate()) {
             $this->idorden = $value;
+            return true;
+        } else {
+            return $v->errors();
+        }
+    }
+
+    public function getSubTotal()
+    {
+        return $this->subtotal;
+    }
+
+    public function setSubTotal($value)
+    {
+        $v = new \Valitron\Validator(array('SubTotal' => $value));
+        $v->rule('required', 'SubTotal');
+        $v->rule('numeric', 'SubTotal');
+        if ($v->validate()) {
+            $this->subtotal = $value;
+            return true;
+        } else {
+            return $v->errors();
+        }
+    }
+
+    public function getIvaAplicado()
+    {
+        return $this->ivaAplicado;
+    }
+
+    public function setIvaAplicado($value)
+    {
+        $v = new \Valitron\Validator(array('IvaAplicado' => $value));
+        $v->rule('required', 'IvaAplicado');
+        $v->rule('numeric', 'IvaAplicado');
+        if ($v->validate()) {
+            $this->ivaAplicado = $value;
             return true;
         } else {
             return $v->errors();
@@ -80,7 +118,7 @@ class Orden
         $v->rule('required', 'FechaEntrega');
         $v->rule('date', 'FechaEntrega');
         if ($v->validate()) {
-            $this->fechacompra = $value;
+            $this->fechaentrega = $value;
             return true;
         } else {
             return $v->errors();
@@ -94,9 +132,8 @@ class Orden
 
     public function setDireccion($value)
     {
-        $v = new \Valitron\Validator(array('Contraseña' => $value));
-        $v->rule('required', 'Contraseña');
-        $v->rule('alphaNum', 'Contraseña', 6);
+        $v = new \Valitron\Validator(array('Direccion' => $value));
+        $v->rule('required', 'Direccion');
         if ($v->validate()) {
             $this->direccion = $value;
             return true;
@@ -112,9 +149,9 @@ class Orden
 
     public function setIdCliente($value)
     {
-        $v = new \Valitron\Validator(array('Teléfono' => $value));
-        $v->rule('required', 'Teléfono');
-        $v->rule('integer', 'Teléfono');
+        $v = new \Valitron\Validator(array('IdCliente' => $value));
+        $v->rule('required', 'IdCliente');
+        $v->rule('integer', 'IdCliente');
         if ($v->validate()) {
             $this->idcliente = $value;
             return true;
@@ -130,9 +167,9 @@ class Orden
 
     public function setIdEstadoOrden($value)
     {
-        $v = new \Valitron\Validator(array('Dirección' => $value));
-        $v->rule('required', 'Dirección');
-        $v->rule('integer', 'Dirección');
+        $v = new \Valitron\Validator(array('IdEstadoOrden' => $value));
+        $v->rule('required', 'IdEstadoOrden');
+        $v->rule('integer', 'IdEstadoOrden');
         if ($v->validate()) {
             $this->idestadoorden = $value;
             return true;
@@ -140,7 +177,6 @@ class Orden
             return $v->errors();
         }
     }
-
     public function getOrders()
     {
         $db = new \Common\Database;
@@ -175,8 +211,7 @@ class Orden
     {
         $db = new \Common\Database;
         $db->query('INSERT into orden (idorden, total, fechacompra, fechaentrega, direccion, idcliente, idestadoorden) VALUES(DEFAULT, :total, DEFAULT, :fechaentrega, :direccion, :idcliente, :idestadoorden)');
-        $db->bind(':total', $user->total);
-        //$db->bind(':fechacompra', $user->fechacompra);
+        $db->bind(':total', $user->subtotal);
         $db->bind(':fechaentrega', $user->fechaentrega);
         $db->bind(':direccion', $user->direccion);
         $db->bind(':idcliente', $user->idcliente);
@@ -200,17 +235,22 @@ class Orden
     {
         $db = new \Common\Database;
 
-        $orden = ['idorden' => 0, 'status' => null];
+        $orden = ['idorden' => 0, 'status' => null, 'message' => null];
 
         $db->query('SELECT idorden FROM orden WHERE idestadoorden = 1 AND idcliente = :idcliente');
         $db->bind(':idcliente', $value);
-        if ($orden['idorden'] = $db->resultSet()['0']->idorden) {
-            $orden['status'] = true;
+
+        if (($result = $db->resultSet()) != null) {
+            $orden['idorden'] = $result['0']->idorden;
+            $orden['message'] = 'El carrito se ha encontrado, ';
         } else {
+            $db = new \Common\Database();
             $db->query('INSERT into orden (idorden, fechacompra, idcliente, idestadoorden) VALUES (DEFAULT, DEFAULT, :idcliente, 1) RETURNING idorden');
             $db->bind(':idcliente', $value);
-            $orden['idorden'] = $db->resultSet()['0']->idorden ? $orden['status'] = true : $orden['status'] = false;
+            $orden['idorden'] = $db->resultSet()['0']->idorden;
+            $orden['message'] = 'El carrito se ha creado, ';
         }
+        $orden['status'] = true;
         return $orden;
     }
     public function readCart($idorden){
@@ -219,17 +259,31 @@ class Orden
         $db->bind(':idorden', $idorden);
         return $db->resultSet();
     }
-    public function modifyOrder($user)
+    public function readCartTotal($idorden){
+        $db = new \Common\Database;
+        $db->query('SELECT SUM(detalleorden.preciounitario * detalleorden.cantidad) AS subtotal FROM detalleorden WHERE idorden = :idorden');
+        $db->bind(':idorden', $idorden);
+        return $db->resultSet();
+    }
+    public function updateOrderStatus()
     {
         $db = new \Common\Database;
-        $db->query('UPDATE orden SET total = :total, fechacompra = :fechacompra, fechaentrega = :fechaentrega, direccion = :direccion, idcliente = :idcliente, idestadoorden = :idestadoorden WHERE idorden = :idorden)');
-        $db->bind(':total', $user->total);
-        $db->bind(':fechacompra', $user->fechacompra);
-        $db->bind(':fechaentrega', $user->fechaentrega);
-        $db->bind(':direccion', $user->direccion);
-        $db->bind(':idcliente', $user->idcliente);
-        $db->bind(':idestadoorden', $user->idestadoorden);
-        $db->bind(':idorden', $user->idorden);
+        $db->query('SELECT valor FROM opcionesgenerales WHERE clave = \'IVA\'');
+
+        $valorIVA = $db->getResult()->valor;
+        $ivaAplicado = $this->subtotal * $valorIVA;
+        $total = $this->subtotal + $ivaAplicado;
+
+        $db->query('UPDATE orden SET subtotal = :subTotal, ivaAplicado = :ivaAplicado, total = :total, fechacompra = now(), fechaentrega = :fechaentrega, direccion = :direccion, idestadoorden = :idestadoorden WHERE idorden = :idorden');
+
+        $db->bind(':subTotal', $this->subtotal);
+        $db->bind(':ivaAplicado', $ivaAplicado);
+        $db->bind(':total', $total);
+        $db->bind(':fechaentrega', $this->fechaentrega);
+        $db->bind(':direccion', $this->direccion);
+        $db->bind(':idestadoorden', $this->idestadoorden);
+        $db->bind(':idorden', $this->idorden);
+
         return $db->execute();
     }
     public function deleteOrder($value)

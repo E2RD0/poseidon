@@ -27,6 +27,12 @@ if (isset($_GET['action'])) {
             case 'changeState':
                 $result = $controller->changeState($_POST, $result);
                 break;
+            case 'clientsSevenDays':
+                $result = $controller->clientsLastSevenChart($_POST, $result);
+                break;
+            case 'clientOrdersChart':
+                $result = $controller->clientOrdersChart($_POST, $result);
+                break;
             default:
                 \Common\Core::http404();
         }

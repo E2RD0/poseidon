@@ -21,6 +21,9 @@ if (isset($_GET['action'])) {
             case 'delete':
                 $result = $reviewsController->delete($_POST, $result);
                 break;
+            case 'reviewCount':
+                $result = $reviewsController->productsReviewCountChart($_POST, $result);
+                break;
             default:
                 \Common\Core::http404();
         }

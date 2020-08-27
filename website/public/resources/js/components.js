@@ -53,7 +53,7 @@ function swal(type, text, url = false, timer=0, allowCancel = false, callback = 
         if(url){
             redirect(url);
         }
-        if(value.isConfirmed && callback!= undefined){
+        if(value.isConfirmed && callback != undefined){
             callback();
         }
     });
@@ -105,7 +105,7 @@ function readRows( api , el=false, action = 'show', fun=false)
     });
 }
 
-function confirmDelete( api, identifier, el=false, text=false, complete = false)
+function confirmDelete( api, identifier, el=false, text=false, complete = undefined)
 {
 
     function before(){};
@@ -139,7 +139,7 @@ function confirmDelete( api, identifier, el=false, text=false, complete = false)
         })
         .done(function( response ) {
             if ( response.status ) {
-                swal( 1, response.message, undefined, undefined, undefined, complete ? complete() : readRows(api));
+                swal( 1, response.message, undefined, undefined, undefined, (complete != undefined ? complete : readRows(api)));
             } else {
                 swal( 2, response.exception);
             }
@@ -211,4 +211,109 @@ function saveRow( api, action, form, submitButton, checkErrors = [], id=0, compl
             console.log( jqXHR.status + ' ' + jqXHR.statusText );
         }
     });
+}
+
+const debounce = (callback, delay = 250) => {
+    let timeoutId;
+    return (...args) => {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => {
+            timeoutId = null;
+            callback(...args);
+        }, delay);
+    };
+};
+
+/*
+*   Función para generar una gráfica de barras verticales. Requiere el archivo chart.js para funcionar.
+*
+*   Parámetros: canvas (identificador de la etiqueta canvas), xAxis (datos para el eje X), yAxis (datos para el eje Y), legend (etiqueta para los datos) y title (título del gráfico).
+*
+*   Retorno: ninguno.
+*/
+function barGraph(canvas, xAxis, yAxis, legend, title, stepSize = 2) {
+    //Arreglo para definir colores de las barras
+    let color = ['rgb(255, 250, 158)',
+        'rgb(254, 239, 136)',
+        'rgb(255, 237, 73)',
+        'rgb(255, 220, 34)',
+        'rgba(255, 209, 36)',
+        'rgb(251, 186, 0)',
+        'rgb(183, 104, 1)'];
+
+    // Se establece el contexto donde se mostrará el gráfico, es decir, se define la etiqueta canvas a utilizar.
+    const context = $('#' + canvas);
+    // Se crea una instancia para generar la gráfica con los datos recibidos.
+    const chart = new Chart(context, {
+        type: 'bar',
+        data: {
+            labels: xAxis,
+            datasets: [{
+                label: legend,
+                data: yAxis,
+                backgroundColor: color
+            }]
+        },
+        options: {
+            legend: {
+                display: false
+            },
+            title: {
+                display: true,
+                text: title,
+                fontSize: 14
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        stepSize: stepSize
+                    }
+                }]
+            }
+        }
+    });
+}
+
+/*
+*   Función para generar una gráfica de doughnut. Requiere el archivo chart.js para funcionar.
+*
+*   Parámetros: canvas (identificador de la etiqueta canvas), legend (etiqueta para los datos), daata (datos para generar el gráfico) y title (título del gráfico).
+*
+*   Retorno: ninguno.
+*/
+
+function doughnutGraph(canvas, legend, daata, title) {
+    //Arreglo para definir colores de las barras
+    let color = ['rgb(254, 239, 136)',
+        'rgb(255, 237, 73)',
+        'rgba(255, 209, 36)',
+        'rgb(251, 186, 0)',
+        'rgb(183, 104, 1)'];
+
+    // Se establece el contexto donde se mostrará el gráfico, es decir, se define la etiqueta canvas a utilizar.
+    const context = $('#' + canvas);
+    // Se crea una instancia para generar la gráfica con los datos recibidos.
+
+    const chart = new Chart(context, {
+        type: 'doughnut',
+        data: {
+            labels: legend,
+            datasets: [
+                {
+                    label: legend,
+                    backgroundColor: color,
+                    data: daata
+                }
+            ]
+        },
+        options: {
+            title: {
+                display: true,
+                text: title,
+                fontSize: 14
+            }
+        }
+    });
+
 }

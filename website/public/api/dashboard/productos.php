@@ -24,6 +24,12 @@ if (isset($_GET['action'])) {
             case 'delete':
                 $result = $productsController->delete($_POST, $result);
                 break;
+            case 'mostSold':
+                $result = $productsController->mostSoldChart($_POST, $result);
+                break;
+            case 'productsByCategory':
+                $result = $productsController->productsByCategoryChart($_POST, $result);
+                break;
             default:
                 \Common\Core::http404();
         }

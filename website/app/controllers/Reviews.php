@@ -22,6 +22,15 @@ class Reviews extends \Common\Controller
         }
         return $result;
     }
+    public function productsReviewCountChart($result)
+    {
+        if ($result['dataset'] = $this->reviewsModel->productsReviewCountChart()) {
+            $result['status'] = 1;
+        } else {
+            $result['exception'] = 'No hay productos registrados';
+        }
+        return $result;
+    }
     public function getProductReviewData($data, $result)
     {
         $idAlquiler = intval($data['idproducto']);

@@ -144,8 +144,8 @@ class DetalleOrden
     public function deleteDetail($value, $idOrden)
     {
         $db = new \Common\Database;
-        $db->query('DELETE FROM detalleorden WHERE iddetalleorden = :id AND idorden = :idorden');
-        $db->bind(':id', $value->iddetalleorden);
+        $db->query('DELETE FROM detalleorden WHERE iddetalleorden = :iddetalleorden AND idorden = :idorden');
+        $db->bind(':iddetalleorden', $value);
         $db->bind(':idorden', $idOrden);
         return $db->execute();
     }

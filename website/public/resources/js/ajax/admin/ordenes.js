@@ -31,7 +31,13 @@ function fillTable(dataset) {
                 { data: 'idorden' },
                 { data: 'cliente' },
                 { data: 'direccion' },
-                { data: 'total' },
+                {
+                    data: null,
+                    render: function (data) {
+                        return `$${data["total"]}`;
+                    },
+                    targets: -1,
+                },
                 { data: 'fechacompra' },
                 {
                     data: null,

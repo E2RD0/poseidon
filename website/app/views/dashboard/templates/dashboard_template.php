@@ -55,12 +55,12 @@ class dashboardTemplate
                     <div class="toggle">
                         <i class="fas fa-chevron-left"></i>
                     </div>
-                    <a href="' . HOME_PATH . 'dashboard" title="Poseidon">
+                    <a href="' . HOME_PATH . 'admin/dashboard" title="Poseidon">
                         <img src="' . HOME_PATH . 'resources/img/dashboard/poseidon-l.svg" alt="Logo Poseidon" class="img-fluid dash__logo">
                     </a>
                     <ul class="">' .
                         (($page == 'dashboard') ? '<li class="active">' : '<li class="">') . '
-                            <a href="'. HOME_PATH . 'dashboard" title="Dashboard">
+                            <a href="'. HOME_PATH . 'admin/dashboard" title="Dashboard">
                                 <span class="icon">
                                     <svg class="icon__svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 33 33" style="enable-background:new 0 0 33 33;" xml:space="preserve" width="33" height="33">
                                         <style type="text/css">

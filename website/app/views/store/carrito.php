@@ -34,7 +34,7 @@ template::getHeader('Completar compra ~ Poseidón');
             </div>
             <!-- End -->
             <div class="cart-actions mt-4 d-flex flex-column-reverse flex-md-row justify-content-between align-items-center p-3 px-md-0">
-                <a href="tienda.php" class="go-back font-weight-bold"><i class="fas fa-arrow-left fa-lg mr-4"></i>Seguir comprando</a>
+                <a href="../shop" class="go-back font-weight-bold"><i class="fas fa-arrow-left fa-lg mr-4"></i>Seguir comprando</a>
                 <div class="d-flex align-items-center mb-5 mb-md-0" id="cartEnd">
                 </div>
             </div>
@@ -71,7 +71,7 @@ template::getHeader('Completar compra ~ Poseidón');
             </div>
             <!-- End -->
             <div class="cart-actions mt-4 d-flex flex-column-reverse flex-md-row justify-content-between align-items-center p-3 px-md-0">
-                <a href="tienda.php" class="go-back font-weight-bold"><i class="fas fa-arrow-left fa-lg mr-4"></i>Seguir comprando</a>
+                <a href="../shop" class="go-back font-weight-bold"><i class="fas fa-arrow-left fa-lg mr-4"></i>Seguir comprando</a>
                 <div class="d-flex align-items-center mb-5 mb-md-0">
                 </div>
             </div>

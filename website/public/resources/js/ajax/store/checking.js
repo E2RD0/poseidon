@@ -1,4 +1,6 @@
 const API_CARRITO = HOME_PATH + 'api/store/cart.php?action=';
+const greet = () => console.log("Hello World!");
+const debouncedGreet = debounce(greet, 3000);
 
 $(function () {
     readCart($('#productosSpinner')[0]);
@@ -67,3 +69,34 @@ function getAddress(){
             }
         }});
 }
+
+$("#checking-form").submit(function (event) {
+    event.preventDefault();
+    confirmCheck();
+    //debouncedGreet();
+});
+
+function confirmCheck(){
+    $.ajax({
+        url: API_CARRITO + "finishOrder",
+        type: "post",
+        data: $( '#checking-form' ).serialize(),
+        dataType: "json",
+        success: function (response) {
+            function red(){
+                redirect("store/user/dashboard");
+            }
+            if (response.status > 0) {
+                swal( 4, response.message, undefined, undefined, undefined, red);
+            }
+        },
+        error: function (jqXHR) {
+            // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+            if (jqXHR.status == 200) {
+                console.log(jqXHR.responseText);
+            } else {
+                console.log(jqXHR.status + " " + jqXHR.statusText);
+            }
+        },
+    });
+};

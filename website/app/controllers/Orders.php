@@ -131,6 +131,7 @@ class Orders extends \Common\Controller
             return $result;
         }
     }
+
     public function updateDetail($data, $result)
     {
         $data = \Helpers\Validation::trimForm($data);
@@ -169,9 +170,10 @@ class Orders extends \Common\Controller
         if ($orden['status']) {
             if ($result['dataset'] = $ordenController->readCart(intval($orden['idorden']))) {
                 $result['status'] = 1;
-                $result['message'] = 'Carrito cargado correctamente';
+                $result['message'] = $orden['message'].'carrito cargado correctamente';
             } else {
-                $result['exception'] = \Common\Database::$exception;
+                if(!boolval($result['exception'] = \Common\Database::$exception))
+                    $result['message'] = $orden['message'].'carrito cargado correctamente';
             }
         } else {
             $result['exception'] = 'No hay ningún carrito activo.';
@@ -188,42 +190,70 @@ class Orders extends \Common\Controller
         $detalleordenController = new DetalleOrden;
         $ordenController = new Orden;
 
-        $orden = $ordenController->readOrder($idCliente);
-        if ($orden['status']) {
-            $errors = [];
-
-            $errors = $detalleordenController->setIdDetalleOrden($iddetalleorden) === true ? $errors : array_merge($errors, $detalleordenController->setIdDetalleOrden($iddetalleorden));
-
-            if (!boolval($errors)) {
-                if ($detalleordenController->deleteDetail($detalleordenController, $orden['idorden'])) {
+        if (boolval($orden = $ordenController->readOrder($idCliente))){
+            if ($orden['status']) {
+                if ($detalleordenController->deleteDetail($iddetalleorden, $orden['idorden'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Producto removido correctamente';
                 } else {
                     $result['exception'] = 'Ocurrió un problema al remover el producto';
                 }
             } else {
-                $result['exception'] = 'Detalle incorrecto';
+                $result['exception'] = 'No hay ningún carrito de compra activo.';
             }
         } else {
-            $result['exception'] = 'No hay ningún carrito de compra activo.';
+            $result['exception'] = 'No existe la orden.';
         }
         return $result;
     }
-    public function finishOrder()
+    public function finishOrder($data, $result)
     {
-        if ($pedido->setIdPedido($_SESSION['id_pedido'])) {
-            if ($pedido->setEstado(1)) {
-                if ($pedido->updateOrderStatus()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Pedido finalizado correctamente';
+        $data = \Helpers\Validation::trimForm($data);
+
+        $idCliente = intval($data['idcliente']);
+        $direccion = $data['address'];
+        $fechaentrega = $data['date'];
+        $ordenController = new Orden;
+
+        $orden = $ordenController->readOrder($idCliente);
+
+        if ($orden['status']) {
+
+            $errors = [];
+
+            $errors = $ordenController->setIdOrden(intval($orden['idorden'])) === true ? $errors : array_merge($errors, $ordenController->setIdOrden(intval($orden['idorden'])));
+            $errors = $ordenController->setDireccion($direccion) === true ? $errors : array_merge($errors, $ordenController->setDireccion($direccion));
+            $errors = $ordenController->setFechaEntrega($fechaentrega) === true ? $errors : array_merge($errors, $ordenController->setFechaEntrega($fechaentrega));
+
+            if (boolval($total = $ordenController->readCartTotal(intval($orden['idorden'])))) {
+
+                $errors = $ordenController->setSubTotal($total['0']->subtotal) === true ? $errors : array_merge($errors, $ordenController->setSubTotal($total['0']->subtotal));
+
+                if (!boolval($errors)){
+
+                    if ($ordenController->setIdOrden($orden['idorden'])) {
+                        if ($ordenController->setIdEstadoOrden(2)) {
+                            if ($ordenController->updateOrderStatus()) {
+                                $result['status'] = 1;
+                                $result['message'] = 'Pedido finalizado correctamente';
+                            } else {
+                                $result['exception'] = 'Ocurrió un problema al finalizar el pedido';
+                            }
+                        } else {
+                            $result['exception'] = 'Estado incorrecto';
+                        }
+                    } else {
+                        $result['exception'] = 'Pedido incorrecto';
+                    }
                 } else {
-                    $result['exception'] = 'Ocurrió un problema al finalizar el pedido';
+                    $result['exception'] = 'Error en uno de los campos';
+                    $result['errors'] = $errors;
                 }
             } else {
-                $result['exception'] = 'Estado incorrecto';
+                $result['exception'] = 'Hubo un error al cargar el total de la orden';
             }
         } else {
-            $result['exception'] = 'Pedido incorrecto';
+            $result['exception'] = 'Hubo un error al cargar la orden actual';
         }
         return $result;
     }

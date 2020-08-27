@@ -16,7 +16,6 @@ class Clients extends \Common\Controller
         }
         return $result;
     }
-
     public function showTypes($result)
     {
         if ($result['dataset'] = $this->model->getTypes()) {
@@ -26,7 +25,24 @@ class Clients extends \Common\Controller
         }
         return $result;
     }
-
+    public function clientsLastSevenChart($result)
+    {
+        if ($result['dataset'] = $this->model->clientsLastSevenChart()) {
+            $result['status'] = 1;
+        } else {
+            $result['exception'] = 'No hay productos registrados';
+        }
+        return $result;
+    }
+    public function clientOrdersChart($result)
+    {
+        if ($result['dataset'] = $this->model->clientOrdersChart()) {
+            $result['status'] = 1;
+        } else {
+            $result['exception'] = 'No hay productos registrados';
+        }
+        return $result;
+    }
     public function clientRegister($userData, $result)
     {
         $userData = \Helpers\Validation::trimForm($userData);

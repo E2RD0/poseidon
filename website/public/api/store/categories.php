@@ -13,7 +13,7 @@ if (isset($_GET['action'])) {
     if (isset($_SESSION['user_id'])) {}
     switch ($action) {
         case 'show':
-            $result = $categoriesController->showCategories($result);
+            $result = $categoriesController->showCategorieswCount($result);
             break;
         case 'readOne':
             $result = $categoriesController->readOne($_POST, $result);

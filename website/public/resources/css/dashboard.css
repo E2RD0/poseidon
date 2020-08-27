@@ -889,6 +889,26 @@ textarea {
     background-color: #FED700;
     border-color: #FED700;
 }
+.nav-pills .nav-link.active{
+    background-color: #FED700;
+    border-color: #FED700;
+    color: #000;
+}
+.nav-pills .nav-link:hover{
+    background-color: #FEF3B6;
+    border-color: #FEF3B6;
+    color: #000;
+}
+.nav-pills .nav-link{
+    color: #000;
+}
+.nav-tabs .nav-link.active {
+    color: #FED700;
+}
+.nav-tabs .nav-link {
+    color: #000;
+}
+
 
 /*Handmade Responsive CSS elements*/
 @media only screen and (max-width: 1200px){
@@ -909,6 +929,13 @@ textarea {
         display: none;
     }
     .wrapper .dash__main {
+        margin-left: 0;
+        width: 100%;
+    }
+    .wrapper.hide .dash__sidebar {
+        display: none;
+    }
+    .wrapper.hide .dash__main {
         margin-left: 0;
         width: 100%;
     }
@@ -1063,6 +1090,7 @@ textarea {
         height: 30%;
     }
 }
+
 /* ==========================================================================
    Helper classes
    ========================================================================== */

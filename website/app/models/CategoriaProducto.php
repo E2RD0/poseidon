@@ -53,10 +53,20 @@ class CategoriaProducto
         $db->bind(':value', $value);
         return boolval($db->rowCount());
     }
+    public function getCategoriesWCount()
+    {
+        $db = new \Common\Database;
+        $db->query('SELECT cp.idcategoriaproducto, categoria, COUNT(p.idcategoriaproducto) AS numProductos
+                    FROM categoriaproducto cp
+                    INNER JOIN producto p on p.idcategoriaproducto = cp.idcategoriaproducto
+                    GROUP BY cp.idcategoriaproducto
+                    ORDER BY idcategoriaproducto');
+        return $db->resultSet();
+    }
     public function getCategories()
     {
         $db = new \Common\Database;
-        $db->query('SELECT cp.idcategoriaproducto, categoria, COUNT(p.idcategoriaproducto) AS numProductos FROM categoriaproducto cp INNER JOIN producto p on p.idcategoriaproducto = cp.idcategoriaproducto GROUP BY cp.idcategoriaproducto ORDER BY idcategoriaproducto');
+        $db->query('SELECT * FROM categoriaproducto');
         return $db->resultSet();
     }
     public function getOneCategory($value)
@@ -75,7 +85,7 @@ class CategoriaProducto
     public function insertCategory($value)
     {
         $db = new \Common\Database;
-        $db->query('INSERT into categoriaproducto(idcategoriaproducto, categoria) VALUES(DEFAULT, :categoria)');
+        $db->query('INSERT into categoriaproducto (idcategoriaproducto, categoria) VALUES(DEFAULT, :categoria)');
         $db->bind(':categoria', $value);
         return $db->execute();
     }

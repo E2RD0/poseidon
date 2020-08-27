@@ -168,6 +168,39 @@ class Cliente
         }
     }
 
+    public function clientsLastSevenChart()
+    {
+        $db = new \Common\Database();
+        $db->query('SELECT
+                        to_char( fechaingreso, \'DD Mon YY\' ) AS fecha,
+                        COUNT( fechaingreso ) AS cantidad
+                    FROM
+                        cliente
+                    WHERE
+                        fechaingreso BETWEEN (CURRENT_TIMESTAMP - interval \'7 days\') AND (CURRENT_TIMESTAMP)
+                    GROUP BY
+                        fechaingreso
+                    ORDER BY
+                        fechaingreso');
+        return $db->resultSet();
+    }
+
+    public function clientOrdersChart()
+    {
+        $db = new \Common\Database();
+        $db->query('SELECT
+                        nombre || \' \' || apellido AS cliente,
+                        COUNT (idorden) AS cantidad
+                    FROM
+                        cliente
+                        JOIN orden USING (idcliente)
+                    GROUP BY
+                        cliente
+                    ORDER BY
+                        cantidad DESC
+                        LIMIT 5');
+        return $db->resultSet();
+    }
     public function clientExists($param, $value)
     {
         $db = new \Common\Database;

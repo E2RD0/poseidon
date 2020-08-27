@@ -35,7 +35,7 @@
       <?php
       require_once __DIR__ . '/../../../controllers/Categories.php';
       $controllerCategories = new \Categories;
-      $categories = $controllerCategories->showCategories([]);
+      $categories = $controllerCategories->showCategoriesWCount([]);
       if (isset($categories['dataset'])) {
         foreach ($categories['dataset'] as $row) {
           echo '<li><a href="'. HOME_PATH . 'store/shop#t-' . $row->categoria . '">' . $row->categoria . '</a></li>';

@@ -102,6 +102,22 @@ class Review
         $db->bind(':idreview', $value);
         return $db->rowCount();
     }
+    public function productsReviewCountChart()
+    {
+        $db = new \Common\Database;
+        $db->query('SELECT
+                        nombre,
+                        ROUND(AVG( calificacion ),2 ) AS calificacion
+                    FROM
+                        review
+                        JOIN producto USING (idproducto)
+                    GROUP BY
+                        nombre
+                    ORDER BY
+                        calificacion DESC
+                        LIMIT 5');
+        return $db->resultSet();
+    }
 
     public function insertReview($value)
     {

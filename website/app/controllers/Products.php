@@ -44,6 +44,24 @@ class Products extends \Common\Controller
         }
         return $result;
     }
+    public function mostSoldChart($result)
+    {
+        if ($result['dataset'] = $this->productsModel->mostSoldProductsChart()) {
+            $result['status'] = 1;
+        } else {
+            $result['exception'] = 'No hay productos registrados';
+        }
+        return $result;
+    }
+    public function productsByCategoryChart($result)
+    {
+        if ($result['dataset'] = $this->productsModel->productsByCategoryChart()) {
+            $result['status'] = 1;
+        } else {
+            $result['exception'] = 'No hay productos registrados';
+        }
+        return $result;
+    }
     public function getReviewsProduct($data, $result)
     {
         $idProducto = intval($data['id_producto']);
