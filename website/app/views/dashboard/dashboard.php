@@ -76,63 +76,42 @@ dashboardTemplate::dashMenu('dashboard');
                     <hr class="dash__div"></hr>
                     <div class="row pt-0 pb-2">
                         <div class="col-lg-3 col-md-3 col-sm-12 col-12">
-                            <nav class="d-sm-none d-md-none d-lg-block">
-                                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                    <a class="nav-item nav-link pb-0 active" id="nav-grafico1-tab" data-toggle="tab" href="#nav-grafico1" role="tab" aria-controls="nav-grafico1" aria-selected="true">
-                                        <p title="Productos más vendidos">Productos más vendidos</p>
-                                    </a>
-                                    <a class="nav-item nav-link pb-0" id="nav-grafico2-tab" data-toggle="tab" href="#nav-grafico2" role="tab" aria-controls="nav-grafico2" aria-selected="false">
-                                        <p title="Productos con más comentarios">Productos con las mejores calificaciones</p>
-                                    </a>
-                                    <a class="nav-item nav-link pb-0" id="nav-grafico3-tab" data-toggle="tab" href="#nav-grafico3" role="tab" aria-controls="nav-grafico3" aria-selected="false">
-                                        <p title="Cantidad de productos por categoría">Cantidad de productos por categoría</p>
-                                    </a>
-                                    <a class="nav-item nav-link pb-0" id="nav-grafico4-tab" data-toggle="tab" href="#nav-grafico4" role="tab" aria-controls="nav-grafico4" aria-selected="false">
-                                        <p title="Clientes nuevos en la última semana">Clientes nuevos en la última semana</p>
-                                    </a>
-                                    <a class="nav-item nav-link pb-0" id="nav-grafico5-tab" data-toggle="tab" href="#nav-grafico5" role="tab" aria-controls="nav-grafico5" aria-selected="false">
-                                        <p title="Clientes con más ordenes">Clientes con más órdenes</p>
-                                    </a>
-                                </div>
-                            </nav>
-                            <nav class="d-sm-block d-md-block d-lg-none">
-                                <nav class="nav nav-tabs flex-column flex-sm-row">
-                                    <a class="flex-sm-fill text-sm-center nav-item nav-link active" title="Productos más vendidos" id="nav-grafico1-tab" data-toggle="tab" href="#nav-grafico1" role="tab" aria-controls="nav-grafico1" aria-selected="true">
-                                        <p>Productos más vendidos</p>
-                                    </a>
-                                    <a class="flex-sm-fill text-sm-center nav-item nav-link" title="Productos con más comentarios" id="nav-grafico2-tab" data-toggle="tab" href="#nav-grafico2" role="tab" aria-controls="nav-grafico2" aria-selected="false">
-                                        <p>Productos con las mejores calificaciones.</p>
-                                    </a>
-                                    <a class="flex-sm-fill text-sm-center nav-item nav-link" title="Cantidad de productos por categoría" id="nav-grafico3-tab" data-toggle="tab" href="#nav-grafico3" role="tab" aria-controls="nav-grafico3" aria-selected="false">
-                                        <p>Cantidad de productos por categoría</p>
-                                    </a>
-                                    <a class="flex-sm-fill text-sm-center nav-item nav-link" title="Clientes nuevos en la última semana" id="nav-grafico4-tab" data-toggle="tab" href="#nav-grafico4" role="tab" aria-controls="nav-grafico4" aria-selected="false">
-                                        <p>Clientes nuevos en la última semana</p>
-                                    </a>
-                                    <a class="flex-sm-fill text-sm-center nav-item nav-link" title="Clientes con más ordenes"id="nav-grafico5-tab" data-toggle="tab" href="#nav-grafico5" role="tab" aria-controls="nav-grafico5" aria-selected="false">
-                                        <p>Clientes con más órdenes</p>
-                                    </a>
-                                </div>
-                            </nav>
-                            <div class="col-lg-9 col-md-9 col-sm-12 col-12">
-                                <div class="row justify-content-center">
-                                    <div class="col-12">
-                                        <div class="tab-content" id="nav-tabContent">
-                                            <div class="tab-pane fade show active" id="nav-grafico1" role="tabpanel" aria-labelledby="nav-grafico1-tab">
-                                                <canvas class="" id="grafico1" width="100%" height="56"></canvas>
-                                            </div>
-                                            <div class="tab-pane fade" id="nav-grafico2" role="tabpanel" aria-labelledby="nav-grafico2-tab">
-                                                <canvas class="" id="grafico2" width="100" height="60"></canvas>
-                                            </div>
-                                            <div class="tab-pane fade" id="nav-grafico3" role="tabpanel" aria-labelledby="nav-grafico3-tab">
-                                                <canvas class="" id="grafico3" width="100" height="60"></canvas>
-                                            </div>
-                                            <div class="tab-pane fade" id="nav-grafico4" role="tabpanel" aria-labelledby="nav-grafico4-tab">
-                                                <canvas class="" id="grafico4" width="100" height="60"></canvas>
-                                            </div>
-                                            <div class="tab-pane fade" id="nav-grafico5" role="tabpanel" aria-labelledby="nav-grafico5-tab">
-                                                <canvas class="" id="grafico5" width="100" height="60"></canvas>
-                                            </div>
+                            <ul class="nav flex-column left-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a data-toggle="tab" href="#nav-grafico1" class="nav-link active" aria-expanded="true" id="nav-grafico1-tab" title="Productos más vendidos">Productos más vendidos</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a data-toggle="tab" href="#nav-grafico2" class="nav-link" aria-expanded="true" id="nav-grafico2-tab" title="Productos con más comentarios">Productos con las mejores calificaciones</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a data-toggle="tab" href="#nav-grafico3" class="nav-link" aria-expanded="true" id="nav-grafico3-tab" title="Cantidad de productos por categoría">Cantidad de productos por categoría</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a data-toggle="tab" href="#nav-grafico4" class="nav-link" aria-expanded="true" id="nav-grafico4-tab" title="Clientes nuevos en la última semana">Clientes nuevos en la última semana</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a data-toggle="tab" href="#nav-grafico5" class="nav-link" aria-expanded="true" id="nav-grafico5-tab" title="Productos más vendidos" title="Clientes con más ordenes">Clientes con más órdenes</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-9 col-md-9 col-sm-12 col-12">
+                            <div class="row justify-content-center">
+                                <div class="col-12">
+                                    <div class="tab-content" id="nav-tabContent">
+                                        <div class="tab-pane fade show active" id="nav-grafico1" role="tabpanel" aria-labelledby="nav-grafico1-tab">
+                                            <canvas class="" id="grafico1" width="100%" height="54"></canvas>
+                                        </div>
+                                        <div class="tab-pane fade" id="nav-grafico2" role="tabpanel" aria-labelledby="nav-grafico2-tab">
+                                            <canvas class="" id="grafico2" width="100" height="54"></canvas>
+                                        </div>
+                                        <div class="tab-pane fade" id="nav-grafico3" role="tabpanel" aria-labelledby="nav-grafico3-tab">
+                                            <canvas class="" id="grafico3" width="100" height="54"></canvas>
+                                        </div>
+                                        <div class="tab-pane fade" id="nav-grafico4" role="tabpanel" aria-labelledby="nav-grafico4-tab">
+                                            <canvas class="" id="grafico4" width="100" height="54"></canvas>
+                                        </div>
+                                        <div class="tab-pane fade" id="nav-grafico5" role="tabpanel" aria-labelledby="nav-grafico5-tab">
+                                            <canvas class="" id="grafico5" width="100" height="54"></canvas>
                                         </div>
                                     </div>
                                 </div>

@@ -16,6 +16,7 @@ class dashboardTemplate
                 <link rel="stylesheet" href="' . HOME_PATH . 'resources/webfonts/fonts-dashboard.css">
                 <link rel="stylesheet" href="' . HOME_PATH . 'resources/css/normalize.css">
                 <link rel="stylesheet" href="' . HOME_PATH . 'resources/css/bootstrap.min.css">
+                <link rel="stylesheet" href="' . HOME_PATH . 'resources/css/b4vtabs.min.css">
                 <link rel="stylesheet" href="' . HOME_PATH . 'resources/css/Chart.min.css">
                 <link rel="stylesheet" href="' . HOME_PATH . 'resources/css/datatables.min.css">
                 <link rel="stylesheet" href="' . HOME_PATH . 'resources/css/basic.min.css">

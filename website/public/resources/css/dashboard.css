@@ -886,29 +886,29 @@ textarea {
     color: #FED700;
 }
 .page-item.active .page-link {
-    background-color: #FED700;
     border-color: #FED700;
 }
-.nav-pills .nav-link.active{
-    background-color: #FED700;
-    border-color: #FED700;
-    color: #000;
+.nav-item .nav-link.active{
+    border-top: 1px solid #FED700;
+    border-right: 1px solid transparent;
+    border-bottom: 1px solid #FED700;
+    border-left: 1px solid #FED700;
+    color: #FED700;
 }
-.nav-pills .nav-link:hover{
+.nav-item .nav-link:hover{
     background-color: #FEF3B6;
     border-color: #FEF3B6;
     color: #000;
 }
-.nav-pills .nav-link{
+.nav-item .nav-link{
     color: #000;
 }
-.nav-tabs .nav-link.active {
+.nav-item .nav-link.active {
     color: #FED700;
 }
-.nav-tabs .nav-link {
+.nav-item .nav-link {
     color: #000;
 }
-
 
 /*Handmade Responsive CSS elements*/
 @media only screen and (max-width: 1200px){
