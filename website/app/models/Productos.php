@@ -298,7 +298,6 @@ class Productos
         $db->bind(':idcategoriaproducto', $producto->idcategoriaproducto);
         $db->bind(':idproducto', $producto->idproducto);
         return $db->execute();
-
     }
     public function deleteProduct($value)
     {

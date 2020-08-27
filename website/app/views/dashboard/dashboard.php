@@ -147,5 +147,5 @@ dashboardTemplate::dashMenu('dashboard');
 
 <?php
 dashboardTemplate::dashModalOrden();
-dashboardTemplate::dashEnd('ordenes.js', 'dashboard.js');
+dashboardTemplate::dashEnd('dashboard.js');
 ?>

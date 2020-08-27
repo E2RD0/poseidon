@@ -1,3 +1,4 @@
+const API_ORDENES = HOME_PATH + 'api/dashboard/ordenes.php?action=';
 const API_PRODUCTOS = HOME_PATH + 'api/dashboard/productos.php?action=';
 const API_CLIENTES = HOME_PATH + 'api/dashboard/clients.php?action=';
 const API_REVIEWS = HOME_PATH + 'api/dashboard/reviews.php?action=';
@@ -102,6 +103,7 @@ function getProductQuantities(el = false){
 
             jsonResponse.forEach((producto, index) => {
                 let style = (producto['cantidad'] <= 500 && producto['cantidad'] >= 60) ? 'bg-success' : ((producto['cantidad'] < 60 && producto['cantidad'] >= 20) ? 'bg-warning' : 'bg-danger');
+
                 rows += `
                     <div class="row dash__side_card1_container  ${index == jsonResponse.length - 1 ? 'pb-4' : 'pb-0'} ${index == jsonResponse.length - 1 ? 'pb-4' : 'pb-0'}">
                         <div class="col-lg-3 col-md-3 col-sm-12 col-12">
@@ -114,6 +116,7 @@ function getProductQuantities(el = false){
                             <p class="dash__sc1c_text">${producto.cantidad} restantes</p>
                         </div>
                     </div>`;
+
                 $('#productsSpinner').html(rows);
             });
         },
