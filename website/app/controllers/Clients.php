@@ -234,6 +234,10 @@ class Clients extends \Common\Controller
     {
         $jasper = new \PHPJasper\PHPJasper;
 
+        $input = __DIR__ . '/../libs/vendor/geekcom/phpjasper/examples/hello_world.jrxml';
+
+        $jasper->compile($input)->execute();
+
         $input = __DIR__ . '/../libs/geekcom/phpjasper/examples/hello_world.jasper';
         $output = __DIR__ . '/../libs/geekcom/phpjasper/examples';
         $options = [
