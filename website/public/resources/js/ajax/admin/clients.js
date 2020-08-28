@@ -55,6 +55,13 @@ function fillTable( dataset )
                                     <p>${data['estado'] != 'Activo' ? 'Hacer activo' : 'Suspender'}</p>
                                 </span>
                             </button>
+                            <div class="dropdown-divider"></div>
+                            <button class="dropdown-item" onclick="reporteordenes(${data['idcliente']})" type="button">
+                                <span>
+                                    <i class="fas fa-download"></i>
+                                    <p>Listado de ordenes</p>
+                                </span>
+                            </button>
                             </div>
                         </div>`;
                 },
@@ -194,4 +201,43 @@ function cancelUpdate(){
     $('#clients-submit')[0].innerHTML = 'Actualizar cliente';
     $('#inputEmail').removeAttr('data-id');
     $('#tabClientes').click();
+}
+
+function reporteordenes(idcliente){
+    $.ajax({
+        type: 'post',
+        url: API_CLIENTE + 'reporteOrdenes',
+        data: "idcliente="+idcliente,
+        dataType: 'json'
+    })
+    .done(function( response ) {
+        // If user login is succesfull
+        if ( response.status == 1) {
+            fetch('http://localhost/poseidon/website/public/reports/ordenescliente.pdf')
+          .then(resp => resp.blob())
+          .then(blob => {
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            // the filename you want
+            a.download = 'ordenescliente.pdf';
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            swal(1, 'Reporte generado correctamente'); // or you know, something with better UX...
+          })
+          .catch(() => alert('Error al descargar el reporte'));
+        } else{
+            swal(2, response.exception);
+        }
+    })
+    .fail(function( jqXHR ) {
+        // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+        if ( jqXHR.status == 200 ) {
+            console.log( jqXHR.responseText );
+        } else {
+            console.log( jqXHR.status + ' ' + jqXHR.statusText );
+        }
+    });
 }

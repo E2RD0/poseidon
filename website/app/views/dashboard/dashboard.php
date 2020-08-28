@@ -100,6 +100,7 @@ dashboardTemplate::dashMenu('dashboard');
                                     <div class="tab-content" id="nav-tabContent">
                                         <div class="tab-pane fade show active" id="nav-grafico1" role="tabpanel" aria-labelledby="nav-grafico1-tab">
                                             <canvas class="" id="grafico1" width="100%" height="54"></canvas>
+                                            <button class="btn dash__table_button mt-4 mx-auto" type="button" onclick="productosmasvendidos()">Descargar reporte</button>
                                         </div>
                                         <div class="tab-pane fade" id="nav-grafico2" role="tabpanel" aria-labelledby="nav-grafico2-tab">
                                             <canvas class="" id="grafico2" width="100" height="54"></canvas>
@@ -109,6 +110,7 @@ dashboardTemplate::dashMenu('dashboard');
                                         </div>
                                         <div class="tab-pane fade" id="nav-grafico4" role="tabpanel" aria-labelledby="nav-grafico4-tab">
                                             <canvas class="" id="grafico4" width="100" height="54"></canvas>
+                                            <button class="btn dash__table_button mt-4 mx-auto" type="button" onclick="clientesnuevos()">Descargar reporte</button>
                                         </div>
                                         <div class="tab-pane fade" id="nav-grafico5" role="tabpanel" aria-labelledby="nav-grafico5-tab">
                                             <canvas class="" id="grafico5" width="100" height="54"></canvas>

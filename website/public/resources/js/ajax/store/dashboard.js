@@ -62,7 +62,7 @@ function factura(idorden){
     .done(function( response ) {
         // If user login is succesfull
         if ( response.status == 1) {
-            fetch('http://localhost/poseidon/public/reports/productoscategoria.pdf')
+            fetch('http://localhost/poseidon/website/public/reports/factura.pdf')
           .then(resp => resp.blob())
           .then(blob => {
             const url = window.URL.createObjectURL(blob);
@@ -70,7 +70,7 @@ function factura(idorden){
             a.style.display = 'none';
             a.href = url;
             // the filename you want
-            a.download = 'productoscategoria.pdf';
+            a.download = 'factura.pdf';
             document.body.appendChild(a);
             a.click();
             window.URL.revokeObjectURL(url);

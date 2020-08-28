@@ -311,3 +311,41 @@ function deleteReview( idreview, idproducto, el=false)
         });
     }
 };
+
+function productos(){
+    $.ajax({
+        type: 'post',
+        url: API_PRODUCTOS + 'reporteProductos',
+        dataType: 'json'
+    })
+    .done(function( response ) {
+        // If user login is succesfull
+        if ( response.status == 1) {
+            fetch('http://localhost/poseidon/website/public/reports/productoscategorias.pdf')
+          .then(resp => resp.blob())
+          .then(blob => {
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            // the filename you want
+            a.download = 'productoscategorias.pdf';
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            swal(1, 'Reporte generado correctamente'); // or you know, something with better UX...
+          })
+          .catch(() => alert('Error al descargar el reporte'));
+        } else{
+            swal(2, response.exception);
+        }
+    })
+    .fail(function( jqXHR ) {
+        // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+        if ( jqXHR.status == 200 ) {
+            console.log( jqXHR.responseText );
+        } else {
+            console.log( jqXHR.status + ' ' + jqXHR.statusText );
+        }
+    });
+}

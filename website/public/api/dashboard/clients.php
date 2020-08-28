@@ -33,6 +33,15 @@ if (isset($_GET['action'])) {
             case 'clientOrdersChart':
                 $result = $controller->clientOrdersChart($_POST, $result);
                 break;
+            case 'factura':
+                $result = $controller->factura($_POST, $result);
+                break;
+            case 'reporteordenes':
+                $result = $controller->reporteOrdenes($_POST, $result);
+                break;
+            case 'nuevosclientes':
+                $result = $controller->reporteNuevosClientes($_POST, $result);
+                break;
             default:
                 \Common\Core::http404();
         }

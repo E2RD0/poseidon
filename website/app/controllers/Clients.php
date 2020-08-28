@@ -269,6 +269,84 @@ class Clients extends \Common\Controller
         return $result;
     }
 
+    public function reporteNuevosClientes($data, $result)
+    {
+        $input = __DIR__ . '/../reports/clientes.jasper';
+        $output = __DIR__ .'/../../public/reports';
+        $options = [
+            'format' => ['pdf'],
+            'locale' => 'es',
+            'params' => [
+                'email' => $_SESSION['user_email']
+            ],
+            'db_connection' => [
+                'driver' => 'postgres', //mysql, ....
+                'username' => DB_USER,
+                'password' => DB_PASSWORD,
+                'host' => DB_HOST,
+                'database' => DB_NAME,
+                'port' => DB_PORT
+            ]
+        ];
+
+        $jasper = new \PHPJasper\PHPJasper;
+
+        $jasper->process(
+        $input,
+        $output,
+        $options
+        )->execute();
+
+        if(file_exists(__DIR__ .'/../../public/reports/clientes.pdf')){
+            $result['status'] = 1;
+            $result['message'] = 'El pdf se ha generado correctamente';
+        }
+        else {
+            $result['exception'] = 'No se pudo generar el reporte';
+        }
+        return $result;
+    }
+
+    public function reporteOrdenes($data, $result)
+    {
+        $idCliente= intval($data['idcliente']);
+        $input = __DIR__ . '/../reports/ordenescliente.jasper';
+        $output = __DIR__ .'/../../public/reports';
+        $options = [
+            'format' => ['pdf'],
+            'locale' => 'es',
+            'params' => [
+                'email' => $_SESSION['user_email'],
+                'id'    => $idCliente
+            ],
+            'db_connection' => [
+                'driver' => 'postgres', //mysql, ....
+                'username' => DB_USER,
+                'password' => DB_PASSWORD,
+                'host' => DB_HOST,
+                'database' => DB_NAME,
+                'port' => DB_PORT
+            ]
+        ];
+
+        $jasper = new \PHPJasper\PHPJasper;
+
+        $jasper->process(
+        $input,
+        $output,
+        $options
+        )->execute();
+
+        if(file_exists(__DIR__ .'/../../public/reports/ordenescliente.pdf')){
+            $result['status'] = 1;
+            $result['message'] = 'El pdf se ha generado correctamente';
+        }
+        else {
+            $result['exception'] = 'No se pudo generar el reporte';
+        }
+        return $result;
+    }
+
     public function readOne($data, $result)
     {
         $id = intval($data['id']);

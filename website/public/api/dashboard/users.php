@@ -45,6 +45,9 @@ if (isset($_GET['action'])) {
             case 'setSidebar':
                 $result = $userController->setSidebarStatus($_POST ,$result);
                 break;
+            case 'reporte':
+                $result = $controller->reporte($_POST, $result);
+                break;
             default:
                 \Common\Core::http404();
         }
