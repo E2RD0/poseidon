@@ -712,6 +712,68 @@ END;
 
 $ $ LANGUAGE'plpgsql';
 
+CREATE
+	OR REPLACE FUNCTION getOrderGeneralDetailsByCliente ( id_cliente INT ) RETURNS TABLE (
+		idorden INT,
+		cliente VARCHAR,
+		email VARCHAR,
+		telefono VARCHAR,
+		direccion VARCHAR,
+		fechacompra VARCHAR,
+		fechaentrega VARCHAR,
+		subtotal NUMERIC,
+		IVA NUMERIC,
+		estado VARCHAR,
+		total NUMERIC
+	) AS $$ DECLARE
+	order_info RECORD;
+BEGIN
+	FOR order_info IN (
+		SELECT
+			orden.idorden,
+			cliente.nombre || ' ' || cliente.apellido AS cliente,
+			cliente.email,
+			cliente.telefono,
+			orden.direccion,
+			to_char(orden.fechacompra, 'DD Mon YY, HH12:MI AM') AS fechacompra,
+			to_char(orden.fechaentrega, 'DD Mon YY') AS fechaentrega,
+			orden.subtotal,
+		    e.estado,
+            orden.ivaAplicado,
+            orden.total
+		FROM
+			orden
+			JOIN cliente ON orden.idcliente = cliente.idcliente
+			JOIN detalleorden ON orden.idorden = detalleorden.idorden
+		    JOIN estadoorden e on orden.idestadoorden = e.idestadoorden
+		WHERE
+			orden.idcliente = id_cliente
+		GROUP BY
+			orden.idorden,
+			cliente,
+			cliente.email,
+			cliente.telefono,
+			orden.direccion,
+			detalleorden.idorden,
+	        e.estado
+		)
+    LOOP
+        idorden := order_info.idorden;
+        cliente := order_info.cliente;
+        email := order_info.email;
+        telefono := order_info.telefono;
+        direccion := order_info.direccion;
+        fechacompra := order_info.fechacompra;
+        fechaentrega := order_info.fechaentrega;
+        subtotal := order_info.subtotal;
+        IVA = order_info.ivaAplicado;
+        estado := order_info.estado;
+        total := order_info.total;
+        RETURN NEXT;
+    END LOOP;
+END;
+$$ LANGUAGE'plpgsql';
+
 SELECT
     nombre,
     COUNT (idproducto) as cantidad

@@ -43,7 +43,7 @@ function fillTable(dataset) {
                     orderable: false,
                     render: function (data) {
                         return `
-                        <button class="btn btn-light" onclick="orderDetails(${data["idorden"]})">Ver Detalles</button>`;
+                        <button class="btn btn-light" onclick="factura(${data["idorden"]})">Ver factura</button>`;
                     },
                     targets: -1,
                 },
@@ -52,6 +52,23 @@ function fillTable(dataset) {
     }
 }
 
-function orderDetails(idorden){
-    console.log(idorden);
+function factura(idorden){
+    $.ajax({
+        type: 'post',
+        url: API_CLIENTE + 'factura',
+        data: "idorden="+idorden,
+        dataType: 'json'
+    })
+    .done(function( response ) {
+        // If user login is succesfull
+        console.log(response);
+    })
+    .fail(function( jqXHR ) {
+        // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+        if ( jqXHR.status == 200 ) {
+            console.log( jqXHR.responseText );
+        } else {
+            console.log( jqXHR.status + ' ' + jqXHR.statusText );
+        }
+    });
 }

@@ -36,6 +36,9 @@ if (isset($_GET['action'])) {
             case 'getOrders':
                 $result = $controller->getOrders($_SESSION['client_id'], $result);
                 break;
+            case 'factura':
+                $result = $controller->factura($_POST, $result);
+                break;
             default:
                 \Common\Core::http404();
         }

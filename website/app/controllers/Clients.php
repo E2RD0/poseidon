@@ -230,6 +230,41 @@ class Clients extends \Common\Controller
         return $result;
     }
 
+    public function factura($data, $result)
+    {
+        $jasper = new \PHPJasper\PHPJasper;
+
+        $input = __DIR__ . '/../libs/geekcom/phpjasper/examples/hello_world.jasper';
+        $output = __DIR__ . '/../libs/geekcom/phpjasper/examples';
+        $options = [
+        'format' => ['pdf', 'rtf']
+        ];
+
+        $jasper->process(
+        $input,
+        $output,
+        $options
+        )->execute());
+        //Si te da error;
+        /*print_r($jasper->process(
+        $input,
+        $output,
+        $options
+        )->output());*/
+
+        // if ($cliente->setId($id) && $cliente->clientExists('idCliente', $id)) {
+        //     if ($cliente->changeStateClient($id, $idEstado)) {
+        //         $result['status'] = 1;
+        //         $result['message'] = 'Estado actualizado correctamente';
+        //     } else {
+        //         $result['exception'] = \Common\Database::$exception;
+        //     }
+        // } else {
+        //     $result['exception'] = 'Cliente inexistente';
+        // }
+        // return $result;
+    }
+
     public function readOne($data, $result)
     {
         $id = intval($data['id']);
