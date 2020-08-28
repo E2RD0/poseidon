@@ -232,30 +232,32 @@ class Clients extends \Common\Controller
 
     public function factura($data, $result)
     {
-        $jasper = new \PHPJasper\PHPJasper;
-
-        $input = __DIR__ . '/../libs/vendor/geekcom/phpjasper/examples/hello_world.jrxml';
-
-        $jasper->compile($input)->execute();
-
-        $input = __DIR__ . '/../libs/geekcom/phpjasper/examples/hello_world.jasper';
-        $output = __DIR__ . '/../libs/geekcom/phpjasper/examples';
+        $idOrden= intval($data['idorden']);
+        $input = __DIR__ . '/../reports/factura.jasper';
+        $output = __DIR__ .'/../../public/reports';
         $options = [
-        'format' => ['pdf', 'rtf']
+            'format' => ['pdf'],
+            'locale' => 'es',
+            'params' => [
+                'id' => $idOrden
+            ],
+            'db_connection' => [
+                'driver' => 'postgres', //mysql, ....
+                'username' => DB_USER,
+                'password' => DB_PASSWORD,
+                'host' => DB_HOST,
+                'database' => 'poseidon',
+                'port' => DB_PORT
+            ]
         ];
+
+        $jasper = new \PHPJasper\PHPJasper;
 
         $jasper->process(
         $input,
         $output,
         $options
-        )->execute());
-        //Si te da error;
-        /*print_r($jasper->process(
-        $input,
-        $output,
-        $options
-        )->output());*/
-
+        )->execute();
         // if ($cliente->setId($id) && $cliente->clientExists('idCliente', $id)) {
         //     if ($cliente->changeStateClient($id, $idEstado)) {
         //         $result['status'] = 1;
