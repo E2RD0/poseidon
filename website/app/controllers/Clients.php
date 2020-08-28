@@ -233,20 +233,20 @@ class Clients extends \Common\Controller
     public function factura($data, $result)
     {
         $idOrden= intval($data['idorden']);
-        $input = __DIR__ . '/../reports/factura.jasper';
+        $input = __DIR__ . '/../reports/productoscategoria.jasper';
         $output = __DIR__ .'/../../public/reports';
         $options = [
             'format' => ['pdf'],
             'locale' => 'es',
             'params' => [
-                'id' => $idOrden
+                'email' => 'prueba'
             ],
             'db_connection' => [
                 'driver' => 'postgres', //mysql, ....
                 'username' => DB_USER,
                 'password' => DB_PASSWORD,
                 'host' => DB_HOST,
-                'database' => 'poseidon',
+                'database' => DB_NAME,
                 'port' => DB_PORT
             ]
         ];
@@ -258,17 +258,15 @@ class Clients extends \Common\Controller
         $output,
         $options
         )->execute();
-        // if ($cliente->setId($id) && $cliente->clientExists('idCliente', $id)) {
-        //     if ($cliente->changeStateClient($id, $idEstado)) {
-        //         $result['status'] = 1;
-        //         $result['message'] = 'Estado actualizado correctamente';
-        //     } else {
-        //         $result['exception'] = \Common\Database::$exception;
-        //     }
-        // } else {
-        //     $result['exception'] = 'Cliente inexistente';
-        // }
-        // return $result;
+
+        if(file_exists(__DIR__ .'/../../public/reports/productoscategoria.pdf')){
+            $result['status'] = 1;
+            $result['message'] = 'El pdf se ha generado correctamente';
+        }
+        else {
+            $result['exception'] = 'No se pudo generar el reporte';
+        }
+        return $result;
     }
 
     public function readOne($data, $result)
