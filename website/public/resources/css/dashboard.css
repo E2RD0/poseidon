@@ -909,6 +909,12 @@ textarea {
 .nav-item .nav-link {
     color: #000;
 }
+.rs-chart{
+    position: relative;
+    margin: auto;
+    height: 20vh;
+    width: 30vw;
+}
 
 /*Handmade Responsive CSS elements*/
 @media only screen and (max-width: 1200px){

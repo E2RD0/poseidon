@@ -233,16 +233,19 @@ class Clients extends \Common\Controller
     public function factura($data, $result)
     {
         $idOrden= intval($data['idorden']);
-        $input = __DIR__ . '/../reports/productoscategoria.jasper';
+        //Se mandan a llamar dos archivos, factura.jrxml y factura.jasper (que será generado más adelante)
+        $jrxml = __DIR__.'/../reports/factura.jrxml';
+        $input = __DIR__ . '/../reports/factura.jasper';
         $output = __DIR__ .'/../../public/reports';
+        //Le mandamos la configuración de jasper, así como los parámetros.
         $options = [
             'format' => ['pdf'],
             'locale' => 'es',
             'params' => [
-                'email' => 'prueba'
+                'id' => $idOrden
             ],
             'db_connection' => [
-                'driver' => 'postgres', //mysql, ....
+                'driver' => 'postgres',
                 'username' => DB_USER,
                 'password' => DB_PASSWORD,
                 'host' => DB_HOST,
@@ -250,16 +253,18 @@ class Clients extends \Common\Controller
                 'port' => DB_PORT
             ]
         ];
-
+        //Inicializamos un objeto PHPJasper
         $jasper = new \PHPJasper\PHPJasper;
-
+        //Compilamos y creamos el archivo factura.jasper, a partir de factura.jrxml
+        $jasper->compile($jrxml)->execute();
+        //Procesamos la compilación, y le aplicamos la configuración. Así como le asignamos donde saldrá.
         $jasper->process(
         $input,
         $output,
         $options
         )->execute();
-
-        if(file_exists(__DIR__ .'/../../public/reports/productoscategoria.pdf')){
+        //Si el archivo se creó, entonces el reporte fue exitóso.
+        if(file_exists(__DIR__ .'/../../public/reports/factura.pdf')){
             $result['status'] = 1;
             $result['message'] = 'El pdf se ha generado correctamente';
         }
@@ -271,6 +276,7 @@ class Clients extends \Common\Controller
 
     public function reporteNuevosClientes($data, $result)
     {
+        $jrxml = __DIR__.'/../reports/clientes.jrxml';
         $input = __DIR__ . '/../reports/clientes.jasper';
         $output = __DIR__ .'/../../public/reports';
         $options = [
@@ -291,6 +297,8 @@ class Clients extends \Common\Controller
 
         $jasper = new \PHPJasper\PHPJasper;
 
+        $jasper->compile($jrxml)->execute();
+
         $jasper->process(
         $input,
         $output,
@@ -310,6 +318,7 @@ class Clients extends \Common\Controller
     public function reporteOrdenes($data, $result)
     {
         $idCliente= intval($data['idcliente']);
+        $jrxml = __DIR__.'/../reports/ordenescliente.jrxml';
         $input = __DIR__ . '/../reports/ordenescliente.jasper';
         $output = __DIR__ .'/../../public/reports';
         $options = [
@@ -330,6 +339,8 @@ class Clients extends \Common\Controller
         ];
 
         $jasper = new \PHPJasper\PHPJasper;
+
+        $jasper->compile($jrxml)->execute();
 
         $jasper->process(
         $input,

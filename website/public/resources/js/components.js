@@ -315,5 +315,21 @@ function doughnutGraph(canvas, legend, daata, title) {
             }
         }
     });
-
+}
+//Función para ir a traer el documento pdf, simplemente se utiliza una URL a un documento.
+function fetchResource(urlString) {
+    fetch(urlString)
+        .then(resp => resp.blob())
+        .then(blob => {
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = '';
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            swal(1, 'Reporte generado correctamente');
+        })
+        .catch(() => swal(2, 'Error al descargar el reporte'));
 }

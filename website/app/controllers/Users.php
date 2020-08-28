@@ -60,6 +60,7 @@ class Users extends \Common\Controller
 
     public function reporteUsuarios($data, $result)
     {
+        $jrxml = __DIR__.'/../reports/usuarios.jrxml';
         $input = __DIR__ . '/../reports/usuarios.jasper';
         $output = __DIR__ .'/../../public/reports';
         $options = [
@@ -79,6 +80,8 @@ class Users extends \Common\Controller
         ];
 
         $jasper = new \PHPJasper\PHPJasper;
+
+        $jasper->compile($jrxml)->execute();
 
         $jasper->process(
         $input,

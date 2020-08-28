@@ -19,7 +19,7 @@ dashboardTemplate::dashMenu('productos');
                                         <a data-toggle="tab" href="#agregarproducto" class="nav-link dash__tab_title" aria-expanded="true" id="products-title">Agregar un producto</a>
                                     </li>
                                     <li class="nav-item">
-                                        <button class="btn dash__table_button mt-4 mx-auto" type="button" onclick="productos()">Descargar reporte</button>
+                                        <button class="btn dash__table_button mt-4 mx-auto" type="button" onclick="reporteProductos()">Descargar reporte</button>
                                     </li>
                                 </ul>
                             </div>

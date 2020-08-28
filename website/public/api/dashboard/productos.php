@@ -30,11 +30,11 @@ if (isset($_GET['action'])) {
             case 'productsByCategory':
                 $result = $productsController->productsByCategoryChart($_POST, $result);
                 break;
-            case 'masvendidos':
-                $result = $controller->reporteProductosMasVendidos($_POST, $result);
+            case 'reporteProductosMasVendidos':
+                $result = $productsController->reporteProductosMasVendidos($_POST, $result);
                 break;
-            case 'productos':
-                $result = $controller->reporteProductos($_POST, $result);
+            case 'reporteProductos':
+                $result = $productsController->reporteProductos($_POST, $result);
                 break;
             default:
                 \Common\Core::http404();

@@ -271,77 +271,48 @@ function clientOrdersChart() {
     });
 }
 
-function clientesnuevos(){
+function clientesNuevos(){
     $.ajax({
         type: 'post',
-        url: API_CLIENTE + 'reporteNuevosClientes',
-        dataType: 'json'
-    })
-    .done(function( response ) {
-        // If user login is succesfull
-        if ( response.status == 1) {
-            fetch('http://localhost/website/poseidon/public/reports/clientes.pdf')
-          .then(resp => resp.blob())
-          .then(blob => {
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.style.display = 'none';
-            a.href = url;
-            // the filename you want
-            a.download = 'clientes.pdf';
-            document.body.appendChild(a);
-            a.click();
-            window.URL.revokeObjectURL(url);
-            swal(1, 'Reporte generado correctamente'); // or you know, something with better UX...
-          })
-          .catch(() => alert('Error al descargar el reporte'));
-        } else{
-            swal(2, response.exception);
-        }
-    })
-    .fail(function( jqXHR ) {
-        // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
-        if ( jqXHR.status == 200 ) {
-            console.log( jqXHR.responseText );
-        } else {
-            console.log( jqXHR.status + ' ' + jqXHR.statusText );
+        url: API_CLIENTES + 'nuevosclientes',
+        dataType: 'json',
+        success: function( response ) {
+            // If user login is succesfull
+            if ( response.status == 1) {
+                fetchResource('http://localhost/poseidon/website/public/reports/clientes.pdf');
+            } else{
+                swal(2, response.exception);
+            }
+        },
+        error: function( jqXHR ) {
+            // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+            if ( jqXHR.status == 200 ) {
+                console.log( jqXHR.responseText );
+            } else {
+                console.log( jqXHR.status + ' ' + jqXHR.statusText );
+            }
         }
     });
 }
-function productosmasvendidos(){
+
+function productosMasVendidos(){
     $.ajax({
         type: 'post',
         url: API_PRODUCTOS + 'reporteProductosMasVendidos',
-        dataType: 'json'
-    })
-    .done(function( response ) {
-        // If user login is succesfull
-        if ( response.status == 1) {
-            fetch('http://localhost/poseidon/website/public/reports/productosmasvendidos.pdf')
-          .then(resp => resp.blob())
-          .then(blob => {
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.style.display = 'none';
-            a.href = url;
-            // the filename you want
-            a.download = 'productosmasvendidos.pdf';
-            document.body.appendChild(a);
-            a.click();
-            window.URL.revokeObjectURL(url);
-            swal(1, 'Reporte generado correctamente'); // or you know, something with better UX...
-          })
-          .catch(() => alert('Error al descargar el reporte'));
-        } else{
-            swal(2, response.exception);
-        }
-    })
-    .fail(function( jqXHR ) {
-        // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
-        if ( jqXHR.status == 200 ) {
-            console.log( jqXHR.responseText );
-        } else {
-            console.log( jqXHR.status + ' ' + jqXHR.statusText );
+        dataType: 'json',
+        success: function( response ) {
+            if ( response.status == 1) {
+                fetchResource('http://localhost/poseidon/website/public/reports/productosmasvendidos.pdf');
+            } else{
+                swal(2, response.exception);
+            }},
+        error: function( jqXHR ) {
+            // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+            if ( jqXHR.status == 200 ) {
+                console.log( jqXHR.responseText );
+            } else {
+                console.log( jqXHR.status + ' ' + jqXHR.statusText );
+            }
         }
     });
 }

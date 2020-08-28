@@ -46,6 +46,7 @@ class Products extends \Common\Controller
     }
     public function reporteProductos($data, $result)
     {
+        $jrxml = __DIR__.'/../reports/productoscategorias.jrxml';
         $input = __DIR__ . '/../reports/productoscategorias.jasper';
         $output = __DIR__ .'/../../public/reports';
         $options = [
@@ -66,6 +67,8 @@ class Products extends \Common\Controller
 
         $jasper = new \PHPJasper\PHPJasper;
 
+        $jasper->compile($jrxml)->execute();
+
         $jasper->process(
         $input,
         $output,
@@ -83,6 +86,7 @@ class Products extends \Common\Controller
     }
     public function reporteProductosMasVendidos($data, $result)
     {
+        $jrxml = __DIR__.'/../reports/productosmasvendidos.jrxml';
         $input = __DIR__ . '/../reports/productosmasvendidos.jasper';
         $output = __DIR__ .'/../../public/reports';
         $options = [
@@ -102,6 +106,8 @@ class Products extends \Common\Controller
         ];
 
         $jasper = new \PHPJasper\PHPJasper;
+
+        $jasper->compile($jrxml)->execute();
 
         $jasper->process(
         $input,

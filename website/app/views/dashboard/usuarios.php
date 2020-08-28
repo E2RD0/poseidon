@@ -19,7 +19,7 @@ dashboardTemplate::dashMenu('usuarios');
                                         <a id="tabEdit" data-toggle="tab" href="#agregarusuario" class="nav-link dash__tab_title" aria-expanded="true">Agregar un usuario</a>
                                     </li>
                                     <li class="nav-item">
-                                        <button class="btn dash__table_button mt-4 mx-auto" type="button" onclick="usuarios()">Descargar reporte</button>
+                                        <button class="btn dash__table_button mt-4 mx-auto" type="button" onclick="reporteUsuarios()">Descargar reporte</button>
                                     </li>
                                 </ul>
                             </div>

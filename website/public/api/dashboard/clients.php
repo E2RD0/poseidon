@@ -36,7 +36,7 @@ if (isset($_GET['action'])) {
             case 'factura':
                 $result = $controller->factura($_POST, $result);
                 break;
-            case 'reporteordenes':
+            case 'reporteOrdenes':
                 $result = $controller->reporteOrdenes($_POST, $result);
                 break;
             case 'nuevosclientes':

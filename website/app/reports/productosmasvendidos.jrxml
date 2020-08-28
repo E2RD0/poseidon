@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.13.0.final using JasperReports Library version 6.13.0-46ada4d1be8f3c5985fd0b6146f3ed44caed6f05  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporte" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4eedbb89-b4f6-4469-9ab6-f642a1688cf7">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Poseidon"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#EEEFF0"/>
+		</conditionalStyle>
+	</style>
+	<style name="Table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+			<topPen lineWidth="1.0" lineColor="#000000"/>
+			<leftPen lineWidth="1.0" lineColor="#000000"/>
+			<bottomPen lineWidth="1.0" lineColor="#000000"/>
+			<rightPen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#CACED0">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#D8D8D8"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="tableDataset" uuid="f13e6d36-5148-4ecc-bbe3-3035def80980">
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+	</subDataset>
+	<parameter name="email" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT d.idproducto, p.nombre, SUM(cantidad) AS "Cantidad total vendida", cp.categoria , SUM(preciounitario) AS "Ganancia Total" from detalleorden d INNER JOIN producto p on d.idproducto = p.idproducto INNER JOIN categoriaproducto cp ON cp.idcategoriaproducto = p.idcategoriaproducto GROUP BY d.idproducto, p.nombre, cp.categoria ORDER BY SUM(cantidad) DESC LIMIT 15]]>
+	</queryString>
+	<field name="idproducto" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="idproducto"/>
+		<property name="com.jaspersoft.studio.field.label" value="idproducto"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="detalleorden"/>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="producto"/>
+	</field>
+	<field name="Cantidad total vendida" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="Cantidad total vendida"/>
+		<property name="com.jaspersoft.studio.field.label" value="Cantidad total vendida"/>
+	</field>
+	<field name="categoria" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="categoria"/>
+		<property name="com.jaspersoft.studio.field.label" value="categoria"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="categoriaproducto"/>
+	</field>
+	<field name="Ganancia Total" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="Ganancia Total"/>
+		<property name="com.jaspersoft.studio.field.label" value="Ganancia Total"/>
+	</field>
+	<title>
+		<band height="158" splitType="Stretch">
+			<image hAlign="Center">
+				<reportElement x="43" y="43" width="140" height="40" uuid="94883631-a913-43e2-b182-ab8d77d0181e"/>
+				<imageExpression><![CDATA["http://localhost/poseidon/website/public/resources/img/dashboard/poseidon-l.svg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="43" y="84" width="140" height="25" uuid="c8d1e9f6-31c2-4ad0-a623-a52a65321412"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[www.poseidon.store]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="224" y="42" width="300" height="25" uuid="cf5dd674-bc6c-47e0-aa14-3f8a87fa6a47">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Productos con más ventas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="255" y="69" width="120" height="15" uuid="4f351c5d-9d05-404c-9d80-78e3d3548742"/>
+				<text><![CDATA[Reporte generado por:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="375" y="69" width="120" height="15" uuid="e3578467-1603-4d2a-9dec-1299cba64435"/>
+				<textFieldExpression><![CDATA[$P{email}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="255" y="89" width="120" height="15" uuid="86099b43-f844-4b7b-8434-ac7096fcc642"/>
+				<text><![CDATA[Generado el:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="375" y="88" width="120" height="16" uuid="9e67a51a-fb67-42a0-a84e-d744393416cd"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="43" y="122" width="481" height="1" uuid="c040ae91-7137-4614-a245-5780892faf90">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="30">
+			<staticText>
+				<reportElement mode="Opaque" x="43" y="0" width="37" height="30" backcolor="#FFE033" uuid="6affde9a-f3b3-4506-bee4-11084e24c733"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[N°]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="430" y="0" width="94" height="30" backcolor="#FFE033" uuid="90970ff3-2ad4-48a8-b731-2e4b9c9b6be8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ganancia total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="80" y="0" width="230" height="30" backcolor="#FFE033" uuid="54872aad-158f-4a66-b502-81b777f7ce4d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Producto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="310" y="0" width="120" height="30" backcolor="#FFE033" uuid="63449d92-a224-4609-aaa3-d5116a52325e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad total vendida]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="25">
+			<textField>
+				<reportElement style="Detail" x="80" y="0" width="230" height="25" uuid="14d668b9-0f4c-4b93-8ae5-57910324d36e"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="43" y="0" width="37" height="25" uuid="eb3f09e4-6b0f-460b-8ab6-220c9c157923"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{idproducto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="310" y="0" width="120" height="25" uuid="66de83a7-b597-47da-a59e-ab06ddcb5f08"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Cantidad total vendida}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="430" y="0" width="94" height="25" uuid="4bbd1b41-58bf-4ca0-9ccb-7a6880791116"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Ganancia Total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="50">
+			<textField>
+				<reportElement x="327" y="9" width="100" height="30" uuid="fedd92aa-ba83-4625-9f2a-8adc84b45e88"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="427" y="9" width="100" height="30" uuid="f823141d-b013-48b3-8407-d8d020748b30"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[" of " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>
