@@ -46,7 +46,7 @@ dashboardTemplate::dashMenu('usuarios');
                                     </div>
                                 </div>
                                 <div class="tab-pane py-3 px-3 px-sm-0" id="agregarusuario" role="tabpanel">
-                                    <form id="users-form" method="post" action="" class="row my-5">
+                                    <form autocomplete="off" id="users-form" method="post" action="" class="row my-5">
                                         <div class="col-12 col-lg-6 mx-md-auto">
                                             <div class="ml-lg-4">
                                                 <div class="row mt-4 ml-md-2">

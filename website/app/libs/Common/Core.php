@@ -81,7 +81,7 @@ class Core
 
     public static function http404(){
         http_response_code(404);
-        echo "404 no encontrado";
+        require_once HOME_PATH . '../app/views/404.php';
         die();
     }
 }

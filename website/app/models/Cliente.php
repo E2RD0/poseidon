@@ -120,14 +120,14 @@ class Cliente
         return $this->password;
     }
 
-    public function setPassword($value, $checkStrength = true, $name='Contraseña')
+    public function setPassword($value, $checkStrength = true, $name = 'Contraseña')
     {
-        $v = new \Valitron\Validator(array( $name => $value));
-        $v->rule('required', $name );
-        if($checkStrength){
-            $v->rule('lengthMin', $name , 6);
+        $v = new \Valitron\Validator(array($name => $value));
+        $v->rule('required', $name);
+        if ($checkStrength) {
+            $v->rule('lengthMin', $name, 6);
         }
-        if($v->validate()) {
+        if ($v->validate()) {
             $this->password = $value;
             return true;
         } else {
@@ -212,7 +212,7 @@ class Cliente
     public function getClients()
     {
         $db = new \Common\Database;
-        $db->query('SELECT idCliente, nombre, apellido, email, direccion, telefono, contrasena, c.idEstadoCliente, e.estado FROM cliente c INNER JOIN estadoCliente e ON c.idEstadoCliente = e.idEstadoCliente ');
+        $db->query('SELECT idCliente, nombre, apellido, email, direccion, telefono, contrasena, c.idEstadoCliente, e.estado, enlinea FROM cliente c INNER JOIN estadoCliente e ON c.idEstadoCliente = e.idEstadoCliente ');
         return $db->resultSet();
     }
 
@@ -230,11 +230,48 @@ class Cliente
         $db->query('SELECT * FROM cliente');
         return $db->rowCount();
     }
-    public function checkPassword($email){
+    public function checkPassword($email)
+    {
         $db = new \Common\Database;
-        $db->query('SELECT idCliente, idEstadoCliente, nombre, contrasena from cliente WHERE email = :email');
+        $db->query('SELECT idCliente, idEstadoCliente, nombre, contrasena, ultimocambiocontrasena from cliente WHERE email = :email');
         $db->bind(':email', $email);
         return $db->getResult();
+    }
+    public function checkIfOnline($email)
+    {
+        $db = new \Common\Database;
+        $db->query('SELECT enlinea from cliente WHERE email = :email');
+        $db->bind(':email', $email);
+        return $db->getResult();
+    }
+    public function clientIsSuspended($idcliente)
+    {
+        $db = new \Common\Database;
+        $db->query('SELECT * from clientesuspendido WHERE idcliente = :idcliente');
+        $db->bind(':idcliente', $idcliente);
+        return $db->getResult();
+    }
+    public function removeSuspension($idclientesuspendido)
+    {
+        $db = new \Common\Database;
+        $db->query('DELETE FROM clientesuspendido WHERE idclientesuspendido = :idclientesuspendido');
+        $db->bind(':idclientesuspendido', $idclientesuspendido);
+        return $db->getResult();
+    }
+    public function restrictAccount($idcliente)
+    {
+        $db = new \Common\Database;
+        $db->query('INSERT INTO clientesuspendido VALUES (DEFAULT, :idcliente, DEFAULT)');
+        $db->bind(':idcliente', $idcliente);
+        return $db->execute();
+    }
+    public function setOnline($email, $value)
+    {
+        $db = new \Common\Database;
+        $db->query('UPDATE cliente SET enlinea = :value WHERE email = :email');
+        $db->bind(':value', $value);
+        $db->bind(':email', $email);
+        return $db->execute();
     }
     public function registerClient($user)
     {

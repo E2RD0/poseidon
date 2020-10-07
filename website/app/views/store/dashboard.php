@@ -100,7 +100,7 @@ template::getHeader('Dashboard ~ Poseidón');
                         </div>
                     </div>
 
-                    <form class="mb-5" action="" method="post" id="settings-form">
+                    <form autocomplete="off" class="mb-5" action="" method="post" id="settings-form">
                         <div class="row">
                             <div class="col-lg-6 mb-3">
                                 <p class="form-error-label" id="errorNombre"></p>

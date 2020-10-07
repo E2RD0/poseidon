@@ -9,7 +9,7 @@ template::getHeader('Regístrate ~ Poseidón');
     <div class="col-md-6 text-center form-container">
       <h1 class="form-title">Crea una nueva cuenta para poder comprar en la tienda</h1>
       <p>Gestiona tus ordenes, alquileres, y se capaz de dar tu opinión respecto a los productos que has comprado.</p>
-      <form class="mt-5" action="" id="register-form" method="POST">
+      <form autocomplete="off" class="mt-5" action="" id="register-form" method="POST">
         <p class="form-error-label" id="errorNombre"></p>
         <input class="form-input" id="inputNombre" type="text" required name="nombre" placeholder="Nombres">
 

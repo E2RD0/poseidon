@@ -1,4 +1,3 @@
-
 CREATE TABLE opcionesGenerales (
     idOpcion SERIAL,
     clave VARCHAR(50) UNIQUE NOT NULL,
@@ -26,8 +25,16 @@ CREATE TABLE usuario (
     email VARCHAR(100) UNIQUE NOT NULL,
     contrasena VARCHAR(100) NOT NULL,
     idTipoUsuario INT NOT NULL,
+    ultimoCambioContrasena DATE NOT NULL DEFAULT NOW(),
+    enLinea BOOLEAN NOT NULL DEFAULT false,
     PRIMARY KEY (idUsuario),
     FOREIGN KEY (idTipoUsuario) REFERENCES tipoUsuario (idTipoUsuario)
+);
+
+CREATE TABLE usuarioSuspendido(
+    idUsuarioSuspendido SERIAL NOT NULL PRIMARY KEY,
+    idUsuario INT NOT NULL REFERENCES usuario(idusuario),
+    fechadesbloqueo TIMESTAMP NOT NULL DEFAULT NOW() + INTERVAL '1 DAY'
 );
 
 CREATE TABLE recuperarClave (
@@ -40,9 +47,9 @@ CREATE TABLE recuperarClave (
 );
 
 CREATE TABLE estadoCliente(
-  idEstadoCliente SERIAL NOT NULL,
-  estado VARCHAR(50) UNIQUE NOT NULL,
-  PRIMARY KEY (idEstadoCliente)
+    idEstadoCliente SERIAL NOT NULL,
+    estado VARCHAR(50) UNIQUE NOT NULL,
+    PRIMARY KEY (idEstadoCliente)
 );
 
 CREATE TABLE cliente (
@@ -55,8 +62,16 @@ CREATE TABLE cliente (
     direccion VARCHAR(200),
     fechaIngreso TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     idEstadoCliente INT NOT NULL DEFAULT 1,
+    ultimoCambioContrasena DATE NOT NULL DEFAULT NOW(),
+    enLinea BOOLEAN NOT NULL DEFAULT false,
     PRIMARY KEY (idCliente),
     FOREIGN KEY (idEstadoCliente) REFERENCES estadoCliente (idEstadoCliente)
+);
+
+CREATE TABLE clienteSuspendido(
+    idClienteSuspendido SERIAL NOT NULL PRIMARY KEY,
+    idCliente INT NOT NULL REFERENCES cliente(idcliente),
+    fechadesbloqueo TIMESTAMP NOT NULL DEFAULT NOW() + INTERVAL '1 DAY'
 );
 
 CREATE TABLE categoriaProducto (
@@ -66,9 +81,9 @@ CREATE TABLE categoriaProducto (
 );
 
 CREATE TABLE producto (
-    idProducto  SERIAL,
+    idProducto SERIAL,
     nombre VARCHAR(200) NOT NULL,
-    precio NUMERIC(9,2) NOT NULL,
+    precio NUMERIC(9, 2) NOT NULL,
     descripcion VARCHAR(250) NOT NULL,
     imgURL VARCHAR(100) NOT NULL,
     existenciasCompra INT NOT NULL,
@@ -86,9 +101,9 @@ CREATE TABLE estadoOrden (
 
 CREATE TABLE orden (
     idOrden SERIAL,
-    subTotal NUMERIC(9,2),
-    ivaAplicado NUMERIC(9,2),
-    total NUMERIC(9,2),
+    subTotal NUMERIC(9, 2),
+    ivaAplicado NUMERIC(9, 2),
+    total NUMERIC(9, 2),
     fechaCompra TIMESTAMP,
     fechaEntrega DATE,
     direccion VARCHAR(200),
@@ -102,7 +117,7 @@ CREATE TABLE orden (
 CREATE TABLE detalleOrden (
     idDetalleOrden SERIAL,
     cantidad INT NOT NULL,
-    precioUnitario NUMERIC(9,2),
+    precioUnitario NUMERIC(9, 2),
     idOrden INT NOT NULL,
     idProducto INT NOT NULL,
     PRIMARY KEY (idDetalleOrden),
@@ -110,8 +125,7 @@ CREATE TABLE detalleOrden (
     FOREIGN KEY (idProducto) REFERENCES producto (idProducto)
 );
 
-CREATE TABLE review
-(
+CREATE TABLE review (
     idReview SERIAL,
     comentario VARCHAR(400) NOT NULL,
     calificacion SMALLINT NOT NULL,
@@ -124,8 +138,8 @@ CREATE TABLE review
 
 CREATE TABLE informacionAlquiler (
     idInformacionAlquiler SERIAL,
-    precioAlquiler NUMERIC(9,2) NOT NULL,
-    poliza NUMERIC(9,2) NOT NULL,
+    precioAlquiler NUMERIC(9, 2) NOT NULL,
+    poliza NUMERIC(9, 2) NOT NULL,
     existenciasAlquiler INT NOT NULL,
     idProducto INT NOT NULL,
     existe BOOLEAN NOT NULL DEFAULT true,
@@ -144,7 +158,7 @@ CREATE TABLE ordenAlquiler (
     fechaEntrega DATE,
     fechaDespacho DATE,
     fechaOrdenAlquiler TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
-    total NUMERIC(9,2),
+    total NUMERIC(9, 2),
     idSucursal int,
     idCliente int NOT NULL,
     idEstadoOrdenAlquiler INT NOT NULL,
@@ -162,8 +176,8 @@ CREATE TABLE estadoDetalleAlquiler (
 
 CREATE TABLE detalleAlquiler (
     idDetalleAlquiler SERIAL,
-    precioAlquiler NUMERIC(9,2),
-    poliza NUMERIC(9,2),
+    precioAlquiler NUMERIC(9, 2),
+    poliza NUMERIC(9, 2),
     idOrdenAlquiler INT NOT NULL,
     idEstadoDetalleAlquiler INT NOT NULL,
     idInformacionAlquiler INT NOT NULL,

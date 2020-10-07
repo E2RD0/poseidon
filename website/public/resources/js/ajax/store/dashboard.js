@@ -60,11 +60,14 @@ function factura(idorden){
         data: "idorden="+idorden,
         dataType: 'json',
         success: function( response ) {
-            // If user login is succesfull
-            if ( response.status == 1) {
-                fetchResource('http://localhost/poseidon/website/public/reports/factura.pdf');
-            } else{
-                swal(2, response.exception);
+            if (response.status != 9) {
+                if ( response.status == 1) {
+                    fetchResource('http://localhost/poseidon/website/public/reports/factura.pdf');
+                } else{
+                    swal(2, response.exception);
+                }
+            } else {
+                swal(3, 'Se te ha cerrado la sesión, redireccionando al inicio de sesión...', 'store/user/login', 5000);
             }
         },
         error: function( jqXHR ) {

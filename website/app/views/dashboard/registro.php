@@ -13,7 +13,7 @@ loginTemplate::loginHead('Registro');
                     </p>
                 </div>
                 <div class="col-8">
-                    <form action="" id="register-form" method="POST">
+                    <form autocomplete="off" action="" id="register-form" method="POST">
                       <div class="row main__rows">
                           <div class="col-sm">
                               <div class="form-field">

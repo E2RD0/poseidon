@@ -36,8 +36,11 @@ function addCart() {
                 case -1:
                     swal(3, response.exception +'. Redireccionando a inicio de sesión...', 'store/user/login', 4000);
                     break;
-            }
-        },
+                case 9:
+                    swal(3, 'Se te ha cerrado la sesión, redireccionando al inicio de sesión...', 'store/user/login', 5000);
+                    break;
+                }
+            },
         error: function( jqXHR ) {
             // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
             if ( jqXHR.status == 200 ) {
@@ -102,24 +105,28 @@ function checkReview(){
         data: { id_producto: idProducto},
         dataType: 'json',
         success: function (response) {
-            if(response.status == 1){
-                $('#review-form').trigger("reset");
-                dataset = response.dataset;
-                $('#myLargeModalLabel').html('Ver reseña anterior');
-                $('#inputReview').attr('disabled', '');
-                $('#inputReview').val(dataset.comentario);
-                $("#inputRating").rate("setValue",dataset.calificacion );
-                $('#review-submit').attr('disabled', '');
-                $('#modal').modal('show');
-            }
-            else if (response.status == 0) {
-                $('#review-form').trigger("reset");
-                $('#myLargeModalLabel').html('Escribir reseña');
-                $("#inputRating").rate("setValue",5 );
-                $('#modal').modal('show');
-            }
-            else{
-                swal(3, response.exception)
+            if (response.status != 9){
+                if(response.status == 1){
+                    $('#review-form').trigger("reset");
+                    dataset = response.dataset;
+                    $('#myLargeModalLabel').html('Ver reseña anterior');
+                    $('#inputReview').attr('disabled', '');
+                    $('#inputReview').val(dataset.comentario);
+                    $("#inputRating").rate("setValue",dataset.calificacion );
+                    $('#review-submit').attr('disabled', '');
+                    $('#modal').modal('show');
+                }
+                else if (response.status == 0) {
+                    $('#review-form').trigger("reset");
+                    $('#myLargeModalLabel').html('Escribir reseña');
+                    $("#inputRating").rate("setValue",5 );
+                    $('#modal').modal('show');
+                }
+                else{
+                    swal(3, response.exception)
+                }
+            } else {
+                swal(3, 'Se te ha cerrado la sesión, redireccionando al inicio de sesión...', 'store/user/login', 5000);
             }
         },
         error: function (jqXHR) {
@@ -141,13 +148,16 @@ function newReview(){
         data: { id_producto: idProducto, review: $('#inputReview').val(), calificacion: $("#inputRating").rate("getValue")},
         dataType: 'json',
         success: function (response) {
-            if(response.status){
-                swal(1, 'Reseña ingresada correctamente.');
+            if (response.status != 9 ){
+                if (response.status) {
+                    swal(1, "Reseña ingresada correctamente.");
+                } else {
+                    swal(2, response.exception);
+                }
+                getReviews();
+            } else {
+                swal(3, 'Se te ha cerrado la sesión, redireccionando al inicio de sesión...', 'store/user/login', 5000);
             }
-            else {
-                swal(2, response.exception);
-            }
-            getReviews();
         },
         error: function (jqXHR) {
             // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.

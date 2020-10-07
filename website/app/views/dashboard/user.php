@@ -21,7 +21,7 @@ dashboardTemplate::dashMenu('user');
                                 <div class="tab-pane active py-3 px-3 px-sm-0" id="agregarusuario" role="tabpanel">
                                     <div class="row my-5">
                                         <div class="col-12 col-lg-6 mx-md-auto">
-                                            <form class="ml-lg-4" action="" method="post" id="settings-form">
+                                            <form autocomplete="off" class="ml-lg-4" action="" method="post" id="settings-form">
                                               <div class="d-flex justify-content-center" id="spinnerSettings">
                                               <div class="spinner-grow" role="status" >
                                                 <span class="sr-only">Loading...</span>

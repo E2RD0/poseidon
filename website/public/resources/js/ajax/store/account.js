@@ -9,7 +9,7 @@ function logout()
             url: API + 'logout'
         })
         .done(function( response ) {
-            if ( response.status ) {
+            if ( response.status == 9 ) {
                 swal( 1, response.message, 'store/user/login' );
             } else {
                 swal( 2, response.exception);

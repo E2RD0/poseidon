@@ -50,7 +50,7 @@ class Clients extends \Common\Controller
         $apellido = $userData['apellido'];
         $email = $userData['email'];
         $password = $userData['password'];
-        $idEstadoCliente = isset($userData['idEstadoCliente']) ? $userData['idEstadoCliente']: 1 ;
+        $idEstadoCliente = isset($userData['idEstadoCliente']) ? $userData['idEstadoCliente'] : 1;
 
         $user = new Cliente;
         $errors = [];
@@ -74,9 +74,25 @@ class Clients extends \Common\Controller
         }
         return $result;
     }
+    public function checkIfOnline($email)
+    {
+        return $this->model->checkIfOnline($email)->enlinea;
+    }
+    public function forceLogout($userData)
+    {
+        $email = $userData['email'];
+        if ($this->model->setOnline($email, false)) {
+            $result['status'] = 1;
+            $result['message'] = 'Se ha cerrado la sesión al usuario';
+        } else {
+            $result['exception'] = 'Ocurrió un problema al cerrar la sesión';
+        }
+        return $result;
+    }
 
     public function clientLogin($userData, $result)
     {
+        date_default_timezone_set('America/El_Salvador');
         $userData = \Helpers\Validation::trimForm($userData);
         $email = $userData['email'];
         $password = $userData['password'];
@@ -87,24 +103,78 @@ class Clients extends \Common\Controller
         $errors = $cliente->setPassword($password, false) === true ? $errors : array_merge($errors, $cliente->setPassword($password, false));
         //If there aren't any errors
         if (!boolval($errors)) {
+
             $userHash = $cliente->checkPassword($email);
             if ($userHash) {
-                if (password_verify($password, trim($userHash->contrasena))) {
-                    if($userHash->idestadocliente != 3){
-                        $_SESSION['client_id'] = $userHash->idcliente;
-                        $_SESSION['client_name'] = $userHash->nombre;
-                        $_SESSION['client_state'] = $userHash->idestadocliente;
-                        $_SESSION['client_email'] = $email;
-                        $result['status'] = 1;
-                        $result['message'] = 'Autenticación correcta';
-                    }
-                    else {
+
+                $isClientSuspended = $cliente->clientIsSuspended($userHash->idcliente);
+
+                if ($isClientSuspended) {
+
+                    if (!(((new DateTime($isClientSuspended->fechadesbloqueo))->format('Y-m-d H:i:s')) > ((new DateTime('now'))->format('Y-m-d H:i:s')))) {
+
+                        if (!$cliente->removeSuspension($isClientSuspended->idclientesuspendido)) {
+                            $_SESSION['client_lg_att'] = 0;
+                        } else {
+                            $result['status'] = -1;
+                            $result['exception'] =
+                                \Common\Database::$exception;
+                            return $result;
+                        }
+                    } else {
                         $result['status'] = -1;
-                        $result['exception'] = 'Cuenta suspendida';
+                        $result['exception'] = 'Tu cuenta está suspendida por demasiados intentos de sesión incorrectos, inténtalo más tarde.';
+                        return $result;
+                    }
+                }
+
+                if (!$cliente->checkIfOnline($email)->enlinea) {
+
+                    if ($_SESSION['client_lg_att'] <= 2) {
+
+                        if (password_verify($password, trim($userHash->contrasena))) {
+
+                            if ($userHash->idestadocliente != 3) {
+
+                                if ($cliente->setOnline($email, true)) {
+
+                                    $_SESSION['client_pw_exp'] = (new DateTime('now'))->format('Y-m-d') > ((new DateTime($userHash->ultimocambiocontrasena))->add(new DateInterval('P3M')))->format('Y-m-d') ? 1 : 0;
+                                    $_SESSION['client_id'] = $userHash->idcliente;
+                                    $_SESSION['client_name'] = $userHash->nombre;
+                                    $_SESSION['client_state'] = $userHash->idestadocliente;
+                                    $_SESSION['client_email'] = $email;
+
+                                    if (isset($_SESSION['client_lg_att'])) unset($_SESSION['client_lg_att']);
+
+                                    $result['status'] = 1;
+                                    $result['message'] = 'Autenticación correcta';
+                                } else {
+                                    $result['status'] = -1;
+                                    $result['exception'] = 'Ocurrió un error al iniciar sesión';
+                                }
+                            } else {
+                                $result['status'] = -1;
+                                $result['exception'] = 'Cuenta suspendida';
+                            }
+                        } else {
+                            $_SESSION['client_lg_att'] += 1;
+                            $result['status'] = -1;
+                            $result['exception'] = 'Credenciales incorrectas';
+                        }
+                    } else {
+                        if ($cliente->restrictAccount($userHash->idcliente)) {
+                            unset($_SESSION['client_lg_att']);
+                            $result['status'] = -1;
+                            $result['exception'] = 'Credenciales incorrectas, se ha restringido el acceso a tu cuenta por 24 horas';
+                        } else {
+                            $result['status'] = -1;
+                            $result['exception'] =
+                                \Common\Database::$exception;
+                        }
                     }
                 } else {
                     $result['status'] = -1;
-                    $result['exception'] = 'Credenciales incorrectas';
+                    $result['exception'] = 'Ya estás conectado. Cierra tu sesión para abrir una nueva';
                 }
             } else {
                 $result['status'] = -1;
@@ -119,9 +189,14 @@ class Clients extends \Common\Controller
 
     public function clientLogout($result)
     {
-        if (session_destroy()) {
-            $result['status'] = 1;
-            $result['message'] = 'Se ha cerrado la sesión';
+        if ($this->model->setOnline($_SESSION['client_email'], false)) {
+            unset($_SESSION['client_pw_exp'], $_SESSION['client_id'], $_SESSION['client_name'], $_SESSION['client_state'], $_SESSION['client_email'], $_SESSION['client_lg_att']);
+            if (!isset($_SESSION['client_pw_exp'], $_SESSION['client_id'], $_SESSION['client_name'], $_SESSION['client_state'], $_SESSION['client_email'], $_SESSION['client_lg_att'])) {
+                $result['status'] = 9;
+                $result['message'] = 'Se ha cerrado la sesión';
+            } else {
+                $result['exception'] = 'Ocurrió un problema al cerrar la sesión';
+            }
         } else {
             $result['exception'] = 'Ocurrió un problema al cerrar la sesión';
         }
@@ -130,7 +205,7 @@ class Clients extends \Common\Controller
 
     public function getClientInfo($id, $result)
     {
-        if ($result['dataset'] = $this->model-> getClient($id)) {
+        if ($result['dataset'] = $this->model->getClient($id)) {
             $result['status'] = 1;
         } else {
             $result['exception'] = 'Hubo un error al cargar los datos';
@@ -141,16 +216,16 @@ class Clients extends \Common\Controller
     public function update($data, $result)
     {
         $data = \Helpers\Validation::trimForm($data);
-        $idCliente = isset($data['id']) ? $data['id']: $_SESSION['client_id'] ;
+        $idCliente = isset($data['id']) ? $data['id'] : $_SESSION['client_id'];
         $idEstadoCliente = isset($data['idEstadoCliente']) ? $data['idEstadoCliente'] : $_SESSION['client_state'];
 
-        $clienteInfo= $this->model->getClient($idCliente);
+        $clienteInfo = $this->model->getClient($idCliente);
 
         $nombre = $data['nombre'];
         $apellido = $data['apellido'];
-        $email = $data['email'] ;
-        $telefono = $data['telefono'] ;
-        $direccion = $data['direccion'] ;
+        $email = $data['email'];
+        $telefono = $data['telefono'];
+        $direccion = $data['direccion'];
 
         $currentPassword = isset($data['password']) ? $data['password'] : '';
         $newPassword = "";
@@ -213,8 +288,8 @@ class Clients extends \Common\Controller
 
     public function changeState($data, $result)
     {
-        $id= intval($data['idCliente']);
-        $idEstado= intval($data['idEstado']);
+        $id = intval($data['idCliente']);
+        $idEstado = intval($data['idEstado']);
         $cliente = new Cliente;
 
         if ($cliente->setId($id) && $cliente->clientExists('idCliente', $id)) {
@@ -232,11 +307,11 @@ class Clients extends \Common\Controller
 
     public function factura($data, $result)
     {
-        $idOrden= intval($data['idorden']);
+        $idOrden = intval($data['idorden']);
         //Se mandan a llamar dos archivos, factura.jrxml y factura.jasper (que será generado más adelante)
-        $jrxml = __DIR__.'/../reports/factura.jrxml';
+        $jrxml = __DIR__ . '/../reports/factura.jrxml';
         $input = __DIR__ . '/../reports/factura.jasper';
-        $output = __DIR__ .'/../../public/reports';
+        $output = __DIR__ . '/../../public/reports';
         //Le mandamos la configuración de jasper, así como los parámetros.
         $options = [
             'format' => ['pdf'],
@@ -259,16 +334,15 @@ class Clients extends \Common\Controller
         $jasper->compile($jrxml)->execute();
         //Procesamos la compilación, y le aplicamos la configuración. Así como le asignamos donde saldrá.
         $jasper->process(
-        $input,
-        $output,
-        $options
+            $input,
+            $output,
+            $options
         )->execute();
         //Si el archivo se creó, entonces el reporte fue exitóso.
-        if(file_exists(__DIR__ .'/../../public/reports/factura.pdf')){
+        if (file_exists(__DIR__ . '/../../public/reports/factura.pdf')) {
             $result['status'] = 1;
             $result['message'] = 'El pdf se ha generado correctamente';
-        }
-        else {
+        } else {
             $result['exception'] = 'No se pudo generar el reporte';
         }
         return $result;
@@ -276,9 +350,9 @@ class Clients extends \Common\Controller
 
     public function reporteNuevosClientes($data, $result)
     {
-        $jrxml = __DIR__.'/../reports/clientes.jrxml';
+        $jrxml = __DIR__ . '/../reports/clientes.jrxml';
         $input = __DIR__ . '/../reports/clientes.jasper';
-        $output = __DIR__ .'/../../public/reports';
+        $output = __DIR__ . '/../../public/reports';
         $options = [
             'format' => ['pdf'],
             'locale' => 'es',
@@ -300,16 +374,15 @@ class Clients extends \Common\Controller
         $jasper->compile($jrxml)->execute();
 
         $jasper->process(
-        $input,
-        $output,
-        $options
+            $input,
+            $output,
+            $options
         )->execute();
 
-        if(file_exists(__DIR__ .'/../../public/reports/clientes.pdf')){
+        if (file_exists(__DIR__ . '/../../public/reports/clientes.pdf')) {
             $result['status'] = 1;
             $result['message'] = 'El pdf se ha generado correctamente';
-        }
-        else {
+        } else {
             $result['exception'] = 'No se pudo generar el reporte';
         }
         return $result;
@@ -317,10 +390,10 @@ class Clients extends \Common\Controller
 
     public function reporteOrdenes($data, $result)
     {
-        $idCliente= intval($data['idcliente']);
-        $jrxml = __DIR__.'/../reports/ordenescliente.jrxml';
+        $idCliente = intval($data['idcliente']);
+        $jrxml = __DIR__ . '/../reports/ordenescliente.jrxml';
         $input = __DIR__ . '/../reports/ordenescliente.jasper';
-        $output = __DIR__ .'/../../public/reports';
+        $output = __DIR__ . '/../../public/reports';
         $options = [
             'format' => ['pdf'],
             'locale' => 'es',
@@ -343,16 +416,15 @@ class Clients extends \Common\Controller
         $jasper->compile($jrxml)->execute();
 
         $jasper->process(
-        $input,
-        $output,
-        $options
+            $input,
+            $output,
+            $options
         )->execute();
 
-        if(file_exists(__DIR__ .'/../../public/reports/ordenescliente.pdf')){
+        if (file_exists(__DIR__ . '/../../public/reports/ordenescliente.pdf')) {
             $result['status'] = 1;
             $result['message'] = 'El pdf se ha generado correctamente';
-        }
-        else {
+        } else {
             $result['exception'] = 'No se pudo generar el reporte';
         }
         return $result;
@@ -392,5 +464,4 @@ class Clients extends \Common\Controller
         }
         return $result;
     }
-
 }

@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once('functions.php');
 template::getHeader('Completar compra ~ Poseidón');
 ?>
@@ -14,7 +14,7 @@ template::getHeader('Completar compra ~ Poseidón');
                 <p class="m-0">Recoge tu producto en nuestra tienda más cercana</p>
                 </div>
             </div>
-            <form class="my-5 row">
+            <form autocomplete="off" class="my-5 row">
                 <div class="col-md-4">
                     <label class="label-input font-weight-bold mb-3" for="inputeAddress">Seleccionar sucursal</label>
                     <input class="form-input" type="text" required name="address" id="inputeAddress">

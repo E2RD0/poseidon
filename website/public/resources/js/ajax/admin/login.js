@@ -39,3 +39,8 @@ $( '#login-form' ).submit(function( event ) {
         }
     });
 });
+
+function passwordCaret() {
+    let input = document.getElementById("inputContraseña");
+    input.type = input.type == "password" ? "text" : "password";
+}

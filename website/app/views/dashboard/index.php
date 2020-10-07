@@ -13,7 +13,7 @@ loginTemplate::loginHead('Iniciar Sesión');
                     </p>
                 </div>
                 <div class="col-8">
-                    <form action="" id="login-form" method="POST">
+                    <form autocomplete="off" action="" id="login-form" method="POST">
                         <div class="row main__rows">
                             <div class="col-sm">
                                 <div class="form-field">
@@ -31,7 +31,7 @@ loginTemplate::loginHead('Iniciar Sesión');
                                     <div class="form-field__control">
                                         <label for="inputContraseña" class="form-field__label">Contraseña</label>
                                         <input id="inputContraseña" name="password" type="password" class="form-field__input" required />
-                                        <i class="fas fa-eye password__show"></i>
+                                        <i onclick="passwordCaret()" class="fas fa-eye password__show"></i>
                                     </div>
                                     <p class="form-error-label" id="errorContraseña"></p>
                                 </div>

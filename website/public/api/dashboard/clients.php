@@ -42,6 +42,9 @@ if (isset($_GET['action'])) {
             case 'nuevosclientes':
                 $result = $controller->reporteNuevosClientes($_POST, $result);
                 break;
+            case 'forceLogout':
+                $result = $controller->forceLogout($_POST, $result);
+                break;
             default:
                 \Common\Core::http404();
         }

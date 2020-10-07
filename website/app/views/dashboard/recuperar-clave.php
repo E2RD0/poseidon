@@ -8,11 +8,11 @@ loginTemplate::loginHead('Recuperar contraseña');
         <div class="main__login">
             <div class="row justify-content-center m-0">
                 <div class="col-12 main__form text-center">
-                    <img src="../../resources/img/dashboard/poseidon-l.svg" alt="logo poseidon" class="img-fluid">
-                    <p class="main__message text-break">Tu contraseña se ha reestablecido.</p>
+                    <img src="<?=HOME_PATH?>resources/img/dashboard/poseidon-l.svg" alt="logo poseidon" class="img-fluid">
+                    <p class="main__message text-break">Ahora tienes que cambiar tu contraseña.</p>
                 </div>
                 <div class="col-8">
-                    <form action="">
+                    <form autocomplete="off" action="">
                         <div class="row main__rows">
                             <div class="col-sm">
                                 <div class="form-field">
@@ -63,7 +63,7 @@ loginTemplate::loginHead('Recuperar contraseña');
                             </div>
                             <div class="col">
                                 <div class="text-right">
-                                    <button class="btn main__button" type="button" onclick="location.href='index.php'">Cambiar contraseña</button>
+                                    <a href="login" class="btn main__button" type="button">Cambiar contraseña</a>
                                 </div>
                             </div>
                         </div>
@@ -75,5 +75,5 @@ loginTemplate::loginHead('Recuperar contraseña');
 </main>
 
 <?php
-loginTemplate::loginEnd();
+loginTemplate::loginEnd('newPassword');
 ?>

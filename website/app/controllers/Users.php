@@ -60,9 +60,9 @@ class Users extends \Common\Controller
 
     public function reporteUsuarios($data, $result)
     {
-        $jrxml = __DIR__.'/../reports/usuarios.jrxml';
+        $jrxml = __DIR__ . '/../reports/usuarios.jrxml';
         $input = __DIR__ . '/../reports/usuarios.jasper';
-        $output = __DIR__ .'/../../public/reports';
+        $output = __DIR__ . '/../../public/reports';
         $options = [
             'format' => ['pdf'],
             'locale' => 'es',
@@ -84,16 +84,15 @@ class Users extends \Common\Controller
         $jasper->compile($jrxml)->execute();
 
         $jasper->process(
-        $input,
-        $output,
-        $options
+            $input,
+            $output,
+            $options
         )->execute();
 
-        if(file_exists(__DIR__ .'/../../public/reports/usuarios.pdf')){
+        if (file_exists(__DIR__ . '/../../public/reports/usuarios.pdf')) {
             $result['status'] = 1;
             $result['message'] = 'El pdf se ha generado correctamente';
-        }
-        else {
+        } else {
             $result['exception'] = 'No se pudo generar el reporte';
         }
         return $result;
@@ -137,7 +136,7 @@ class Users extends \Common\Controller
         $apellido = $userData['apellido'];
         $email = $userData['email'];
         $password = $userData['password'];
-        $idTipoUsuario = isset($userData['idTipoUsuario']) ? $userData['idTipoUsuario']: 1 ;
+        $idTipoUsuario = isset($userData['idTipoUsuario']) ? $userData['idTipoUsuario'] : 1;
 
         $user = new Usuario;
         $errors = [];
@@ -162,8 +161,25 @@ class Users extends \Common\Controller
         return $result;
     }
 
+    public function clientLogin($userData, $result)
+    {
+        date_default_timezone_set('America/El_Salvador');
+        $userData = \Helpers\Validation::trimForm($userData);
+        $email = $userData['email'];
+        $password = $userData['password'];
+
+        $cliente = new Cliente;
+        $errors = [];
+        $errors = $cliente->setEmail($email, true) === true ? $errors : array_merge($errors, $cliente->setEmail($email, true));
+        $errors = $cliente->setPassword($password, false) === true ? $errors : array_merge($errors, $cliente->setPassword($password, false));
+        //If there aren't any errors
+
+    }
+
+
     public function userLogin($userData, $result)
     {
+        date_default_timezone_set('America/El_Salvador');
         $userData = \Helpers\Validation::trimForm($userData);
         $email = $userData['email'];
         $password = $userData['password'];
@@ -172,21 +188,81 @@ class Users extends \Common\Controller
         $errors = [];
         $errors = $user->setEmail($email, true) === true ? $errors : array_merge($errors, $user->setEmail($email, true));
         $errors = $user->setPassword($password, false) === true ? $errors : array_merge($errors, $user->setPassword($password, false));
-        //If there aren't any errors
+
         if (!boolval($errors)) {
-            $userHash = $this->usersModel->checkPassword($email);
+
+            $userHash = $user->checkPassword($email);
             if ($userHash) {
-                if (password_verify($password, trim($userHash->contrasena))) {
-                    $_SESSION['user_id'] = $userHash->idusuario;
-                    $_SESSION['user_name'] = $userHash->nombre;
-                    $_SESSION['user_type'] = $userHash->idtipousuario;
-                    $_SESSION['user_email'] = $email;
-                    $_SESSION['sidebar_status'] = 'extended';
-                    $result['status'] = 1;
-                    $result['message'] = 'Autenticación correcta';
+
+                $isUserSuspended = $user->userIsSuspended($userHash->idusuario);
+
+                if ($isUserSuspended) {
+
+                    if (!(((new DateTime($isUserSuspended->fechadesbloqueo))->format('Y-m-d H:i:s')) > ((new DateTime('now'))->format('Y-m-d H:i:s')))) {
+
+                        if ($user->removeSuspension($isUserSuspended->idusuariosuspendido)) {
+                            $_SESSION['user_lg_att'] = 0;
+                        } else {
+                            $result['status'] = -1;
+                            $result['exception'] =
+                                \Common\Database::$exception;
+                            return $result;
+                        }
+                    } else {
+                        $result['status'] = -1;
+                        $result['exception'] = 'Tu cuenta está suspendida por demasiados intentos de sesión incorrectos, inténtalo más tarde.';
+                        return $result;
+                    }
+                }
+
+                if (!$user->checkIfOnline($email)->enlinea) {
+
+                    if ($_SESSION['user_lg_att'] <= 2) {
+
+                        if (password_verify($password, trim($userHash->contrasena))) {
+
+                            if ($userHash->idestadousuario != 3) {
+
+                                if ($user->setOnline($email, true)) {
+
+                                    $_SESSION['user_pw_exp'] = (new DateTime('now'))->format('Y-m-d') > ((new DateTime($userHash->ultimocambiocontrasena))->add(new DateInterval('P3M')))->format('Y-m-d') ? 1 : 0;
+                                    $_SESSION['user_id'] = $userHash->idusuario;
+                                    $_SESSION['user_name'] = $userHash->nombre;
+                                    $_SESSION['user_type'] = $userHash->idtipousuario;
+                                    $_SESSION['user_email'] = $email;
+                                    $_SESSION['sidebar_status'] = 'extended';
+
+                                    if (isset($_SESSION['user_lg_att'])) unset($_SESSION['user_lg_att']);
+
+                                    $result['status'] = 1;
+                                    $result['message'] = 'Autenticación correcta';
+                                } else {
+                                    $result['status'] = -1;
+                                    $result['exception'] = 'Ocurrió un error al iniciar sesión';
+                                }
+                            } else {
+                                $result['status'] = -1;
+                                $result['exception'] = 'Cuenta suspendida';
+                            }
+                        } else {
+                            $_SESSION['user_lg_att'] += 1;
+                            $result['status'] = -1;
+                            $result['exception'] = 'Credenciales incorrectas';
+                        }
+                    } else {
+                        if ($user->restrictAccount($userHash->idusuario)) {
+                            unset($_SESSION['user_lg_att']);
+                            $result['status'] = -1;
+                            $result['exception'] = 'Credenciales incorrectas, se ha restringido el acceso a tu cuenta por 24 horas';
+                        } else {
+                            $result['status'] = -1;
+                            $result['exception'] =
+                                \Common\Database::$exception;
+                        }
+                    }
                 } else {
                     $result['status'] = -1;
-                    $result['exception'] = 'Credenciales incorrectas';
+                    $result['exception'] = 'Ya estás conectado. Cierra tu sesión para abrir una nueva';
                 }
             } else {
                 $result['status'] = -1;
@@ -212,7 +288,7 @@ class Users extends \Common\Controller
         return $result;
     }
 
-    public function setSidebarStatus($value ,$result)
+    public function setSidebarStatus($value, $result)
     {
         if (isset($_SESSION['sidebar_status'])) {
             $_SESSION['sidebar_status'] = $value['status'];
@@ -227,9 +303,14 @@ class Users extends \Common\Controller
 
     public function userLogout($result)
     {
-        if (session_destroy()) {
-            $result['status'] = 1;
-            $result['message'] = 'Se ha cerrado la sesión';
+        if ($this->usersModel->setOnline($_SESSION['user_email'], false)) {
+            unset($_SESSION['user_pw_exp'], $_SESSION['user_id'], $_SESSION['user_name'], $_SESSION['user_type'], $_SESSION['user_email'], $_SESSION['sidebar_status']);
+            if (!isset($_SESSION['user_pw_exp'], $_SESSION['user_id'], $_SESSION['user_name'], $_SESSION['user_type'], $_SESSION['user_email'], $_SESSION['sidebar_status'])) {
+                $result['status'] = 1;
+                $result['message'] = 'Se ha cerrado la sesión';
+            } else {
+                $result['exception'] = 'Ocurrió un problema al cerrar la sesión';
+            }
         } else {
             $result['exception'] = 'Ocurrió un problema al cerrar la sesión';
         }
@@ -238,7 +319,7 @@ class Users extends \Common\Controller
 
     public function getUserInfo($id, $result)
     {
-        if ($result['dataset'] = $this->usersModel-> getUser($id)) {
+        if ($result['dataset'] = $this->usersModel->getUser($id)) {
             $result['status'] = 1;
         } else {
             $result['exception'] = 'Hubo un error al cargar los datos';
@@ -249,14 +330,14 @@ class Users extends \Common\Controller
     public function updateUser($userData, $result)
     {
         $userData = \Helpers\Validation::trimForm($userData);
-        $idUsuario = isset($userData['id']) ? $userData['id']: $_SESSION['user_id'] ;
-        $idTipoUsuario = isset($userData['idTipoUsuario']) ? $userData['idTipoUsuario']: $_SESSION['user_type'] ;
+        $idUsuario = isset($userData['id']) ? $userData['id'] : $_SESSION['user_id'];
+        $idTipoUsuario = isset($userData['idTipoUsuario']) ? $userData['idTipoUsuario'] : $_SESSION['user_type'];
 
-        $userInfo= $this->usersModel->getUser($idUsuario);
+        $userInfo = $this->usersModel->getUser($idUsuario);
 
         $nombre = $userData['nombre'];
         $apellido = $userData['apellido'];
-        $email = $userData['email'] ;
+        $email = $userData['email'];
         $currentPassword = $userData['password'];
         $newPassword = "";
         $newPasswordR = "";
@@ -365,7 +446,7 @@ class Users extends \Common\Controller
             if (empty($pin)) {
                 $errors['Código'] = ['Este campo es obligatorio.'];
             } else {
-                if ($pin==($this->usersModel->getPasswordPin($userInfo->idusuario))->pin) {
+                if ($pin == ($this->usersModel->getPasswordPin($userInfo->idusuario))->pin) {
                     $result['status'] = 1;
                 } else {
                     $errors['Código'] = ['El código es incorrecto.'];

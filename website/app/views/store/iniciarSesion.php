@@ -9,7 +9,7 @@ template::getHeader('Iniciar sesión ~ Poseidón');
     <div class="col-md-6 text-center form-container">
       <h1 class="form-title">Iniciar Sesión</h1>
       <p>Ingresa sesión para gestionar tus ordenes e información personal.</p>
-      <form class="mt-5" action="" id="login-form" method="POST">
+      <form autocomplete="off" class="mt-5" action="" id="login-form" method="POST">
           <p class="form-error-label" id="errorEmail"></p>
           <input id="inputEmail" class="form-input" type="email" required name="email" placeholder="Correo Electrónico">
 

@@ -12,7 +12,7 @@ loginTemplate::loginHead("Recuperar contraseña");
                     <p class="recover__message text-break">Haz clic en el enlace que se envió a tu correo electrónico o ingresa el código de recuperación.</p>
                 </div>
                 <div class="col-8">
-                    <form action="" method="post" id="code-form">
+                    <form autocomplete="off" action="" method="post" id="code-form">
                         <div class="row main__rows">
                             <div class="col-sm">
                                 <div class="form-field">

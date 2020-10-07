@@ -13,7 +13,7 @@ loginTemplate::loginHead("Recuperar contraseña");
                         y te enviaremos un enlace para reestablecer tu contraseña</p>
                 </div>
                 <div class="col-8">
-                    <form action="" method="post" id="recover-form">
+                    <form autocomplete="off" action="" method="post" id="recover-form">
                         <div class="row main__rows">
                             <div class="col-sm">
                                 <div class="form-field">

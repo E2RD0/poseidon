@@ -29,8 +29,9 @@ dashboardTemplate::dashMenu('clientes');
                                     <th>Apellido(s)</th>
                                     <th>Correo</th>
                                     <th>Dirección</th>
-                                    <th class="text-right">Teléfono</th>
+                                    <th>Teléfono</th>
                                     <th>Estado</th>
+                                    <th>En línea</th>
                                     <th>Opciones</th>
                                 </tr>
                             </thead>
@@ -43,7 +44,7 @@ dashboardTemplate::dashMenu('clientes');
                     </div>
                 </div>
                 <div class="tab-pane py-3 px-3 px-sm-0" id="editarCliente" role="tabpanel">
-                    <form id="clients-form" method="post" action="" class="row my-5">
+                    <form autocomplete="off" id="clients-form" method="post" action="" class="row my-5">
                         <div class="col-12 col-lg-6 mx-md-auto">
                             <div class="ml-lg-4">
                                 <div class="row mt-4 ml-md-2">

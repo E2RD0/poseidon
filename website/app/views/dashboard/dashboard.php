@@ -73,24 +73,25 @@ dashboardTemplate::dashMenu('dashboard');
                             <p class="dash__main_title p-0">Gráficos</p>
                         </div>
                     </div>
-                    <hr class="dash__div"></hr>
+                    <hr class="dash__div">
+                    </hr>
                     <div class="row pt-0 pb-2">
                         <div class="col-lg-3 col-md-3 col-sm-12 col-12">
                             <ul class="nav flex-column left-tabs" role="tablist">
                                 <li class="nav-item">
-                                    <a data-toggle="tab" href="#nav-grafico1" class="nav-link active" aria-expanded="true" id="nav-grafico1-tab" title="Productos más vendidos">Productos más vendidos</a>
+                                    <a data-toggle="tab" href="#nav-grafico1" class="nav-link side active" aria-expanded="true" id="nav-grafico1-tab" title="Productos más vendidos">Productos más vendidos</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a data-toggle="tab" href="#nav-grafico2" class="nav-link" aria-expanded="true" id="nav-grafico2-tab" title="Productos con más comentarios">Productos con las mejores calificaciones</a>
+                                    <a data-toggle="tab" href="#nav-grafico2" class="nav-link side" aria-expanded="true" id="nav-grafico2-tab" title="Productos con más comentarios">Productos con las mejores calificaciones</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a data-toggle="tab" href="#nav-grafico3" class="nav-link" aria-expanded="true" id="nav-grafico3-tab" title="Cantidad de productos por categoría">Cantidad de productos por categoría</a>
+                                    <a data-toggle="tab" href="#nav-grafico3" class="nav-link side" aria-expanded="true" id="nav-grafico3-tab" title="Cantidad de productos por categoría">Cantidad de productos por categoría</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a data-toggle="tab" href="#nav-grafico4" class="nav-link" aria-expanded="true" id="nav-grafico4-tab" title="Clientes nuevos en la última semana">Clientes nuevos en la última semana</a>
+                                    <a data-toggle="tab" href="#nav-grafico4" class="nav-link side" aria-expanded="true" id="nav-grafico4-tab" title="Clientes nuevos en la última semana">Clientes nuevos en la última semana</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a data-toggle="tab" href="#nav-grafico5" class="nav-link" aria-expanded="true" id="nav-grafico5-tab" title="Productos más vendidos" title="Clientes con más ordenes">Clientes con más órdenes</a>
+                                    <a data-toggle="tab" href="#nav-grafico5" class="nav-link side" aria-expanded="true" id="nav-grafico5-tab" title="Productos más vendidos" title="Clientes con más ordenes">Clientes con más órdenes</a>
                                 </li>
                             </ul>
                         </div>

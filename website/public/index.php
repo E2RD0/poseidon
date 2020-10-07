@@ -1,3 +1,3 @@
 <?php
 require_once __DIR__ . '/../app/init.php';
- $initialize = new Common\Core;
+$initialize = new Common\Core;

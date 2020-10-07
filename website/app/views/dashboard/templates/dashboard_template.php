@@ -717,7 +717,7 @@ class dashboardTemplate
                     </ul>
                 </div>
                 <div class="tab-pane active py-3 px-3 px-sm-0" id="alquileres" role="tabpanel">
-                    <form id="sucursales-form" method="POST" action="">
+                    <form autocomplete="off" id="sucursales-form" method="POST" action="">
                         <div class="row mt-4">
                             <div class="col-md-4 col-12 text-lg-right">
                                 <p>Nombre de la sucursal</p>
@@ -771,7 +771,7 @@ class dashboardTemplate
                                 </ul>
                             </div>
                             <div class="tab-pane active py-3 px-3 px-sm-0" id="alquileres" role="tabpanel">
-                                <form id="categories-form" method="POST" action="">
+                                <form autocomplete="off" id="categories-form" method="POST" action="">
                                     <div class="row mt-4">
                                         <div class="col-md-4 col-12 text-lg-right">
                                             <p>Nombre de la categoría</p>
@@ -811,7 +811,7 @@ class dashboardTemplate
                                 </ul>
                             </div>
                             <div class="tab-pane active py-3 px-3 px-sm-0" id="alquileres" role="tabpanel">
-                                <form id="parameters-form" method="POST" action="">
+                                <form autocomplete="off" id="parameters-form" method="POST" action="">
                                     <div class="row mt-4">
                                         <div class="col-md-4 col-12 text-lg-right">
                                             <p>Nombre del parámetro</p>

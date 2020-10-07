@@ -46,7 +46,7 @@ dashboardTemplate::dashMenu('productos');
                                     </div>
                                 </div>
                                 <div class="tab-pane py-3 px-3 px-sm-0" id="agregarproducto" role="tabpanel">
-                                    <form id="products-form" method="POST" action="">
+                                    <form autocomplete="off" id="products-form" method="POST" action="">
                                         <div class="row">
                                             <div class="col-12 col-lg-6">
                                                 <div class="ml-lg-4">

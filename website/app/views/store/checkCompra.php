@@ -4,7 +4,7 @@ template::getHeader('Completar compra ~ Poseidón');
 ?>
 
 <main class="container checking-page mb-5 pb-5">
-    <form id="checking-form" method="POST" action="">
+    <form autocomplete="off" id="checking-form" method="POST" action="">
         <h2 class="table-cart-title mb-5">Entrega y detalles de pago</h2>
         <div class="row flex-column-reverse flex-lg-row mb-5 pb-5">
             <div class="col-lg-8">
