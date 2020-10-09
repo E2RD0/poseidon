@@ -111,7 +111,7 @@ class Database
                 self::$exception = 'Registro ocupado, no se puede eliminar';
                 break;
             default:
-                self::$exception = $message;
+                self::$exception = 'Ocurrió un problema';
         }
     }
 }

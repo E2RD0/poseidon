@@ -460,7 +460,7 @@ class Users extends \Common\Controller
                 $result['message'] = 'Usuario actualizado correctamente';
                 if (isset($_COOKIE['email'])) {
                     unset($_COOKIE['email']);
-                    setcookie('email', null, -1, '/');
+                    setcookie('email', null, -1, HOME_PATH . 'newPassword');
                 }
             } else {
                 $result['status'] = -1;

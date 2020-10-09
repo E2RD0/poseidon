@@ -3,11 +3,18 @@ class User extends \Common\Controller
 {
     public function __construct()
     {
+         $this->model = $this->loadModel('Usuario');
     }
 
     public function register()
     {
-        $this->loadView('dashboard', 'registro', false);
+
+        if($this->model->userCount()==0){
+            $this->loadView('dashboard', 'registro', false);
+        }
+        else {
+            Core::http404();
+        }
     }
 
     public function login()
