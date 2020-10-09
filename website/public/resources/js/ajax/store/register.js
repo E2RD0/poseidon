@@ -3,7 +3,7 @@ $( '#register-form' ).submit(function( event ) {
     $.ajax({
         type: 'post',
         url: API + 'register',
-        data: $( '#register-form' ).serialize(),
+        data: $( '#register-form' ).serialize()+"&captcha="+grecaptcha.getResponse(),
         dataType: 'json',
         beforeSend: function() {
             $("#register-submit")[0].innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Cargando...';

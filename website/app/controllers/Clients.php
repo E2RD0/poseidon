@@ -52,6 +52,11 @@ class Clients extends \Common\Controller
         $password = $userData['password'];
         $idEstadoCliente = isset($userData['idEstadoCliente']) ? $userData['idEstadoCliente'] : 1;
 
+        $secret="6LcGpNUZAAAAADHUhpjnvTQdfDynx0FzGLEgz1ne";
+        $response=isset($userData["captcha"]) ? $userData["captcha"] : false;
+
+        $captchaResponse = null;
+
         $user = new Cliente;
         $errors = [];
         $errors = $user->setNombre($nombre) === true ? $errors : array_merge($errors, $user->setNombre($nombre));
@@ -61,13 +66,30 @@ class Clients extends \Common\Controller
         $errors = $user->setIdEstado($idEstadoCliente) === true ? $errors : array_merge($errors, $user->setIdEstado($idEstadoCliente));
         //If there aren't any errors
         if (!boolval($errors)) {
-            if ($this->model->registerClient($user)) {
-                $result['status'] = 1;
-                $result['message'] = 'Usuario registrado correctamente';
-            } else {
-                $result['status'] = -1;
-                $result['exception'] = \Common\Database::$exception;
+            if($response !==false){
+                $verify=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$secret}&response={$response}");
+                $captcha_success=json_decode($verify);
+                if ($captcha_success->success==true) {
+                    $captchaResponse = true;
+                }
+                else {
+                    $captchaResponse = false;
+                }
             }
+            if($captchaResponse === null || $captchaResponse === true){
+                if ($this->model->registerClient($user)) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Usuario registrado correctamente';
+                } else {
+                    $result['status'] = -1;
+                    $result['exception'] = \Common\Database::$exception;
+                }
+            }
+            else{
+                $result['status'] = -1;
+                $result['exception'] = 'Debes comprobar que no eres un robot';
+            }
+
         } else {
             $result['exception'] = 'Error en uno de los campos';
             $result['errors'] = $errors;
@@ -135,23 +157,30 @@ class Clients extends \Common\Controller
                         if (password_verify($password, trim($userHash->contrasena))) {
 
                             if ($userHash->idestadocliente != 3) {
+                                if($userHash->secret2fa==null){
+                                    if ($cliente->setOnline($email, true)) {
 
-                                if ($cliente->setOnline($email, true)) {
+                                        $_SESSION['client_pw_exp'] = (new DateTime('now'))->format('Y-m-d') > ((new DateTime($userHash->ultimocambiocontrasena))->add(new DateInterval('P3M')))->format('Y-m-d') ? 1 : 0;
+                                        $_SESSION['client_id'] = $userHash->idcliente;
+                                        $_SESSION['client_name'] = $userHash->nombre;
+                                        $_SESSION['client_state'] = $userHash->idestadocliente;
+                                        $_SESSION['client_email'] = $email;
 
-                                    $_SESSION['client_pw_exp'] = (new DateTime('now'))->format('Y-m-d') > ((new DateTime($userHash->ultimocambiocontrasena))->add(new DateInterval('P3M')))->format('Y-m-d') ? 1 : 0;
-                                    $_SESSION['client_id'] = $userHash->idcliente;
-                                    $_SESSION['client_name'] = $userHash->nombre;
-                                    $_SESSION['client_state'] = $userHash->idestadocliente;
-                                    $_SESSION['client_email'] = $email;
+                                        if (isset($_SESSION['client_lg_att'])) unset($_SESSION['client_lg_att']);
 
-                                    if (isset($_SESSION['client_lg_att'])) unset($_SESSION['client_lg_att']);
-
-                                    $result['status'] = 1;
-                                    $result['message'] = 'Autenticación correcta';
-                                } else {
-                                    $result['status'] = -1;
-                                    $result['exception'] = 'Ocurrió un error al iniciar sesión';
+                                        $result['status'] = 1;
+                                        $result['message'] = 'Autenticación correcta';
+                                    } else {
+                                        $result['status'] = -1;
+                                        $result['exception'] = 'Ocurrió un error al iniciar sesión';
+                                    }
                                 }
+                                else{
+                                    $result['status'] = 2;
+                                    $result['message'] = 'Verificación en 2 pasos.';
+                                }
+
+
                             } else {
                                 $result['status'] = -1;
                                 $result['exception'] = 'Cuenta suspendida';
@@ -209,6 +238,73 @@ class Clients extends \Common\Controller
             $result['status'] = 1;
         } else {
             $result['exception'] = 'Hubo un error al cargar los datos';
+        }
+        return $result;
+    }
+    public function twoFactorAuth($data, $result, $isLogin=true)
+    {
+        $code = $data['code'];
+        if($isLogin){
+            $secret = '';
+        }
+        else{
+            $secret = $data['secret'];
+        }
+        $tfa = new \RobThree\Auth\TwoFactorAuth('Poseidon');
+
+        if($tfa->verifyCode($secret, $code) === true){
+            $result['status'] = 1;
+        }
+        else{
+            $result['status'] = 0;
+            $result['exception'] = 'El código de autenticación es incorrecto';
+        }
+        return $result;
+    }
+
+    public function twoFactorAuthLogin($data, $result)
+    {
+        $code = $data['code'];
+        $email = $data['email'];
+        $userHash = $this->model->checkPassword($email);
+        $secret = $userHash->secret2fa;
+
+        $tfa = new \RobThree\Auth\TwoFactorAuth('Poseidon');
+
+        if($tfa->verifyCode($secret, $code) === true){
+            if ($this->model->setOnline($email, true)) {
+
+                $_SESSION['client_pw_exp'] = (new DateTime('now'))->format('Y-m-d') > ((new DateTime($userHash->ultimocambiocontrasena))->add(new DateInterval('P3M')))->format('Y-m-d') ? 1 : 0;
+                $_SESSION['client_id'] = $userHash->idcliente;
+                $_SESSION['client_name'] = $userHash->nombre;
+                $_SESSION['client_state'] = $userHash->idestadocliente;
+                $_SESSION['client_email'] = $email;
+
+                if (isset($_SESSION['client_lg_att'])) unset($_SESSION['client_lg_att']);
+
+                $result['status'] = 1;
+                $result['message'] = 'Autenticación correcta';
+            } else {
+                $result['status'] = -1;
+                $result['exception'] = 'Ocurrió un error al iniciar sesión';
+            }
+        }
+        else{
+            $result['status'] = 0;
+            $result['exception'] = 'El código de autenticación es incorrecto';
+        }
+        return $result;
+    }
+
+    public function save2fa($secret, $id, $result)
+    {
+
+        if($this->model->save2fa($secret, $id)){
+            $result['status'] = 1;
+        }
+        else{
+            $result['status'] = 0;
+            $result['exception'] = 'Error al activar la verificación en 2 pasos.';
         }
         return $result;
     }

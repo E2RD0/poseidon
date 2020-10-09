@@ -39,6 +39,12 @@ if (isset($_GET['action'])) {
                     case 'factura':
                         $result = $controller->factura($_POST, $result);
                         break;
+                    case '2fa':
+                        $result = $controller->twoFactorAuth($_POST, $result, false);
+                        break;
+                    case 'save2fa':
+                        $result = $controller->save2fa($_POST['secret'], $_SESSION['client_id'], $result);
+                        break;
                     default:
                         \Common\Core::http404();
                 }
@@ -58,6 +64,12 @@ if (isset($_GET['action'])) {
                     break;
                 case 'recoverCode':
                     $result = $controller->clientRecoverCode($_POST, $result);
+                    break;
+                case '2fa':
+                    $result = $controller->twoFactorAuth($_POST, $result);
+                    break;
+                case '2fa-login':
+                    $result = $controller->twoFactorAuthLogin($_POST, $result);
                     break;
                 default:
                     \Common\Core::http404();

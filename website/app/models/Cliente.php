@@ -219,7 +219,7 @@ class Cliente
     public function getClient($id)
     {
         $db = new \Common\Database;
-        $db->query('SELECT idCliente, nombre, apellido, email, direccion, telefono, contrasena, c.idEstadoCliente, e.estado FROM cliente c INNER JOIN estadoCliente e ON c.idEstadoCliente = e.idEstadoCliente WHERE idCliente = :id');
+        $db->query('SELECT idCliente, nombre, apellido, email, direccion, telefono, contrasena, secret2fa, c.idEstadoCliente, e.estado FROM cliente c INNER JOIN estadoCliente e ON c.idEstadoCliente = e.idEstadoCliente WHERE idCliente = :id');
         $db->bind(':id', $id);
         return $db->getResult();
     }
@@ -233,7 +233,7 @@ class Cliente
     public function checkPassword($email)
     {
         $db = new \Common\Database;
-        $db->query('SELECT idCliente, idEstadoCliente, nombre, contrasena, ultimocambiocontrasena from cliente WHERE email = :email');
+        $db->query('SELECT idCliente, idEstadoCliente, nombre, contrasena, ultimocambiocontrasena, secret2fa from cliente WHERE email = :email');
         $db->bind(':email', $email);
         return $db->getResult();
     }
@@ -271,6 +271,16 @@ class Cliente
         $db->query('UPDATE cliente SET enlinea = :value WHERE email = :email');
         $db->bind(':value', $value);
         $db->bind(':email', $email);
+        return $db->execute();
+    }
+    public function save2fa($secret, $id)
+    {
+        $db = new \Common\Database;
+        if($secret == '')
+            $secret = null;
+        $db->query('UPDATE cliente SET secret2fa = :value WHERE idcliente = :id');
+        $db->bind(':value', $secret);
+        $db->bind(':id', $id);
         return $db->execute();
     }
     public function registerClient($user)

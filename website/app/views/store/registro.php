@@ -27,6 +27,7 @@ template::getHeader('Regístrate ~ Poseidón');
             <input type="checkbox" class="custom-control-input" id="check" name="checkCondiciones">
             <label class="custom-control-label" for="check">Acepto los términos de servicio y la política de privacidad</label>
         </div>
+        <div class="g-recaptcha" data-sitekey="6LcGpNUZAAAAAE7YAJKT84Yas2YkUgr10nO9qcqw"></div>
         <!--<button class="btn btn--cta btn-primary form-submit my-4" type="submit">Regístrate</button>-->
         <button id="register-submit" class="btn btn--cta btn-primary form-submit my-4" type="submit">Regístrate</button>
       </form>
@@ -35,4 +36,4 @@ template::getHeader('Regístrate ~ Poseidón');
     </div>
   </main>
 
-  <?php template::getSimpleFooter('register.js'); ?>
+  <?php template::getSimpleFooter('register.js', '../../vendor/api.js'); ?>
