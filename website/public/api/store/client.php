@@ -71,6 +71,9 @@ if (isset($_GET['action'])) {
                 case '2fa-login':
                     $result = $controller->twoFactorAuthLogin($_POST, $result);
                     break;
+                case 'logout':
+                    $result = ['status' => -9, 'message' => null, 'exception' => null, 'errors' => []];
+                    break;
                 default:
                     \Common\Core::http404();
             }
