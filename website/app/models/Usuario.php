@@ -166,6 +166,17 @@ class Usuario
         return $db->execute();
     }
 
+    public function save2fa($secret, $id)
+    {
+        $db = new \Common\Database;
+        if($secret == '')
+            $secret = null;
+        $db->query('UPDATE usuario SET secret2fa = :value WHERE idusuario = :id');
+        $db->bind(':value', $secret);
+        $db->bind(':id', $id);
+        return $db->execute();
+    }
+
     public function userCount()
     {
         $db = new \Common\Database;

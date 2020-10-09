@@ -48,6 +48,12 @@ if (isset($_GET['action'])) {
             case 'reporte':
                 $result = $userController->reporteUsuarios($_POST, $result);
                 break;
+            case '2fa':
+                $result = $userController->twoFactorAuth($_POST, $result, false);
+                break;
+            case 'save2fa':
+                $result = $userController->save2fa($_POST['secret'], $_SESSION['user_id'], $result);
+                break;
             default:
                 \Common\Core::http404();
         }
@@ -74,6 +80,12 @@ if (isset($_GET['action'])) {
                 break;
             case 'logout':
                 $result = ['status' => -9, 'message' => null, 'exception' => null, 'errors' => []];
+                break;
+            case '2fa':
+                $result = $userController->twoFactorAuth($_POST, $result);
+                break;
+            case '2fa-login':
+                $result = $userController->twoFactorAuthLogin($_POST, $result);
                 break;
             default:
                 \Common\Core::http404();

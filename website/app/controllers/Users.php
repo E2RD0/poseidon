@@ -36,6 +36,40 @@ class Users extends \Common\Controller
         }
         return $result;
     }
+    public function twoFactorAuth($data, $result, $isLogin=true)
+    {
+        $code = $data['code'];
+        if($isLogin){
+            $secret = '';
+        }
+        else{
+            $secret = $data['secret'];
+        }
+        $tfa = new \RobThree\Auth\TwoFactorAuth('Poseidon');
+
+        if($tfa->verifyCode($secret, $code) === true){
+            $result['status'] = 1;
+        }
+        else{
+            $result['status'] = 0;
+            $result['exception'] = 'El código de autenticación es incorrecto';
+        }
+        return $result;
+    }
+
+    public function save2fa($secret, $id, $result)
+    {
+
+        if($this->usersModel->save2fa($secret, $id)){
+            $result['status'] = 1;
+        }
+        else{
+            $result['status'] = 0;
+            $result['exception'] = 'Error al activar la verificación en 2 pasos.';
+        }
+        return $result;
+    }
+
 
     public function readOne($data, $result)
     {
