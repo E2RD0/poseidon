@@ -221,7 +221,7 @@ class Users extends \Common\Controller
 
                         if (password_verify($password, trim($userHash->contrasena))) {
 
-                            if ($userHash->idestadousuario != 3) {
+                        if (/*$userHash->idestadousuario != 3*/ true) {
 
                                 if ($user->setOnline($email, true)) {
 
@@ -399,6 +399,46 @@ class Users extends \Common\Controller
         return $result;
     }
 
+    public function newPassword($userData, $result)
+    {
+        $userData = \Helpers\Validation::trimForm($userData);
+        $email = $userData['email'];
+        $newPassword = $userData['newPassword'];
+        $newPasswordR = $userData['newPasswordR'];
+        $idUsuario= ($this->usersModel->checkPassword($email))->idusuario;
+
+        $user = new Usuario;
+        $errors = [];
+        $errors = $user->setId($idUsuario) === true ? $errors : array_merge($errors, $user->setId($idUsuario));
+        $errors = $user->setEmail($email, true) === true ? $errors : array_merge($errors, $user->setEmail($email, true));
+        $errors = $user->setPassword($newPassword, true, 'Nueva Contraseña') === true ? $errors : array_merge($errors, $user->setPassword($newPassword, true, 'Nueva Contraseña'));
+        if ($newPasswordR) {
+            if ($newPassword != $newPasswordR) {
+                $errors['NewPasswordR'] = ['Las contraseñas no coinciden'];
+            }
+        } else {
+            $errors['NewPasswordR'] = ['Este campo es obligatorio'];
+        }
+        //If there aren't any errors
+        if (!boolval($errors)) {
+            if ($this->usersModel->changePassword($user)) {
+                $result['status'] = 1;
+                $result['message'] = 'Usuario actualizado correctamente';
+                if (isset($_COOKIE['email'])) {
+                    unset($_COOKIE['email']);
+                    setcookie('email', null, -1, '/');
+                }
+            } else {
+                $result['status'] = -1;
+                $result['exception'] = \Common\Database::$exception;
+            }
+        } else {
+            $result['exception'] = 'Error en uno de los campos';
+            $result['errors'] = $errors;
+        }
+        return $result;
+    }
+
     public function userRecoverPassword($userData, $result)
     {
         $userData = \Helpers\Validation::trimForm($userData);
@@ -448,6 +488,7 @@ class Users extends \Common\Controller
             } else {
                 if ($pin == ($this->usersModel->getPasswordPin($userInfo->idusuario))->pin) {
                     $result['status'] = 1;
+                    setcookie("email", $email, time() + 300, HOME_PATH . "admin/user/newPassword");
                 } else {
                     $errors['Código'] = ['El código es incorrecto.'];
                 }

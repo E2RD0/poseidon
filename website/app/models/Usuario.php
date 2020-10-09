@@ -262,6 +262,14 @@ class Usuario
         $db->bind(':idTipo', $user->idTipo);
         return $db->execute();
     }
+    public function changePassword($user)
+    {
+        $db = new \Common\Database;
+        $db->query('UPDATE usuario SET contrasena = :hash WHERE idUsuario = :idUsuario');
+        $db->bind(':hash', password_hash($user->password, PASSWORD_ARGON2ID));
+        $db->bind(':idUsuario', $user->id);
+        return $db->execute();
+    }
     public function saveRecoveryCode($pin, $id)
     {
         $this->deleteRecoveryCode($id);

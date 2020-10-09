@@ -22,7 +22,7 @@ $( '#recover-form' ).submit(function( event ) {
     .done(function( response ) {
         // If user is registered succesfully
         if ( response.status == 1) {
-            redirect('admin/user/recoverCode');
+            redirect('admin/user/recoverCode/' + $('#inputEmail').val().trim());
         } else if (response.status == -1){
             swal(2, response.exception);
         }
@@ -63,6 +63,42 @@ $( '#code-form' ).submit(function( event ) {
         }
         var errors = response.errors;
         checkFields(errors, 'Código');
+    })
+    .fail(function( jqXHR ) {
+        // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+        if ( jqXHR.status == 200 ) {
+            console.log( jqXHR.responseText );
+        } else {
+            console.log( jqXHR.status + ' ' + jqXHR.statusText );
+        }
+    });
+});
+
+$( '#form-newPassword' ).submit(function( event ) {
+    event.preventDefault();
+    $.ajax({
+        type: 'post',
+        url: API_USUARIOS + 'newPassword',
+        data: $( '#form-newPassword' ).serialize()+'&email=' + getCookie('email'),
+        dataType: 'json',
+        beforeSend: function() {
+            $("#password-submit")[0].innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Cargando...';
+        },
+        complete: function() {
+            $("#password-submit")[0].innerHTML = 'Cambiar contraseña';
+        }
+
+    })
+    .done(function( response ) {
+        // If user is registered succesfully
+        if ( response.status == 1) {
+            redirect('admin/user/login');
+        } else if (response.status == -1){
+            swal(2, response.exception);
+        }
+        var errors = response.errors;
+        checkFields(errors, 'Nueva Contraseña');
+        checkFields(errors, 'NewPasswordR');
     })
     .fail(function( jqXHR ) {
         // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.

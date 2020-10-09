@@ -26,6 +26,11 @@ class User extends \Common\Controller
     }
     public function newPassword()
     {
-        $this->loadView('dashboard', 'recuperar-clave', false);
+        if(isset($_COOKIE['email'])) {
+            $this->loadView('dashboard', 'recuperar-clave', false);
+        }
+        else {
+            Core::http404();
+        }
     }
 }
