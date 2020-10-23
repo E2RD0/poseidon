@@ -145,7 +145,7 @@ WHERE
 --Funciones
 --get basic data from orders
 CREATE
-	OR REPLACE FUNCTION getOrders ( ) RETURNS TABLE ( idorden INT, cliente VARCHAR, direccion VARCHAR, total NUMERIC, fechacompra VARCHAR ) AS $ $ DECLARE
+	OR REPLACE FUNCTION getOrders ( ) RETURNS TABLE ( idorden INT, cliente VARCHAR, direccion VARCHAR, total NUMERIC, fechacompra VARCHAR ) AS $$ DECLARE
 	var RECORD;
 BEGIN
 		FOR var IN (
@@ -185,7 +185,7 @@ END LOOP;
 
 END;
 
-$ $ LANGUAGE'plpgsql';
+$$ LANGUAGE'plpgsql';
 --get specific data from one order
 CREATE
 	OR REPLACE FUNCTION getOrders ( ) RETURNS TABLE ( idorden INT, cliente VARCHAR, direccion VARCHAR, total NUMERIC, fechacompra VARCHAR ) AS $$ DECLARE
@@ -272,7 +272,7 @@ END;
 $$ LANGUAGE'plpgsql';
 
 CREATE
-	OR REPLACE FUNCTION getOrderDetails ( id_orden INT ) RETURNS TABLE ( idproducto INT, nombre VARCHAR, cantidad INT, preciounitario NUMERIC ) AS $ $ DECLARE
+	OR REPLACE FUNCTION getOrderDetails ( id_orden INT ) RETURNS TABLE ( idproducto INT, nombre VARCHAR, cantidad INT, preciounitario NUMERIC ) AS $$ DECLARE
 	orderDetails RECORD;
 selected_order INT := id_orden;
 BEGIN
@@ -300,10 +300,10 @@ END LOOP;
 
 END;
 
-$ $ LANGUAGE'plpgsql';
+$$ LANGUAGE'plpgsql';
 --GetRentals()
 CREATE
-	OR REPLACE FUNCTION getRentals ( ) RETURNS TABLE ( idorden INT, cliente VARCHAR, sucursal VARCHAR, fechacompra VARCHAR, fechasalquiler VARCHAR, totalalquiler NUMERIC ) AS $ $ DECLARE
+	OR REPLACE FUNCTION getRentals ( ) RETURNS TABLE ( idorden INT, cliente VARCHAR, sucursal VARCHAR, fechacompra VARCHAR, fechasalquiler VARCHAR, totalalquiler NUMERIC ) AS $$ DECLARE
 	var RECORD;
 BEGIN
 		FOR var IN (
@@ -350,7 +350,7 @@ END LOOP;
 
 END;
 
-$ $ LANGUAGE'plpgsql';
+$$ LANGUAGE'plpgsql';
 --getRentalGeneralDetails(int id_rental)
 CREATE
 	OR REPLACE FUNCTION getRentalGeneralDetails ( id_rental INT ) RETURNS TABLE (
@@ -365,7 +365,7 @@ CREATE
 		subtotal NUMERIC,
 		iva NUMERIC,
 		total NUMERIC
-	) AS $ $ DECLARE
+	) AS $$ DECLARE
 	order_info RECORD;
 selected_rental INT := id_rental;
 temp_iva NUMERIC;
@@ -421,10 +421,10 @@ END LOOP;
 
 END;
 
-$ $ LANGUAGE'plpgsql';
+$$ LANGUAGE'plpgsql';
 --getRentalSpecificDetails()
 CREATE
-	OR REPLACE FUNCTION getRentalDetails ( id_rental INT ) RETURNS TABLE ( idproducto INT, nombre VARCHAR, precioalquiler NUMERIC ) AS $ $ DECLARE
+	OR REPLACE FUNCTION getRentalDetails ( id_rental INT ) RETURNS TABLE ( idproducto INT, nombre VARCHAR, precioalquiler NUMERIC ) AS $$ DECLARE
 	rentalDetails RECORD;
 selected_order INT := id_orden;
 BEGIN
@@ -451,7 +451,7 @@ END LOOP;
 
 END;
 
-$ $ LANGUAGE'plpgsql';
+$$ LANGUAGE'plpgsql';
 --getProducts()
 --DROP function  getProducts();
 CREATE
@@ -465,7 +465,7 @@ CREATE
 		descripcion VARCHAR,
 		imgurl VARCHAR,
 		calificacion NUMERIC ( 2, 1 )
-	) AS $ $ DECLARE
+	) AS $$ DECLARE
 	products RECORD;
 BEGIN
 		FOR products IN (
@@ -507,7 +507,7 @@ END LOOP;
 
 END;
 
-$ $ LANGUAGE'plpgsql';
+$$ LANGUAGE'plpgsql';
 --getFeaturedProducts()
 --DROP function  getFeaturedProducts();
 CREATE
@@ -521,7 +521,7 @@ CREATE
 		descripcion VARCHAR,
 		imgurl VARCHAR,
 		calificacion NUMERIC ( 2, 1 )
-	) AS $ $ DECLARE
+	) AS $$ DECLARE
 	products RECORD;
 BEGIN
 		FOR products IN (
@@ -566,7 +566,7 @@ END LOOP;
 
 END;
 
-$ $ LANGUAGE'plpgsql';
+$$ LANGUAGE'plpgsql';
 --getProductReviews()
 CREATE
 	OR REPLACE FUNCTION getProductReviews ( id_producto INT ) RETURNS TABLE ( idreview INT, cliente VARCHAR, puntuacion NUMERIC ( 3, 2 ), comentario VARCHAR ) AS $$ DECLARE
@@ -622,7 +622,7 @@ BEGIN
 $$ LANGUAGE'plpgsql';
 --getProductQuantites()
 CREATE
-	OR REPLACE FUNCTION getProductQuantities (quantity INT) RETURNS TABLE ( producto VARCHAR, cantidad INT ) AS $ $ DECLARE
+	OR REPLACE FUNCTION getProductQuantities (quantity INT) RETURNS TABLE ( producto VARCHAR, cantidad INT ) AS $$ DECLARE
 	product_info RECORD;
 BEGIN
 		FOR product_info IN ( SELECT nombre, existenciascompra AS cantidad FROM producto ORDER BY existenciascompra ASC LIMIT quantity )
@@ -635,10 +635,10 @@ END LOOP;
 
 END;
 
-$ $ LANGUAGE'plpgsql';
+$$ LANGUAGE'plpgsql';
 --getOrdersByClient
 CREATE
-	OR REPLACE FUNCTION getOrdersByClient ( id_cliente INT ) RETURNS TABLE ( idorden INT, estado VARCHAR, total NUMERIC, fechacompra VARCHAR ) AS $ $ DECLARE
+	OR REPLACE FUNCTION getOrdersByClient ( id_cliente INT ) RETURNS TABLE ( idorden INT, estado VARCHAR, total NUMERIC, fechacompra VARCHAR ) AS $$ DECLARE
 	var RECORD;
 BEGIN
 	FOR var IN (
@@ -658,7 +658,7 @@ BEGIN
 			JOIN cliente USING ( idcliente )
 		WHERE
 			estadoorden.estado NOT LIKE 'carrito'
-			AND cliente.idcliente = 22
+			AND cliente.idcliente = id_cliente
 		GROUP BY
 			orden.idorden,
 			estadoorden.estado
@@ -676,10 +676,10 @@ END LOOP;
 
 END;
 
-$ $ LANGUAGE'plpgsql';
+$$ LANGUAGE'plpgsql';
 --readCart()
 CREATE
-	OR REPLACE FUNCTION readCart ( id_orden INT ) RETURNS TABLE ( idproducto INT, imgurl VARCHAR, nombre VARCHAR, preciounitario NUMERIC, cantidad INT ) AS $ $ DECLARE
+	OR REPLACE FUNCTION readCart ( id_orden INT ) RETURNS TABLE ( idproducto INT, imgurl VARCHAR, nombre VARCHAR, preciounitario NUMERIC, cantidad INT, iddetalleorden INT) AS $$ DECLARE
 	cart_info RECORD;
 BEGIN
 		FOR cart_info IN (
@@ -688,7 +688,8 @@ BEGIN
 			producto.imgurl,
 			producto.nombre,
 			detalleorden.preciounitario,
-			detalleorden.cantidad
+			detalleorden.cantidad,
+			detalleorden.iddetalleorden
 		FROM
 			detalleorden
 			JOIN orden ON detalleorden.idorden = orden.idorden
@@ -704,13 +705,14 @@ BEGIN
 	nombre := cart_info.nombre;
 	preciounitario := cart_info.preciounitario;
 	cantidad := cart_info.cantidad;
+	iddetalleorden := cart_info.iddetalleorden;
 	RETURN NEXT;
 
 END LOOP;
 
 END;
 
-$ $ LANGUAGE'plpgsql';
+$$ LANGUAGE'plpgsql';
 
 CREATE
 	OR REPLACE FUNCTION getOrderGeneralDetailsByCliente ( id_cliente INT ) RETURNS TABLE (
